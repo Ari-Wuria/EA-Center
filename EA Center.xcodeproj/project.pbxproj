@@ -12,6 +12,10 @@
 		D025730920D8A1E30078AE89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730720D8A1E30078AE89 /* Main.storyboard */; };
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
+		D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED720D8A41200DBB70E /* AppDelegate.swift */; };
+		D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED920D8A41200DBB70E /* ViewController.swift */; };
+		D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */; };
+		D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDD20D8A41300DBB70E /* Main.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,10 +26,24 @@
 		D025730A20D8A1E40078AE89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D025730D20D8A1E40078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D025730F20D8A1E40078AE89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0DFCED520D8A41200DBB70E /* EA Center Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0DFCED720D8A41200DBB70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D0DFCED920D8A41200DBB70E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D0DFCEDE20D8A41300DBB70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D0DFCEE020D8A41300DBB70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0DFCEE120D8A41300DBB70E /* EA_Center_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EA_Center_Mac.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		D02572FD20D8A1E30078AE89 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DFCED220D8A41200DBB70E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,6 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				D025730220D8A1E30078AE89 /* EA Center */,
+				D0DFCED620D8A41200DBB70E /* EA Center Mac */,
 				D025730120D8A1E30078AE89 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -47,6 +66,7 @@
 			isa = PBXGroup;
 			children = (
 				D025730020D8A1E30078AE89 /* EA Center.app */,
+				D0DFCED520D8A41200DBB70E /* EA Center Mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,6 +82,19 @@
 				D025730F20D8A1E40078AE89 /* Info.plist */,
 			);
 			path = "EA Center";
+			sourceTree = "<group>";
+		};
+		D0DFCED620D8A41200DBB70E /* EA Center Mac */ = {
+			isa = PBXGroup;
+			children = (
+				D0DFCED720D8A41200DBB70E /* AppDelegate.swift */,
+				D0DFCED920D8A41200DBB70E /* ViewController.swift */,
+				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
+				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
+				D0DFCEE020D8A41300DBB70E /* Info.plist */,
+				D0DFCEE120D8A41300DBB70E /* EA_Center_Mac.entitlements */,
+			);
+			path = "EA Center Mac";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -84,6 +117,23 @@
 			productReference = D025730020D8A1E30078AE89 /* EA Center.app */;
 			productType = "com.apple.product-type.application";
 		};
+		D0DFCED420D8A41200DBB70E /* EA Center Mac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D0DFCEE420D8A41300DBB70E /* Build configuration list for PBXNativeTarget "EA Center Mac" */;
+			buildPhases = (
+				D0DFCED120D8A41200DBB70E /* Sources */,
+				D0DFCED220D8A41200DBB70E /* Frameworks */,
+				D0DFCED320D8A41200DBB70E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EA Center Mac";
+			productName = "EA Center Mac";
+			productReference = D0DFCED520D8A41200DBB70E /* EA Center Mac.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -95,6 +145,9 @@
 				ORGANIZATIONNAME = "Tom Shen";
 				TargetAttributes = {
 					D02572FF20D8A1E30078AE89 = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					D0DFCED420D8A41200DBB70E = {
 						CreatedOnToolsVersion = 10.0;
 					};
 				};
@@ -113,6 +166,7 @@
 			projectRoot = "";
 			targets = (
 				D02572FF20D8A1E30078AE89 /* EA Center */,
+				D0DFCED420D8A41200DBB70E /* EA Center Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -128,6 +182,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		D0DFCED320D8A41200DBB70E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */,
+				D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -137,6 +200,15 @@
 			files = (
 				D025730620D8A1E30078AE89 /* ViewController.swift in Sources */,
 				D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D0DFCED120D8A41200DBB70E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
+				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,6 +229,14 @@
 				D025730D20D8A1E40078AE89 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D0DFCEDD20D8A41300DBB70E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0DFCEDE20D8A41300DBB70E /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -314,6 +394,50 @@
 			};
 			name = Release;
 		};
+		D0DFCEE220D8A41300DBB70E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "EA Center Mac/EA_Center_Mac.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				INFOPLIST_FILE = "EA Center Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Debug;
+		};
+		D0DFCEE320D8A41300DBB70E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "EA Center Mac/EA_Center_Mac.entitlements";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				INFOPLIST_FILE = "EA Center Mac/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 4.2;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -331,6 +455,15 @@
 			buildConfigurations = (
 				D025731320D8A1E40078AE89 /* Debug */,
 				D025731420D8A1E40078AE89 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D0DFCEE420D8A41300DBB70E /* Build configuration list for PBXNativeTarget "EA Center Mac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D0DFCEE220D8A41300DBB70E /* Debug */,
+				D0DFCEE320D8A41300DBB70E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
