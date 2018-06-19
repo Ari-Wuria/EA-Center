@@ -12,6 +12,7 @@
 		D025730920D8A1E30078AE89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730720D8A1E30078AE89 /* Main.storyboard */; };
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
+		D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2A7320D947480044C7F1 /* MainWindowController.swift */; };
 		D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED720D8A41200DBB70E /* AppDelegate.swift */; };
 		D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED920D8A41200DBB70E /* ViewController.swift */; };
 		D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		D025730A20D8A1E40078AE89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D025730D20D8A1E40078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D025730F20D8A1E40078AE89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D05F2A7320D947480044C7F1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		D0DFCED520D8A41200DBB70E /* EA Center Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DFCED720D8A41200DBB70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0DFCED920D8A41200DBB70E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 			children = (
 				D0DFCED720D8A41200DBB70E /* AppDelegate.swift */,
 				D0DFCED920D8A41200DBB70E /* ViewController.swift */,
+				D05F2A7320D947480044C7F1 /* MainWindowController.swift */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
@@ -209,6 +212,7 @@
 			files = (
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
+				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -363,7 +367,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
 				INFOPLIST_FILE = "EA Center/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -382,7 +386,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
 				INFOPLIST_FILE = "EA Center/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -408,7 +412,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -430,7 +434,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

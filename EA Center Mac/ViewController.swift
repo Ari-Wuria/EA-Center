@@ -9,6 +9,8 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    
+    @IBOutlet var customTouchBar: NSTouchBar?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +24,9 @@ class ViewController: NSViewController {
         }
     }
 
+    override func makeTouchBar() -> NSTouchBar? {
+        return customTouchBar
+    }
 
 }
 
