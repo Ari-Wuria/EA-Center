@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14269.14" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14211.1"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14269.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14269.14"/>
+        <plugIn identifier="com.apple.WebKit2IBPlugin" version="14269.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
@@ -681,21 +682,25 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="253" y="-145"/>
+            <point key="canvasLocation" x="251" y="-88"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="EA Center" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="239" y="229" width="659" height="448"/>
+                        <rect key="contentRect" x="239" y="230" width="659" height="447"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <toolbar key="toolbar" implicitIdentifier="2125C316-8DD1-457F-AC86-EBCF281E3B95" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="871-Pg-Zgn">
+                        <toolbar key="toolbar" implicitIdentifier="2125C316-8DD1-457F-AC86-EBCF281E3B95" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="871-Pg-Zgn">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="28385036-A8B1-4DF5-9A77-82A9F09B4141" label="Student Bulletin" paletteLabel="Student Bulletin" tag="-1" image="User" id="24C-Ll-mhF"/>
+                                <toolbarItem implicitItemIdentifier="28385036-A8B1-4DF5-9A77-82A9F09B4141" label="Student Bulletin" paletteLabel="Student Bulletin" tag="-1" image="User" id="24C-Ll-mhF">
+                                    <connections>
+                                        <action selector="showStudentBulletin:" target="B8D-0N-5wS" id="VjQ-te-aB5"/>
+                                    </connections>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="42242A6E-E348-485E-BE5C-DFF84FE7FAA3" label="EA Timetable" paletteLabel="EA Timetable" tag="-1" image="Clock" id="c5g-tm-huA"/>
                                 <toolbarItem implicitItemIdentifier="669DCBD6-8DA0-4BBE-B2D4-5F093C12FB23" label="Messages" paletteLabel="Messages" tag="-1" image="Bubble" id="ubx-4f-Fao"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="u0j-z2-Vcc"/>
@@ -717,7 +722,7 @@
                     </connections>
                 </windowController>
             </objects>
-            <point key="canvasLocation" x="239" y="275"/>
+            <point key="canvasLocation" x="238.5" y="275.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -871,6 +876,9 @@
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="touchShowBulletin:" target="XfG-lQ-9wD" id="6E8-ah-9Lk"/>
+                                    </connections>
                                 </button>
                             </viewController>
                             <size key="designTimeSize" width="140" height="30"/>
@@ -905,6 +913,62 @@
                 </touchBar>
             </objects>
             <point key="canvasLocation" x="238.5" y="1020"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="gJt-th-cbS">
+            <objects>
+                <windowController storyboardIdentifier="StudentBulletin" id="ed2-jU-5zM" customClass="BulletinWindowController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                    <window key="window" title="Student Bulletin" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="4Hg-K9-849">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="ed2-jU-5zM" id="aqm-iX-37v"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="tqs-aN-Wki" kind="relationship" relationship="window.shadowedContentViewController" id="Qz3-6c-ceh"/>
+                    </connections>
+                </windowController>
+                <customObject id="KLI-IA-9H6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1080" y="275"/>
+        </scene>
+        <!--Bulletin View Controller-->
+        <scene sceneID="dXf-gP-Zd5">
+            <objects>
+                <viewController id="tqs-aN-Wki" customClass="BulletinViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="8HX-vG-n5O">
+                        <rect key="frame" x="0.0" y="0.0" width="730" height="504"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <wkWebView wantsLayer="YES" fixedFrame="YES" allowsBackForwardNavigationGestures="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bZm-4M-mhj">
+                                <rect key="frame" x="0.0" y="0.0" width="730" height="504"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="ifc-2b-42Q">
+                                <rect key="frame" x="67" y="473" width="596" height="20"/>
+                            </progressIndicator>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ifc-2b-42Q" firstAttribute="leading" secondItem="8HX-vG-n5O" secondAttribute="leading" constant="67" id="Qux-DP-hBQ"/>
+                            <constraint firstItem="ifc-2b-42Q" firstAttribute="top" secondItem="8HX-vG-n5O" secondAttribute="top" constant="12" id="Szj-4z-853"/>
+                            <constraint firstAttribute="trailing" secondItem="ifc-2b-42Q" secondAttribute="trailing" constant="67" id="gOb-RD-3Lv"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="progressBar" destination="ifc-2b-42Q" id="2CA-L7-bvS"/>
+                        <outlet property="webView" destination="bZm-4M-mhj" id="hzs-GH-1Tf"/>
+                    </connections>
+                </viewController>
+                <customObject id="6Cc-ss-x7M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1908" y="275"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="0Yk-ed-ckx">

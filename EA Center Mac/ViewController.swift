@@ -28,5 +28,8 @@ class ViewController: NSViewController {
         return customTouchBar
     }
 
+    @IBAction func touchShowBulletin(_ sender: Any) {
+        (view.window?.windowController as! MainWindowController).showStudentBulletin(sender)
+    }
 }
 

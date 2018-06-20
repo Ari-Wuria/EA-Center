@@ -13,6 +13,9 @@
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
 		D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2A7320D947480044C7F1 /* MainWindowController.swift */; };
+		D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */; };
+		D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */; };
+		D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */; };
 		D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED720D8A41200DBB70E /* AppDelegate.swift */; };
 		D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED920D8A41200DBB70E /* ViewController.swift */; };
 		D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */; };
@@ -28,13 +31,16 @@
 		D025730D20D8A1E40078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D025730F20D8A1E40078AE89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D05F2A7320D947480044C7F1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinViewController.swift; sourceTree = "<group>"; };
+		D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinWindowController.swift; sourceTree = "<group>"; };
+		D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
+		D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center Mac.entitlements"; sourceTree = "<group>"; };
 		D0DFCED520D8A41200DBB70E /* EA Center Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DFCED720D8A41200DBB70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0DFCED920D8A41200DBB70E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0DFCEDE20D8A41300DBB70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0DFCEE020D8A41300DBB70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D0DFCEE120D8A41300DBB70E /* EA_Center_Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EA_Center_Mac.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,13 +95,16 @@
 		D0DFCED620D8A41200DBB70E /* EA Center Mac */ = {
 			isa = PBXGroup;
 			children = (
+				D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */,
 				D0DFCED720D8A41200DBB70E /* AppDelegate.swift */,
 				D0DFCED920D8A41200DBB70E /* ViewController.swift */,
 				D05F2A7320D947480044C7F1 /* MainWindowController.swift */,
+				D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */,
+				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
-				D0DFCEE120D8A41300DBB70E /* EA_Center_Mac.entitlements */,
+				D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */,
 			);
 			path = "EA Center Mac";
 			sourceTree = "<group>";
@@ -152,6 +161,14 @@
 					};
 					D0DFCED420D8A41200DBB70E = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.HardenedRuntime = {
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -211,6 +228,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
+				D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */,
+				D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */,
+				D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
 				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
 			);
@@ -402,11 +422,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "EA Center Mac/EA_Center_Mac.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "EA Center Mac/EA Center Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "EA Center Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -424,11 +445,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "EA Center Mac/EA_Center_Mac.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "EA Center Mac/EA Center Mac.entitlements";
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "EA Center Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

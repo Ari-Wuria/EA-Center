@@ -20,4 +20,9 @@ class MainWindowController: NSWindowController {
         return (contentViewController as! ViewController).makeTouchBar()
     }
 
+    @IBAction func showStudentBulletin(_ sender: Any) {
+        let storyboard = NSStoryboard(name: "Main", bundle: .main)
+        let bulletinWindow = storyboard.instantiateController(withIdentifier: "StudentBulletin") as! NSWindowController
+        bulletinWindow.showWindow(sender)
+    }
 }
