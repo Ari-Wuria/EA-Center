@@ -16,6 +16,8 @@
 		D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */; };
 		D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */; };
 		D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */; };
+		D0DB6AEE20DA888F00BBE8F0 /* EADescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AED20DA888F00BBE8F0 /* EADescriptionViewController.swift */; };
+		D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */; };
 		D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED720D8A41200DBB70E /* AppDelegate.swift */; };
 		D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED920D8A41200DBB70E /* ViewController.swift */; };
 		D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */; };
@@ -35,6 +37,8 @@
 		D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinWindowController.swift; sourceTree = "<group>"; };
 		D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center Mac.entitlements"; sourceTree = "<group>"; };
+		D0DB6AED20DA888F00BBE8F0 /* EADescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADescriptionViewController.swift; sourceTree = "<group>"; };
+		D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarHeight.swift; sourceTree = "<group>"; };
 		D0DFCED520D8A41200DBB70E /* EA Center Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DFCED720D8A41200DBB70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0DFCED920D8A41200DBB70E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,10 +113,12 @@
 				D05F2A7320D947480044C7F1 /* MainWindowController.swift */,
 				D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */,
 				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
+				D0DB6AED20DA888F00BBE8F0 /* EADescriptionViewController.swift */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */,
+				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
 			);
 			path = "EA Center Mac";
 			sourceTree = "<group>";
@@ -239,11 +245,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
+				D0DB6AEE20DA888F00BBE8F0 /* EADescriptionViewController.swift in Sources */,
 				D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */,
 				D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */,
 				D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
 				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
+				D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

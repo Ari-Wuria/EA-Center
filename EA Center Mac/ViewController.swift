@@ -9,6 +9,7 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    @IBOutlet weak var listTableView: NSTableView!
     
     @IBOutlet var customTouchBar: NSTouchBar?
 
@@ -16,6 +17,9 @@ class ViewController: NSViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        listTableView.dataSource = self
+        listTableView.delegate = self
     }
 
     override var representedObject: Any? {
@@ -33,3 +37,17 @@ class ViewController: NSViewController {
     }
 }
 
+extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
+    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+        return 103
+    }
+    
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return 1
+    }
+    /*
+    func tableView(_ tableView: NSTableView, dataCellFor tableColumn: NSTableColumn?, row: Int) -> NSCell? {
+        
+    }
+ */
+}

@@ -9,6 +9,8 @@
 import Cocoa
 
 class MainWindowController: NSWindowController {
+    
+    var bulletinController: BulletinWindowController? = nil
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -21,8 +23,25 @@ class MainWindowController: NSWindowController {
     }
 
     @IBAction func showStudentBulletin(_ sender: Any) {
-        let storyboard = NSStoryboard(name: "Main", bundle: .main)
-        let bulletinWindow = storyboard.instantiateController(withIdentifier: "StudentBulletin") as! NSWindowController
-        bulletinWindow.showWindow(sender)
+        if let window = bulletinController {
+            window.showWindow(sender)
+        } else {
+            let storyboard = NSStoryboard(name: "Main", bundle: .main)
+            let bulletinWindow = storyboard.instantiateController(withIdentifier: "StudentBulletin") as! BulletinWindowController
+            bulletinWindow.showWindow(sender)
+            
+            // Reprogram the bulletin's close button to this class so that we can
+            // deinit it properly.
+            let button = bulletinWindow.window?.standardWindowButton(.closeButton)
+            button?.target = self
+            button?.action = #selector(bulletinClosed)
+            
+            bulletinController = bulletinWindow
+        }
+    }
+    
+    @objc func bulletinClosed() {
+        bulletinController?.close()
+        bulletinController = nil
     }
 }

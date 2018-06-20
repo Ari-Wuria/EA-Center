@@ -22,6 +22,8 @@ class BulletinViewController: NSViewController {
         webView.load(request)
         
         webView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
+        
+        webView.setValue(false, forKey: "drawsBackground")
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -43,6 +45,10 @@ class BulletinViewController: NSViewController {
         webView.removeObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress))
         
         super.viewWillDisappear()
+    }
+    
+    deinit {
+        print("Bulletin deinit")
     }
     
 }
