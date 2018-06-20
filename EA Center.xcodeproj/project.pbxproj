@@ -67,6 +67,7 @@
 				D025730220D8A1E30078AE89 /* EA Center */,
 				D0DFCED620D8A41200DBB70E /* EA Center Mac */,
 				D025730120D8A1E30078AE89 /* Products */,
+				D0DB6AEA20DA682000BBE8F0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +91,13 @@
 				D025730F20D8A1E40078AE89 /* Info.plist */,
 			);
 			path = "EA Center";
+			sourceTree = "<group>";
+		};
+		D0DB6AEA20DA682000BBE8F0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		D0DFCED620D8A41200DBB70E /* EA Center Mac */ = {
@@ -162,8 +170,11 @@
 					D0DFCED420D8A41200DBB70E = {
 						CreatedOnToolsVersion = 10.0;
 						SystemCapabilities = {
+							com.apple.GameCenter.Mac = {
+								enabled = 0;
+							};
 							com.apple.HardenedRuntime = {
-								enabled = 1;
+								enabled = 0;
 							};
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -427,7 +438,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
-				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "EA Center Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -450,7 +460,6 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
-				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = "EA Center Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
