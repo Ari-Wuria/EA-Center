@@ -697,11 +697,13 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="28385036-A8B1-4DF5-9A77-82A9F09B4141" label="Student Bulletin" paletteLabel="Student Bulletin" tag="-1" image="User" id="24C-Ll-mhF"/>
                                 <toolbarItem implicitItemIdentifier="42242A6E-E348-485E-BE5C-DFF84FE7FAA3" label="EA Timetable" paletteLabel="EA Timetable" tag="-1" image="Clock" id="c5g-tm-huA"/>
+                                <toolbarItem implicitItemIdentifier="669DCBD6-8DA0-4BBE-B2D4-5F093C12FB23" label="Messages" paletteLabel="Messages" tag="-1" image="Bubble" id="ubx-4f-Fao"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="u0j-z2-Vcc"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="93K-p9-sk7"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="93K-p9-sk7"/>
+                                <toolbarItem reference="ubx-4f-Fao"/>
                                 <toolbarItem reference="24C-Ll-mhF"/>
                                 <toolbarItem reference="c5g-tm-huA"/>
                             </defaultToolbarItems>
@@ -860,9 +862,35 @@
                 <touchBar id="F90-RN-1KC">
                     <touchBarItems>
                         <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="tkR-Uh-Bt4"/>
+                        <touchBarItem id="Hhs-yp-AaF">
+                            <viewController key="viewController" id="U26-73-G0f">
+                                <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doK-A1-RYU">
+                                    <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Student Bulletin" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0KG-mW-bmI">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                    </buttonCell>
+                                </button>
+                            </viewController>
+                            <size key="designTimeSize" width="140" height="30"/>
+                        </touchBarItem>
+                        <touchBarItem id="gWE-Lw-0PL">
+                            <viewController key="viewController" id="YyZ-2b-Vh7">
+                                <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7uz-kB-1UB">
+                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Messages" bezelStyle="rounded" image="Bubble White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9XY-2p-S7q">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                    </buttonCell>
+                                </button>
+                            </viewController>
+                            <size key="designTimeSize" width="144" height="30"/>
+                        </touchBarItem>
                         <touchBarItem id="9U3-oq-22T">
                             <viewController key="viewController" id="X20-ee-5ch">
-                                <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="19L-sp-F0h">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="19L-sp-F0h">
                                     <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Timetable" bezelStyle="rounded" image="Clock White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CMg-Jm-mpV">
@@ -913,6 +941,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Bubble" width="34.5" height="28.5"/>
+        <image name="Bubble White" width="34.5" height="28.5"/>
         <image name="Clock" width="31" height="31"/>
         <image name="Clock White" width="31" height="31"/>
         <image name="User" width="27.5" height="29.5"/>
