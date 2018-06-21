@@ -12,6 +12,8 @@
 		D025730920D8A1E30078AE89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730720D8A1E30078AE89 /* Main.storyboard */; };
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
+		D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */; };
+		D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042C18D20DBA0860017DE4F /* LoginViewController.swift */; };
 		D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */; };
 		D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2A7320D947480044C7F1 /* MainWindowController.swift */; };
 		D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */; };
@@ -33,6 +35,8 @@
 		D025730A20D8A1E40078AE89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D025730D20D8A1E40078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D025730F20D8A1E40078AE89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
+		D042C18D20DBA0860017DE4F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAManagerViewController.swift; sourceTree = "<group>"; };
 		D05F2A7320D947480044C7F1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinViewController.swift; sourceTree = "<group>"; };
@@ -116,12 +120,14 @@
 				D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */,
 				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
 				D0DB6AED20DA888F00BBE8F0 /* EADescriptionViewController.swift */,
+				D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */,
+				D042C18D20DBA0860017DE4F /* LoginViewController.swift */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
+				D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */,
 				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
-				D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */,
 			);
 			path = "EA Center Mac";
 			sourceTree = "<group>";
@@ -228,6 +234,7 @@
 			files = (
 				D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */,
 				D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */,
+				D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,6 +262,7 @@
 				D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
 				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
+				D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */,
 				D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

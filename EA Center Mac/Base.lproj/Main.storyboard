@@ -660,6 +660,28 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Me" id="Eas-x1-uIb">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Me" id="aUD-i2-t0k">
+                                    <items>
+                                        <menuItem title="Logged in as: User" enabled="NO" id="DGG-pS-TI1">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Login/Logout" id="1XO-op-GRC">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="toggleLoginState:" target="Voe-Tx-rLC" id="ZNi-IO-1f6"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="User Settings" id="Fps-5D-ufw">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showUserSettings:" target="Voe-Tx-rLC" id="fqP-CW-N9v"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Help" id="wpr-3q-Mcd">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
@@ -682,7 +704,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1015" y="14"/>
+            <point key="canvasLocation" x="768" y="-222"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="vhm-oq-Nt7">
@@ -1047,48 +1069,48 @@
                                 </gridCells>
                             </gridView>
                             <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hu6-IX-ztD">
-                                <rect key="frame" x="331" y="31" width="446" height="124"/>
+                                <rect key="frame" x="331" y="52" width="446" height="118"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="1Id-Y3-n6E">
-                                    <rect key="frame" x="0.0" y="0.0" width="446" height="124"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="446" height="118"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="I3c-Lx-omc">
-                                            <rect key="frame" x="0.0" y="0.0" width="727" height="124"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="727" height="118"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="446" height="124"/>
+                                            <size key="minSize" width="446" height="118"/>
                                             <size key="maxSize" width="727" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
                                 </clipView>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="96r-gw-19e">
-                                    <rect key="frame" x="430" y="0.0" width="16" height="124"/>
+                                    <rect key="frame" x="430" y="0.0" width="16" height="118"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
                             <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVX-sz-vuX">
-                                <rect key="frame" x="331" y="202" width="446" height="141"/>
+                                <rect key="frame" x="331" y="217" width="446" height="153"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="oLA-Dm-s10">
-                                    <rect key="frame" x="0.0" y="0.0" width="446" height="141"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="446" height="153"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView ambiguous="YES" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="zlL-Qa-ZCz">
-                                            <rect key="frame" x="0.0" y="0.0" width="727" height="141"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="727" height="153"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            <size key="minSize" width="446" height="141"/>
+                                            <size key="minSize" width="446" height="153"/>
                                             <size key="maxSize" width="727" height="10000000"/>
                                             <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                         </textView>
                                     </subviews>
                                 </clipView>
                                 <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="jmb-Jv-yEK">
-                                    <rect key="frame" x="430" y="0.0" width="16" height="141"/>
+                                    <rect key="frame" x="430" y="0.0" width="16" height="153"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
@@ -1110,10 +1132,36 @@
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ubp-eR-muD">
-                                <rect key="frame" x="329" y="169" width="134" height="19"/>
+                                <rect key="frame" x="329" y="178" width="134" height="19"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Student Proposal:" id="wNP-3c-C0p">
                                     <font key="font" metaFont="system" size="16"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hV9-Ut-vmJ">
+                                <rect key="frame" x="491" y="4" width="127" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Save Changes" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="yzp-zf-VPa">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vi4-WW-zbD">
+                                <rect key="frame" x="632" y="193" width="147" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Word Count" id="kjr-co-LDb">
+                                    <font key="font" metaFont="system" size="12"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZnB-Qe-a8W">
+                                <rect key="frame" x="632" y="28" width="147" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Word Count" id="Ez5-hq-gT9">
+                                    <font key="font" metaFont="system" size="12"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1173,7 +1221,7 @@
                     </connections>
                 </windowController>
             </objects>
-            <point key="canvasLocation" x="194" y="130"/>
+            <point key="canvasLocation" x="238" y="206"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -1320,9 +1368,9 @@
                         <touchBarItem id="Hhs-yp-AaF">
                             <viewController key="viewController" id="U26-73-G0f">
                                 <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="doK-A1-RYU">
-                                    <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="162" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="push" title="Student Bulletin" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0KG-mW-bmI">
+                                    <buttonCell key="cell" type="push" title="Student Bulletin" bezelStyle="rounded" image="User" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0KG-mW-bmI">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
                                     </buttonCell>
@@ -1331,7 +1379,7 @@
                                     </connections>
                                 </button>
                             </viewController>
-                            <size key="designTimeSize" width="140" height="30"/>
+                            <size key="designTimeSize" width="162" height="30"/>
                         </touchBarItem>
                         <touchBarItem id="gWE-Lw-0PL">
                             <viewController key="viewController" id="YyZ-2b-Vh7">
