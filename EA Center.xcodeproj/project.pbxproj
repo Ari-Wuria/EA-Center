@@ -12,6 +12,7 @@
 		D025730920D8A1E30078AE89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730720D8A1E30078AE89 /* Main.storyboard */; };
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
+		D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */; };
 		D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2A7320D947480044C7F1 /* MainWindowController.swift */; };
 		D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */; };
 		D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */; };
@@ -32,6 +33,7 @@
 		D025730A20D8A1E40078AE89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D025730D20D8A1E40078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D025730F20D8A1E40078AE89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAManagerViewController.swift; sourceTree = "<group>"; };
 		D05F2A7320D947480044C7F1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinViewController.swift; sourceTree = "<group>"; };
 		D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinWindowController.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */,
 				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
+				D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */,
 			);
 			path = "EA Center Mac";
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
 				D0DB6AEE20DA888F00BBE8F0 /* EADescriptionViewController.swift in Sources */,
 				D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */,
+				D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */,
 				D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */,
 				D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,

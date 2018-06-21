@@ -10,7 +10,8 @@ import Cocoa
 
 class MainWindowController: NSWindowController {
     
-    var bulletinController: BulletinWindowController? = nil
+    var bulletinController: NSWindowController? = nil
+    var manageController: NSWindowController? = nil
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -26,8 +27,8 @@ class MainWindowController: NSWindowController {
         if let window = bulletinController {
             window.showWindow(sender)
         } else {
-            let storyboard = NSStoryboard(name: "Main", bundle: .main)
-            let bulletinWindow = storyboard.instantiateController(withIdentifier: "StudentBulletin") as! BulletinWindowController
+            let storyboard = NSStoryboard.main!
+            let bulletinWindow = storyboard.instantiateController(withIdentifier: "StudentBulletin") as! NSWindowController
             bulletinWindow.showWindow(sender)
             
             // Reprogram the bulletin's close button to this class so that we can
@@ -43,5 +44,28 @@ class MainWindowController: NSWindowController {
     @objc func bulletinClosed() {
         bulletinController?.close()
         bulletinController = nil
+    }
+    
+    @IBAction func showManager(_ sender: Any) {
+        if let window = manageController {
+            window.showWindow(sender)
+        } else {
+            let storyboard = NSStoryboard.main!
+            let manageWindow = storyboard.instantiateController(withIdentifier: "Manage") as! NSWindowController
+            manageWindow.showWindow(sender)
+            
+            // Reprogram the bulletin's close button to this class so that we can
+            // deinit it properly.
+            let button = manageWindow.window?.standardWindowButton(.closeButton)
+            button?.target = self
+            button?.action = #selector(manageClosed)
+            
+            manageController = manageWindow
+        }
+    }
+    
+    @objc func manageClosed() {
+        manageController?.close()
+        manageController = nil
     }
 }
