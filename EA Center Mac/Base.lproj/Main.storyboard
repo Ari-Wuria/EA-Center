@@ -700,11 +700,17 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="EA_Center_Mac" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="EA_Center_Mac" customModuleProvider="target">
+                    <connections>
+                        <outlet property="loginMenu" destination="1XO-op-GRC" id="v4D-Qm-hNC"/>
+                        <outlet property="loginStatusMenu" destination="DGG-pS-TI1" id="Qhg-mC-hYF"/>
+                        <outlet property="userSettingMenu" destination="Fps-5D-ufw" id="coY-zn-Tsd"/>
+                    </connections>
+                </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="768" y="-222"/>
+            <point key="canvasLocation" x="892" y="-46"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="vhm-oq-Nt7">
@@ -1152,7 +1158,7 @@
                                 <rect key="frame" x="632" y="193" width="147" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Word Count" id="kjr-co-LDb">
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -1161,7 +1167,7 @@
                                 <rect key="frame" x="632" y="28" width="147" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Word Count" id="Ez5-hq-gT9">
-                                    <font key="font" metaFont="system" size="12"/>
+                                    <font key="font" metaFont="cellTitle"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

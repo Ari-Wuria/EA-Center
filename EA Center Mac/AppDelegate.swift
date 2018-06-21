@@ -10,11 +10,18 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
+    @IBOutlet weak var loginStatusMenu: NSMenuItem!
+    @IBOutlet weak var loginMenu: NSMenuItem!
+    @IBOutlet weak var userSettingMenu: NSMenuItem!
+    
     var loginWindow: NSWindowController? = nil
+    
+    var loggedIn = false
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        
+        updateMenu()
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -46,6 +53,18 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func showUserSettings(_ sender: Any) {
+    }
+    
+    func updateMenu() {
+        if loggedIn {
+            loginMenu.title = "Logout"
+            loginStatusMenu.title = "Logged in as: (user)"
+            userSettingMenu.isHidden = false
+        } else {
+            loginStatusMenu.title = "Not logged in"
+            loginMenu.title = "Login"
+            userSettingMenu.isHidden = true
+        }
     }
 }
 
