@@ -19,7 +19,6 @@
 		D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */; };
 		D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */; };
 		D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */; };
-		D0DB6AEE20DA888F00BBE8F0 /* EADescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AED20DA888F00BBE8F0 /* EADescriptionViewController.swift */; };
 		D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */; };
 		D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED720D8A41200DBB70E /* AppDelegate.swift */; };
 		D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED920D8A41200DBB70E /* ViewController.swift */; };
@@ -30,6 +29,25 @@
 		D0FEB70920E0F6AD009CB82E /* MainInfoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */; };
 		D0FEB70C20E1280C009CB82E /* EAListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70B20E1280C009CB82E /* EAListCellView.swift */; };
 		D0FEB70E20E128CC009CB82E /* EnrichmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */; };
+		D0FEB73C20E147AF009CB82E /* crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71520E147AF009CB82E /* crypt.c */; };
+		D0FEB73D20E147AF009CB82E /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71620E147AF009CB82E /* unzip.c */; };
+		D0FEB73E20E147AF009CB82E /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71720E147AF009CB82E /* zip.c */; };
+		D0FEB73F20E147AF009CB82E /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71920E147AF009CB82E /* ioapi.c */; };
+		D0FEB74020E147AF009CB82E /* ioapi_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71B20E147AF009CB82E /* ioapi_buf.c */; };
+		D0FEB74120E147AF009CB82E /* ioapi_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71F20E147AF009CB82E /* ioapi_mem.c */; };
+		D0FEB74220E147AF009CB82E /* minishared.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72020E147AF009CB82E /* minishared.c */; };
+		D0FEB74320E147AF009CB82E /* aeskey.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72620E147AF009CB82E /* aeskey.c */; };
+		D0FEB74420E147AF009CB82E /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72720E147AF009CB82E /* hmac.c */; };
+		D0FEB74520E147AF009CB82E /* aescrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72A20E147AF009CB82E /* aescrypt.c */; };
+		D0FEB74620E147AF009CB82E /* fileenc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72B20E147AF009CB82E /* fileenc.c */; };
+		D0FEB74720E147AF009CB82E /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72D20E147AF009CB82E /* sha1.c */; };
+		D0FEB74820E147AF009CB82E /* aes_ni.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73020E147AF009CB82E /* aes_ni.c */; };
+		D0FEB74920E147B0009CB82E /* prng.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73220E147AF009CB82E /* prng.c */; };
+		D0FEB74A20E147B0009CB82E /* pwd2key.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73420E147AF009CB82E /* pwd2key.c */; };
+		D0FEB74B20E147B0009CB82E /* aestab.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73520E147AF009CB82E /* aestab.c */; };
+		D0FEB74C20E147B0009CB82E /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73A20E147AF009CB82E /* SSZipArchive.m */; };
+		D0FEB74D20E147B0009CB82E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0FEB73B20E147AF009CB82E /* Info.plist */; };
+		D0FEB75820E14864009CB82E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FEB75720E14864009CB82E /* libz.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +66,6 @@
 		D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinWindowController.swift; sourceTree = "<group>"; };
 		D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center Mac.entitlements"; sourceTree = "<group>"; };
-		D0DB6AED20DA888F00BBE8F0 /* EADescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADescriptionViewController.swift; sourceTree = "<group>"; };
 		D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarHeight.swift; sourceTree = "<group>"; };
 		D0DFCED520D8A41200DBB70E /* EA Center Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DFCED720D8A41200DBB70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +77,47 @@
 		D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoEditorViewController.swift; sourceTree = "<group>"; };
 		D0FEB70B20E1280C009CB82E /* EAListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCellView.swift; sourceTree = "<group>"; };
 		D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrichmentActivity.swift; sourceTree = "<group>"; };
+		D0FEB71320E147AF009CB82E /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
+		D0FEB71520E147AF009CB82E /* crypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = crypt.c; sourceTree = "<group>"; };
+		D0FEB71620E147AF009CB82E /* unzip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = unzip.c; sourceTree = "<group>"; };
+		D0FEB71720E147AF009CB82E /* zip.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = zip.c; sourceTree = "<group>"; };
+		D0FEB71820E147AF009CB82E /* minishared.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = minishared.h; sourceTree = "<group>"; };
+		D0FEB71920E147AF009CB82E /* ioapi.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi.c; sourceTree = "<group>"; };
+		D0FEB71A20E147AF009CB82E /* ioapi_mem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi_mem.h; sourceTree = "<group>"; };
+		D0FEB71B20E147AF009CB82E /* ioapi_buf.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi_buf.c; sourceTree = "<group>"; };
+		D0FEB71C20E147AF009CB82E /* crypt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = crypt.h; sourceTree = "<group>"; };
+		D0FEB71D20E147AF009CB82E /* zip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = zip.h; sourceTree = "<group>"; };
+		D0FEB71E20E147AF009CB82E /* unzip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = unzip.h; sourceTree = "<group>"; };
+		D0FEB71F20E147AF009CB82E /* ioapi_mem.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ioapi_mem.c; sourceTree = "<group>"; };
+		D0FEB72020E147AF009CB82E /* minishared.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = minishared.c; sourceTree = "<group>"; };
+		D0FEB72120E147AF009CB82E /* ioapi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi.h; sourceTree = "<group>"; };
+		D0FEB72220E147AF009CB82E /* ioapi_buf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ioapi_buf.h; sourceTree = "<group>"; };
+		D0FEB72420E147AF009CB82E /* prng.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = prng.h; sourceTree = "<group>"; };
+		D0FEB72520E147AF009CB82E /* aes_ni.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes_ni.h; sourceTree = "<group>"; };
+		D0FEB72620E147AF009CB82E /* aeskey.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aeskey.c; sourceTree = "<group>"; };
+		D0FEB72720E147AF009CB82E /* hmac.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hmac.c; sourceTree = "<group>"; };
+		D0FEB72820E147AF009CB82E /* aestab.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aestab.h; sourceTree = "<group>"; };
+		D0FEB72920E147AF009CB82E /* pwd2key.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = pwd2key.h; sourceTree = "<group>"; };
+		D0FEB72A20E147AF009CB82E /* aescrypt.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aescrypt.c; sourceTree = "<group>"; };
+		D0FEB72B20E147AF009CB82E /* fileenc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fileenc.c; sourceTree = "<group>"; };
+		D0FEB72C20E147AF009CB82E /* aesopt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aesopt.h; sourceTree = "<group>"; };
+		D0FEB72D20E147AF009CB82E /* sha1.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = sha1.c; sourceTree = "<group>"; };
+		D0FEB72E20E147AF009CB82E /* brg_types.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brg_types.h; sourceTree = "<group>"; };
+		D0FEB72F20E147AF009CB82E /* hmac.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hmac.h; sourceTree = "<group>"; };
+		D0FEB73020E147AF009CB82E /* aes_ni.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aes_ni.c; sourceTree = "<group>"; };
+		D0FEB73120E147AF009CB82E /* brg_endian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = brg_endian.h; sourceTree = "<group>"; };
+		D0FEB73220E147AF009CB82E /* prng.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = prng.c; sourceTree = "<group>"; };
+		D0FEB73320E147AF009CB82E /* aes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aes.h; sourceTree = "<group>"; };
+		D0FEB73420E147AF009CB82E /* pwd2key.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = pwd2key.c; sourceTree = "<group>"; };
+		D0FEB73520E147AF009CB82E /* aestab.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = aestab.c; sourceTree = "<group>"; };
+		D0FEB73620E147AF009CB82E /* sha1.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = sha1.h; sourceTree = "<group>"; };
+		D0FEB73720E147AF009CB82E /* fileenc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fileenc.h; sourceTree = "<group>"; };
+		D0FEB73820E147AF009CB82E /* SSZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipArchive.h; sourceTree = "<group>"; };
+		D0FEB73920E147AF009CB82E /* SSZipCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSZipCommon.h; sourceTree = "<group>"; };
+		D0FEB73A20E147AF009CB82E /* SSZipArchive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSZipArchive.m; sourceTree = "<group>"; };
+		D0FEB73B20E147AF009CB82E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EA-Center-Mac-Bridging-Header.h"; sourceTree = "<group>"; };
+		D0FEB75720E14864009CB82E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0FEB75820E14864009CB82E /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */,
+				D0FEB71220E147AF009CB82E /* SSZipArchive */,
 				D025730220D8A1E30078AE89 /* EA Center */,
 				D0DFCED620D8A41200DBB70E /* EA Center Mac */,
 				D025730120D8A1E30078AE89 /* Products */,
@@ -116,6 +176,7 @@
 		D0DB6AEA20DA682000BBE8F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0FEB75720E14864009CB82E /* libz.tbd */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -130,7 +191,6 @@
 				D05F2A7320D947480044C7F1 /* MainWindowController.swift */,
 				D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */,
 				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
-				D0DB6AED20DA888F00BBE8F0 /* EADescriptionViewController.swift */,
 				D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */,
 				D042C18D20DBA0860017DE4F /* LoginViewController.swift */,
 				D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */,
@@ -141,8 +201,71 @@
 				D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */,
 				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
 				D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */,
+				D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */,
 			);
 			path = "EA Center Mac";
+			sourceTree = "<group>";
+		};
+		D0FEB71220E147AF009CB82E /* SSZipArchive */ = {
+			isa = PBXGroup;
+			children = (
+				D0FEB71320E147AF009CB82E /* ZipArchive.h */,
+				D0FEB71420E147AF009CB82E /* minizip */,
+				D0FEB73820E147AF009CB82E /* SSZipArchive.h */,
+				D0FEB73920E147AF009CB82E /* SSZipCommon.h */,
+				D0FEB73A20E147AF009CB82E /* SSZipArchive.m */,
+				D0FEB73B20E147AF009CB82E /* Info.plist */,
+			);
+			path = SSZipArchive;
+			sourceTree = "<group>";
+		};
+		D0FEB71420E147AF009CB82E /* minizip */ = {
+			isa = PBXGroup;
+			children = (
+				D0FEB71520E147AF009CB82E /* crypt.c */,
+				D0FEB71620E147AF009CB82E /* unzip.c */,
+				D0FEB71720E147AF009CB82E /* zip.c */,
+				D0FEB71820E147AF009CB82E /* minishared.h */,
+				D0FEB71920E147AF009CB82E /* ioapi.c */,
+				D0FEB71A20E147AF009CB82E /* ioapi_mem.h */,
+				D0FEB71B20E147AF009CB82E /* ioapi_buf.c */,
+				D0FEB71C20E147AF009CB82E /* crypt.h */,
+				D0FEB71D20E147AF009CB82E /* zip.h */,
+				D0FEB71E20E147AF009CB82E /* unzip.h */,
+				D0FEB71F20E147AF009CB82E /* ioapi_mem.c */,
+				D0FEB72020E147AF009CB82E /* minishared.c */,
+				D0FEB72120E147AF009CB82E /* ioapi.h */,
+				D0FEB72220E147AF009CB82E /* ioapi_buf.h */,
+				D0FEB72320E147AF009CB82E /* aes */,
+			);
+			path = minizip;
+			sourceTree = "<group>";
+		};
+		D0FEB72320E147AF009CB82E /* aes */ = {
+			isa = PBXGroup;
+			children = (
+				D0FEB72420E147AF009CB82E /* prng.h */,
+				D0FEB72520E147AF009CB82E /* aes_ni.h */,
+				D0FEB72620E147AF009CB82E /* aeskey.c */,
+				D0FEB72720E147AF009CB82E /* hmac.c */,
+				D0FEB72820E147AF009CB82E /* aestab.h */,
+				D0FEB72920E147AF009CB82E /* pwd2key.h */,
+				D0FEB72A20E147AF009CB82E /* aescrypt.c */,
+				D0FEB72B20E147AF009CB82E /* fileenc.c */,
+				D0FEB72C20E147AF009CB82E /* aesopt.h */,
+				D0FEB72D20E147AF009CB82E /* sha1.c */,
+				D0FEB72E20E147AF009CB82E /* brg_types.h */,
+				D0FEB72F20E147AF009CB82E /* hmac.h */,
+				D0FEB73020E147AF009CB82E /* aes_ni.c */,
+				D0FEB73120E147AF009CB82E /* brg_endian.h */,
+				D0FEB73220E147AF009CB82E /* prng.c */,
+				D0FEB73320E147AF009CB82E /* aes.h */,
+				D0FEB73420E147AF009CB82E /* pwd2key.c */,
+				D0FEB73520E147AF009CB82E /* aestab.c */,
+				D0FEB73620E147AF009CB82E /* sha1.h */,
+				D0FEB73720E147AF009CB82E /* fileenc.h */,
+			);
+			path = aes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -245,6 +368,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0FEB74D20E147B0009CB82E /* Info.plist in Resources */,
 				D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */,
 				D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */,
 				D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */,
@@ -268,19 +392,35 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0FEB74920E147B0009CB82E /* prng.c in Sources */,
+				D0FEB74620E147AF009CB82E /* fileenc.c in Sources */,
+				D0FEB74B20E147B0009CB82E /* aestab.c in Sources */,
+				D0FEB74320E147AF009CB82E /* aeskey.c in Sources */,
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
-				D0DB6AEE20DA888F00BBE8F0 /* EADescriptionViewController.swift in Sources */,
 				D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */,
 				D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */,
+				D0FEB74720E147AF009CB82E /* sha1.c in Sources */,
 				D0FEB70920E0F6AD009CB82E /* MainInfoEditorViewController.swift in Sources */,
+				D0FEB73C20E147AF009CB82E /* crypt.c in Sources */,
 				D0FEB70C20E1280C009CB82E /* EAListCellView.swift in Sources */,
+				D0FEB73D20E147AF009CB82E /* unzip.c in Sources */,
 				D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */,
+				D0FEB74A20E147B0009CB82E /* pwd2key.c in Sources */,
 				D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */,
+				D0FEB74220E147AF009CB82E /* minishared.c in Sources */,
+				D0FEB73E20E147AF009CB82E /* zip.c in Sources */,
 				D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */,
 				D0FEB70E20E128CC009CB82E /* EnrichmentActivity.swift in Sources */,
+				D0FEB74020E147AF009CB82E /* ioapi_buf.c in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
+				D0FEB74520E147AF009CB82E /* aescrypt.c in Sources */,
+				D0FEB74420E147AF009CB82E /* hmac.c in Sources */,
+				D0FEB74820E147AF009CB82E /* aes_ni.c in Sources */,
 				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
 				D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */,
+				D0FEB74C20E147B0009CB82E /* SSZipArchive.m in Sources */,
+				D0FEB74120E147AF009CB82E /* ioapi_mem.c in Sources */,
+				D0FEB73F20E147AF009CB82E /* ioapi.c in Sources */,
 				D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -476,6 +616,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "EA Center Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -485,6 +629,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "EA Center Mac/EA-Center-Mac-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
@@ -498,6 +643,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "EA Center Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -507,6 +656,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OBJC_BRIDGING_HEADER = "EA Center Mac/EA-Center-Mac-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 			};
 			name = Release;

@@ -1369,18 +1369,18 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="893" height="576"/>
+                        <rect key="frame" x="0.0" y="0.0" width="950" height="700"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="105" horizontalPageScroll="10" verticalLineScroll="105" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5f-OB-uiU">
-                                <rect key="frame" x="0.0" y="0.0" width="308" height="576"/>
+                                <rect key="frame" x="0.0" y="0.0" width="308" height="700"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" id="Ds5-yI-FD3">
-                                    <rect key="frame" x="1" y="1" width="306" height="574"/>
+                                    <rect key="frame" x="1" y="1" width="306" height="698"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="103" rowSizeStyle="automatic" viewBased="YES" id="PDX-Z8-OC8">
-                                            <rect key="frame" x="0.0" y="0.0" width="306" height="574"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="306" height="698"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1495,13 +1495,6 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tRi-dx-a3i">
-                                <rect key="frame" x="308" y="0.0" width="585" height="576"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <connections>
-                                    <segue destination="c3l-r2-ZLh" kind="embed" id="kA0-oq-Yuq"/>
-                                </connections>
-                            </containerView>
                             <stackView distribution="fill" orientation="horizontal" alignment="bottom" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JBF-PP-14M">
                                 <rect key="frame" x="11" y="9" width="86" height="17"/>
                                 <subviews>
@@ -1526,6 +1519,52 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <visualEffectView fixedFrame="YES" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="Kbu-92-FZa">
+                                <rect key="frame" x="308" y="0.0" width="642" height="60"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Av7-O0-dn7">
+                                        <rect key="frame" x="18" y="18" width="519" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="EA Name" id="rfT-E2-FrC">
+                                            <font key="font" metaFont="system" size="22"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ixr-L8-5p4">
+                                        <rect key="frame" x="555" y="13" width="66" height="32"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                        <buttonCell key="cell" type="push" title="Join" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Iam-Kw-wdI">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                    </button>
+                                </subviews>
+                            </visualEffectView>
+                            <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HFP-tf-vuP">
+                                <rect key="frame" x="308" y="60" width="642" height="640"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Med-ZD-ld9">
+                                    <rect key="frame" x="0.0" y="0.0" width="642" height="640"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView ambiguous="YES" editable="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="zkt-ko-OyW">
+                                            <rect key="frame" x="0.0" y="0.0" width="642" height="640"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <size key="minSize" width="642" height="640"/>
+                                            <size key="maxSize" width="692" height="10000000"/>
+                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="kp9-7y-qTc">
+                                    <rect key="frame" x="626" y="0.0" width="16" height="640"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="JBF-PP-14M" secondAttribute="bottom" constant="9" id="SQW-x5-tBF"/>
@@ -1537,6 +1576,7 @@
                         <outlet property="listTableView" destination="PDX-Z8-OC8" id="24T-jn-Qja"/>
                         <outlet property="loadingIndicatorView" destination="JBF-PP-14M" id="chD-2k-95Z"/>
                         <outlet property="loadingSpinner" destination="2iM-DL-aiY" id="GDB-jG-84x"/>
+                        <outlet property="longDescTextView" destination="zkt-ko-OyW" id="LCm-By-ugW"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1588,7 +1628,7 @@
                     </touchBarItems>
                 </touchBar>
             </objects>
-            <point key="canvasLocation" x="238.5" y="1020"/>
+            <point key="canvasLocation" x="238" y="1097"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="gJt-th-cbS">
@@ -1641,56 +1681,6 @@
                 <customObject id="6Cc-ss-x7M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1908" y="275"/>
-        </scene>
-        <!--Description View Controller-->
-        <scene sceneID="0Yk-ed-ckx">
-            <objects>
-                <viewController id="c3l-r2-ZLh" customClass="EADescriptionViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="bzl-Xd-Hj0">
-                        <rect key="frame" x="0.0" y="0.0" width="585" height="576"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <visualEffectView fixedFrame="YES" blendingMode="behindWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="2Sl-sK-KbH">
-                                <rect key="frame" x="0.0" y="0.0" width="585" height="60"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRb-tY-qpc">
-                                        <rect key="frame" x="18" y="18" width="462" height="27"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <textFieldCell key="cell" lineBreakMode="clipping" title="EA Name" id="w76-46-OXY">
-                                            <font key="font" metaFont="system" size="22"/>
-                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                        </textFieldCell>
-                                    </textField>
-                                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OF4-NZ-aZN">
-                                        <rect key="frame" x="498" y="13" width="66" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                                        <buttonCell key="cell" type="push" title="Join" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="W6L-vv-gak">
-                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
-                                        </buttonCell>
-                                    </button>
-                                </subviews>
-                            </visualEffectView>
-                            <wkWebView wantsLayer="YES" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YKo-DM-jD5">
-                                <rect key="frame" x="0.0" y="60" width="585" height="516"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <wkWebViewConfiguration key="configuration">
-                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
-                                    <wkPreferences key="preferences"/>
-                                </wkWebViewConfiguration>
-                            </wkWebView>
-                        </subviews>
-                    </view>
-                    <connections>
-                        <outlet property="descriptionWebView" destination="YKo-DM-jD5" id="bBl-30-qRc"/>
-                        <outlet property="tooltipBarView" destination="2Sl-sK-KbH" id="5em-7V-2Go"/>
-                    </connections>
-                </viewController>
-                <customObject id="5YN-Sj-gbj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1108.5" y="1020"/>
         </scene>
     </scenes>
     <resources>

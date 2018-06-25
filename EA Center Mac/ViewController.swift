@@ -16,6 +16,8 @@ class ViewController: NSViewController {
     
     @IBOutlet var customTouchBar: NSTouchBar?
     
+    @IBOutlet var longDescTextView: NSTextView!
+    
     var allEA: [EnrichmentActivity] = []
 
     override func viewDidLoad() {
@@ -85,6 +87,56 @@ class ViewController: NSViewController {
         }
         dataTask.resume()
     }
+    
+    func updateEADescription(_ row: Int) {
+        let ea = allEA[row]
+        let eaName = ea.name
+        
+        let downloadPath = "/longdescriptions/\(eaName).rtfd.zip"
+        let pathEncoded = downloadPath.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
+        let urlString = MainServerAddress + pathEncoded
+        let url = URL(string: urlString)!
+        
+        let session = URLSession.shared
+        let downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
+            guard error == nil else {
+                // Can't download with an error
+                print("Error: \(String(describing: error?.localizedDescription))")
+                return
+            }
+            
+            let httpResponse = urlResponse as? HTTPURLResponse
+            guard httpResponse?.statusCode == 200 else {
+                // Wrong response code
+                print("Response code not 200: \(String(describing: httpResponse?.statusCode))")
+                return
+            }
+            
+            let tempDir = NSSearchPathForDirectoriesInDomains(.cachesDirectory, .userDomainMask, true)[0]
+            let unzipLocation = tempDir + "/longdescriptions/\(eaName)"
+            let location = unzipLocation + "/\(eaName).rtfd"
+            let locationURL = URL(fileURLWithPath: location)
+            
+            // Unzip
+            SSZipArchive.unzipFile(atPath: filePath!.path, toDestination: unzipLocation)
+            
+            let content: NSAttributedString
+            
+            do {
+                content = try NSAttributedString(url: locationURL, options: [:], documentAttributes: nil)
+            } catch {
+                // Unzipped file failed or file doesn't exist
+                print("Unzipped file failed or file doesn't exist")
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self.longDescTextView.textStorage?.setAttributedString(content)
+            }
+        }
+        
+        downloadTask.resume()
+    }
 }
 
 extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
@@ -107,6 +159,12 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         cell?.shortDescLabel.stringValue = enrichmentActivity.shortDescription
         
         return cell
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let row = listTableView.selectedRow
+        
+        updateEADescription(row)
     }
  
 }
