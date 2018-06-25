@@ -25,6 +25,8 @@
 		D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED920D8A41200DBB70E /* ViewController.swift */; };
 		D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */; };
 		D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDD20D8A41300DBB70E /* Main.storyboard */; };
+		D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */; };
+		D0FEB70620E0ED0C009CB82E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,7 @@
 		D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0DFCEDE20D8A41300DBB70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0DFCEE020D8A41300DBB70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +77,7 @@
 		D02572F720D8A1E30078AE89 = {
 			isa = PBXGroup;
 			children = (
+				D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */,
 				D025730220D8A1E30078AE89 /* EA Center */,
 				D0DFCED620D8A41200DBB70E /* EA Center Mac */,
 				D025730120D8A1E30078AE89 /* Products */,
@@ -245,6 +249,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0FEB70620E0ED0C009CB82E /* GlobalVariables.swift in Sources */,
 				D025730620D8A1E30078AE89 /* ViewController.swift in Sources */,
 				D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */,
 			);
@@ -260,6 +265,7 @@
 				D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */,
 				D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */,
 				D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */,
+				D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
 				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
 				D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */,
