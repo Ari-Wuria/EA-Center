@@ -48,7 +48,7 @@ class BulletinViewController: NSViewController {
     }
     
     deinit {
-        print("Bulletin deinit")
+        //print("Bulletin deinit")
     }
     
 }

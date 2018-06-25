@@ -880,7 +880,7 @@
         <!--Main Info-->
         <scene sceneID="sdC-xY-Rsy">
             <objects>
-                <viewController title="Main Info" id="20c-tH-8cc" sceneMemberID="viewController">
+                <viewController title="Main Info" id="20c-tH-8cc" customClass="MainInfoEditorViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="U0U-wH-c6R">
                         <rect key="frame" x="0.0" y="0.0" width="470" height="506"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1315,7 +1315,7 @@
                 </viewController>
                 <customObject id="dQp-bL-WhB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-468" y="2057"/>
+            <point key="canvasLocation" x="-821" y="2115"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -1399,11 +1399,11 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="skk-E4-8ww">
+                                                        <tableCellView identifier="CellIdentifier" id="skk-E4-8ww" customClass="EAListCellView" customModule="EA_Center_Mac" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="303" height="103"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDf-FW-BYx">
+                                                                <stackView identifier="StackView" distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDf-FW-BYx">
                                                                     <rect key="frame" x="13" y="13" width="277" height="77"/>
                                                                     <subviews>
                                                                         <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Egh-Ts-azx">
@@ -1423,6 +1423,9 @@
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" metaFont="system"/>
                                                                                     </buttonCell>
+                                                                                    <connections>
+                                                                                        <action selector="likeActivity:" target="skk-E4-8ww" id="LpV-mL-ZPe"/>
+                                                                                    </connections>
                                                                                 </button>
                                                                             </subviews>
                                                                             <visibilityPriorities>
@@ -1472,6 +1475,10 @@
                                                                 <constraint firstItem="nDf-FW-BYx" firstAttribute="leading" secondItem="skk-E4-8ww" secondAttribute="leading" constant="13" id="JgX-c5-aWd"/>
                                                                 <constraint firstAttribute="trailing" secondItem="nDf-FW-BYx" secondAttribute="trailing" constant="13" id="KfC-GH-EUY"/>
                                                             </constraints>
+                                                            <connections>
+                                                                <outlet property="nameLabel" destination="zzc-uH-Y1J" id="lGu-G3-Zix"/>
+                                                                <outlet property="shortDescLabel" destination="a6I-pQ-V2d" id="mpz-er-aOY"/>
+                                                            </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
@@ -1495,11 +1502,41 @@
                                     <segue destination="c3l-r2-ZLh" kind="embed" id="kA0-oq-Yuq"/>
                                 </connections>
                             </containerView>
+                            <stackView distribution="fill" orientation="horizontal" alignment="bottom" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JBF-PP-14M">
+                                <rect key="frame" x="11" y="9" width="86" height="17"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="N63-5I-6B4">
+                                        <rect key="frame" x="-2" y="0.0" width="70" height="17"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Retriving..." id="jA9-4u-fWI">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                    <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="2iM-DL-aiY">
+                                        <rect key="frame" x="70" y="0.0" width="16" height="16"/>
+                                    </progressIndicator>
+                                </subviews>
+                                <visibilityPriorities>
+                                    <integer value="1000"/>
+                                    <integer value="1000"/>
+                                </visibilityPriorities>
+                                <customSpacing>
+                                    <real value="3.4028234663852886e+38"/>
+                                    <real value="3.4028234663852886e+38"/>
+                                </customSpacing>
+                            </stackView>
                         </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="JBF-PP-14M" secondAttribute="bottom" constant="9" id="SQW-x5-tBF"/>
+                            <constraint firstItem="JBF-PP-14M" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="11" id="uMx-YK-h1d"/>
+                        </constraints>
                     </view>
                     <connections>
                         <outlet property="customTouchBar" destination="F90-RN-1KC" id="ygq-Gm-Hu7"/>
                         <outlet property="listTableView" destination="PDX-Z8-OC8" id="24T-jn-Qja"/>
+                        <outlet property="loadingIndicatorView" destination="JBF-PP-14M" id="chD-2k-95Z"/>
+                        <outlet property="loadingSpinner" destination="2iM-DL-aiY" id="GDB-jG-84x"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

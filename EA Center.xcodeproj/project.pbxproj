@@ -27,6 +27,9 @@
 		D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDD20D8A41300DBB70E /* Main.storyboard */; };
 		D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */; };
 		D0FEB70620E0ED0C009CB82E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */; };
+		D0FEB70920E0F6AD009CB82E /* MainInfoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */; };
+		D0FEB70C20E1280C009CB82E /* EAListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70B20E1280C009CB82E /* EAListCellView.swift */; };
+		D0FEB70E20E128CC009CB82E /* EnrichmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +57,9 @@
 		D0DFCEDE20D8A41300DBB70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0DFCEE020D8A41300DBB70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
+		D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoEditorViewController.swift; sourceTree = "<group>"; };
+		D0FEB70B20E1280C009CB82E /* EAListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCellView.swift; sourceTree = "<group>"; };
+		D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnrichmentActivity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,18 +126,21 @@
 				D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */,
 				D0DFCED720D8A41200DBB70E /* AppDelegate.swift */,
 				D0DFCED920D8A41200DBB70E /* ViewController.swift */,
+				D0FEB70B20E1280C009CB82E /* EAListCellView.swift */,
 				D05F2A7320D947480044C7F1 /* MainWindowController.swift */,
 				D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */,
 				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
 				D0DB6AED20DA888F00BBE8F0 /* EADescriptionViewController.swift */,
 				D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */,
 				D042C18D20DBA0860017DE4F /* LoginViewController.swift */,
+				D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
 				D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */,
 				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
+				D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */,
 			);
 			path = "EA Center Mac";
 			sourceTree = "<group>";
@@ -263,9 +272,12 @@
 				D0DB6AEE20DA888F00BBE8F0 /* EADescriptionViewController.swift in Sources */,
 				D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */,
 				D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */,
+				D0FEB70920E0F6AD009CB82E /* MainInfoEditorViewController.swift in Sources */,
+				D0FEB70C20E1280C009CB82E /* EAListCellView.swift in Sources */,
 				D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */,
 				D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */,
 				D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */,
+				D0FEB70E20E128CC009CB82E /* EnrichmentActivity.swift in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
 				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
 				D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */,
