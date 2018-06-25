@@ -9,3 +9,9 @@ The second version of EA Center aims to make student's life at BCIS easier with 
 
 The wiki page has more detail of this app including the progress and some concepts that we have.
 [Link](https://github.com/TomShen1234/EA-Center/wiki)
+
+---
+
+# Use of libraries
+
+ZipArchive: https://github.com/ZipArchive/ZipArchive
