@@ -132,6 +132,9 @@ class ViewController: NSViewController {
             
             DispatchQueue.main.async {
                 self.longDescTextView.textStorage?.setAttributedString(content)
+                
+                // Delete file after displaying to prevent taking up space
+                try? FileManager.default.removeItem(at: URL(fileURLWithPath: unzipLocation))
             }
         }
         
