@@ -12,6 +12,6 @@ The wiki page has more detail of this app including the progress and some concep
 
 ---
 
-# Use of libraries
+**Use of libraries**
 
 ZipArchive: https://github.com/ZipArchive/ZipArchive
