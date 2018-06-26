@@ -34,8 +34,7 @@ class BulletinViewController: NSViewController {
                 delay(0.5) {
                     self.progressBar.isHidden = true
                 }
-            }
-            if webView.estimatedProgress < 0.1 {
+            } else {
                 progressBar.isHidden = false
             }
         }

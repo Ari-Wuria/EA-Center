@@ -710,7 +710,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="892" y="-46"/>
+            <point key="canvasLocation" x="937" y="-46"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="vhm-oq-Nt7">
@@ -1325,7 +1325,7 @@
                     <window key="window" title="EA Center" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="239" y="230" width="594" height="408"/>
+                        <rect key="contentRect" x="336" y="294" width="791" height="622"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="594" height="408"/>
                         <toolbar key="toolbar" implicitIdentifier="2125C316-8DD1-457F-AC86-EBCF281E3B95" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="871-Pg-Zgn">
@@ -1362,7 +1362,7 @@
                     </connections>
                 </windowController>
             </objects>
-            <point key="canvasLocation" x="238" y="206"/>
+            <point key="canvasLocation" x="218.5" y="188"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -1410,9 +1410,9 @@
                                                                             <rect key="frame" x="0.0" y="46" width="277" height="31"/>
                                                                             <subviews>
                                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zzc-uH-Y1J">
-                                                                                    <rect key="frame" x="-2" y="0.0" width="106" height="31"/>
+                                                                                    <rect key="frame" x="-2" y="2" width="98" height="27"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="EA Name" usesSingleLineMode="YES" id="3z3-MO-41X">
-                                                                                        <font key="font" metaFont="system" size="26"/>
+                                                                                        <font key="font" metaFont="systemBold" size="22"/>
                                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
@@ -1565,6 +1565,15 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64J-BS-qSC">
+                                <rect key="frame" x="597" y="372" width="64" height="17"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Loading..." id="NaJ-iM-e1Y">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="JBF-PP-14M" secondAttribute="bottom" constant="9" id="SQW-x5-tBF"/>
@@ -1578,6 +1587,7 @@
                         <outlet property="listTableView" destination="PDX-Z8-OC8" id="24T-jn-Qja"/>
                         <outlet property="loadingIndicatorView" destination="JBF-PP-14M" id="chD-2k-95Z"/>
                         <outlet property="loadingSpinner" destination="2iM-DL-aiY" id="GDB-jG-84x"/>
+                        <outlet property="longDescLoadingLabel" destination="64J-BS-qSC" id="zMx-B1-VXb"/>
                         <outlet property="longDescTextView" destination="ZIu-7X-b5X" id="soW-Vp-Yl3"/>
                     </connections>
                 </viewController>

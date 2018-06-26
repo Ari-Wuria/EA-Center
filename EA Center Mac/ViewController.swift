@@ -17,6 +17,7 @@ class ViewController: NSViewController {
     @IBOutlet var customTouchBar: NSTouchBar?
     
     @IBOutlet var longDescTextView: NSTextView!
+    @IBOutlet weak var longDescLoadingLabel: NSTextField!
     
     @IBOutlet weak var eaStatusLabel: NSTextField!
     @IBOutlet weak var joinButton: NSButton!
@@ -42,7 +43,7 @@ class ViewController: NSViewController {
         //longDescTextView.wantsLayer = true
         //longDescTextView.layer?.masksToBounds = false
         
-        
+        longDescLoadingLabel.isHidden = true
     }
 
     override var representedObject: Any? {
@@ -153,6 +154,8 @@ class ViewController: NSViewController {
                 
                 // Delete file after displaying to prevent taking up space
                 try? FileManager.default.removeItem(at: URL(fileURLWithPath: unzipLocation))
+                
+                self.longDescLoadingLabel.isHidden = true
             }
         }
         
@@ -193,6 +196,9 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         let row = listTableView.selectedRow
+        
+        longDescTextView.string = ""
+        longDescLoadingLabel.isHidden = false
         
         updateEADescription(row)
     }
