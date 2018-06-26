@@ -1379,7 +1379,7 @@
                                     <rect key="frame" x="1" y="1" width="306" height="698"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="103" rowSizeStyle="automatic" viewBased="YES" id="PDX-Z8-OC8">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="103" usesAutomaticRowHeights="YES" viewBased="YES" id="PDX-Z8-OC8">
                                             <rect key="frame" x="0.0" y="0.0" width="306" height="698"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -1445,9 +1445,9 @@
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
                                                                         </textField>
-                                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a6I-pQ-V2d">
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="atd-N3-NUr">
                                                                             <rect key="frame" x="-2" y="0.0" width="111" height="17"/>
-                                                                            <textFieldCell key="cell" title="Short Description" id="Ydc-lo-4rd">
+                                                                            <textFieldCell key="cell" allowsUndo="NO" title="Short Description" id="NfM-tW-v9j">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1477,7 +1477,7 @@
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="nameLabel" destination="zzc-uH-Y1J" id="lGu-G3-Zix"/>
-                                                                <outlet property="shortDescLabel" destination="a6I-pQ-V2d" id="mpz-er-aOY"/>
+                                                                <outlet property="shortDescLabel" destination="atd-N3-NUr" id="vgx-am-HT3"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>

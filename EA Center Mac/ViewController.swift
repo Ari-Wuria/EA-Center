@@ -89,6 +89,12 @@ class ViewController: NSViewController {
     }
     
     func updateEADescription(_ row: Int) {
+        guard row != -1 else {
+            // Clear text view
+            longDescTextView.string = ""
+            return
+        }
+        
         let ea = allEA[row]
         let eaName = ea.name
         
@@ -143,10 +149,12 @@ class ViewController: NSViewController {
 }
 
 extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
+    /*
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         // TODO: Set height for longer short descriptions
         return 103
     }
+ */
 
     func numberOfRows(in tableView: NSTableView) -> Int {
         return allEA.count
