@@ -18,6 +18,11 @@ class ViewController: NSViewController {
     
     @IBOutlet var longDescTextView: NSTextView!
     
+    @IBOutlet weak var eaStatusLabel: NSTextField!
+    @IBOutlet weak var joinButton: NSButton!
+    
+    var loggedIn: Bool = false
+    
     var allEA: [EnrichmentActivity] = []
 
     override func viewDidLoad() {
@@ -31,6 +36,13 @@ class ViewController: NSViewController {
         loadingSpinner.startAnimation(nil)
         
         downloadEAList()
+        
+        updateLoginLabel()
+        
+        //longDescTextView.wantsLayer = true
+        //longDescTextView.layer?.masksToBounds = false
+        
+        
     }
 
     override var representedObject: Any? {
@@ -55,7 +67,7 @@ class ViewController: NSViewController {
         let dataTask = session.dataTask(with: url) { (data, urlReponse, error) in
             guard error == nil else {
                 // Can't download with an error
-                print("Error: \(error?.localizedDescription)")
+                print("Error: \(error!.localizedDescription)")
                 return
             }
             
@@ -107,7 +119,7 @@ class ViewController: NSViewController {
         let downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
             guard error == nil else {
                 // Can't download with an error
-                print("Error: \(String(describing: error?.localizedDescription))")
+                print("Error: \(error!.localizedDescription)")
                 return
             }
             
@@ -146,6 +158,13 @@ class ViewController: NSViewController {
         
         downloadTask.resume()
     }
+    
+    func updateLoginLabel() {
+        if loggedIn == false {
+            eaStatusLabel.stringValue = "Login to join EAs"
+            joinButton.isEnabled = false
+        }
+    }
 }
 
 extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
@@ -179,3 +198,4 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
     }
  
 }
+

@@ -12,6 +12,8 @@ class MainWindowController: NSWindowController {
     
     var bulletinController: NSWindowController? = nil
     var manageController: NSWindowController? = nil
+    
+    var loggedIn = false
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -47,21 +49,26 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func showManager(_ sender: Any) {
-        if let window = manageController {
-            window.showWindow(sender)
-        } else {
-            let storyboard = NSStoryboard.main!
-            let manageWindow = storyboard.instantiateController(withIdentifier: "Manage") as! NSWindowController
-            manageWindow.showWindow(sender)
-            
-            // Reprogram the bulletin's close button to this class so that we can
-            // deinit it properly.
-            let button = manageWindow.window?.standardWindowButton(.closeButton)
-            button?.target = self
-            button?.action = #selector(manageClosed)
-            
-            manageController = manageWindow
-        }
+//        if loggedIn {
+            // Not logged in
+            if let window = manageController {
+                window.showWindow(sender)
+            } else {
+                let storyboard = NSStoryboard.main!
+                let manageWindow = storyboard.instantiateController(withIdentifier: "Manage") as! NSWindowController
+                manageWindow.showWindow(sender)
+                
+                // Reprogram the bulletin's close button to this class so that we can
+                // deinit it properly.
+                let button = manageWindow.window?.standardWindowButton(.closeButton)
+                button?.target = self
+                button?.action = #selector(manageClosed)
+                
+                manageController = manageWindow
+            }
+//        } else {
+//            (NSApp.delegate as! AppDelegate).toggleLoginState(sender)
+//        }
     }
     
     @objc func manageClosed() {

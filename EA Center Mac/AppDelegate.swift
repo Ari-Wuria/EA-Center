@@ -33,22 +33,27 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @IBAction func toggleLoginState(_ sender: Any) {
-        if let window = loginWindow {
-            window.showWindow(sender)
+        if loggedIn == false {
+            // Not logged in
+            if let window = loginWindow {
+                window.showWindow(sender)
+            } else {
+                let storyboard = NSStoryboard(name: "UserSettings", bundle: .main)
+                //let login = storyboard.instantiateController(withIdentifier: "Login") as! NSWindowController
+                let login = storyboard.instantiateInitialController() as! NSWindowController
+                login.window?.isMovableByWindowBackground = true
+                login.showWindow(sender)
+                /*
+                 // Reprogram the bulletin's close button to this class so that we can
+                 // deinit it properly.
+                 let button = login.window?.standardWindowButton(.closeButton)
+                 button?.target = self
+                 button?.action = #selector(login)
+                 */
+                loginWindow = login
+            }
         } else {
-            let storyboard = NSStoryboard(name: "UserSettings", bundle: .main)
-            //let login = storyboard.instantiateController(withIdentifier: "Login") as! NSWindowController
-            let login = storyboard.instantiateInitialController() as! NSWindowController
-            login.window?.isMovableByWindowBackground = true
-            login.showWindow(sender)
-            /*
-            // Reprogram the bulletin's close button to this class so that we can
-            // deinit it properly.
-            let button = login.window?.standardWindowButton(.closeButton)
-            button?.target = self
-            button?.action = #selector(login)
-            */
-            loginWindow = login
+            
         }
     }
     
