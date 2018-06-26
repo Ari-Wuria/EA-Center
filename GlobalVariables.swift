@@ -10,9 +10,9 @@
 
 import Foundation
 
-//var MainServerAddress = "http://jerrytomlouise.asuscomm.com:81/eacenter"
+var MainServerAddress = "http://jerrytomlouise.asuscomm.com:81/eacenter"
 
 // Local testing only
-var MainServerAddress = "http://192.168.50.100/eacenter"
+//var MainServerAddress = "http://192.168.50.100/eacenter"
 
 
