@@ -109,9 +109,10 @@ class ViewController: NSViewController {
         }
         
         let ea = allEA[row]
+        let eaID = ea.id
         let eaName = ea.name
         
-        let downloadPath = "/longdescriptions/\(eaName).rtfd.zip"
+        let downloadPath = "/longdescriptions/\(eaID).rtfd.zip"
         let pathEncoded = downloadPath.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
         let urlString = MainServerAddress + pathEncoded
         let url = URL(string: urlString)!

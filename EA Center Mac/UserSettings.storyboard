@@ -9,7 +9,7 @@
         <!--Window Controller-->
         <scene sceneID="0cS-We-q1z">
             <objects>
-                <windowController storyboardIdentifier="Login" id="UGf-So-gQ6" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Login" id="UGf-So-gQ6" customClass="LoginWindowController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="KxH-Lr-hdu">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -20,7 +20,7 @@
                         </connections>
                     </window>
                     <connections>
-                        <segue destination="Eai-4h-4g4" kind="relationship" relationship="window.shadowedContentViewController" id="QaD-FJ-Hae"/>
+                        <segue destination="Eai-4h-4g4" kind="relationship" relationship="window.shadowedContentViewController" id="r44-FF-sTh"/>
                     </connections>
                 </windowController>
                 <customObject id="a14-9p-da7" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -38,7 +38,7 @@
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Duu-Jd-XFG">
                                 <rect key="frame" x="28" y="157" width="265" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Username" drawsBackground="YES" id="RTQ-42-yTH">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Email" drawsBackground="YES" id="RTQ-42-yTH">
                                     <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -57,27 +57,133 @@
                                 </secureTextFieldCell>
                             </secureTextField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgK-mD-bFH">
-                                <rect key="frame" x="192" y="53" width="64" height="23"/>
+                                <rect key="frame" x="191" y="39" width="64" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" title="Login" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="AZv-QZ-zgF">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="login:" target="Eai-4h-4g4" id="bkl-Cy-OFc"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M0U-Ni-70a">
-                                <rect key="frame" x="64" y="53" width="64" height="23"/>
+                                <rect key="frame" x="63" y="39" width="64" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="roundTextured" title="Register" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="l8X-iu-5DX">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="register:" target="Eai-4h-4g4" id="DRE-eU-UAg"/>
+                                </connections>
                             </button>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-uw-sRN">
+                                <rect key="frame" x="10" y="81" width="300" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Email isn't implemented. WeChat me to activate." id="AcK-Mg-pdR">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Duu-Jd-XFG" id="fj9-xC-9CA"/>
+                        <outlet property="passwordTextField" destination="fbX-wA-bA1" id="TNX-Aa-ncw"/>
+                        <outlet property="verifyLabel" destination="XrI-uw-sRN" id="gU4-S4-wUA"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPY-Es-VBL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-75" y="491"/>
+            <point key="canvasLocation" x="-75" y="573"/>
+        </scene>
+        <!--Register View Controller-->
+        <scene sceneID="Z47-Jy-fL5">
+            <objects>
+                <viewController storyboardIdentifier="RegisterView" id="bus-gL-6tJ" customClass="RegisterViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="UAL-C1-pAS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J6U-Jq-DOA">
+                                <rect key="frame" x="28" y="204" width="265" height="36"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Email" drawsBackground="YES" id="ZXI-lA-YGx">
+                                    <font key="font" metaFont="system" size="24"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="snL-XK-B1o">
+                                <rect key="frame" x="28" y="158" width="265" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Password (Alphanumeral)" drawsBackground="YES" usesSingleLineMode="YES" id="0Mo-OG-dEL">
+                                    <font key="font" metaFont="system" size="23"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vAF-Ys-4KW">
+                                <rect key="frame" x="67" y="31" width="56" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundTextured" title="Cancel" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="mvX-SH-bQK">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelRegister:" target="bus-gL-6tJ" id="dgh-rv-A2U"/>
+                                </connections>
+                            </button>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J0J-8s-Dq6">
+                                <rect key="frame" x="28" y="112" width="265" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Confirm Password" drawsBackground="YES" usesSingleLineMode="YES" id="FUz-re-4Bo">
+                                    <font key="font" metaFont="system" size="23"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zss-bM-mAL">
+                                <rect key="frame" x="196" y="31" width="64" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="roundTextured" title="Register" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bHX-bi-an3">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="register:" target="bus-gL-6tJ" id="3iK-yn-dID"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YP3-sx-NDo">
+                                <rect key="frame" x="6" y="76" width="308" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Status" id="2ev-07-o4R">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="confirmTextField" destination="J0J-8s-Dq6" id="yJq-PP-15h"/>
+                        <outlet property="emailTextField" destination="J6U-Jq-DOA" id="nNl-Ee-Oay"/>
+                        <outlet property="passwordTextField" destination="snL-XK-B1o" id="ndo-fi-CUF"/>
+                        <outlet property="registerButton" destination="zss-bM-mAL" id="bwm-ke-Rhn"/>
+                        <outlet property="statusLabel" destination="YP3-sx-NDo" id="tU9-7z-hT8"/>
+                    </connections>
+                </viewController>
+                <customObject id="NaQ-rW-Um5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="311" y="573"/>
         </scene>
     </scenes>
 </document>

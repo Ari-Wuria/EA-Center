@@ -20,6 +20,10 @@
 		D0A7662120E27049001B4317 /* LeaderSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */; };
 		D0A7662320E27056001B4317 /* AttendenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662220E27056001B4317 /* AttendenceViewController.swift */; };
 		D0A7662520E27FFA001B4317 /* EditDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662420E27FFA001B4317 /* EditDescriptionViewController.swift */; };
+		D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */; };
+		D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */; };
+		D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37620E529840009AC07 /* AESCrypto.swift */; };
+		D0CCB37820E5298B0009AC07 /* AESCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37620E529840009AC07 /* AESCrypto.swift */; };
 		D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */; };
 		D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */; };
 		D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */; };
@@ -70,6 +74,9 @@
 		D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderSettingsViewController.swift; sourceTree = "<group>"; };
 		D0A7662220E27056001B4317 /* AttendenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendenceViewController.swift; sourceTree = "<group>"; };
 		D0A7662420E27FFA001B4317 /* EditDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptionViewController.swift; sourceTree = "<group>"; };
+		D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
+		D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		D0CCB37620E529840009AC07 /* AESCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESCrypto.swift; sourceTree = "<group>"; };
 		D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinViewController.swift; sourceTree = "<group>"; };
 		D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinWindowController.swift; sourceTree = "<group>"; };
 		D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
@@ -150,6 +157,7 @@
 		D02572F720D8A1E30078AE89 = {
 			isa = PBXGroup;
 			children = (
+				D0CCB37620E529840009AC07 /* AESCrypto.swift */,
 				D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */,
 				D0FEB71220E147AF009CB82E /* SSZipArchive */,
 				D025730220D8A1E30078AE89 /* EA Center */,
@@ -193,6 +201,16 @@
 			path = "Manage EA Info Settings";
 			sourceTree = "<group>";
 		};
+		D0CCB37520E4FFE40009AC07 /* Account Management */ = {
+			isa = PBXGroup;
+			children = (
+				D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */,
+				D042C18D20DBA0860017DE4F /* LoginViewController.swift */,
+				D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */,
+			);
+			path = "Account Management";
+			sourceTree = "<group>";
+		};
 		D0DB6AEA20DA682000BBE8F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -212,7 +230,7 @@
 				D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */,
 				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
 				D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */,
-				D042C18D20DBA0860017DE4F /* LoginViewController.swift */,
+				D0CCB37520E4FFE40009AC07 /* Account Management */,
 				D0A7661D20E27006001B4317 /* Manage EA Info Settings */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
@@ -402,6 +420,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0CCB37820E5298B0009AC07 /* AESCrypto.swift in Sources */,
 				D0FEB70620E0ED0C009CB82E /* GlobalVariables.swift in Sources */,
 				D025730620D8A1E30078AE89 /* ViewController.swift in Sources */,
 				D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */,
@@ -430,6 +449,7 @@
 				D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */,
 				D0FEB74220E147AF009CB82E /* minishared.c in Sources */,
 				D0A7662320E27056001B4317 /* AttendenceViewController.swift in Sources */,
+				D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */,
 				D0FEB73E20E147AF009CB82E /* zip.c in Sources */,
 				D0A7662520E27FFA001B4317 /* EditDescriptionViewController.swift in Sources */,
 				D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */,
@@ -439,6 +459,8 @@
 				D0FEB74520E147AF009CB82E /* aescrypt.c in Sources */,
 				D0FEB74420E147AF009CB82E /* hmac.c in Sources */,
 				D0FEB74820E147AF009CB82E /* aes_ni.c in Sources */,
+				D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */,
+				D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */,
 				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
 				D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */,
 				D0FEB74C20E147B0009CB82E /* SSZipArchive.m in Sources */,

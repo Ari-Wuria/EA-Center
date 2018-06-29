@@ -10,9 +10,14 @@
 
 import Foundation
 
-var MainServerAddress = "http://jerrytomlouise.asuscomm.com:81/eacenter"
+//let MainServerAddress = "http://jerrytomlouise.asuscomm.com:81/eacenter"
 
 // Local testing only
-//var MainServerAddress = "http://192.168.50.100/eacenter"
+let MainServerAddress = "http://192.168.50.100/eacenter"
 
+// AES Keys and iv
+// Change key before moving onto production run
+// Generated using RANDOM.ORG
+let GlobalAESKey = "HhNedYLf2a5mZnyCF5nH0WTEcU5OvvZn"
+let GlobalAESIV = "752Dh5l3SV5biDuc"
 
