@@ -10,7 +10,8 @@
 
 import Foundation
 
-let MainServerAddress = "http://jerrytomlouise.asuscomm.com:81/eacenter"
+//let MainServerAddress = "http://jerrytomlouise.asuscomm.com:81/eacenter"
+let MainServerAddress = "http://jerryshenming.6655.la:81/eacenter"
 
 // Local testing only
 //let MainServerAddress = "http://192.168.50.100/eacenter"
