@@ -7,6 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF120E67B3C003757A7 /* EAListViewController.swift */; };
+		D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF320E67B59003757A7 /* EAListCell.swift */; };
+		D0177FF520E67C25003757A7 /* EnrichmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */; };
+		D0177FF720E6869D003757A7 /* EADescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */; };
+		D0177FF920E77A98003757A7 /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73A20E147AF009CB82E /* SSZipArchive.m */; };
+		D0177FFB20E77AB0003757A7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D0177FFA20E77AB0003757A7 /* libz.tbd */; };
+		D0177FFC20E77ACB003757A7 /* crypt.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71520E147AF009CB82E /* crypt.c */; };
+		D0177FFD20E77ACB003757A7 /* unzip.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71620E147AF009CB82E /* unzip.c */; };
+		D0177FFE20E77ACB003757A7 /* zip.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71720E147AF009CB82E /* zip.c */; };
+		D0177FFF20E77ACB003757A7 /* ioapi.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71920E147AF009CB82E /* ioapi.c */; };
+		D017800020E77ACB003757A7 /* ioapi_buf.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71B20E147AF009CB82E /* ioapi_buf.c */; };
+		D017800120E77ACB003757A7 /* ioapi_mem.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB71F20E147AF009CB82E /* ioapi_mem.c */; };
+		D017800220E77ACB003757A7 /* minishared.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72020E147AF009CB82E /* minishared.c */; };
+		D017800320E77AD6003757A7 /* aeskey.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72620E147AF009CB82E /* aeskey.c */; };
+		D017800420E77AD6003757A7 /* hmac.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72720E147AF009CB82E /* hmac.c */; };
+		D017800520E77AD6003757A7 /* aescrypt.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72A20E147AF009CB82E /* aescrypt.c */; };
+		D017800620E77AD6003757A7 /* fileenc.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72B20E147AF009CB82E /* fileenc.c */; };
+		D017800720E77AD6003757A7 /* sha1.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB72D20E147AF009CB82E /* sha1.c */; };
+		D017800820E77AD6003757A7 /* aes_ni.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73020E147AF009CB82E /* aes_ni.c */; };
+		D017800920E77AD6003757A7 /* prng.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73220E147AF009CB82E /* prng.c */; };
+		D017800A20E77AD6003757A7 /* pwd2key.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73420E147AF009CB82E /* pwd2key.c */; };
+		D017800B20E77AD6003757A7 /* aestab.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73520E147AF009CB82E /* aestab.c */; };
+		D017800D20E77DB2003757A7 /* AccountProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800C20E77DB2003757A7 /* AccountProcessor.swift */; };
+		D017800E20E77DB6003757A7 /* AccountProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800C20E77DB2003757A7 /* AccountProcessor.swift */; };
+		D017801020E77FA9003757A7 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800F20E77FA9003757A7 /* MeViewController.swift */; };
 		D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025730320D8A1E30078AE89 /* AppDelegate.swift */; };
 		D025730620D8A1E30078AE89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025730520D8A1E30078AE89 /* ViewController.swift */; };
 		D025730920D8A1E30078AE89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730720D8A1E30078AE89 /* Main.storyboard */; };
@@ -59,6 +84,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D0177FF120E67B3C003757A7 /* EAListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListViewController.swift; sourceTree = "<group>"; };
+		D0177FF320E67B59003757A7 /* EAListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCell.swift; sourceTree = "<group>"; };
+		D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADescriptionViewController.swift; sourceTree = "<group>"; };
+		D0177FF820E77A14003757A7 /* EA-Center-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EA-Center-Bridging-Header.h"; sourceTree = "<group>"; };
+		D0177FFA20E77AB0003757A7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		D017800C20E77DB2003757A7 /* AccountProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProcessor.swift; sourceTree = "<group>"; };
+		D017800F20E77FA9003757A7 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		D025730020D8A1E30078AE89 /* EA Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D025730320D8A1E30078AE89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D025730520D8A1E30078AE89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0177FFB20E77AB0003757A7 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,8 +190,10 @@
 		D02572F720D8A1E30078AE89 = {
 			isa = PBXGroup;
 			children = (
-				D0CCB37620E529840009AC07 /* AESCrypto.swift */,
 				D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */,
+				D017800C20E77DB2003757A7 /* AccountProcessor.swift */,
+				D0CCB37620E529840009AC07 /* AESCrypto.swift */,
+				D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */,
 				D0FEB71220E147AF009CB82E /* SSZipArchive */,
 				D025730220D8A1E30078AE89 /* EA Center */,
 				D0DFCED620D8A41200DBB70E /* EA Center Mac */,
@@ -181,10 +216,15 @@
 			children = (
 				D025730320D8A1E30078AE89 /* AppDelegate.swift */,
 				D025730520D8A1E30078AE89 /* ViewController.swift */,
+				D0177FF120E67B3C003757A7 /* EAListViewController.swift */,
+				D0177FF320E67B59003757A7 /* EAListCell.swift */,
+				D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */,
+				D017800F20E77FA9003757A7 /* MeViewController.swift */,
 				D025730720D8A1E30078AE89 /* Main.storyboard */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
 				D025730F20D8A1E40078AE89 /* Info.plist */,
+				D0177FF820E77A14003757A7 /* EA-Center-Bridging-Header.h */,
 			);
 			path = "EA Center";
 			sourceTree = "<group>";
@@ -214,6 +254,7 @@
 		D0DB6AEA20DA682000BBE8F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D0177FFA20E77AB0003757A7 /* libz.tbd */,
 				D0FEB75720E14864009CB82E /* libz.tbd */,
 			);
 			name = Frameworks;
@@ -238,7 +279,6 @@
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */,
 				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
-				D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */,
 				D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */,
 			);
 			path = "EA Center Mac";
@@ -421,9 +461,32 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0CCB37820E5298B0009AC07 /* AESCrypto.swift in Sources */,
+				D017800220E77ACB003757A7 /* minishared.c in Sources */,
+				D017800520E77AD6003757A7 /* aescrypt.c in Sources */,
+				D0177FFF20E77ACB003757A7 /* ioapi.c in Sources */,
+				D017800320E77AD6003757A7 /* aeskey.c in Sources */,
+				D017800020E77ACB003757A7 /* ioapi_buf.c in Sources */,
+				D0177FFD20E77ACB003757A7 /* unzip.c in Sources */,
+				D017800420E77AD6003757A7 /* hmac.c in Sources */,
+				D017800620E77AD6003757A7 /* fileenc.c in Sources */,
 				D0FEB70620E0ED0C009CB82E /* GlobalVariables.swift in Sources */,
+				D017800820E77AD6003757A7 /* aes_ni.c in Sources */,
+				D017800B20E77AD6003757A7 /* aestab.c in Sources */,
+				D0177FF920E77A98003757A7 /* SSZipArchive.m in Sources */,
+				D0177FF520E67C25003757A7 /* EnrichmentActivity.swift in Sources */,
+				D0177FFC20E77ACB003757A7 /* crypt.c in Sources */,
 				D025730620D8A1E30078AE89 /* ViewController.swift in Sources */,
+				D017800D20E77DB2003757A7 /* AccountProcessor.swift in Sources */,
+				D017800120E77ACB003757A7 /* ioapi_mem.c in Sources */,
+				D017801020E77FA9003757A7 /* MeViewController.swift in Sources */,
+				D017800A20E77AD6003757A7 /* pwd2key.c in Sources */,
+				D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */,
 				D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */,
+				D0177FFE20E77ACB003757A7 /* zip.c in Sources */,
+				D017800720E77AD6003757A7 /* sha1.c in Sources */,
+				D017800920E77AD6003757A7 /* prng.c in Sources */,
+				D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */,
+				D0177FF720E6869D003757A7 /* EADescriptionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +500,7 @@
 				D0FEB74B20E147B0009CB82E /* aestab.c in Sources */,
 				D0FEB74320E147AF009CB82E /* aeskey.c in Sources */,
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
+				D017800E20E77DB6003757A7 /* AccountProcessor.swift in Sources */,
 				D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */,
 				D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */,
 				D0FEB74720E147AF009CB82E /* sha1.c in Sources */,
@@ -629,6 +693,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EA Center/EA-Center-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -648,6 +713,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "EA Center/EA-Center-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
