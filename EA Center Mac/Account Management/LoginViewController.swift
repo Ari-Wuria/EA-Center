@@ -53,20 +53,20 @@ class LoginViewController: NSViewController {
             return
         }
         
-        if rememberMeCheckbox.state == .on {
-            // Save password
-            let passwordData = passwordEncrypted.data(using: .utf8)!
-            let success = KeychainHelper.saveKeychain(account: email, password: passwordData)
-            if success == true {
-                UserDefaults.standard.set(true, forKey: "RememberLogin")
-                UserDefaults.standard.set(email, forKey: "LoginEmail")
-            }
-        }
-        
         AccountProcessor.sendLoginRequest(email, passwordEncrypted) { (success, errCode, errString) in
             if success {
                 //self.verifyLabel.isHidden = false
                 //self.verifyLabel.stringValue = "You are now logged in. Nothing else for now :)"
+                
+                if self.rememberMeCheckbox.state == .on {
+                    // Save password
+                    let passwordData = passwordEncrypted.data(using: .utf8)!
+                    let success = KeychainHelper.saveKeychain(account: email, password: passwordData)
+                    if success == true {
+                        UserDefaults.standard.set(true, forKey: "RememberLogin")
+                        UserDefaults.standard.set(email, forKey: "LoginEmail")
+                    }
+                }
                 
                 let notification = NSUserNotification()
                 notification.title = "Success"
