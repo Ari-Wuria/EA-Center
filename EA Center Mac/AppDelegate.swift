@@ -27,7 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         updateMenu()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(logInSuccess(_:)), name: LoginSuccessNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess(_:)), name: LoginSuccessNotification, object: nil)
         
         NSUserNotificationCenter.default.delegate = self
         
@@ -61,14 +61,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         return true
     }
     
-    @objc func logInSuccess(_ notification: Notification) {
+    @objc func loginSuccess(_ notification: Notification) {
         loginWindow?.window?.close()
         loginWindow = nil
         
         loggedIn = true
         
         let object = notification.object as! [String: AnyObject]
-        currentEmail = object["email"] as! String
+        currentEmail = object["email"] as? String
         
         updateMenu()
     }

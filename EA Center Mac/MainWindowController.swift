@@ -23,15 +23,20 @@ class MainWindowController: NSWindowController {
         // Pretty dumb method. Consider a better one for later
         (NSApp.delegate as! AppDelegate).mainWindow = self
         
-        NotificationCenter.default.addObserver(self, selector: #selector(logInSuccess(_:)), name: LoginSuccessNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess(_:)), name: LoginSuccessNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(logout(_:)), name: LogoutNotification, object: nil)
     }
     
     override func makeTouchBar() -> NSTouchBar? {
         return (contentViewController as! ViewController).makeTouchBar()
     }
     
-    @objc func logInSuccess(_ notification: Notification) {
+    @objc func loginSuccess(_ notification: Notification) {
         loggedIn = true
+    }
+    
+    @objc func logout(_ notification: Notification) {
+        loggedIn = false
     }
 
     @IBAction func showStudentBulletin(_ sender: Any) {
