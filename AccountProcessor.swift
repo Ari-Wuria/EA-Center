@@ -63,7 +63,7 @@ class AccountProcessor {
                     reasonString = "Please register first"
                 }
                 DispatchQueue.main.async {
-                    completion(false, 1, reasonString)
+                    completion(false, reason, reasonString)
                 }
                 return
             }

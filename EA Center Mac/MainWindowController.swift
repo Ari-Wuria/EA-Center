@@ -19,10 +19,19 @@ class MainWindowController: NSWindowController {
         super.windowDidLoad()
     
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        
+        // Pretty dumb method. Consider a better one for later
+        (NSApp.delegate as! AppDelegate).mainWindow = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(logInSuccess(_:)), name: LoginSuccessNotification, object: nil)
     }
     
     override func makeTouchBar() -> NSTouchBar? {
         return (contentViewController as! ViewController).makeTouchBar()
+    }
+    
+    @objc func logInSuccess(_ notification: Notification) {
+        loggedIn = true
     }
 
     @IBAction func showStudentBulletin(_ sender: Any) {
@@ -49,7 +58,7 @@ class MainWindowController: NSWindowController {
     }
     
     @IBAction func showManager(_ sender: Any) {
-//        if loggedIn {
+        if loggedIn {
             // Not logged in
             if let window = manageController {
                 window.showWindow(sender)
@@ -66,9 +75,9 @@ class MainWindowController: NSWindowController {
                 
                 manageController = manageWindow
             }
-//        } else {
-//            (NSApp.delegate as! AppDelegate).toggleLoginState(sender)
-//        }
+        } else {
+            (NSApp.delegate as! AppDelegate).toggleLoginState(sender)
+        }
     }
     
     @objc func manageClosed() {

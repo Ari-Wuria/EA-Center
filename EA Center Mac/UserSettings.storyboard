@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Duu-Jd-XFG">
-                                <rect key="frame" x="28" y="157" width="265" height="36"/>
+                                <rect key="frame" x="28" y="173" width="265" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Email" drawsBackground="YES" id="RTQ-42-yTH">
                                     <font key="font" metaFont="system" size="24"/>
@@ -45,7 +45,7 @@
                                 </textFieldCell>
                             </textField>
                             <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbX-wA-bA1">
-                                <rect key="frame" x="28" y="106" width="265" height="36"/>
+                                <rect key="frame" x="28" y="118" width="265" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Password" drawsBackground="YES" usesSingleLineMode="YES" id="Aiv-AA-B0C">
                                     <font key="font" metaFont="system" size="23"/>
@@ -79,11 +79,28 @@
                                 </connections>
                             </button>
                             <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XrI-uw-sRN">
-                                <rect key="frame" x="10" y="81" width="300" height="17"/>
+                                <rect key="frame" x="10" y="97" width="300" height="17"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Email isn't implemented. WeChat me to activate." id="AcK-Mg-pdR">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Zj-7r-t0X">
+                                <rect key="frame" x="105" y="76" width="110" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Remember Me" bezelStyle="regularSquare" imagePosition="left" inset="2" id="j9P-qJ-Vmq">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Hq-W8-OCJ">
+                                <rect key="frame" x="16" y="217" width="288" height="37"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" selectable="YES" alignment="center" title="To Hower: Yes, the remember me box actually works." id="pi6-z2-mIQ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
@@ -92,6 +109,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="Duu-Jd-XFG" id="fj9-xC-9CA"/>
                         <outlet property="passwordTextField" destination="fbX-wA-bA1" id="TNX-Aa-ncw"/>
+                        <outlet property="rememberMeCheckbox" destination="8Zj-7r-t0X" id="zCY-MV-Bvh"/>
                         <outlet property="verifyLabel" destination="XrI-uw-sRN" id="gU4-S4-wUA"/>
                     </connections>
                 </viewController>

@@ -16,9 +16,13 @@ let MainServerAddress = "http://jerryshenming.6655.la:81/eacenter"
 // Local testing only
 //let MainServerAddress = "http://192.168.50.100/eacenter"
 
-// AES Keys and iv
+// AES keys and iv
 // Change key before moving onto production run
 // Generated using RANDOM.ORG
 let GlobalAESKey = "HhNedYLf2a5mZnyCF5nH0WTEcU5OvvZn"
 let GlobalAESIV = "752Dh5l3SV5biDuc"
+
+// Login notification key
+let LoginSuccessNotification = Notification.Name("eacenter.loginsuccessnotification")
+let LogoutNotification = Notification.Name("eacenter.logoutnotification")
 
