@@ -19,7 +19,7 @@ class MeViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tableView.deleteSections(IndexSet(integer: 1), with: .none)
+        //tableView.deleteSections(IndexSet(integer: 1), with: .none)
     }
 
     // MARK: - Table View Delegate
