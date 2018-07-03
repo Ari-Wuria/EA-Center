@@ -79,14 +79,14 @@ class ViewController: NSViewController {
                 return
             }
             
-            let responseDict = try! JSONSerialization.jsonObject(with: data!) as? [String:AnyObject]
+            let responseDict = try! JSONSerialization.jsonObject(with: data!) as? [String:Any]
             guard let response = responseDict else {
                 // Not a dictionary or it doesn't exist
                 print("Not a dictionary")
                 return
             }
             
-            let eaArray = response["allea"] as! [[String:AnyObject]]
+            let eaArray = response["allea"] as! [[String:Any]]
             for eaDictionary in eaArray {
                 let enrichmentActivity = EnrichmentActivity(dictionary: eaDictionary)
                 self.allEA.append(enrichmentActivity)

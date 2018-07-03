@@ -43,7 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 // If the login fails then nothing will happen
                 // Just directly post the notification if it succeeded
                 if success == true {
-                    NotificationCenter.default.post(name: LoginSuccessNotification, object: ["email":email])
+                    NotificationCenter.default.post(name: LoginSuccessNotification, object: ["email":email, "userid":errCode!])
                 }
             }
         }

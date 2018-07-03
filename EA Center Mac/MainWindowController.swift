@@ -14,6 +14,8 @@ class MainWindowController: NSWindowController {
     var manageController: NSWindowController? = nil
     
     var loggedIn = false
+    
+    var currentEmail: String = ""
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -33,10 +35,13 @@ class MainWindowController: NSWindowController {
     
     @objc func loginSuccess(_ notification: Notification) {
         loggedIn = true
+        let object = notification.object as! [String:Any]
+        currentEmail = object["email"] as! String
     }
     
     @objc func logout(_ notification: Notification) {
         loggedIn = false
+        currentEmail = ""
     }
 
     @IBAction func showStudentBulletin(_ sender: Any) {
@@ -64,12 +69,19 @@ class MainWindowController: NSWindowController {
     
     @IBAction func showManager(_ sender: Any) {
         if loggedIn {
-            // Not logged in
             if let window = manageController {
+                // Set email
+                let manageViewController = window.contentViewController as! EAManagerViewController
+                manageViewController.loggedInEmail = currentEmail
+                
                 window.showWindow(sender)
             } else {
                 let storyboard = NSStoryboard.main!
                 let manageWindow = storyboard.instantiateController(withIdentifier: "Manage") as! NSWindowController
+                
+                let manageViewController = manageWindow.contentViewController as! EAManagerViewController
+                manageViewController.loggedInEmail = currentEmail
+                
                 manageWindow.showWindow(sender)
                 
                 // Reprogram the bulletin's close button to this class so that we can

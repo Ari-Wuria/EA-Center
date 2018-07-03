@@ -41,6 +41,7 @@
 		D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042C18D20DBA0860017DE4F /* LoginViewController.swift */; };
 		D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */; };
 		D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2A7320D947480044C7F1 /* MainWindowController.swift */; };
+		D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */; };
 		D085146D20EA6DEE00A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
 		D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
 		D0A7661F20E27033001B4317 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7661E20E27033001B4317 /* DescriptionViewController.swift */; };
@@ -104,6 +105,7 @@
 		D042C18D20DBA0860017DE4F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAManagerViewController.swift; sourceTree = "<group>"; };
 		D05F2A7320D947480044C7F1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
 		D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		D0A7661E20E27033001B4317 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderSettingsViewController.swift; sourceTree = "<group>"; };
@@ -236,9 +238,11 @@
 		D0A7661D20E27006001B4317 /* Manage EA Info Settings */ = {
 			isa = PBXGroup;
 			children = (
+				D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */,
+				D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */,
 				D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */,
-				D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */,
 				D0A7662220E27056001B4317 /* AttendenceViewController.swift */,
+				D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */,
 				D0A7661E20E27033001B4317 /* DescriptionViewController.swift */,
 				D0A7662420E27FFA001B4317 /* EditDescriptionViewController.swift */,
 			);
@@ -274,7 +278,6 @@
 				D05F2A7320D947480044C7F1 /* MainWindowController.swift */,
 				D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */,
 				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
-				D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */,
 				D0CCB37520E4FFE40009AC07 /* Account Management */,
 				D0A7661D20E27006001B4317 /* Manage EA Info Settings */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
@@ -521,6 +524,7 @@
 				D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */,
 				D0FEB73E20E147AF009CB82E /* zip.c in Sources */,
 				D0A7662520E27FFA001B4317 /* EditDescriptionViewController.swift in Sources */,
+				D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */,
 				D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */,
 				D0FEB70E20E128CC009CB82E /* EnrichmentActivity.swift in Sources */,
 				D0FEB74020E147AF009CB82E /* ioapi_buf.c in Sources */,

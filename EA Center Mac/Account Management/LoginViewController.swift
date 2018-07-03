@@ -75,7 +75,7 @@ class LoginViewController: NSViewController {
                 notification.soundName = NSUserNotificationDefaultSoundName
                 NSUserNotificationCenter.default.scheduleNotification(notification)
                 
-                NotificationCenter.default.post(name: LoginSuccessNotification, object: ["email":email])
+                NotificationCenter.default.post(name: LoginSuccessNotification, object: ["email":email, "userid":errCode!])
             } else {
                 switch errCode {
                 case -1:

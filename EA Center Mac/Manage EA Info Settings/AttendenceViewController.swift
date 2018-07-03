@@ -8,11 +8,15 @@
 
 import Cocoa
 
-class AttendenceViewController: NSViewController {
-
+class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+    @IBOutlet weak var studentListTable: NSTableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
     }
     
+    func numberOfRows(in tableView: NSTableView) -> Int {
+        return 1
+    }
 }

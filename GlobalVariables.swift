@@ -22,7 +22,9 @@ let MainServerAddress = "http://jerryshenming.6655.la:81/eacenter"
 let GlobalAESKey = "HhNedYLf2a5mZnyCF5nH0WTEcU5OvvZn"
 let GlobalAESIV = "752Dh5l3SV5biDuc"
 
-// Login notification key
+// Login notification keys
 let LoginSuccessNotification = Notification.Name("eacenter.loginsuccessnotification")
 let LogoutNotification = Notification.Name("eacenter.logoutnotification")
 
+// Other notification keys
+let ManagerSelectionChangedNotification = Notification.Name("eacenter.managerselectionchanged")

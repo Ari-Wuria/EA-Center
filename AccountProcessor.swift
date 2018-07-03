@@ -71,7 +71,9 @@ class AccountProcessor {
             let success = responseDict["success"] as? Bool
             if success == true {
                 DispatchQueue.main.async {
-                    completion(true, nil, nil)
+                    // We will use the errorCode variable to pass the user id
+                    let userID = responseDict["userid"] as! Int
+                    completion(true, userID, nil)
                 }
             }
         }
