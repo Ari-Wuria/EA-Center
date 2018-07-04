@@ -15,9 +15,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var userSettingMenu: NSMenuItem!
     
     var loginWindow: NSWindowController? = nil
+    var userSettingsWindow: NSWindowController? = nil
     
     var loggedIn = false
     var currentEmail: String?
+    var currentAccount: UserAccount?
     
     // Pretty dumb method
     var mainWindow: MainWindowController?
@@ -43,7 +45,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 // If the login fails then nothing will happen
                 // Just directly post the notification if it succeeded
                 if success == true {
-                    NotificationCenter.default.post(name: LoginSuccessNotification, object: ["email":email, "userid":errCode!])
+                    AccountProcessor.retriveUserAccount(from: errCode!) { (account, errCode, errString) in
+                        if let userAccount = account {
+                            NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":userAccount])
+                        }
+                    }
                 }
             }
         }
@@ -68,7 +74,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         loggedIn = true
         
         let object = notification.object as! [String: AnyObject]
-        currentEmail = object["email"] as? String
+        let account = object["account"] as! UserAccount
+        currentEmail = account.userEmail
+        currentAccount = account
         
         updateMenu()
     }
@@ -96,11 +104,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         } else {
             if mainWindow?.manageController != nil {
                 // Still on manage EA, can't logout
-                let alert = NSAlert()
-                alert.addButton(withTitle: "Close")
-                alert.messageText = "Can not log out"
-                alert.informativeText = "Please save all your changes and close the Manage EA window before logging out"
-                alert.runModal()
+                showModalAlert(withTitle: "Can not log out", message: "Please save all your changes and close the Manage EA window before logging out")
+            } else if userSettingsWindow != nil {
+                showModalAlert(withTitle: "Can not log out", message: "Please save all your changes and close the User Settings window before logging out")
             } else {
                 // Logout. Clean up user session
                 NotificationCenter.default.post(name: LogoutNotification, object: nil)
@@ -128,6 +134,37 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             loginMenu.title = "Login"
             userSettingMenu.isHidden = true
         }
+    }
+    
+    @IBAction func userSettings(_ sender: Any) {
+        if let window = userSettingsWindow {
+            let content = window.contentViewController as! AccountSettingsViewController
+            content.userAccount = currentAccount
+            window.showWindow(sender)
+        } else {
+            let userStoryboard = NSStoryboard(name: "UserSettings", bundle: .main)
+            let controller = userStoryboard.instantiateController(withIdentifier: "AccountSettings") as! NSWindowController
+            let content = controller.contentViewController as! AccountSettingsViewController
+            content.userAccount = currentAccount
+            let button = controller.window?.standardWindowButton(.closeButton)
+            button?.target = self
+            button?.action = #selector(settingsClosed)
+            controller.showWindow(sender)
+            userSettingsWindow = controller
+        }
+    }
+    
+    @objc func settingsClosed() {
+        userSettingsWindow?.close()
+        userSettingsWindow = nil
+    }
+    
+    func showModalAlert(withTitle title: String, message: String) {
+        let alert = NSAlert()
+        alert.addButton(withTitle: "Close")
+        alert.messageText = title
+        alert.informativeText = message
+        alert.runModal()
     }
 }
 

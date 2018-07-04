@@ -18,11 +18,14 @@ class EAManagerViewController: NSViewController {
     
     @IBOutlet weak var containerView: NSView!
     
+    @IBOutlet weak var titleNameLabel: NSTextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         
         containerView.isHidden = true
+        titleNameLabel.stringValue = "Manage EA"
     }
     
     override func viewWillAppear() {
@@ -107,5 +110,7 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         
         let ea = myEA[tableView.selectedRow]
         NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: nil)
+        
+        titleNameLabel.stringValue = ea.name
     }
 }

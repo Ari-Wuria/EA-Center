@@ -25,6 +25,8 @@ class ViewController: NSViewController {
     var loggedIn: Bool = false
     
     var allEA: [EnrichmentActivity] = []
+    
+    var currentAccount: UserAccount?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,12 +46,25 @@ class ViewController: NSViewController {
         //longDescTextView.layer?.masksToBounds = false
         
         longDescLoadingLabel.isHidden = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(loggedIn(_:)), name: LoginSuccessNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(loggedOut(_:)), name: LogoutNotification, object: nil)
     }
 
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.
         }
+    }
+    
+    @objc func loggedIn(_ notification: Notification) {
+        let object = notification.object as! [String:Any]
+        let userAccount = object["account"] as! UserAccount
+        currentAccount = userAccount
+    }
+    
+    @objc func loggedOut(_ notification: Notification) {
+        currentAccount = nil
     }
 
     override func makeTouchBar() -> NSTouchBar? {
@@ -166,7 +181,7 @@ class ViewController: NSViewController {
     func updateLoginLabel() {
         if loggedIn == false {
             eaStatusLabel.stringValue = "Login to join EAs"
-            joinButton.isEnabled = false
+            joinButton.isHidden = true
         }
     }
 }

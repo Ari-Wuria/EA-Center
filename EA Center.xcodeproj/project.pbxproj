@@ -48,6 +48,9 @@
 		D0A7662120E27049001B4317 /* LeaderSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */; };
 		D0A7662320E27056001B4317 /* AttendenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662220E27056001B4317 /* AttendenceViewController.swift */; };
 		D0A7662520E27FFA001B4317 /* EditDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662420E27FFA001B4317 /* EditDescriptionViewController.swift */; };
+		D0B7C47520EC8DC4004DE8F3 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */; };
+		D0B7C47620EC8DE7004DE8F3 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */; };
+		D0B7C47820EC9620004DE8F3 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */; };
 		D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */; };
 		D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */; };
 		D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37620E529840009AC07 /* AESCrypto.swift */; };
@@ -111,6 +114,8 @@
 		D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderSettingsViewController.swift; sourceTree = "<group>"; };
 		D0A7662220E27056001B4317 /* AttendenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendenceViewController.swift; sourceTree = "<group>"; };
 		D0A7662420E27FFA001B4317 /* EditDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptionViewController.swift; sourceTree = "<group>"; };
+		D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
+		D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
 		D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D0CCB37620E529840009AC07 /* AESCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESCrypto.swift; sourceTree = "<group>"; };
@@ -195,6 +200,7 @@
 		D02572F720D8A1E30078AE89 = {
 			isa = PBXGroup;
 			children = (
+				D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */,
 				D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */,
 				D017800C20E77DB2003757A7 /* AccountProcessor.swift */,
 				D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */,
@@ -255,6 +261,7 @@
 				D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */,
 				D042C18D20DBA0860017DE4F /* LoginViewController.swift */,
 				D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */,
+				D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */,
 			);
 			path = "Account Management";
 			sourceTree = "<group>";
@@ -478,6 +485,7 @@
 				D017800620E77AD6003757A7 /* fileenc.c in Sources */,
 				D0FEB70620E0ED0C009CB82E /* GlobalVariables.swift in Sources */,
 				D017800820E77AD6003757A7 /* aes_ni.c in Sources */,
+				D0B7C47520EC8DC4004DE8F3 /* UserAccount.swift in Sources */,
 				D085146D20EA6DEE00A331C5 /* KeychainHelper.swift in Sources */,
 				D017800B20E77AD6003757A7 /* aestab.c in Sources */,
 				D0177FF920E77A98003757A7 /* SSZipArchive.m in Sources */,
@@ -507,6 +515,7 @@
 				D0A7662120E27049001B4317 /* LeaderSettingsViewController.swift in Sources */,
 				D0FEB74B20E147B0009CB82E /* aestab.c in Sources */,
 				D0FEB74320E147AF009CB82E /* aeskey.c in Sources */,
+				D0B7C47820EC9620004DE8F3 /* AccountSettingsViewController.swift in Sources */,
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
 				D017800E20E77DB6003757A7 /* AccountProcessor.swift in Sources */,
 				D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */,
@@ -540,6 +549,7 @@
 				D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */,
 				D0FEB74120E147AF009CB82E /* ioapi_mem.c in Sources */,
 				D0FEB73F20E147AF009CB82E /* ioapi.c in Sources */,
+				D0B7C47620EC8DE7004DE8F3 /* UserAccount.swift in Sources */,
 				D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */,
 				D0A7661F20E27033001B4317 /* DescriptionViewController.swift in Sources */,
 			);

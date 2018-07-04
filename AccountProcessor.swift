@@ -109,4 +109,50 @@ class AccountProcessor {
         
         return false
     }
+    
+    class func retriveUserAccount(from userID: Int, completion: @escaping (_ account: UserAccount?, _ errorCode: Int?, _ errorString: String?) -> ()) {
+        let urlString = MainServerAddress + "/accountfromid.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "inputid=\(userID)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil, -1, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(nil, -2, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(nil, -3, "No JSON Data")
+                }
+                return
+            }
+            
+            let userAccount = UserAccount(dictionary: responseDict)
+            DispatchQueue.main.async {
+                completion(userAccount, nil, nil)
+            }
+        }
+        dataTask.resume()
+    }
 }

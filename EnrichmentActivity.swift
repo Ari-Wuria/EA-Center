@@ -50,14 +50,14 @@ class EnrichmentActivity: NSObject {
         name = dictionary["name"] as! String
         shortDescription = dictionary["shortdesc"] as? String ?? ""
         location = dictionary["location"] as? String ?? ""
-        days = (dictionary["days"] as? String)?.split(separator: ",").map({Int($0)}) as? [Int] ?? []
+        days = (dictionary["days"] as? String)?.split(separator: ",").map{Int($0)} as? [Int] ?? []
         weekMode = dictionary["weekmode"] as? Int ?? 0
         timeMode = dictionary["timemode"] as? Int ?? 0
         minGrade = dictionary["mingrade"] as? Int ?? 0
         maxGrade = dictionary["maxgrade"] as? Int ?? 0
         proposal = dictionary["proposal"] as? String ?? ""
-        leaderEmails = (dictionary["leaderemail"] as? String)?.split(separator: ",").map({String($0)}) ?? []
-        supervisorEmails = (dictionary["supervisoremail"] as? String)?.split(separator: ",").map({String($0)}) ?? []
+        leaderEmails = (dictionary["leaderemail"] as? String)?.split(separator: ",").map{String($0)} ?? []
+        supervisorEmails = (dictionary["supervisoremail"] as? String)?.split(separator: ",").map{String($0)} ?? []
         approved = dictionary["approved"] as? Bool ?? false
         super.init()
     }

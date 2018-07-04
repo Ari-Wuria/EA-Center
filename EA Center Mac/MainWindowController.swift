@@ -36,7 +36,8 @@ class MainWindowController: NSWindowController {
     @objc func loginSuccess(_ notification: Notification) {
         loggedIn = true
         let object = notification.object as! [String:Any]
-        currentEmail = object["email"] as! String
+        let account = object["account"] as! UserAccount
+        currentEmail = account.userEmail
     }
     
     @objc func logout(_ notification: Notification) {

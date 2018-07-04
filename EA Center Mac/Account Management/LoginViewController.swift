@@ -58,24 +58,45 @@ class LoginViewController: NSViewController {
                 //self.verifyLabel.isHidden = false
                 //self.verifyLabel.stringValue = "You are now logged in. Nothing else for now :)"
                 
-                if self.rememberMeCheckbox.state == .on {
-                    // Save password
-                    let passwordData = passwordEncrypted.data(using: .utf8)!
-                    let success = KeychainHelper.saveKeychain(account: email, password: passwordData)
-                    if success == true {
-                        UserDefaults.standard.set(true, forKey: "RememberLogin")
-                        UserDefaults.standard.set(email, forKey: "LoginEmail")
+                AccountProcessor.retriveUserAccount(from: errCode!) { (account, errCode, errString) in
+                    if let userAccount = account {
+                        if self.rememberMeCheckbox.state == .on {
+                            // Save password
+                            let passwordData = passwordEncrypted.data(using: .utf8)!
+                            let success = KeychainHelper.saveKeychain(account: email, password: passwordData)
+                            if success == true {
+                                UserDefaults.standard.set(true, forKey: "RememberLogin")
+                                UserDefaults.standard.set(email, forKey: "LoginEmail")
+                            }
+                        }
+                        
+                        let notification = NSUserNotification()
+                        notification.title = "Success"
+                        
+                        let loginMessageDetail = (userAccount.username != "") ? userAccount.username : email
+                        
+                        notification.informativeText = "You are now logged in as \(loginMessageDetail)"
+                        notification.hasActionButton = false
+                        notification.soundName = NSUserNotificationDefaultSoundName
+                        NSUserNotificationCenter.default.scheduleNotification(notification)
+                        
+                        NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":userAccount])
+                    } else {
+                        switch errCode {
+                        case -1:
+                            // Error
+                            print("\(errString!)")
+                            break
+                        case -2, -3:
+                            // -2: Wrong Status Code
+                            // -3: No JSON data
+                            print("\(errString!)")
+                            break
+                        default:
+                            break
+                        }
                     }
                 }
-                
-                let notification = NSUserNotification()
-                notification.title = "Success"
-                notification.informativeText = "You are now logged in as \(email)"
-                notification.hasActionButton = false
-                notification.soundName = NSUserNotificationDefaultSoundName
-                NSUserNotificationCenter.default.scheduleNotification(notification)
-                
-                NotificationCenter.default.post(name: LoginSuccessNotification, object: ["email":email, "userid":errCode!])
             } else {
                 switch errCode {
                 case -1:
