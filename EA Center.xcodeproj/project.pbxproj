@@ -51,6 +51,7 @@
 		D0B7C47520EC8DC4004DE8F3 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */; };
 		D0B7C47620EC8DE7004DE8F3 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */; };
 		D0B7C47820EC9620004DE8F3 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */; };
+		D0B7C47A20ECFC2A004DE8F3 /* ProfileEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47920ECFC2A004DE8F3 /* ProfileEditorViewController.swift */; };
 		D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */; };
 		D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */; };
 		D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37620E529840009AC07 /* AESCrypto.swift */; };
@@ -116,6 +117,7 @@
 		D0A7662420E27FFA001B4317 /* EditDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditDescriptionViewController.swift; sourceTree = "<group>"; };
 		D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAccount.swift; sourceTree = "<group>"; };
 		D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSettingsViewController.swift; sourceTree = "<group>"; };
+		D0B7C47920ECFC2A004DE8F3 /* ProfileEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorViewController.swift; sourceTree = "<group>"; };
 		D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D0CCB37620E529840009AC07 /* AESCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESCrypto.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				D0177FF320E67B59003757A7 /* EAListCell.swift */,
 				D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */,
 				D017800F20E77FA9003757A7 /* MeViewController.swift */,
+				D0B7C47920ECFC2A004DE8F3 /* ProfileEditorViewController.swift */,
 				D025730720D8A1E30078AE89 /* Main.storyboard */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
@@ -501,6 +504,7 @@
 				D0177FFE20E77ACB003757A7 /* zip.c in Sources */,
 				D017800720E77AD6003757A7 /* sha1.c in Sources */,
 				D017800920E77AD6003757A7 /* prng.c in Sources */,
+				D0B7C47A20ECFC2A004DE8F3 /* ProfileEditorViewController.swift in Sources */,
 				D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */,
 				D0177FF720E6869D003757A7 /* EADescriptionViewController.swift in Sources */,
 			);

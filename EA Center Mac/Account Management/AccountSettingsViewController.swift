@@ -45,7 +45,7 @@ class AccountSettingsViewController: NSViewController {
         classTextField.stringValue = newClass
         if validateClass(newClass) == false {
             statusLabel.isHidden = false
-            statusLabel.stringValue = "Invalid class"
+            statusLabel.stringValue = "Invalid Advisory!"
             return
         }
         
