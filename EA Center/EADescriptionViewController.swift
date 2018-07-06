@@ -30,8 +30,16 @@ class EADescriptionViewController: UIViewController {
         let urlString = MainServerAddress + pathEncoded
         let url = URL(string: urlString)!
         
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         let session = URLSession.shared
         let downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
+            defer {
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                }
+            }
+            
             guard error == nil else {
                 // Can't download with an error
                 print("Error: \(error!.localizedDescription)")

@@ -18,7 +18,7 @@ class EAListViewController: UITableViewController {
         
         listRefreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
-        tableView.refreshControl = listRefreshControl
+        refreshControl = listRefreshControl
         
         downloadEAList()
     }
@@ -65,7 +65,9 @@ class EAListViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "ShowEADetail" {
-            let indexPath = tableView.indexPathForSelectedRow
+            //let indexPath = tableView.indexPathForSelectedRow
+            let cell = sender as! UITableViewCell
+            let indexPath = tableView.indexPath(for: cell)
             let ea = allEA[indexPath!.row]
             
             let destinationController = segue.destination as! EADescriptionViewController
@@ -83,6 +85,13 @@ class EAListViewController: UITableViewController {
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: url) { (data, urlReponse, error) in
+            defer {
+                DispatchQueue.main.async {
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    self.listRefreshControl.endRefreshing()
+                }
+            }
+            
             guard error == nil else {
                 // Can't download with an error
                 print("Error: \(error!.localizedDescription)")
@@ -111,9 +120,6 @@ class EAListViewController: UITableViewController {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                
-                self.listRefreshControl.endRefreshing()
             }
         }
         dataTask.resume()

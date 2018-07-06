@@ -134,6 +134,9 @@ class MeViewController: UITableViewController {
                         let profileCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 0, section: 1))
                         profileCell.isHidden = false
                         self.updateTableView()
+                        
+                        self.emailTextField.resignFirstResponder()
+                        self.passwordTextField.resignFirstResponder()
                     } else {
                         switch errCode {
                         case -1:
