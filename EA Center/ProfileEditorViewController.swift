@@ -32,7 +32,7 @@ class ProfileEditorViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.section == 0 && indexPath.row == 3 {
+        if indexPath.section == 1 && indexPath.row == 0 {
             return indexPath
         } else {
             return nil
@@ -40,7 +40,7 @@ class ProfileEditorViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 0 && indexPath.row == 3 {
+        if indexPath.section == 1 && indexPath.row == 0 {
             // Save
             let username = nameTextField.text!
             if username.count == 0 {

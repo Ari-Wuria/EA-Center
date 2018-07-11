@@ -17,6 +17,25 @@ class MeViewController: UITableViewController {
     @IBOutlet weak var usernameLabel: UILabel!
     @IBOutlet weak var classLabel: UILabel!
     
+    var loggedIn: Bool = false
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        let rememberLogin = UserDefaults.standard.bool(forKey: "rememberlogin")
+        if rememberLogin {
+            // Retrive email from keyhain
+            let email = UserDefaults.standard.object(forKey: "loginemail") as! String
+            if email != "" {
+                let password = KeychainHelper.loadKeychain(account: email)
+                if password != nil {
+                    let passwordString = String(data: password!, encoding: .utf8)!
+                    login(withEmail: email, password: passwordString)
+                }
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -26,6 +45,10 @@ class MeViewController: UITableViewController {
         let profileCell = tableView(tableView, cellForRowAt: IndexPath(row: 0, section: 1))
         profileCell.isHidden = true
         updateTableView()
+        
+        if loggedIn {
+            updateLoginUI(account: currentUserAccount!)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +71,7 @@ class MeViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 && indexPath.row == 1 {
             if currentUserAccount == nil {
-                login()
+                login(withEmail: emailTextField.text!, password: passwordTextField.text!)
             } else {
                 // Logout
                 NotificationCenter.default.post(name: LogoutNotification, object: nil)
@@ -68,6 +91,9 @@ class MeViewController: UITableViewController {
                 self.emailTextField.text = ""
                 self.passwordTextField.text = ""
                 self.emailTextField.becomeFirstResponder()
+                
+                UserDefaults.standard.set("", forKey: "loginemail")
+                let _ = KeychainHelper.deleteKeychain(account: currentUserAccount!.userEmail)
                 
                 currentUserAccount = nil
             }
@@ -97,14 +123,12 @@ class MeViewController: UITableViewController {
         tableView.endUpdates()
     }
     
-    func login() {
-        let email = emailTextField.text!
+    func login(withEmail email: String, password: String) {
         guard AccountProcessor.validateEmail(email) else {
             presentAlert("Invalid Email", "Please use valid BCIS Email")
             return
         }
         
-        let password = passwordTextField.text!
         let encryptedPass = AccountProcessor.encrypt(password)!
         
         AccountProcessor.sendLoginRequest(email, encryptedPass) { (success, errCode, errStr) in
@@ -113,30 +137,24 @@ class MeViewController: UITableViewController {
                 let userID = errCode
                 AccountProcessor.retriveUserAccount(from: userID!, completion: { (account, errCode, errString) in
                     if let resultAccount = account {
-                        self.currentUserAccount = resultAccount
-                        NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":resultAccount])
+                        self.loggedIn = true
                         
-                        self.usernameLabel.isHidden = false
-                        self.classLabel.isHidden = false
-                        self.emailTextField.isHidden = true
-                        self.passwordTextField.isHidden = true
-                        self.usernameLabel.text = (account!.username != "") ? account!.username : account!.userEmail
-                        if account!.grade != 0 && account!.classInitial.count >= 2 {
-                            self.classLabel.text = "\(account!.grade)\(account!.classInitial)"
-                        } else {
-                            self.classLabel.text = "Class Not Set"
+                        self.currentUserAccount = resultAccount
+                        
+                        if self.viewIfLoaded != nil {
+                            self.updateLoginUI(account: account!)
                         }
                         
-                        let loginCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
-                        loginCell.textLabel?.text = "Logout"
-                        let registerCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 2, section: 0))
-                        registerCell.isHidden = true
-                        let profileCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 0, section: 1))
-                        profileCell.isHidden = false
-                        self.updateTableView()
+                        NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":resultAccount])
                         
-                        self.emailTextField.resignFirstResponder()
-                        self.passwordTextField.resignFirstResponder()
+                        let rememberLogin = UserDefaults.standard.bool(forKey: "rememberlogin")
+                        if rememberLogin {
+                            let success = KeychainHelper.saveKeychain(account: email, password: password.data(using: .utf8)!)
+                            if success {
+                                UserDefaults.standard.set(true, forKey: "rememberlogin")
+                                UserDefaults.standard.set(email, forKey: "loginemail")
+                            }
+                        }
                     } else {
                         switch errCode {
                         case -1:
@@ -172,6 +190,30 @@ class MeViewController: UITableViewController {
             }
         }
     }
+    
+    func updateLoginUI(account: UserAccount) {
+        self.usernameLabel.isHidden = false
+        self.classLabel.isHidden = false
+        self.emailTextField.isHidden = true
+        self.passwordTextField.isHidden = true
+        self.usernameLabel.text = (account.username != "") ? account.username : account.userEmail
+        if account.grade != 0 && account.classInitial.count >= 2 {
+            self.classLabel.text = "\(account.grade)\(account.classInitial)"
+        } else {
+            self.classLabel.text = "Class Not Set"
+        }
+        
+        let loginCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
+        loginCell.textLabel?.text = "Logout"
+        let registerCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 2, section: 0))
+        registerCell.isHidden = true
+        let profileCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 0, section: 1))
+        profileCell.isHidden = false
+        self.updateTableView()
+        
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+    }
 
     // MARK: - Navigation
 
@@ -183,6 +225,10 @@ class MeViewController: UITableViewController {
         if segue.identifier == "EditProfile" {
             let dest = segue.destination as! ProfileEditorViewController
             dest.userAccount = currentUserAccount
+        } else if segue.identifier == "ViewSettings" {
+            let dest = segue.destination as! SettingsViewController
+            dest.userAccount = currentUserAccount
+            dest.loggedIn = loggedIn
         }
     }
 

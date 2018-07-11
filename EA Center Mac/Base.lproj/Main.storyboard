@@ -862,11 +862,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="eWj-gw-tCZ">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="eWj-gw-tCZ">
                                     <rect key="frame" x="1" y="431" width="264" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="WRM-Zi-Zck">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="WRM-Zi-Zck">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -932,7 +932,7 @@
                                         </textView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="izR-1v-wul">
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="izR-1v-wul">
                                     <rect key="frame" x="596" y="0.0" width="16" height="316"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1003,7 +1003,7 @@
                                             </subviews>
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </clipView>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="q8k-ZD-2o8">
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="q8k-ZD-2o8">
                                             <rect key="frame" x="414" y="0.0" width="16" height="433"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -1121,7 +1121,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gN3-ao-fkL">
-                                                                    <rect key="frame" x="23" y="8" width="132" height="24"/>
+                                                                    <rect key="frame" x="23" y="8" width="131" height="24"/>
                                                                     <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="9rt-eI-Aqz">
                                                                         <font key="font" metaFont="system"/>
                                                                         <segments>
@@ -1143,11 +1143,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="cZO-If-KDa">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="cZO-If-KDa">
                                     <rect key="frame" x="1" y="444" width="428" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Zcs-xN-l7L">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Zcs-xN-l7L">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1250,7 +1250,7 @@
                                             </gridCell>
                                             <gridCell row="i8u-o1-IVM" column="1uP-Lg-BGC" xPlacement="trailing" yPlacement="center" id="ulG-n0-6iP">
                                                 <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="G5R-mi-VPN">
-                                                    <rect key="frame" x="328" y="129" width="127" height="24"/>
+                                                    <rect key="frame" x="329" y="129" width="126" height="24"/>
                                                     <popUpButtonCell key="cell" type="push" title="Every Week" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Rdx-2j-38D" id="Cff-SC-DJk">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
@@ -1342,7 +1342,7 @@
                                             </gridCell>
                                             <gridCell row="GjB-4c-QrF" column="1uP-Lg-BGC" xPlacement="trailing" yPlacement="center" id="pFn-PZ-fYJ">
                                                 <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="iMi-cl-dG2">
-                                                    <rect key="frame" x="347" y="76" width="108" height="25"/>
+                                                    <rect key="frame" x="348" y="76" width="107" height="25"/>
                                                     <popUpButtonCell key="cell" type="push" title="3:30 - 4:30" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="zP0-8H-afR" id="36a-gX-Jnr">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
@@ -1397,7 +1397,7 @@
                                             </gridCell>
                                             <gridCell row="XBg-uR-eQF" column="1uP-Lg-BGC" id="PPY-eI-JPU">
                                                 <stackView key="contentView" distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ick-th-vnF">
-                                                    <rect key="frame" x="278" y="26" width="174" height="20"/>
+                                                    <rect key="frame" x="280" y="26" width="172" height="20"/>
                                                     <subviews>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kPO-LS-TM9">
                                                             <rect key="frame" x="-2" y="2" width="39" height="17"/>
@@ -1408,7 +1408,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="shw-nj-Kd5">
-                                                            <rect key="frame" x="41" y="-3" width="53" height="25"/>
+                                                            <rect key="frame" x="41" y="-3" width="52" height="25"/>
                                                             <popUpButtonCell key="cell" type="push" title="6" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="0at-Cz-NkJ" id="FNm-nK-YI4">
                                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                 <font key="font" metaFont="menu"/>
@@ -1426,7 +1426,7 @@
                                                             </popUpButtonCell>
                                                         </popUpButton>
                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Pni-x9-ysd">
-                                                            <rect key="frame" x="97" y="2" width="23" height="17"/>
+                                                            <rect key="frame" x="96" y="2" width="23" height="17"/>
                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="To:" id="8rz-su-KJc">
                                                                 <font key="font" metaFont="system"/>
                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1434,7 +1434,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ufQ-VT-I5P">
-                                                            <rect key="frame" x="124" y="-3" width="53" height="25"/>
+                                                            <rect key="frame" x="123" y="-3" width="52" height="25"/>
                                                             <popUpButtonCell key="cell" type="push" title="6" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="J4O-Sa-yVs" id="vhV-tL-8er">
                                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                 <font key="font" metaFont="menu"/>
@@ -1516,7 +1516,7 @@
                                                 </textView>
                                             </subviews>
                                         </clipView>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="I0D-GY-RSi">
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="I0D-GY-RSi">
                                             <rect key="frame" x="436" y="0.0" width="16" height="115"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -1571,7 +1571,7 @@
                                                 </textView>
                                             </subviews>
                                         </clipView>
-                                        <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="RID-eu-8Xk">
+                                        <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="RID-eu-8Xk">
                                             <rect key="frame" x="436" y="0.0" width="16" height="115"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -1767,11 +1767,11 @@
                                                 </tableView>
                                             </subviews>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="zCS-fq-eD0">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="zCS-fq-eD0">
                                             <rect key="frame" x="1" y="123" width="428" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="64h-YD-SXe">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="64h-YD-SXe">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -1886,11 +1886,11 @@
                                                 </tableView>
                                             </subviews>
                                         </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="Spe-3i-71K">
+                                        <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Spe-3i-71K">
                                             <rect key="frame" x="1" y="123" width="428" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="jeq-7x-BhH">
+                                        <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="jeq-7x-BhH">
                                             <rect key="frame" x="224" y="17" width="15" height="102"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
@@ -2111,11 +2111,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="jga-vI-Xow">
+                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="jga-vI-Xow">
                                     <rect key="frame" x="1" y="452" width="300" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="jcZ-TF-pMM">
+                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="jcZ-TF-pMM">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2144,7 +2144,7 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
-                            <visualEffectView fixedFrame="YES" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="Kbu-92-FZa">
+                            <visualEffectView wantsLayer="YES" fixedFrame="YES" blendingMode="withinWindow" material="appearanceBased" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="Kbu-92-FZa">
                                 <rect key="frame" x="308" y="0.0" width="642" height="60"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
@@ -2185,7 +2185,7 @@
                                         </textView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Buw-IN-VeD">
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Buw-IN-VeD">
                                     <rect key="frame" x="626" y="0.0" width="16" height="639"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -2223,7 +2223,7 @@
                         <touchBarItem id="Hhs-yp-AaF">
                             <viewController key="viewController" id="U26-73-G0f">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="doK-A1-RYU">
-                                    <rect key="frame" x="0.0" y="0.0" width="180" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="180" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Student Bulletin" bezelStyle="rounded" image="User White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0KG-mW-bmI">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2239,7 +2239,7 @@
                         <touchBarItem id="gWE-Lw-0PL">
                             <viewController key="viewController" id="YyZ-2b-Vh7">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7uz-kB-1UB">
-                                    <rect key="frame" x="0.0" y="0.0" width="144" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="144" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Messages" bezelStyle="rounded" image="Bubble White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9XY-2p-S7q">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2252,7 +2252,7 @@
                         <touchBarItem id="9U3-oq-22T">
                             <viewController key="viewController" id="X20-ee-5ch">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="19L-sp-F0h">
-                                    <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="138" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Timetable" bezelStyle="rounded" image="Clock White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CMg-Jm-mpV">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -2286,7 +2286,7 @@
                 </windowController>
                 <customObject id="KLI-IA-9H6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1080" y="275"/>
+            <point key="canvasLocation" x="1041" y="275"/>
         </scene>
         <!--Bulletin View Controller-->
         <scene sceneID="dXf-gP-Zd5">
@@ -2321,14 +2321,14 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Bubble" width="34.5" height="28.5"/>
-        <image name="Bubble White" width="34.5" height="28.5"/>
-        <image name="Clock" width="31" height="31"/>
-        <image name="Clock White" width="31" height="31"/>
-        <image name="Cog" width="26.5" height="26.5"/>
+        <image name="Bubble" width="35" height="29"/>
+        <image name="Bubble White" width="35" height="29"/>
+        <image name="Clock" width="31" height="32"/>
+        <image name="Clock White" width="31" height="32"/>
+        <image name="Cog" width="27" height="27"/>
         <image name="NSInfo" width="32" height="32"/>
-        <image name="User" width="27.5" height="29.5"/>
-        <image name="User White" width="27.5" height="29.5"/>
+        <image name="User" width="28" height="30"/>
+        <image name="User White" width="28" height="30"/>
         <namedColor name="Text View Background">
             <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

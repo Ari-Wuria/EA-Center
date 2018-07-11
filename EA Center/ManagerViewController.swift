@@ -12,19 +12,21 @@ class ManagerViewController: UITableViewController {
     var myEA: [EnrichmentActivity] = []
     var loggedIn: Bool = false
     var currentAccount: UserAccount?
+    
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        NotificationCenter.default.addObserver(self, selector: #selector(loggedInSuccess(_:)), name: LoginSuccessNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(logout(_:)), name: LogoutNotification, object: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        NotificationCenter.default.addObserver(self, selector: #selector(loggedIn(_:)), name: LoginSuccessNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(logout(_:)), name: LogoutNotification, object: nil)
-        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.refreshControl = refreshControl
     }
     
-    @objc func loggedIn(_ notification: Notification) {
+    @objc func loggedInSuccess(_ notification: Notification) {
         loggedIn = true
         let dic = notification.object as! [String:Any]
         let userAccount = dic["account"] as! UserAccount

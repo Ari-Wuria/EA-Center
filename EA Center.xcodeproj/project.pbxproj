@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */; };
+		0558B2AB20F5E3A4009B62E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */; };
 		D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF120E67B3C003757A7 /* EAListViewController.swift */; };
 		D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF320E67B59003757A7 /* EAListCell.swift */; };
 		D0177FF520E67C25003757A7 /* EnrichmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */; };
@@ -93,6 +95,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADetailViewController.swift; sourceTree = "<group>"; };
+		0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		D0177FF120E67B3C003757A7 /* EAListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListViewController.swift; sourceTree = "<group>"; };
 		D0177FF320E67B59003757A7 /* EAListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCell.swift; sourceTree = "<group>"; };
 		D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADescriptionViewController.swift; sourceTree = "<group>"; };
@@ -241,6 +245,8 @@
 				D0B7C47920ECFC2A004DE8F3 /* ProfileEditorViewController.swift */,
 				D0B7C47B20EF94BF004DE8F3 /* ManagerViewController.swift */,
 				D0B7C47D20EF94D8004DE8F3 /* EAManageCell.swift */,
+				0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */,
+				0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */,
 				D025730720D8A1E30078AE89 /* Main.storyboard */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
@@ -500,6 +506,7 @@
 				D0177FF920E77A98003757A7 /* SSZipArchive.m in Sources */,
 				D0177FF520E67C25003757A7 /* EnrichmentActivity.swift in Sources */,
 				D0177FFC20E77ACB003757A7 /* crypt.c in Sources */,
+				0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */,
 				D0B7C47C20EF94BF004DE8F3 /* ManagerViewController.swift in Sources */,
 				D025730620D8A1E30078AE89 /* ViewController.swift in Sources */,
 				D017800D20E77DB2003757A7 /* AccountProcessor.swift in Sources */,
@@ -511,6 +518,7 @@
 				D0177FFE20E77ACB003757A7 /* zip.c in Sources */,
 				D017800720E77AD6003757A7 /* sha1.c in Sources */,
 				D017800920E77AD6003757A7 /* prng.c in Sources */,
+				0558B2AB20F5E3A4009B62E4 /* SettingsViewController.swift in Sources */,
 				D0B7C47E20EF94D8004DE8F3 /* EAManageCell.swift in Sources */,
 				D0B7C47A20ECFC2A004DE8F3 /* ProfileEditorViewController.swift in Sources */,
 				D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */,
