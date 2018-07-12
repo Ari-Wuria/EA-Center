@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */; };
 		0558B2AB20F5E3A4009B62E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */; };
+		0558B2AD20F602AA009B62E4 /* StudentBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */; };
 		D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF120E67B3C003757A7 /* EAListViewController.swift */; };
 		D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF320E67B59003757A7 /* EAListCell.swift */; };
 		D0177FF520E67C25003757A7 /* EnrichmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */; };
@@ -97,6 +98,7 @@
 /* Begin PBXFileReference section */
 		0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADetailViewController.swift; sourceTree = "<group>"; };
 		0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentBulletinViewController.swift; sourceTree = "<group>"; };
 		D0177FF120E67B3C003757A7 /* EAListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListViewController.swift; sourceTree = "<group>"; };
 		D0177FF320E67B59003757A7 /* EAListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCell.swift; sourceTree = "<group>"; };
 		D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADescriptionViewController.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
 				D025730F20D8A1E40078AE89 /* Info.plist */,
 				D0177FF820E77A14003757A7 /* EA-Center-Bridging-Header.h */,
+				0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */,
 			);
 			path = "EA Center";
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				D017800D20E77DB2003757A7 /* AccountProcessor.swift in Sources */,
 				D017800120E77ACB003757A7 /* ioapi_mem.c in Sources */,
 				D017801020E77FA9003757A7 /* MeViewController.swift in Sources */,
+				0558B2AD20F602AA009B62E4 /* StudentBulletinViewController.swift in Sources */,
 				D017800A20E77AD6003757A7 /* pwd2key.c in Sources */,
 				D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */,
 				D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */,
@@ -656,7 +660,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -710,7 +715,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;

@@ -154,6 +154,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
     }
     
+    @IBAction func showMainWindow(_ sender: Any) {
+        mainWindow?.showWindow(sender)
+    }
+    
     @objc func settingsClosed() {
         userSettingsWindow?.close()
         userSettingsWindow = nil

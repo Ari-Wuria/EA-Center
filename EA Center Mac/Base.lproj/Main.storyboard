@@ -651,6 +651,13 @@
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="DIl-cC-cCs"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="s3R-6F-Dba"/>
+                                        <menuItem title="Show Main Window" id="32q-k0-1xD">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showMainWindow:" target="Voe-Tx-rLC" id="pyH-ok-2M5"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
                                         <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -1689,7 +1696,7 @@
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn editable="NO" width="171" minWidth="40" maxWidth="1000" id="pxp-i7-inb">
+                                                        <tableColumn identifier="LeaderName" editable="NO" width="171" minWidth="40" maxWidth="1000" id="pxp-i7-inb">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1702,7 +1709,7 @@
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                             <prototypeCellViews>
-                                                                <tableCellView id="Ndp-EO-jVr">
+                                                                <tableCellView identifier="LeaderNameCell" id="Ndp-EO-jVr">
                                                                     <rect key="frame" x="1" y="1" width="171" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
@@ -1726,7 +1733,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn editable="NO" width="251" minWidth="40" maxWidth="1000" id="ksv-Pg-ZYR">
+                                                        <tableColumn identifier="LeaderEmail" editable="NO" width="251" minWidth="40" maxWidth="1000" id="ksv-Pg-ZYR">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Email">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1739,7 +1746,7 @@
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                             <prototypeCellViews>
-                                                                <tableCellView id="HiM-5D-KXN">
+                                                                <tableCellView identifier="LeaderEmailCell" id="HiM-5D-KXN">
                                                                     <rect key="frame" x="175" y="1" width="251" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
@@ -1764,6 +1771,10 @@
                                                             </prototypeCellViews>
                                                         </tableColumn>
                                                     </tableColumns>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="Ub9-8Z-lwo" id="bhj-rX-Qlb"/>
+                                                        <outlet property="delegate" destination="Ub9-8Z-lwo" id="qWR-gI-IIB"/>
+                                                    </connections>
                                                 </tableView>
                                             </subviews>
                                         </clipView>
@@ -1795,20 +1806,20 @@
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="44" horizontalPageScroll="10" verticalLineScroll="44" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmm-jx-dYS">
+                                    <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmm-jx-dYS">
                                         <rect key="frame" x="0.0" y="27" width="430" height="178"/>
                                         <clipView key="contentView" id="pm5-XB-ttc">
                                             <rect key="frame" x="1" y="0.0" width="428" height="177"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="42" rowSizeStyle="automatic" headerView="x2x-oQ-5A2" viewBased="YES" id="oyW-rJ-fW1">
+                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" headerView="x2x-oQ-5A2" viewBased="YES" id="oyW-rJ-fW1">
                                                     <rect key="frame" x="0.0" y="0.0" width="428" height="152"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <size key="intercellSpacing" width="3" height="2"/>
                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                     <tableColumns>
-                                                        <tableColumn editable="NO" width="171" minWidth="40" maxWidth="1000" id="COC-Gl-dpc">
+                                                        <tableColumn identifier="SupervisorName" editable="NO" width="171" minWidth="40" maxWidth="1000" id="COC-Gl-dpc">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1821,12 +1832,12 @@
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                             <prototypeCellViews>
-                                                                <tableCellView id="axY-rI-Pc3">
-                                                                    <rect key="frame" x="1" y="1" width="171" height="42"/>
+                                                                <tableCellView identifier="SupervisorNameCell" id="axY-rI-Pc3">
+                                                                    <rect key="frame" x="1" y="1" width="171" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="sWK-wm-XoC">
-                                                                            <rect key="frame" x="0.0" y="25" width="171" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="171" height="17"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Supervisor Name" id="N0c-0O-xyg">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1845,7 +1856,7 @@
                                                                 </tableCellView>
                                                             </prototypeCellViews>
                                                         </tableColumn>
-                                                        <tableColumn editable="NO" width="251" minWidth="40" maxWidth="1000" id="lA2-eq-gIp">
+                                                        <tableColumn identifier="SupervisorEmail" editable="NO" width="251" minWidth="40" maxWidth="1000" id="lA2-eq-gIp">
                                                             <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Email">
                                                                 <font key="font" metaFont="smallSystem"/>
                                                                 <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1858,12 +1869,12 @@
                                                             </textFieldCell>
                                                             <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                             <prototypeCellViews>
-                                                                <tableCellView id="lUd-wU-7oA">
-                                                                    <rect key="frame" x="175" y="1" width="251" height="42"/>
+                                                                <tableCellView identifier="SupervisorEmailCell" id="lUd-wU-7oA">
+                                                                    <rect key="frame" x="175" y="1" width="251" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8Jx-ga-Uxj">
-                                                                            <rect key="frame" x="0.0" y="25" width="251" height="17"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="251" height="17"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Supervisor Email" id="pXD-Ec-2nH">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1883,6 +1894,10 @@
                                                             </prototypeCellViews>
                                                         </tableColumn>
                                                     </tableColumns>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="Ub9-8Z-lwo" id="lu6-Rc-Gc8"/>
+                                                        <outlet property="delegate" destination="Ub9-8Z-lwo" id="DOH-0a-zVf"/>
+                                                    </connections>
                                                 </tableView>
                                             </subviews>
                                         </clipView>
@@ -1937,6 +1952,10 @@
                             <constraint firstAttribute="bottom" secondItem="Xq8-wv-Fjm" secondAttribute="bottom" constant="20" symbolic="YES" id="qsF-Sb-ahp"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="leaderTableView" destination="Tau-Ta-Fao" id="1Lm-A9-VQT"/>
+                        <outlet property="supervisorTableView" destination="oyW-rJ-fW1" id="yQK-zS-H7Y"/>
+                    </connections>
                 </viewController>
                 <customObject id="dQp-bL-WhB" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -2167,7 +2186,7 @@
                                     </button>
                                 </subviews>
                             </visualEffectView>
-                            <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmj-Dk-qtz">
+                            <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmj-Dk-qtz" customClass="MyScrollView" customModule="EA_Center_Mac" customModuleProvider="target">
                                 <rect key="frame" x="308" y="61" width="642" height="639"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="5zs-pN-St8">

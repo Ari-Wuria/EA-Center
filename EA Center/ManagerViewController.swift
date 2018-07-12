@@ -17,6 +17,7 @@ class ManagerViewController: UITableViewController {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self, selector: #selector(loggedInSuccess(_:)), name: LoginSuccessNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(logout(_:)), name: LogoutNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: EAUpdatedNotification, object: nil)
     }
 
     override func viewDidLoad() {
@@ -24,6 +25,10 @@ class ManagerViewController: UITableViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.refreshControl = refreshControl
+    }
+    
+    @objc func eaUpdated(_ notification: Notification) {
+        tableView.reloadData()
     }
     
     @objc func loggedInSuccess(_ notification: Notification) {
@@ -172,14 +177,18 @@ class ManagerViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ManageEADetail" {
+            let controller = segue.destination as! EADetailViewController
+            let selectedIndexPath = tableView.indexPath(for: (sender as! UITableViewCell))
+            controller.currentEA = myEA[selectedIndexPath!.row]
+        }
     }
-    */
 
 }

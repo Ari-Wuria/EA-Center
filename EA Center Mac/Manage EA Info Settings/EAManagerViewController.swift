@@ -26,12 +26,18 @@ class EAManagerViewController: NSViewController {
         
         containerView.isHidden = true
         titleNameLabel.stringValue = "Manage EA"
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated), name: EAUpdatedNotification, object: nil)
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
         retriveMyEA()
+    }
+    
+    @objc func eaUpdated() {
+        tableView.reloadData()
     }
     
     func retriveMyEA() {
@@ -83,6 +89,10 @@ class EAManagerViewController: NSViewController {
         }
         dataTask.resume()
     }
+    
+    deinit {
+        print("deinit: \(self)")
+    }
 }
 
 extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
@@ -107,6 +117,10 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
     
     func tableViewSelectionDidChange(_ notification: Notification) {
         containerView.isHidden = false
+        
+        if tableView.selectedRow == -1 {
+            return
+        }
         
         let ea = myEA[tableView.selectedRow]
         NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: nil)

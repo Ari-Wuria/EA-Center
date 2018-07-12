@@ -11,5 +11,4 @@
 
 #import "SSZipArchive.h"
 
-
 #endif /* EA_Center_Bridging_Header_h */

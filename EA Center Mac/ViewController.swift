@@ -166,6 +166,9 @@ class ViewController: NSViewController {
             }
             
             DispatchQueue.main.async {
+                // TODO: Scroll to top and update size
+                //(self.longDescTextView.enclosingScrollView as! MyScrollView).scrollToTop()
+                
                 self.longDescTextView.textStorage?.setAttributedString(content)
                 
                 // Delete file after displaying to prevent taking up space
@@ -184,16 +187,13 @@ class ViewController: NSViewController {
             joinButton.isHidden = true
         }
     }
+    
+    deinit {
+        print("deinit: \(self)")
+    }
 }
 
 extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
-    /*
-    func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
-        // TODO: Set height for longer short descriptions
-        return 103
-    }
- */
-
     func numberOfRows(in tableView: NSTableView) -> Int {
         return allEA.count
     }
@@ -221,3 +221,12 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
  
 }
 
+class MyScrollView: NSScrollView {
+    override var isFlipped: Bool {
+        return true
+    }
+    
+    func scrollToTop() {
+        documentView?.scroll(CGPoint.zero)
+    }
+}

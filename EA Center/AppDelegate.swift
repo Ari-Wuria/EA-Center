@@ -20,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults: [String:Any] = ["rememberlogin":true, "loginemail":"", "biometriclock":false]
         UserDefaults.standard.register(defaults: defaults)
         
+        UserDefaults.standard.set(true, forKey: "rememberlogin")
+        
         return true
     }
 

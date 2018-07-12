@@ -40,6 +40,7 @@ class ProfileEditorViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 1 && indexPath.row == 0 {
             // Save
             let username = nameTextField.text!
@@ -48,9 +49,11 @@ class ProfileEditorViewController: UITableViewController {
                 return
             }
             
-            let advisory = classTextField.text!
+            let advisory = classTextField.text!.uppercased().filter{"01234567890QWERTYUIOPASDFGHJKLZXCVBNM".contains($0)}
+            classTextField.text = advisory
             if validateClass(advisory) == false {
                 presentAlert("Error", "Invalid Advisory")
+                return
             }
             
             let stringArray = advisory.components(separatedBy: CharacterSet.decimalDigits.inverted)

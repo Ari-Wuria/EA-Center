@@ -37,10 +37,6 @@ class UserAccount: NSObject {
     }
     
     func updateInfo(_ newUsername: String, _ newGrade: Int, _ newClass: String, _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
-        self.username = newUsername
-        self.grade = newGrade
-        self.classInitial = newClass
-        
         let urlString = MainServerAddress + "/updateaccountinfo.php"
         let url = URL(string: urlString)!
         
@@ -81,6 +77,10 @@ class UserAccount: NSObject {
             let success = responseDict["success"] as! Bool
             DispatchQueue.main.async {
                 if success {
+                    self.username = newUsername
+                    self.grade = newGrade
+                    self.classInitial = newClass
+                    
                     completion(true, nil)
                 } else {
                     let errString = responseDict["error"] as! String

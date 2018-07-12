@@ -28,3 +28,4 @@ let LogoutNotification = Notification.Name("eacenter.logoutnotification")
 
 // Other notification keys
 let ManagerSelectionChangedNotification = Notification.Name("eacenter.managerselectionchanged")
+let EAUpdatedNotification = Notification.Name("eacenter.eaupdated")

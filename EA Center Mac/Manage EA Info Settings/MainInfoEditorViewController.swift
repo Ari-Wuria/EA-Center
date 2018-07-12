@@ -37,9 +37,8 @@ class MainInfoEditorViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(newNotification(_:)), name: ManagerSelectionChangedNotification, object: nil)
         
-        shortDescTextView.isHorizontallyResizable = false
-        shortDescTextView.textContainer?.widthTracksTextView = true
-        
+        //shortDescTextView.isHorizontallyResizable = false
+        //shortDescTextView.textContainer?.widthTracksTextView = true
     }
     
     @objc func newNotification(_ notification: Notification) {
@@ -63,5 +62,70 @@ class MainInfoEditorViewController: NSViewController {
     }
     
     @IBAction func saveChanges(_ sender: Any) {
+        let weekMode = weekSelector.indexOfSelectedItem
+        let timeMode = timeSelector.indexOfSelectedItem
+        let location = locationTextField.stringValue
+        let minGrade = minGradeSelector.indexOfSelectedItem + 6
+        let maxGrade = maxGradeSelector.indexOfSelectedItem + 6
+        let shortDesc = shortDescTextView.string
+        let proposal = proposalTextView.string
+        
+        // Start by checking min and max grade
+        if minGrade > maxGrade {
+            showAlert(withTitle: "Minimum grade has to be greater than maximum grade")
+            return
+        }
+        
+        // To save bandwidth, don't update short description and proposal if it didn't change
+        var sameShortDesc = false
+        var sameProposal = false
+        if shortDesc == currentEA!.shortDescription {
+            sameShortDesc = true
+        }
+        
+        if proposal == currentEA!.proposal {
+            sameProposal = true
+        }
+        
+        // Now get the days
+        var daysArray: [Int] = []
+        if mondayCheckbox.state == .on {
+            daysArray.append(1)
+        }
+        if tuesdayCheckbox.state == .on {
+            daysArray.append(2)
+        }
+        if wednesdayCheckbox.state == .on {
+            daysArray.append(3)
+        }
+        if thursdayCheckbox.state == .on {
+            daysArray.append(4)
+        }
+        if fridayCheckbox.state == .on {
+            daysArray.append(5)
+        }
+        let days = daysArray.map{"\($0)"}.joined(separator: ",")
+        
+        // Update
+        currentEA!.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: !sameShortDesc ? shortDesc : nil, newProposal: !sameProposal ? proposal : nil, newDays: days) { (success, errString) in
+            if !success {
+                self.showAlert(withTitle: "Error Updating Info", message: errString!)
+            } else {
+                self.showAlert(withTitle: "EA Info Updated! 😀")
+                NotificationCenter.default.post(name: EAUpdatedNotification, object: nil)
+            }
+        }
+    }
+    
+    func showAlert(withTitle title: String, message: String = "") {
+        let alert = NSAlert()
+        alert.addButton(withTitle: "OK")
+        alert.messageText = title
+        alert.informativeText = message
+        alert.runModal()
+    }
+    
+    deinit {
+        print("deinit: \(self)")
     }
 }
