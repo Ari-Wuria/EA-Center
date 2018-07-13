@@ -12,6 +12,8 @@ class EAListViewController: UITableViewController {
     var allEA: [EnrichmentActivity] = []
     
     var listRefreshControl: UIRefreshControl = UIRefreshControl()
+    
+    var loading: Bool = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,22 +37,52 @@ class EAListViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return allEA.count
+        if loading == true || allEA.count == 0 {
+            return 1
+        } else if loading == false && allEA.count > 0 {
+            return allEA.count
+        }
+        return 0
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EACell", for: indexPath) as! EAListCell
-
-        // Configure the cell...
-        
-        let ea = allEA[indexPath.row]
-        
-        cell.nameLabel.text = ea.name
-        cell.shortDescriptionLabel.text = ea.shortDescription
-
-        return cell
+        if loading == true {
+            return tableView.dequeueReusableCell(withIdentifier: "LoadingCell")!
+        } else if allEA.count == 0 {
+            return tableView.dequeueReusableCell(withIdentifier: "NothingCell")!
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "EACell", for: indexPath) as! EAListCell
+            
+            // Configure the cell...
+            
+            let ea = allEA[indexPath.row]
+            
+            cell.nameLabel.text = ea.name
+            cell.shortDescriptionLabel.text = ea.shortDescription
+            cell.shortDescriptionLabel.sizeToFit()
+            
+            return cell
+        }
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if loading == true || allEA.count == 0 {
+            // Loading height
+            return 109
+        } else {
+            // Custom
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if loading == true || allEA.count == 0 {
+            return nil
+        }
+        return indexPath
+    }
+    
     /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
@@ -86,29 +118,36 @@ class EAListViewController: UITableViewController {
         let session = URLSession.shared
         let dataTask = session.dataTask(with: url) { (data, urlReponse, error) in
             defer {
+                self.loading = false
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    self.listRefreshControl.endRefreshing()
+                    delay(0.3) {
+                        self.tableView.reloadData()
+                        self.listRefreshControl.endRefreshing()
+                    }
                 }
             }
             
             guard error == nil else {
                 // Can't download with an error
-                print("Error: \(error!.localizedDescription)")
+                //print("Error: \(error!.localizedDescription)")
+                self.presentAlert(withTitle: "Error", message: error!.localizedDescription)
                 return
             }
             
             let httpResponse = urlReponse as? HTTPURLResponse
             guard httpResponse?.statusCode == 200 else {
                 // Wrong response code
-                print("Response code not 200")
+                //print("Response code not 200")
+                self.presentAlert(withTitle: "Error", message: "The server returned an invalid response code. (something that's not 200)")
                 return
             }
             
             let responseDict = try! JSONSerialization.jsonObject(with: data!) as? [String:AnyObject]
             guard let response = responseDict else {
                 // Not a dictionary or it doesn't exist
-                print("Not a dictionary")
+                //print("Not a dictionary")
+                self.presentAlert(withTitle: "Error", message: "This app is having trouble understanding the data that the server had provided. (No JSON data)")
                 return
             }
             
@@ -118,11 +157,14 @@ class EAListViewController: UITableViewController {
                 self.allEA.append(enrichmentActivity)
             }
             
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            // Defer...
         }
         dataTask.resume()
     }
 
+    func presentAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
 }

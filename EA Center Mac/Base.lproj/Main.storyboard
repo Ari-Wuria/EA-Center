@@ -620,6 +620,12 @@
                                                 <action selector="runToolbarCustomizationPalette:" target="Ady-hI-5gd" id="pQI-g3-MTW"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="bXE-uA-ga3"/>
+                                        <menuItem title="Reload List" alternate="YES" keyEquivalent="R" allowsKeyEquivalentWhenHidden="YES" id="q7F-dv-Phe">
+                                            <connections>
+                                                <action selector="reloadList:" target="Ady-hI-5gd" id="REc-NT-vix"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="hB3-LF-h0Y"/>
                                         <menuItem title="Show Sidebar" keyEquivalent="s" id="kIP-vf-haE">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
@@ -652,8 +658,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="s3R-6F-Dba"/>
-                                        <menuItem title="Show Main Window" id="32q-k0-1xD">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        <menuItem title="Show Main Window" keyEquivalent="E" id="32q-k0-1xD">
                                             <connections>
                                                 <action selector="showMainWindow:" target="Voe-Tx-rLC" id="pyH-ok-2M5"/>
                                             </connections>
@@ -687,6 +692,12 @@
                                                 <action selector="userSettings:" target="Voe-Tx-rLC" id="eAo-Rk-3US"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="EA Supervisor Only" id="Efk-rv-yjh">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showCoordinatorOptions:" target="Voe-Tx-rLC" id="VEX-Cs-Ohm"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -710,6 +721,7 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="EA_Center_Mac" customModuleProvider="target">
                     <connections>
+                        <outlet property="coordinatorSecrets" destination="Efk-rv-yjh" id="qnu-2q-o93"/>
                         <outlet property="loginMenu" destination="1XO-op-GRC" id="v4D-Qm-hNC"/>
                         <outlet property="loginStatusMenu" destination="DGG-pS-TI1" id="Qhg-mC-hYF"/>
                         <outlet property="userSettingMenu" destination="Fps-5D-ufw" id="coY-zn-Tsd"/>
@@ -718,7 +730,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="991" y="-46"/>
+            <point key="canvasLocation" x="1001" y="-106"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="vhm-oq-Nt7">
@@ -963,17 +975,25 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="Ojy-h2-D58">
+                                <rect key="frame" x="616" y="13" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="EyI-4v-aVL" firstAttribute="leading" secondItem="X8p-al-oKC" secondAttribute="leading" constant="20" id="2Bb-JJ-bMq"/>
                             <constraint firstItem="EyI-4v-aVL" firstAttribute="top" secondItem="X8p-al-oKC" secondAttribute="top" constant="20" id="CEd-Eb-rOZ"/>
+                            <constraint firstAttribute="trailing" secondItem="Ojy-h2-D58" secondAttribute="trailing" constant="20" id="Kab-y7-yer"/>
                             <constraint firstAttribute="trailing" secondItem="EyI-4v-aVL" secondAttribute="trailing" constant="20" id="NWn-Im-gAc"/>
                             <constraint firstItem="NXW-e1-nid" firstAttribute="centerX" secondItem="X8p-al-oKC" secondAttribute="centerX" id="TGi-3i-DJ7"/>
+                            <constraint firstAttribute="bottom" secondItem="Ojy-h2-D58" secondAttribute="bottom" constant="13" id="X8A-J9-Sfy"/>
                             <constraint firstItem="NXW-e1-nid" firstAttribute="top" secondItem="EyI-4v-aVL" secondAttribute="bottom" constant="13" id="wfo-LL-mhE"/>
                             <constraint firstAttribute="bottom" secondItem="NXW-e1-nid" secondAttribute="bottom" constant="13" id="xX9-ok-QsX"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="saveButton" destination="NXW-e1-nid" id="HZR-Zj-bw2"/>
+                        <outlet property="spinner" destination="Ojy-h2-D58" id="dMp-Ea-Hra"/>
+                        <outlet property="statusLabel" destination="UYd-JP-kqT" id="X2h-ea-mRk"/>
                         <outlet property="textView" destination="7pO-Zy-nQV" id="lT3-I3-hTX"/>
                     </connections>
                 </viewController>
@@ -1022,8 +1042,7 @@
                                             <font key="font" metaFont="system"/>
                                         </buttonCell>
                                         <connections>
-                                            <action selector="save:" target="IUF-PZ-vjC" id="Bep-Jx-wAD"/>
-                                            <segue destination="bIf-8Y-NdV" kind="sheet" id="arC-xb-5kt"/>
+                                            <segue destination="bIf-8Y-NdV" kind="sheet" identifier="EditDesc" id="arC-xb-5kt"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -1045,6 +1064,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="editButton" destination="0X7-Fr-5ZL" id="HC9-Rk-OcN"/>
                         <outlet property="textView" destination="EZF-qB-Kfa" id="hbS-jt-5pK"/>
                     </connections>
                 </viewController>

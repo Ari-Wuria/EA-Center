@@ -129,15 +129,25 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "EditDesc" {
+            let controller = segue.destination as! TextEditorViewController
+            controller.currentEA = currentEA
+            controller.saveMode = 1
+            controller.title = "Short Description"
+        } else if segue.identifier == "EditProposal" {
+            let controller = segue.destination as! TextEditorViewController
+            controller.currentEA = currentEA
+            controller.saveMode = 2
+            controller.title = "Proposal"
+        }
     }
-    */
 
 }
 

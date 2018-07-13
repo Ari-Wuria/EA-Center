@@ -10,6 +10,9 @@
 		0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */; };
 		0558B2AB20F5E3A4009B62E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */; };
 		0558B2AD20F602AA009B62E4 /* StudentBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */; };
+		0597CD4420F76523006B4590 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597CD4320F76522006B4590 /* HelperFunctions.swift */; };
+		0597CD4520F76523006B4590 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597CD4320F76522006B4590 /* HelperFunctions.swift */; };
+		0597CD4720F78985006B4590 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597CD4620F78985006B4590 /* TextEditorViewController.swift */; };
 		D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF120E67B3C003757A7 /* EAListViewController.swift */; };
 		D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF320E67B59003757A7 /* EAListCell.swift */; };
 		D0177FF520E67C25003757A7 /* EnrichmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */; };
@@ -63,7 +66,6 @@
 		D0CCB37820E5298B0009AC07 /* AESCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37620E529840009AC07 /* AESCrypto.swift */; };
 		D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */; };
 		D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */; };
-		D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */; };
 		D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */; };
 		D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED720D8A41200DBB70E /* AppDelegate.swift */; };
 		D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED920D8A41200DBB70E /* ViewController.swift */; };
@@ -99,6 +101,8 @@
 		0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADetailViewController.swift; sourceTree = "<group>"; };
 		0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentBulletinViewController.swift; sourceTree = "<group>"; };
+		0597CD4320F76522006B4590 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
+		0597CD4620F78985006B4590 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
 		D0177FF120E67B3C003757A7 /* EAListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListViewController.swift; sourceTree = "<group>"; };
 		D0177FF320E67B59003757A7 /* EAListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCell.swift; sourceTree = "<group>"; };
 		D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADescriptionViewController.swift; sourceTree = "<group>"; };
@@ -133,7 +137,6 @@
 		D0CCB37620E529840009AC07 /* AESCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESCrypto.swift; sourceTree = "<group>"; };
 		D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinViewController.swift; sourceTree = "<group>"; };
 		D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinWindowController.swift; sourceTree = "<group>"; };
-		D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delay.swift; sourceTree = "<group>"; };
 		D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center Mac.entitlements"; sourceTree = "<group>"; };
 		D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarHeight.swift; sourceTree = "<group>"; };
 		D0DFCED520D8A41200DBB70E /* EA Center Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +215,7 @@
 		D02572F720D8A1E30078AE89 = {
 			isa = PBXGroup;
 			children = (
+				0597CD4320F76522006B4590 /* HelperFunctions.swift */,
 				D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */,
 				D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */,
 				D017800C20E77DB2003757A7 /* AccountProcessor.swift */,
@@ -249,12 +253,13 @@
 				D0B7C47D20EF94D8004DE8F3 /* EAManageCell.swift */,
 				0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */,
 				0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */,
+				0597CD4620F78985006B4590 /* TextEditorViewController.swift */,
+				0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */,
 				D025730720D8A1E30078AE89 /* Main.storyboard */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
 				D025730F20D8A1E40078AE89 /* Info.plist */,
 				D0177FF820E77A14003757A7 /* EA-Center-Bridging-Header.h */,
-				0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */,
 			);
 			path = "EA Center";
 			sourceTree = "<group>";
@@ -309,7 +314,6 @@
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
 				D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
-				D0DB6AE720DA51FF00BBE8F0 /* Delay.swift */,
 				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
 				D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */,
 			);
@@ -493,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0CCB37820E5298B0009AC07 /* AESCrypto.swift in Sources */,
+				0597CD4720F78985006B4590 /* TextEditorViewController.swift in Sources */,
 				D017800220E77ACB003757A7 /* minishared.c in Sources */,
 				D017800520E77AD6003757A7 /* aescrypt.c in Sources */,
 				D0177FFF20E77ACB003757A7 /* ioapi.c in Sources */,
@@ -509,6 +514,7 @@
 				D0177FF920E77A98003757A7 /* SSZipArchive.m in Sources */,
 				D0177FF520E67C25003757A7 /* EnrichmentActivity.swift in Sources */,
 				D0177FFC20E77ACB003757A7 /* crypt.c in Sources */,
+				0597CD4420F76523006B4590 /* HelperFunctions.swift in Sources */,
 				0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */,
 				D0B7C47C20EF94BF004DE8F3 /* ManagerViewController.swift in Sources */,
 				D025730620D8A1E30078AE89 /* ViewController.swift in Sources */,
@@ -551,7 +557,6 @@
 				D0FEB73D20E147AF009CB82E /* unzip.c in Sources */,
 				D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */,
 				D0FEB74A20E147B0009CB82E /* pwd2key.c in Sources */,
-				D0DB6AE820DA51FF00BBE8F0 /* Delay.swift in Sources */,
 				D0FEB74220E147AF009CB82E /* minishared.c in Sources */,
 				D0A7662320E27056001B4317 /* AttendenceViewController.swift in Sources */,
 				D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */,
@@ -568,6 +573,7 @@
 				D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */,
 				D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */,
 				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
+				0597CD4520F76523006B4590 /* HelperFunctions.swift in Sources */,
 				D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */,
 				D0FEB74C20E147B0009CB82E /* SSZipArchive.m in Sources */,
 				D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */,

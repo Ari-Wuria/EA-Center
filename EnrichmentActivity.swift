@@ -147,4 +147,110 @@ class EnrichmentActivity: NSObject {
         }
         dataTask.resume()
     }
+    
+    func updateShortDesc(newShortDesc: String, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let urlString = MainServerAddress + "/updateeadesc.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "updateea=1&id=\(id)&shortdesc=\(newShortDesc)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    self.shortDescription = newShortDesc
+                    
+                    completion(true, nil)
+                } else {
+                    let errString = responseDict["error"] as! String
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func updateProposal(newProposal: String, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let urlString = MainServerAddress + "/updateeadesc.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "updateea=2&id=\(id)&proposal=\(newProposal)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    self.proposal = newProposal
+                    
+                    completion(true, nil)
+                } else {
+                    let errString = responseDict["error"] as! String
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
 }

@@ -68,8 +68,11 @@ class ManagerViewController: UITableViewController {
         let dataTask = session.dataTask(with: request) { (data, response, error) in
             defer {
                 DispatchQueue.main.async {
-                    self.refreshControl?.endRefreshing()
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    delay(0.3) {
+                        self.tableView.reloadData()
+                        self.refreshControl?.endRefreshing()
+                    }
                 }
             }
             
@@ -77,6 +80,7 @@ class ManagerViewController: UITableViewController {
                 print("Error: \(error!.localizedDescription)")
                 DispatchQueue.main.async {
                     //completion(false, -1, error!.localizedDescription)
+                    self.presentAlert(withTitle: "Error", message: error!.localizedDescription)
                 }
                 return
             }
@@ -86,6 +90,7 @@ class ManagerViewController: UITableViewController {
                 print("Wrong Status Code")
                 DispatchQueue.main.async {
                     //completion(false, -2, "Wrong Status Code: \(httpResponse.statusCode)")
+                    self.presentAlert(withTitle: "Error", message: "The server returned an invalid response code. (something that's not 200)")
                 }
                 return
             }
@@ -94,7 +99,8 @@ class ManagerViewController: UITableViewController {
             do {
                 jsonData = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
             } catch {
-                print("No JSON data: \(error)")
+                //print("No JSON data: \(error)")
+                self.presentAlert(withTitle: "Error", message: "This app is having trouble understanding the data that the server had provided. (No JSON data)")
                 return
             }
             
@@ -102,10 +108,6 @@ class ManagerViewController: UITableViewController {
             for eaDict in myEAs {
                 let ea = EnrichmentActivity(dictionary: eaDict)
                 self.myEA.append(ea)
-            }
-            
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
             }
         }
         dataTask.resume()
@@ -119,6 +121,12 @@ class ManagerViewController: UITableViewController {
         
         myEA.removeAll()
         retriveMyEA()
+    }
+    
+    func presentAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
     // MARK: - Table view data source

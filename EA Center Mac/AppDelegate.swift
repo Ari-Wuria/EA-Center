@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBOutlet weak var loginStatusMenu: NSMenuItem!
     @IBOutlet weak var loginMenu: NSMenuItem!
     @IBOutlet weak var userSettingMenu: NSMenuItem!
+    @IBOutlet weak var coordinatorSecrets: NSMenuItem!
     
     var loginWindow: NSWindowController? = nil
     var userSettingsWindow: NSWindowController? = nil
@@ -129,10 +130,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             loginMenu.title = "Logout"
             loginStatusMenu.title = "Logged in as: \(currentEmail!)"
             userSettingMenu.isHidden = false
+            if currentAccount?.accountType == 2 || currentAccount?.accountType == 1 {
+                // Admin and supervisor
+                coordinatorSecrets.isHidden = false
+            }
         } else {
             loginStatusMenu.title = "Not logged in"
             loginMenu.title = "Login"
             userSettingMenu.isHidden = true
+            coordinatorSecrets.isHidden = true
         }
     }
     
@@ -169,6 +175,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         alert.messageText = title
         alert.informativeText = message
         alert.runModal()
+    }
+    
+    @IBAction func showCoordinatorOptions(_ sender: Any) {
     }
 }
 
