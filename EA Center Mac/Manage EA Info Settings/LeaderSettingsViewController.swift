@@ -57,7 +57,15 @@ extension LeaderSettingsViewController: NSTableViewDataSource, NSTableViewDelega
         var view: NSTableCellView? = nil
         if tableColumn?.identifier.rawValue == "LeaderName" {
             view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "LeaderNameCell"), owner: nil) as? NSTableCellView
-            view?.textField?.stringValue = "Name not implemented"
+            view?.textField?.stringValue = "Loading name..."
+            let leaders = currentEA!.leaderEmails
+            let leaderEmail = leaders[row]
+            AccountProcessor.name(from: leaderEmail) { (name) in
+                view?.textField?.stringValue = name ?? "Can not retrive name"
+                if name == "" {
+                    view?.textField?.stringValue = "Name not set"
+                }
+            }
         } else if tableColumn?.identifier.rawValue == "LeaderEmail" {
             let leaders = currentEA!.leaderEmails
             let leaderEmail = leaders[row]
@@ -66,7 +74,15 @@ extension LeaderSettingsViewController: NSTableViewDataSource, NSTableViewDelega
             view?.textField?.stringValue = leaderEmail
         } else if tableColumn?.identifier.rawValue == "SupervisorName" {
             view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SupervisorNameCell"), owner: nil) as? NSTableCellView
-            view?.textField?.stringValue = "Name not implemented"
+            view?.textField?.stringValue = "Loading name..."
+            let supervisors = currentEA!.supervisorEmails
+            let supervisorEmail = supervisors[row]
+            AccountProcessor.name(from: supervisorEmail) { (name) in
+                view?.textField?.stringValue = name ?? "Can not retrive name"
+                if name == "" {
+                    view?.textField?.stringValue = "Name not set"
+                }
+            }
         } else if tableColumn?.identifier.rawValue == "SupervisorEmail" {
             let supervisors = currentEA!.supervisorEmails
             let supervisorEmail = supervisors[row]

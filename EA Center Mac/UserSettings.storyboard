@@ -99,7 +99,9 @@
                     </view>
                     <connections>
                         <outlet property="emailTextField" destination="Duu-Jd-XFG" id="fj9-xC-9CA"/>
+                        <outlet property="loginButton" destination="sgK-mD-bFH" id="Q9S-e6-hrB"/>
                         <outlet property="passwordTextField" destination="fbX-wA-bA1" id="TNX-Aa-ncw"/>
+                        <outlet property="registerButton" destination="M0U-Ni-70a" id="d9g-Zl-sgf"/>
                         <outlet property="rememberMeCheckbox" destination="8Zj-7r-t0X" id="zCY-MV-Bvh"/>
                         <outlet property="verifyLabel" destination="XrI-uw-sRN" id="gU4-S4-wUA"/>
                     </connections>

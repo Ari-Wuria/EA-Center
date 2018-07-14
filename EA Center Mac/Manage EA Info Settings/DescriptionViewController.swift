@@ -65,14 +65,16 @@ class DescriptionViewController: NSViewController {
         }
         self.textView.textStorage?.setAttributedString(content)
         
-        // Delete original RTFD and zip
-        do {
-            try FileManager.default.removeItem(at: URL(fileURLWithPath: zipLocation))
-            try FileManager.default.removeItem(at: URL(fileURLWithPath: rtfdPath))
-        } catch {
-            let alert = NSAlert(error: error)
-            alert.runModal()
-            return
+        delay(0.5) {
+            // Delete original RTFD and zip
+            do {
+                try FileManager.default.removeItem(at: URL(fileURLWithPath: zipLocation))
+                try FileManager.default.removeItem(at: URL(fileURLWithPath: rtfdPath))
+            } catch {
+                let alert = NSAlert(error: error)
+                alert.runModal()
+                return
+            }
         }
     }
     /*
@@ -94,7 +96,11 @@ class DescriptionViewController: NSViewController {
             downloadTask = nil
         }
         
-        let session = URLSession.shared
+        // No cache download
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        config.urlCache = nil
+        let session = URLSession(configuration: config)
         downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
             guard error == nil else {
                 // Can't download with an error

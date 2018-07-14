@@ -25,6 +25,8 @@ class ManagerViewController: UITableViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.refreshControl = refreshControl
+        
+        tableView.backgroundColor = UIColor(named: "Main Table Color")
     }
     
     @objc func eaUpdated(_ notification: Notification) {

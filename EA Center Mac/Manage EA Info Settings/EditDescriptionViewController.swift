@@ -170,7 +170,10 @@ class EditDescriptionViewController: NSViewController {
             // Success
             DispatchQueue.main.async {
                 self.dismiss(nil)
-                NotificationCenter.default.post(name: ManagerDescriptionUpdatedNotification, object: ["zipPath":zipLocation, "rtfdPath":tempSaveLocation])
+                NotificationCenter.default.post(name: ManagerDescriptionUpdatedNotification, object: ["zipPath":zipLocation, "rtfdPath":tempSaveLocation, "id":self.currentEA!.id])
+                
+                // Clear cache
+                URLCache.shared.removeAllCachedResponses()
             }
         }
         uploadTask!.resume()

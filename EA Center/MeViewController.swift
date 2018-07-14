@@ -49,6 +49,11 @@ class MeViewController: UITableViewController {
         if loggedIn {
             updateLoginUI(account: currentUserAccount!)
         }
+        
+        //let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        //view.addGestureRecognizer(tapRecognizer)
+        
+        tableView.backgroundColor = UIColor(named: "Menu Color")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -214,7 +219,11 @@ class MeViewController: UITableViewController {
         self.emailTextField.resignFirstResponder()
         self.passwordTextField.resignFirstResponder()
     }
-
+    
+    @objc func viewTapped() {
+        view.endEditing(true)
+    }
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -232,4 +241,16 @@ class MeViewController: UITableViewController {
         }
     }
 
+}
+
+extension MeViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == emailTextField {
+            emailTextField.resignFirstResponder()
+            passwordTextField.becomeFirstResponder()
+        } else if textField == passwordTextField {
+            login(withEmail: emailTextField.text!, password: passwordTextField.text!)
+        }
+        return true
+    }
 }

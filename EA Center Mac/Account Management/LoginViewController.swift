@@ -16,6 +16,9 @@ class LoginViewController: NSViewController {
     
     @IBOutlet weak var rememberMeCheckbox: NSButton!
     
+    @IBOutlet var registerButton: NSButton!
+    @IBOutlet var loginButton: NSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -49,9 +52,15 @@ class LoginViewController: NSViewController {
         let password = passwordTextField.stringValue
         
         guard let passwordEncrypted = AccountProcessor.encrypt(password) else {
+            verifyLabel.isHidden = false
             verifyLabel.stringValue = "Can not prepare data. Report bug."
             return
         }
+        
+        loginButton.isEnabled = false
+        registerButton.isEnabled = false
+        verifyLabel.isHidden = false
+        verifyLabel.stringValue = "Logging in..."
         
         AccountProcessor.sendLoginRequest(email, passwordEncrypted) { (success, errCode, errString) in
             if success {
@@ -82,15 +91,25 @@ class LoginViewController: NSViewController {
                         
                         NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":userAccount])
                     } else {
+                        self.loginButton.isEnabled = true
+                        self.registerButton.isEnabled = true
                         switch errCode {
                         case -1:
                             // Error
-                            print("\(errString!)")
+                            //print("\(errString!)")
+                            let alert = NSAlert()
+                            alert.messageText = "Error"
+                            alert.informativeText = errString!
+                            alert.runModal()
                             break
                         case -2, -3:
                             // -2: Wrong Status Code
                             // -3: No JSON data
-                            print("\(errString!)")
+                            //print("\(errString!)")
+                            let alert = NSAlert()
+                            alert.messageText = "Error"
+                            alert.informativeText = errString!
+                            alert.runModal()
                             break
                         default:
                             break
@@ -98,15 +117,25 @@ class LoginViewController: NSViewController {
                     }
                 }
             } else {
+                self.loginButton.isEnabled = true
+                self.registerButton.isEnabled = true
                 switch errCode {
                 case -1:
                     // Error
-                    print("\(errString!)")
+                    //print("\(errString!)")
+                    let alert = NSAlert()
+                    alert.messageText = "Error"
+                    alert.informativeText = errString!
+                    alert.runModal()
                     break
                 case -2, -3:
                     // -2: Wrong Status Code
                     // -3: No JSON data
-                    print("\(errString!)")
+                    //print("\(errString!)")
+                    let alert = NSAlert()
+                    alert.messageText = "Error"
+                    alert.informativeText = errString!
+                    alert.runModal()
                     break
                 case 1, 2, 3:
                     self.verifyLabel.isHidden = false

@@ -69,15 +69,22 @@ class EAManagerViewController: NSViewController {
                 return
             }
             
-            let jsonData: [String:Any]
+            let jsonData: Any
             do {
-                jsonData = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
+                jsonData = try JSONSerialization.jsonObject(with: data!)
             } catch {
                 print("No JSON data: \(error)")
                 return
             }
             
-            let myEAs = jsonData["result"] as! [[String:Any]]
+            guard jsonData is [String:Any] else {
+                // No EA. Empty array
+                return
+            }
+            
+            let result = jsonData as! [String:Any]
+            
+            let myEAs = result["result"] as! [[String:Any]]
             for eaDict in myEAs {
                 let ea = EnrichmentActivity(dictionary: eaDict)
                 self.myEA.append(ea)
@@ -111,6 +118,20 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         view.eaNameLabel.stringValue = ea.name
         view.locationLabel.stringValue = ea.location
         view.timeLabel.stringValue = ea.timeModeForDisplay()
+        view.supervisorLabel.stringValue = "Loading supervisor name..."
+        
+        let firstSupervisor = ea.supervisorEmails[0]
+        AccountProcessor.name(from: firstSupervisor) { (name) in
+            if name == nil {
+                view.supervisorLabel.stringValue = "Can not load supervisor name"
+                return
+            }
+            
+            view.supervisorLabel.stringValue = name!
+            if ea.supervisorEmails.count > 1 {
+                view.supervisorLabel.stringValue += " + \(ea.supervisorEmails.count - 1) more"
+            }
+        }
         
         return view
     }
@@ -119,6 +140,8 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         containerView.isHidden = false
         
         if tableView.selectedRow == -1 {
+            containerView.isHidden = true
+            titleNameLabel.stringValue = "Manage EA"
             return
         }
         

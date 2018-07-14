@@ -1,20 +1,15 @@
 //
-//  EAManageCell.swift
+//  GenericTableCell.swift
 //  EA Center
 //
-//  Created by Tom Shen on 2018/7/6.
+//  Created by Tom & Jerry on 2018/7/14.
 //  Copyright © 2018 Tom Shen. All rights reserved.
 //
 
 import UIKit
 
-class EAManageCell: UITableViewCell {
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var locationLabel: UILabel!
-    @IBOutlet weak var supervisorLabel: UILabel!
-    @IBOutlet weak var numStudentsLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    
+class GenericTableCell: UITableViewCell {
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

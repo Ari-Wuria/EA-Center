@@ -16,6 +16,10 @@ class EAListCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        let view = UIView()
+        view.backgroundColor = UIColor(named: "Table Selection Color")
+        selectedBackgroundView = view
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

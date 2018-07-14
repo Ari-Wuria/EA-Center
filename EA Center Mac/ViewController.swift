@@ -19,6 +19,7 @@ class ViewController: NSViewController {
     @IBOutlet var longDescTextView: NSTextView!
     @IBOutlet weak var longDescLoadingLabel: NSTextField!
     
+    @IBOutlet var statusVisualEffectView: NSVisualEffectView!
     @IBOutlet weak var eaStatusLabel: NSTextField!
     @IBOutlet weak var joinButton: NSButton!
     
@@ -49,6 +50,10 @@ class ViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(loggedIn(_:)), name: LoginSuccessNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loggedOut(_:)), name: LogoutNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: EAUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(descriptionUpdated(_:)), name: ManagerDescriptionUpdatedNotification, object: nil)
+        
+        statusVisualEffectView.isHidden = true
     }
 
     override var representedObject: Any? {
@@ -57,14 +62,65 @@ class ViewController: NSViewController {
         }
     }
     
+    @objc func descriptionUpdated(_ notification: Notification) {
+        let object = notification.object as! [String:Any]
+        let updatedID = object["id"] as! Int
+        
+        let localEAUpdated = allEA.filter { (ea) -> Bool in
+            return ea.id == updatedID
+        }
+        
+        let ea = localEAUpdated[0]
+        
+        let updatedEALocation = allEA.firstIndex(of: ea)!
+        
+        if listTableView.selectedRow == updatedEALocation {
+            let filePath = object["rtfdPath"]
+            let content: NSAttributedString
+            do {
+                content = try NSAttributedString(url: URL(fileURLWithPath: filePath as! String), options: [:], documentAttributes: nil)
+            } catch {
+                // Unzipped file failed or file doesn't exist
+                print("Unzipped file failed or file doesn't exist")
+                return
+            }
+            longDescTextView.textStorage?.setAttributedString(content)
+        }
+    }
+    
+    @objc func eaUpdated(_ notification: Notification) {
+        let object = notification.object as! [String:Any]
+        let updatedID = object["id"] as! Int
+        
+        let localEAUpdated = allEA.filter { (ea) -> Bool in
+            return ea.id == updatedID
+        }
+        
+        let ea = localEAUpdated[0]
+        
+        let updatedEA = object["updatedEA"] as! EnrichmentActivity
+        
+        let updatedEALocation = allEA.firstIndex(of: ea)!
+        
+        allEA[updatedEALocation] = updatedEA
+        
+        listTableView.reloadData()
+    }
+    
     @objc func loggedIn(_ notification: Notification) {
         let object = notification.object as! [String:Any]
         let userAccount = object["account"] as! UserAccount
         currentAccount = userAccount
+        
+        eaStatusLabel.stringValue = "Join this EA!"
+        joinButton.isHidden = false
     }
     
     @objc func loggedOut(_ notification: Notification) {
         currentAccount = nil
+        
+        eaStatusLabel.stringValue = "Login to join EAs"
+        joinButton.isHidden = true
     }
 
     override func makeTouchBar() -> NSTouchBar? {
@@ -83,21 +139,40 @@ class ViewController: NSViewController {
         let dataTask = session.dataTask(with: url) { (data, urlReponse, error) in
             guard error == nil else {
                 // Can't download with an error
-                print("Error: \(error!.localizedDescription)")
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    let alert = NSAlert(error: error!)
+                    alert.runModal()
+                    self.failedDownloadCleanup()
+                }
                 return
             }
             
             let httpResponse = urlReponse as? HTTPURLResponse
             guard httpResponse?.statusCode == 200 else {
                 // Wrong response code
-                print("Response code not 200")
+                //print("Response code not 200")
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "Error"
+                    alert.informativeText = "The server returned an invalid response. (not 200)"
+                    alert.runModal()
+                    self.failedDownloadCleanup()
+                }
                 return
             }
             
             let responseDict = try! JSONSerialization.jsonObject(with: data!) as? [String:Any]
             guard let response = responseDict else {
                 // Not a dictionary or it doesn't exist
-                print("Not a dictionary")
+                //print("Not a dictionary")
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "Error"
+                    alert.informativeText = "The server returned an invalid object. (not a dictionary)"
+                    alert.runModal()
+                    self.failedDownloadCleanup()
+                }
                 return
             }
             
@@ -120,8 +195,12 @@ class ViewController: NSViewController {
         guard row != -1 else {
             // Clear text view
             longDescTextView.string = ""
+            statusVisualEffectView.isHidden = true
+            longDescLoadingLabel.isHidden = true
             return
         }
+        
+        statusVisualEffectView.isHidden = false
         
         let ea = allEA[row]
         let eaID = ea.id
@@ -132,18 +211,31 @@ class ViewController: NSViewController {
         let urlString = MainServerAddress + pathEncoded
         let url = URL(string: urlString)!
         
-        let session = URLSession.shared
+        // No cache download
+        let config = URLSessionConfiguration.default
+        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+        config.urlCache = nil
+        let session = URLSession(configuration: config)
         let downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
+            
             guard error == nil else {
                 // Can't download with an error
-                print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    let alert = NSAlert(error: error!)
+                    alert.runModal()
+                }
                 return
             }
             
             let httpResponse = urlResponse as? HTTPURLResponse
             guard httpResponse?.statusCode == 200 else {
                 // Wrong response code
-                print("Response code not 200: \(String(describing: httpResponse?.statusCode))")
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "Error"
+                    alert.informativeText = "The server returned an invalid response. (not 200)"
+                    alert.runModal()
+                }
                 return
             }
             
@@ -161,7 +253,12 @@ class ViewController: NSViewController {
                 content = try NSAttributedString(url: locationURL, options: [:], documentAttributes: nil)
             } catch {
                 // Unzipped file failed or file doesn't exist
-                print("Unzipped file failed or file doesn't exist")
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "Error"
+                    alert.informativeText = "I can't seems to understand this description file. (unzip file doesn't exist or is invalid)"
+                    alert.runModal()
+                }
                 return
             }
             
@@ -179,6 +276,11 @@ class ViewController: NSViewController {
         }
         
         downloadTask.resume()
+    }
+    
+    func failedDownloadCleanup() {
+        loadingIndicatorView.isHidden = true
+        // TODO: Show something to show error
     }
     
     func updateLoginLabel() {
@@ -217,6 +319,14 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         longDescLoadingLabel.isHidden = false
         
         updateEADescription(row)
+    }
+    
+    @IBAction func reloadList(_ sender: Any) {
+        allEA = []
+        longDescTextView.string = ""
+        listTableView.reloadData()
+        statusVisualEffectView.isHidden = true
+        downloadEAList()
     }
  
 }

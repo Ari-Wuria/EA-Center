@@ -26,6 +26,7 @@ class EnrichmentActivity: NSObject {
     var leaderEmails: [String]
     var supervisorEmails: [String]
     var approved: Bool
+    var categoryID: Int
     
     override init() {
         // Placeholder
@@ -42,6 +43,7 @@ class EnrichmentActivity: NSObject {
         leaderEmails = []
         supervisorEmails = []
         approved = false
+        categoryID = 0
         super.init()
     }
     
@@ -62,6 +64,7 @@ class EnrichmentActivity: NSObject {
         supervisorEmails = (dictionary["supervisoremail"] as? String)?.split(separator: ",").map{String($0)} ?? []
         
         approved = dictionary["approved"] as? Bool ?? false
+        categoryID = dictionary["category"] as? Int ?? 0
         super.init()
     }
     

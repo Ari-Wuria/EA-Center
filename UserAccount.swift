@@ -32,7 +32,7 @@ class UserAccount: NSObject {
         self.accountType = dictionary["type"] as! Int
         self.grade = dictionary["grade"] as? Int ?? 0
         self.classInitial = dictionary["classinitial"] as? String ?? ""
-        self.isManager = dictionary["ismanager"] as! Bool
+        self.isManager = dictionary["ismanager"] as? Bool ?? false
         super.init()
     }
     

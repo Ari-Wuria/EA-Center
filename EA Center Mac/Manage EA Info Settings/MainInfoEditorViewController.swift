@@ -112,7 +112,7 @@ class MainInfoEditorViewController: NSViewController {
                 self.showAlert(withTitle: "Error Updating Info", message: errString!)
             } else {
                 self.showAlert(withTitle: "EA Info Updated! 😀")
-                NotificationCenter.default.post(name: EAUpdatedNotification, object: nil)
+                NotificationCenter.default.post(name: EAUpdatedNotification, object: ["id":self.currentEA!.id, "updatedEA":self.currentEA!])
             }
         }
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		053A8D0020F9C71A003FE84F /* GenericTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */; };
 		0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */; };
 		0558B2AB20F5E3A4009B62E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */; };
 		0558B2AD20F602AA009B62E4 /* StudentBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */; };
@@ -39,7 +40,6 @@
 		D017800E20E77DB6003757A7 /* AccountProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800C20E77DB2003757A7 /* AccountProcessor.swift */; };
 		D017801020E77FA9003757A7 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800F20E77FA9003757A7 /* MeViewController.swift */; };
 		D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025730320D8A1E30078AE89 /* AppDelegate.swift */; };
-		D025730620D8A1E30078AE89 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025730520D8A1E30078AE89 /* ViewController.swift */; };
 		D025730920D8A1E30078AE89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730720D8A1E30078AE89 /* Main.storyboard */; };
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
@@ -98,6 +98,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableCell.swift; sourceTree = "<group>"; };
 		0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADetailViewController.swift; sourceTree = "<group>"; };
 		0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentBulletinViewController.swift; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		D017800F20E77FA9003757A7 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		D025730020D8A1E30078AE89 /* EA Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D025730320D8A1E30078AE89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D025730520D8A1E30078AE89 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D025730820D8A1E30078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D025730A20D8A1E40078AE89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D025730D20D8A1E40078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -243,7 +243,6 @@
 			isa = PBXGroup;
 			children = (
 				D025730320D8A1E30078AE89 /* AppDelegate.swift */,
-				D025730520D8A1E30078AE89 /* ViewController.swift */,
 				D0177FF120E67B3C003757A7 /* EAListViewController.swift */,
 				D0177FF320E67B59003757A7 /* EAListCell.swift */,
 				D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */,
@@ -255,6 +254,7 @@
 				0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */,
 				0597CD4620F78985006B4590 /* TextEditorViewController.swift */,
 				0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */,
+				053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */,
 				D025730720D8A1E30078AE89 /* Main.storyboard */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
@@ -517,7 +517,6 @@
 				0597CD4420F76523006B4590 /* HelperFunctions.swift in Sources */,
 				0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */,
 				D0B7C47C20EF94BF004DE8F3 /* ManagerViewController.swift in Sources */,
-				D025730620D8A1E30078AE89 /* ViewController.swift in Sources */,
 				D017800D20E77DB2003757A7 /* AccountProcessor.swift in Sources */,
 				D017800120E77ACB003757A7 /* ioapi_mem.c in Sources */,
 				D017801020E77FA9003757A7 /* MeViewController.swift in Sources */,
@@ -532,6 +531,7 @@
 				D0B7C47E20EF94D8004DE8F3 /* EAManageCell.swift in Sources */,
 				D0B7C47A20ECFC2A004DE8F3 /* ProfileEditorViewController.swift in Sources */,
 				D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */,
+				053A8D0020F9C71A003FE84F /* GenericTableCell.swift in Sources */,
 				D0177FF720E6869D003757A7 /* EADescriptionViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14270.1"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -98,7 +99,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lef-mt-9CH">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.66496794029999995" green="0.85581615460000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="Menu Color"/>
                     </navigationBar>
                     <connections>
                         <segue destination="tQy-3c-ODa" kind="relationship" relationship="rootViewController" id="VUL-Sf-odn"/>
@@ -116,7 +117,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" red="0.66496794029999995" green="0.85581615460000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="Menu Color"/>
                         <color key="selectedImageTintColor" red="1" green="0.43455342209999998" blue="0.3069374788" alpha="1" colorSpace="calibratedRGB"/>
                     </tabBar>
                     <connections>
@@ -140,7 +141,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="aWS-Rn-lcd">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.6649679403011205" green="0.8558161545868348" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="Menu Color"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -245,7 +246,7 @@
                                         <constraint firstItem="8QP-TL-dxB" firstAttribute="centerY" secondItem="nx8-rj-1lW" secondAttribute="centerY" id="qjd-XB-AFN"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="Main Table Color"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NothingCell" rowHeight="109" id="FU8-kV-nXY" customClass="EAListCell" customModule="EA_Center" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="246" width="375" height="109"/>
@@ -266,7 +267,7 @@
                                         <constraint firstItem="HJp-XA-Fvw" firstAttribute="centerY" secondItem="Xdz-AK-tey" secondAttribute="centerY" id="lO0-os-h6J"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" name="Main Table Color"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -290,7 +291,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mEy-h2-eZz">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" name="Main Table Color"/>
                                 <attributedString key="attributedText">
                                     <fragment>
                                         <string key="content">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
@@ -329,7 +330,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Qpw-90-8qj">
                         <rect key="frame" x="0.0" y="20" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.66496794029999995" green="0.85581615460000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="Menu Color"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -460,6 +461,7 @@
                                         <constraint firstAttribute="bottomMargin" secondItem="DVp-K7-xfm" secondAttribute="bottom" constant="35" id="txN-FZ-xbX"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" name="Main Table Color"/>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -1005,7 +1007,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dZW-Sp-FIP">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.66496794029999995" green="0.85581615460000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="Menu Color"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1025,7 +1027,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="I14-Y0-Jm1">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.66496794029999995" green="0.85581615460000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" name="Menu Color"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -1054,7 +1056,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AcI-Uw-FvI">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserIcon" translatesAutoresizingMaskIntoConstraints="NO" id="AcI-Uw-FvI">
                                                     <rect key="frame" x="16" y="11" width="87" height="88"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="87" id="Z4R-0j-2Fw"/>
@@ -1068,12 +1070,18 @@
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" textContentType="username"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Gx9-nN-ez6" id="Szi-jD-zOk"/>
+                                                    </connections>
                                                 </textField>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Go0-V5-O3W">
                                                     <rect key="frame" x="120" y="63" width="239" height="30"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                                    <connections>
+                                                        <outlet property="delegate" destination="Gx9-nN-ez6" id="NDy-ko-Ogi"/>
+                                                    </connections>
                                                 </textField>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C32-ti-tdL">
                                                     <rect key="frame" x="120" y="17" width="242" height="33"/>
@@ -1111,8 +1119,9 @@
                                                 <constraint firstItem="C32-ti-tdL" firstAttribute="top" secondItem="Led-hw-IdX" secondAttribute="topMargin" constant="6" id="xqV-F9-AiQ"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Main Table Color"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Udg-9D-rsw" style="IBUITableViewCellStyleDefault" id="bor-vi-gSw">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="Udg-9D-rsw" style="IBUITableViewCellStyleDefault" id="bor-vi-gSw" customClass="GenericTableCell" customModule="EA_Center" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="145" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bor-vi-gSw" id="57G-jk-FUj">
@@ -1128,8 +1137,9 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Main Table Color"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="1NL-YW-LfJ" style="IBUITableViewCellStyleDefault" id="a1E-cd-XKY">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="1NL-YW-LfJ" style="IBUITableViewCellStyleDefault" id="a1E-cd-XKY" customClass="GenericTableCell" customModule="EA_Center" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="189" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="a1E-cd-XKY" id="urQ-Zu-fR2">
@@ -1145,12 +1155,13 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Main Table Color"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
                             <tableViewSection id="xS2-7D-XDU">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Wi1-mL-74r" style="IBUITableViewCellStyleDefault" id="ZBM-Ed-Elp">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Wi1-mL-74r" style="IBUITableViewCellStyleDefault" id="ZBM-Ed-Elp" customClass="GenericTableCell" customModule="EA_Center" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="269" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZBM-Ed-Elp" id="s2t-xp-tm5">
@@ -1166,11 +1177,12 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Main Table Color"/>
                                         <connections>
                                             <segue destination="bab-1v-fIm" kind="show" identifier="EditProfile" id="VbE-Tj-aeB"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="BRs-5o-wbg" style="IBUITableViewCellStyleDefault" id="VAa-2r-s2c">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="BRs-5o-wbg" style="IBUITableViewCellStyleDefault" id="VAa-2r-s2c" customClass="GenericTableCell" customModule="EA_Center" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="313" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VAa-2r-s2c" id="uIN-Xx-pP7">
@@ -1186,6 +1198,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Main Table Color"/>
                                         <connections>
                                             <segue destination="LYW-9n-HT4" kind="show" identifier="ViewSettings" id="wUB-pM-Iox"/>
                                         </connections>
@@ -1194,7 +1207,7 @@
                             </tableViewSection>
                             <tableViewSection id="sGl-hc-QpS">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="KLS-qU-ADk" style="IBUITableViewCellStyleDefault" id="r0E-f6-kLO">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="KLS-qU-ADk" style="IBUITableViewCellStyleDefault" id="r0E-f6-kLO" customClass="GenericTableCell" customModule="EA_Center" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="393" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r0E-f6-kLO" id="MJT-Bl-zjy">
@@ -1210,9 +1223,32 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Main Table Color"/>
                                         <connections>
                                             <segue destination="bjh-iP-Ps4" kind="show" id="zcl-St-yPi"/>
                                         </connections>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                            <tableViewSection id="AWi-ev-0Ka">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" textLabel="Rm4-Na-ZQP" style="IBUITableViewCellStyleDefault" id="Ejn-N8-5Q8" customClass="GenericTableCell" customModule="EA_Center" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="473" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ejn-N8-5Q8" id="aFl-3e-ECS">
+                                            <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="EAs I've Joined" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Rm4-Na-ZQP">
+                                                    <rect key="frame" x="16" y="0.0" width="324" height="43.5"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" name="Main Table Color"/>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -1525,7 +1561,14 @@
         <image name="Clock" width="31" height="31"/>
         <image name="Cog" width="26" height="26"/>
         <image name="User" width="27" height="29"/>
+        <image name="UserIcon" width="1120" height="1120"/>
         <image name="Wallet" width="31" height="23"/>
+        <namedColor name="Main Table Color">
+            <color red="0.84799998998641968" green="0.94099998474121094" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Menu Color">
+            <color red="0.66500002145767212" green="0.85600000619888306" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="MFX-JC-pe6"/>

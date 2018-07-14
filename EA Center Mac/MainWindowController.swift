@@ -102,8 +102,4 @@ class MainWindowController: NSWindowController {
         manageController?.close()
         manageController = nil
     }
-    
-    @IBAction func reloadList(_ sender: Any) {
-        print("reload")
-    }
 }

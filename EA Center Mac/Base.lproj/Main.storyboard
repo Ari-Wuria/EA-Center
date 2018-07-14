@@ -2253,6 +2253,7 @@
                         <outlet property="loadingSpinner" destination="2iM-DL-aiY" id="GDB-jG-84x"/>
                         <outlet property="longDescLoadingLabel" destination="64J-BS-qSC" id="zMx-B1-VXb"/>
                         <outlet property="longDescTextView" destination="ZIu-7X-b5X" id="soW-Vp-Yl3"/>
+                        <outlet property="statusVisualEffectView" destination="Kbu-92-FZa" id="Vmp-gD-h1M"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

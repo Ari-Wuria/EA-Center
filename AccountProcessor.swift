@@ -155,4 +155,58 @@ class AccountProcessor {
         }
         dataTask.resume()
     }
+    
+    class func name(from email: String, completion: @escaping (_ name: String?) -> ()) {
+        let urlString = MainServerAddress + "/namefromemail.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "email=\(email)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!)
+            guard jsonData is [String:Any] else {
+                // No name, return name not set
+                DispatchQueue.main.async {
+                    completion("")
+                }
+                return
+            }
+            
+            let responseDict = jsonData as! [String:Any]
+            
+            let name = responseDict["name"] as? String
+            if name != nil {
+                DispatchQueue.main.async {
+                    completion(name)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    completion(nil)
+                }
+            }
+        }
+        dataTask.resume()
+    }
 }
