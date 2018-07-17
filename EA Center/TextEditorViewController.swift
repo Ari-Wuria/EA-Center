@@ -35,6 +35,7 @@ class TextEditorViewController: UITableViewController {
                 if success {
                     self.spinner.stopAnimating()
                     self.navigationController?.popViewController(animated: true)
+                    NotificationCenter.default.post(name: EAUpdatedNotification, object: ["updatedea":self.currentEA])
                 } else {
                     self.spinner.stopAnimating()
                     let alert = UIAlertController(title: "Error", message: errString, preferredStyle: .alert)
@@ -47,6 +48,7 @@ class TextEditorViewController: UITableViewController {
                 if success {
                     self.spinner.stopAnimating()
                     self.navigationController?.popViewController(animated: true)
+                    NotificationCenter.default.post(name: EAUpdatedNotification, object: ["updatedea":self.currentEA])
                 } else {
                     self.spinner.stopAnimating()
                     let alert = UIAlertController(title: "Error", message: errString, preferredStyle: .alert)

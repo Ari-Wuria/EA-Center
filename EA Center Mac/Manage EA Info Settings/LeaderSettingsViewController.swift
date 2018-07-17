@@ -35,6 +35,20 @@ class LeaderSettingsViewController: NSViewController {
             supervisorTableView.reloadData()
         }
     }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier == "AddLeader" {
+            let controller = segue.destinationController as! AddLeaderViewController
+            controller.updateMode = 1
+            controller.currentEA = currentEA
+            controller.delegate = self
+        } else if segue.identifier == "AddSupervisor" {
+            let controller = segue.destinationController as! AddLeaderViewController
+            controller.updateMode = 2
+            controller.currentEA = currentEA
+            controller.delegate = self
+        }
+    }
  
     deinit {
         print("deinit: \(self)")
@@ -91,5 +105,18 @@ extension LeaderSettingsViewController: NSTableViewDataSource, NSTableViewDelega
             view?.textField?.stringValue = supervisorEmail
         }
         return view
+    }
+}
+
+extension LeaderSettingsViewController: AddLeaderViewControllerDelegate {
+    func controller(_ controller: AddLeaderViewController, finishedWithAccountEmail email: String) {
+        let mode = controller.updateMode
+        if mode == 1 {
+            leaderTableView.reloadData()
+        } else if mode == 2 {
+            supervisorTableView.reloadData()
+        }
+        
+        NotificationCenter.default.post(name: EAUpdatedNotification, object: ["id":self.currentEA!.id, "updatedEA":self.currentEA!])
     }
 }

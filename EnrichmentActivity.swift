@@ -25,25 +25,29 @@ class EnrichmentActivity: NSObject {
     var proposal: String
     var leaderEmails: [String]
     var supervisorEmails: [String]
-    var approved: Bool
+    var approved: Int
     var categoryID: Int
+    var startDate: Date?
+    var endDate: Date?
     
     override init() {
-        // Placeholder
+        // Initialize with default values
         id = 0
         name = ""
         shortDescription = ""
         location = ""
         days = []
-        weekMode = 0
-        timeMode = 0
-        minGrade = 0
-        maxGrade = 0
+        weekMode = 1
+        timeMode = 1
+        minGrade = 6
+        maxGrade = 12
         proposal = ""
         leaderEmails = []
         supervisorEmails = []
-        approved = false
+        approved = 0
         categoryID = 0
+        //startDate = Date()
+        //endDate = Date()
         super.init()
     }
     
@@ -53,19 +57,93 @@ class EnrichmentActivity: NSObject {
         shortDescription = dictionary["shortdesc"] as? String ?? ""
         location = dictionary["location"] as? String ?? ""
         days = (dictionary["days"] as? String)?.split(separator: ",").map{Int($0)} as? [Int] ?? []
-        weekMode = dictionary["weekmode"] as? Int ?? 0
-        timeMode = dictionary["timemode"] as? Int ?? 0
-        minGrade = dictionary["mingrade"] as? Int ?? 0
-        maxGrade = dictionary["maxgrade"] as? Int ?? 0
+        weekMode = dictionary["weekmode"] as? Int ?? 1
+        timeMode = dictionary["timemode"] as? Int ?? 1
+        minGrade = dictionary["mingrade"] as? Int ?? 6
+        maxGrade = dictionary["maxgrade"] as? Int ?? 12
         proposal = dictionary["proposal"] as? String ?? ""
         
         // Split the leaders
         leaderEmails = (dictionary["leaderemail"] as? String)?.split(separator: ",").map{String($0)} ?? []
         supervisorEmails = (dictionary["supervisoremail"] as? String)?.split(separator: ",").map{String($0)} ?? []
         
-        approved = dictionary["approved"] as? Bool ?? false
+        approved = dictionary["approved"] as? Int ?? 0
         categoryID = dictionary["category"] as? Int ?? 0
+        
+        // Start date and end date is optional
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MM-dd-yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US")
+        startDate = dateFormatter.date(from: dictionary["startdate"] as? String ?? "")
+        endDate = dateFormatter.date(from: dictionary["enddate"] as? String ?? "")
+        
         super.init()
+    }
+    
+    /// Create a new EA and add it to database with default values
+    /// @param name: Name of EA
+    class func create(withName name: String, email leaderEmail: String, completion: @escaping (_ success: Bool, _ ea: EnrichmentActivity?, _ errStr: String?) -> ()) {
+        // Experimenting with hash API protection
+        let hashiv = randomAlphanumericString(length: 16)
+        let hashEncrypted = aesEncrypt(GlobalAPIHash, GlobalAPIEncryptKey, hashiv)!
+        
+        print("Hash: \(hashEncrypted), iv: \(hashiv)")
+        
+        let urlString = MainServerAddress + "/manageea/createea"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "name=\(name)&email=\(leaderEmail)&hash=\(hashEncrypted)&hashkey=\(hashiv)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        // Temporary
+        URLCache.shared.removeAllCachedResponses()
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, nil, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, nil, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, nil, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    let resultID = responseDict["resultid"] as! Int
+                    let newEA = EnrichmentActivity()
+                    newEA.id = resultID
+                    newEA.leaderEmails = [leaderEmail]
+                    completion(true, newEA, nil)
+                } else {
+                    let errString = responseDict["error"] as! String
+                    completion(false, nil, errString)
+                }
+            }
+        }
+        dataTask.resume()
     }
     
     func timeModeForDisplay() -> String {
@@ -246,6 +324,77 @@ class EnrichmentActivity: NSObject {
             DispatchQueue.main.async {
                 if success {
                     self.proposal = newProposal
+                    
+                    completion(true, nil)
+                } else {
+                    let errString = responseDict["error"] as! String
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func updateLeader(newLeader: UserAccount, isSupervisor: Bool, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let urlString = MainServerAddress + "/updateealeader.php"
+        let url = URL(string: urlString)!
+        
+        let supervisor = (isSupervisor) ? 1 : 0
+        let newEmail = newLeader.userEmail
+        let newEmailString: String
+        if supervisor == 0 {
+            // Leader email count will never be 0
+            newEmailString = leaderEmails.joined(separator: ",") + ",\(newEmail)"
+        } else {
+            if supervisorEmails.count == 0 {
+                newEmailString = newEmail
+            } else {
+                newEmailString = supervisorEmails.joined(separator: ",") + ",\(newEmail)"
+            }
+        }
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "id=\(id)&issupervisor=\(supervisor)&email=\(newEmailString)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    if isSupervisor == true {
+                        self.supervisorEmails.append(newEmail)
+                    } else {
+                        self.leaderEmails.append(newEmail)
+                    }
                     
                     completion(true, nil)
                 } else {

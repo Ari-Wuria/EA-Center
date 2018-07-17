@@ -55,7 +55,7 @@ class ManagerViewController: UITableViewController {
     // MARK: - Download
     
     func retriveMyEA() {
-        let urlString = MainServerAddress + "/getmyea.php"
+        let urlString = MainServerAddress + "/manageea/getmyea.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)

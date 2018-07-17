@@ -47,5 +47,9 @@ class LoginWindowController: NSWindowController {
             registerView = nil
         }
     }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return contentViewController?.makeTouchBar()
+    }
 
 }

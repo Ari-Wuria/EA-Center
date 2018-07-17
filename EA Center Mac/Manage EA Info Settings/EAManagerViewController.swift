@@ -28,6 +28,12 @@ class EAManagerViewController: NSViewController {
         titleNameLabel.stringValue = "Manage EA"
         
         NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated), name: EAUpdatedNotification, object: nil)
+        
+        view.wantsLayer = true
+        view.layer = CALayer()
+        view.layer?.backgroundColor = NSColor(named: "Main Background")!.cgColor
+        view.window?.styleMask = .texturedBackground
+        view.window?.backgroundColor = NSColor(named: "Main Background")!
     }
     
     override func viewWillAppear() {
@@ -41,7 +47,7 @@ class EAManagerViewController: NSViewController {
     }
     
     func retriveMyEA() {
-        let urlString = MainServerAddress + "/getmyea.php"
+        let urlString = MainServerAddress + "/manageea/getmyea.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
@@ -56,6 +62,7 @@ class EAManagerViewController: NSViewController {
                 print("Error: \(error!.localizedDescription)")
                 DispatchQueue.main.async {
                     //completion(false, -1, error!.localizedDescription)
+                    self.showErrorAlert(nil, nil, error!)
                 }
                 return
             }
@@ -65,6 +72,7 @@ class EAManagerViewController: NSViewController {
                 print("Wrong Status Code")
                 DispatchQueue.main.async {
                     //completion(false, -2, "Wrong Status Code: \(httpResponse.statusCode)")
+                    self.showErrorAlert("Error", "Wrong Status Code: \(httpResponse.statusCode)")
                 }
                 return
             }
@@ -73,7 +81,8 @@ class EAManagerViewController: NSViewController {
             do {
                 jsonData = try JSONSerialization.jsonObject(with: data!)
             } catch {
-                print("No JSON data: \(error)")
+                //print("No JSON data: \(error)")
+                self.showErrorAlert(nil, nil, error)
                 return
             }
             
@@ -97,6 +106,28 @@ class EAManagerViewController: NSViewController {
         dataTask.resume()
     }
     
+    func showErrorAlert(_ title: String?, _ message: String?, _ error: Error? = nil) {
+        let alert: NSAlert
+        if let error = error {
+            alert = NSAlert(error: error)
+        } else if let title = title, let message = message {
+            alert = NSAlert()
+            alert.messageText = title
+            alert.informativeText = message
+        } else {
+            alert = NSAlert()
+            alert.messageText = "Error"
+        }
+        alert.runModal()
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier == "CreateEA" {
+            let dest = segue.destinationController as! CreateNewEAViewController
+            dest.currentEmail = self.loggedInEmail
+        }
+    }
+    
     deinit {
         print("deinit: \(self)")
     }
@@ -118,19 +149,23 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         view.eaNameLabel.stringValue = ea.name
         view.locationLabel.stringValue = ea.location
         view.timeLabel.stringValue = ea.timeModeForDisplay()
-        view.supervisorLabel.stringValue = "Loading supervisor name..."
         
-        let firstSupervisor = ea.supervisorEmails[0]
-        AccountProcessor.name(from: firstSupervisor) { (name) in
-            if name == nil {
-                view.supervisorLabel.stringValue = "Can not load supervisor name"
-                return
+        if ea.supervisorEmails.count > 0 {
+            view.supervisorLabel.stringValue = "Loading supervisor name..."
+            let firstSupervisor = ea.supervisorEmails[0]
+            AccountProcessor.name(from: firstSupervisor) { (name) in
+                if name == nil {
+                    view.supervisorLabel.stringValue = "Can not load supervisor name"
+                    return
+                }
+                
+                view.supervisorLabel.stringValue = name!
+                if ea.supervisorEmails.count > 1 {
+                    view.supervisorLabel.stringValue += " + \(ea.supervisorEmails.count - 1) more"
+                }
             }
-            
-            view.supervisorLabel.stringValue = name!
-            if ea.supervisorEmails.count > 1 {
-                view.supervisorLabel.stringValue += " + \(ea.supervisorEmails.count - 1) more"
-            }
+        } else {
+            view.supervisorLabel.stringValue = "No Supervisor"
         }
         
         return view
@@ -149,5 +184,12 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: nil)
         
         titleNameLabel.stringValue = ea.name
+    }
+    
+    @IBAction func reloadList(_ sender: Any) {
+        myEA = []
+        containerView.isHidden = true
+        titleNameLabel.stringValue = "Manage EA"
+        retriveMyEA()
     }
 }

@@ -45,8 +45,8 @@ class MainInfoEditorViewController: NSViewController {
         let ea = notification.object as! EnrichmentActivity
         currentEA = ea
         
-        weekSelector.selectItem(at: ea.weekMode)
-        timeSelector.selectItem(at: ea.timeMode)
+        weekSelector.selectItem(at: ea.weekMode - 1)
+        timeSelector.selectItem(at: ea.timeMode - 1)
         locationTextField.stringValue = ea.location
         minGradeSelector.selectItem(at: ea.minGrade - 6)
         maxGradeSelector.selectItem(at: ea.maxGrade - 6)
@@ -62,8 +62,8 @@ class MainInfoEditorViewController: NSViewController {
     }
     
     @IBAction func saveChanges(_ sender: Any) {
-        let weekMode = weekSelector.indexOfSelectedItem
-        let timeMode = timeSelector.indexOfSelectedItem
+        let weekMode = weekSelector.indexOfSelectedItem + 1
+        let timeMode = timeSelector.indexOfSelectedItem + 1
         let location = locationTextField.stringValue
         let minGrade = minGradeSelector.indexOfSelectedItem + 6
         let maxGrade = maxGradeSelector.indexOfSelectedItem + 6

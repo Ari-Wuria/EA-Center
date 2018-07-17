@@ -22,6 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UserDefaults.standard.set(true, forKey: "rememberlogin")
         
+        UIImageView.appearance().accessibilityIgnoresInvertColors = true
+        
         return true
     }
 

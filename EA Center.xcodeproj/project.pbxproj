@@ -14,6 +14,8 @@
 		0597CD4420F76523006B4590 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597CD4320F76522006B4590 /* HelperFunctions.swift */; };
 		0597CD4520F76523006B4590 /* HelperFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597CD4320F76522006B4590 /* HelperFunctions.swift */; };
 		0597CD4720F78985006B4590 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597CD4620F78985006B4590 /* TextEditorViewController.swift */; };
+		05ADD16720FB59C1008754A0 /* CreateNewEAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ADD16520FB59C1008754A0 /* CreateNewEAViewController.swift */; };
+		05ECDEE420F9E7CE0075DBB3 /* AddLeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ECDEE320F9E7CE0075DBB3 /* AddLeaderViewController.swift */; };
 		D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF120E67B3C003757A7 /* EAListViewController.swift */; };
 		D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF320E67B59003757A7 /* EAListCell.swift */; };
 		D0177FF520E67C25003757A7 /* EnrichmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */; };
@@ -104,6 +106,8 @@
 		0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentBulletinViewController.swift; sourceTree = "<group>"; };
 		0597CD4320F76522006B4590 /* HelperFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperFunctions.swift; sourceTree = "<group>"; };
 		0597CD4620F78985006B4590 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
+		05ADD16520FB59C1008754A0 /* CreateNewEAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEAViewController.swift; sourceTree = "<group>"; };
+		05ECDEE320F9E7CE0075DBB3 /* AddLeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeaderViewController.swift; sourceTree = "<group>"; };
 		D0177FF120E67B3C003757A7 /* EAListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListViewController.swift; sourceTree = "<group>"; };
 		D0177FF320E67B59003757A7 /* EAListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCell.swift; sourceTree = "<group>"; };
 		D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADescriptionViewController.swift; sourceTree = "<group>"; };
@@ -269,9 +273,11 @@
 			children = (
 				D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */,
 				D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */,
+				05ADD16520FB59C1008754A0 /* CreateNewEAViewController.swift */,
 				D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */,
 				D0A7662220E27056001B4317 /* AttendenceViewController.swift */,
 				D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */,
+				05ECDEE320F9E7CE0075DBB3 /* AddLeaderViewController.swift */,
 				D0A7661E20E27033001B4317 /* DescriptionViewController.swift */,
 				D0A7662420E27FFA001B4317 /* EditDescriptionViewController.swift */,
 			);
@@ -545,6 +551,7 @@
 				D0A7662120E27049001B4317 /* LeaderSettingsViewController.swift in Sources */,
 				D0FEB74B20E147B0009CB82E /* aestab.c in Sources */,
 				D0FEB74320E147AF009CB82E /* aeskey.c in Sources */,
+				05ADD16720FB59C1008754A0 /* CreateNewEAViewController.swift in Sources */,
 				D0B7C47820EC9620004DE8F3 /* AccountSettingsViewController.swift in Sources */,
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
 				D017800E20E77DB6003757A7 /* AccountProcessor.swift in Sources */,
@@ -577,6 +584,7 @@
 				D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */,
 				D0FEB74C20E147B0009CB82E /* SSZipArchive.m in Sources */,
 				D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */,
+				05ECDEE420F9E7CE0075DBB3 /* AddLeaderViewController.swift in Sources */,
 				D0FEB74120E147AF009CB82E /* ioapi_mem.c in Sources */,
 				D0FEB73F20E147AF009CB82E /* ioapi.c in Sources */,
 				D0B7C47620EC8DE7004DE8F3 /* UserAccount.swift in Sources */,

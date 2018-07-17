@@ -94,7 +94,7 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
                 self.presentAlert(withTitle: "Error", message: errString!)
             }
             
-            NotificationCenter.default.post(name: EAUpdatedNotification, object: nil)
+            NotificationCenter.default.post(name: EAUpdatedNotification, object: ["updatedea":self.currentEA])
         }
     }
     

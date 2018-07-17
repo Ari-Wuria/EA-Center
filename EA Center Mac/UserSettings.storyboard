@@ -2,8 +2,10 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="UGf-So-gQ6">
     <dependencies>
         <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14214"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14295.6"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+        <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
     </dependencies>
     <scenes>
         <!--Window Controller-->
@@ -35,16 +37,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Duu-Jd-XFG">
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Duu-Jd-XFG">
                                 <rect key="frame" x="28" y="173" width="265" height="36"/>
                                 <autoresizingMask key="autoresizingMask"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Email" drawsBackground="YES" id="RTQ-42-yTH">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Email" drawsBackground="YES" usesSingleLineMode="YES" id="RTQ-42-yTH">
                                     <font key="font" metaFont="system" size="24"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbX-wA-bA1">
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbX-wA-bA1">
                                 <rect key="frame" x="28" y="118" width="265" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Password" drawsBackground="YES" usesSingleLineMode="YES" id="Aiv-AA-B0C">
@@ -100,13 +102,54 @@
                     <connections>
                         <outlet property="emailTextField" destination="Duu-Jd-XFG" id="fj9-xC-9CA"/>
                         <outlet property="loginButton" destination="sgK-mD-bFH" id="Q9S-e6-hrB"/>
+                        <outlet property="mainTouchBar" destination="Q3f-UU-lWs" id="4rc-g3-Uo3"/>
                         <outlet property="passwordTextField" destination="fbX-wA-bA1" id="TNX-Aa-ncw"/>
                         <outlet property="registerButton" destination="M0U-Ni-70a" id="d9g-Zl-sgf"/>
                         <outlet property="rememberMeCheckbox" destination="8Zj-7r-t0X" id="zCY-MV-Bvh"/>
+                        <outlet property="touchLoginButton" destination="Prb-dp-IYI" id="58a-6S-qd5"/>
+                        <outlet property="touchRegisterButton" destination="cpy-KZ-FC3" id="tCR-XX-U6g"/>
                         <outlet property="verifyLabel" destination="XrI-uw-sRN" id="gU4-S4-wUA"/>
                     </connections>
                 </viewController>
                 <customObject id="rPY-Es-VBL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <touchBar id="Q3f-UU-lWs">
+                    <touchBarItems>
+                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="aI7-im-5JC"/>
+                        <touchBarItem id="LYQ-yv-677">
+                            <viewController key="viewController" id="dSY-4j-0Op">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cpy-KZ-FC3">
+                                    <rect key="frame" x="0.0" y="0.0" width="111" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Register" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="V67-mB-Ntx">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="touchRegister:" target="Eai-4h-4g4" id="qvV-xr-f8v"/>
+                                    </connections>
+                                </button>
+                            </viewController>
+                            <size key="designTimeSize" width="111" height="30"/>
+                        </touchBarItem>
+                        <touchBarItem id="vxu-Zm-K5y">
+                            <viewController key="viewController" id="Zb1-ti-gmC">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Prb-dp-IYI">
+                                    <rect key="frame" x="0.0" y="0.0" width="103" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Login" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="8ni-Uw-62G">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="touchLogin:" target="Eai-4h-4g4" id="DtD-tL-g29"/>
+                                    </connections>
+                                </button>
+                            </viewController>
+                            <size key="designTimeSize" width="103" height="30"/>
+                        </touchBarItem>
+                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="FuZ-Ir-LjL"/>
+                    </touchBarItems>
+                </touchBar>
             </objects>
             <point key="canvasLocation" x="-75" y="573"/>
         </scene>
@@ -139,7 +182,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="260"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3gb-bs-Efb">
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gb-bs-Efb">
                                 <rect key="frame" x="20" y="159" width="280" height="33"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Your Name" drawsBackground="YES" id="ApH-wN-9Zg">
@@ -157,7 +200,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hcz-FE-Jse">
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hcz-FE-Jse">
                                 <rect key="frame" x="20" y="111" width="280" height="33"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Your Advisory" drawsBackground="YES" id="901-US-eYv">
@@ -199,11 +242,47 @@
                     <connections>
                         <outlet property="classTextField" destination="hcz-FE-Jse" id="8Er-Bu-0Wj"/>
                         <outlet property="emailLabel" destination="vPt-4e-Ndg" id="f5k-9M-y6K"/>
+                        <outlet property="mainTouchBar" destination="pCm-uT-BlS" id="yVU-KK-wpe"/>
                         <outlet property="statusLabel" destination="Ifm-Lu-z9v" id="9S7-jH-YDN"/>
                         <outlet property="usernameTextField" destination="3gb-bs-Efb" id="oQj-4e-WWa"/>
                     </connections>
                 </viewController>
                 <customObject id="uYz-8h-EUf" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <touchBar id="pCm-uT-BlS">
+                    <touchBarItems>
+                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="Ydq-Zf-gpJ"/>
+                        <touchBarItem id="CCt-8p-HaI">
+                            <viewController key="viewController" id="tbN-qV-dM7">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MdP-uU-KLr">
+                                    <rect key="frame" x="0.0" y="0.0" width="157" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Change Password" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Qeb-oq-WrA">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                    </buttonCell>
+                                </button>
+                            </viewController>
+                            <size key="designTimeSize" width="157" height="30"/>
+                        </touchBarItem>
+                        <touchBarItem id="yHi-Vt-PP6">
+                            <viewController key="viewController" id="hyD-gM-QQG">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OB1-7i-x82">
+                                    <rect key="frame" x="0.0" y="0.0" width="106" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    <buttonCell key="cell" type="push" title="Update" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4OI-dz-t6v">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" usesAppearanceFont="YES"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="touchUpdate:" target="DJ5-23-IQM" id="NlS-1D-Xq2"/>
+                                    </connections>
+                                </button>
+                            </viewController>
+                            <size key="designTimeSize" width="106" height="30"/>
+                        </touchBarItem>
+                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="YpZ-fj-ABS"/>
+                    </touchBarItems>
+                </touchBar>
             </objects>
             <point key="canvasLocation" x="760" y="501"/>
         </scene>

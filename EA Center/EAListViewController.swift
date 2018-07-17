@@ -39,6 +39,27 @@ class EAListViewController: UITableViewController {
         
         searchController.searchBar.scopeButtonTitles = ["Name", "Short Description"]
         searchController.searchBar.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: EAUpdatedNotification, object: nil)
+        
+        //NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: UIAccessibility.invertColorsStatusDidChangeNotification, object: nil)
+    }
+    
+    @objc func eaUpdated(_ notification: Notification) {
+        let obj = notification.object as! [String:Any]
+        let updatedEA = obj["updatedea"] as! EnrichmentActivity
+        
+        let currentUpdatedEA = allEA.filter { (ea) -> Bool in
+            return ea.id == updatedEA.id
+        }
+        
+        let currentEA = currentUpdatedEA[0]
+        
+        let position = allEA.firstIndex(of: currentEA)!
+        
+        allEA[position] = updatedEA
+        
+        tableView.reloadData()
     }
     
     @objc func refresh() {
@@ -141,7 +162,7 @@ class EAListViewController: UITableViewController {
     // MARK: - Downloads
     
     func downloadEAList() {
-        let urlString = MainServerAddress + "/getealist.php"
+        let urlString = MainServerAddress + "/manageea/getealist.php"
         let url = URL(string: urlString)!
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true

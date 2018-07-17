@@ -19,6 +19,10 @@ class LoginViewController: NSViewController {
     @IBOutlet var registerButton: NSButton!
     @IBOutlet var loginButton: NSButton!
     
+    @IBOutlet var mainTouchBar: NSTouchBar!
+    @IBOutlet var touchRegisterButton: NSButton!
+    @IBOutlet var touchLoginButton: NSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -59,6 +63,8 @@ class LoginViewController: NSViewController {
         
         loginButton.isEnabled = false
         registerButton.isEnabled = false
+        touchLoginButton.isEnabled = false
+        touchRegisterButton.isEnabled = false
         verifyLabel.isHidden = false
         verifyLabel.stringValue = "Logging in..."
         
@@ -93,6 +99,8 @@ class LoginViewController: NSViewController {
                     } else {
                         self.loginButton.isEnabled = true
                         self.registerButton.isEnabled = true
+                        self.touchLoginButton.isEnabled = true
+                        self.touchRegisterButton.isEnabled = true
                         switch errCode {
                         case -1:
                             // Error
@@ -119,6 +127,8 @@ class LoginViewController: NSViewController {
             } else {
                 self.loginButton.isEnabled = true
                 self.registerButton.isEnabled = true
+                self.touchLoginButton.isEnabled = true
+                self.touchRegisterButton.isEnabled = true
                 switch errCode {
                 case -1:
                     // Error
@@ -145,5 +155,17 @@ class LoginViewController: NSViewController {
                 }
             }
         }
+    }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
+    }
+    
+    @IBAction func touchRegister(_ sender: Any) {
+        register(sender)
+    }
+    
+    @IBAction func touchLogin(_ sender: Any) {
+        login(sender)
     }
 }

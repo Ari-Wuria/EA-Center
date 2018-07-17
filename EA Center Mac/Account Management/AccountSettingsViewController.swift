@@ -16,6 +16,8 @@ class AccountSettingsViewController: NSViewController {
     @IBOutlet weak var usernameTextField: NSTextField!
     @IBOutlet weak var emailLabel: NSTextField!
     
+    @IBOutlet var mainTouchBar: NSTouchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -107,5 +109,13 @@ class AccountSettingsViewController: NSViewController {
         }
         
         return true
+    }
+    
+    @IBAction func touchUpdate(_ sender: Any) {
+        updateInfo(sender)
+    }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
     }
 }

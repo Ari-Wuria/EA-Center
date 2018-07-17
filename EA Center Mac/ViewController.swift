@@ -54,6 +54,10 @@ class ViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(descriptionUpdated(_:)), name: ManagerDescriptionUpdatedNotification, object: nil)
         
         statusVisualEffectView.isHidden = true
+        
+        view.wantsLayer = true
+        view.layer = CALayer()
+        view.layer?.backgroundColor = NSColor(named: "Main Background")?.cgColor
     }
 
     override var representedObject: Any? {
@@ -132,7 +136,7 @@ class ViewController: NSViewController {
     }
     
     func downloadEAList() {
-        let urlString = MainServerAddress + "/getealist.php"
+        let urlString = MainServerAddress + "/manageea/getealist.php"
         let url = URL(string: urlString)!
         
         let session = URLSession.shared

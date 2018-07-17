@@ -91,7 +91,6 @@ class EditDescriptionViewController: NSViewController {
         }
         
         // Zip RTFD
-        // TODO: Need fixing
         let zipLocation = tempSavePath + "/longdescriptions/\(currentEA!.id).rtfd.zip"
         //SSZipArchive.createZipFile(atPath: zipLocation, withFilesAtPaths: [tempSaveLocation])
         SSZipArchive.createZipFile(atPath: zipLocation, withContentsOfDirectory: tempSaveLocation, keepParentDirectory: true)
