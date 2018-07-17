@@ -20,6 +20,8 @@ class EAManagerViewController: NSViewController {
     
     @IBOutlet weak var titleNameLabel: NSTextField!
     
+    @IBOutlet var approvalButton: NSButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -28,12 +30,15 @@ class EAManagerViewController: NSViewController {
         titleNameLabel.stringValue = "Manage EA"
         
         NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated), name: EAUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eaCreated(_:)), name: EACreatedNotification, object: nil)
         
         view.wantsLayer = true
         view.layer = CALayer()
         view.layer?.backgroundColor = NSColor(named: "Main Background")!.cgColor
         view.window?.styleMask = .texturedBackground
         view.window?.backgroundColor = NSColor(named: "Main Background")!
+        
+        approvalButton.isHidden = true
     }
     
     override func viewWillAppear() {
@@ -43,6 +48,14 @@ class EAManagerViewController: NSViewController {
     }
     
     @objc func eaUpdated() {
+        tableView.reloadData()
+    }
+    
+    @objc func eaCreated(_ obj: Notification) {
+        let dic = obj.object as! [String:Any]
+        let ea = dic["ea"] as! EnrichmentActivity
+        myEA.append(ea)
+        
         tableView.reloadData()
     }
     
@@ -128,11 +141,20 @@ class EAManagerViewController: NSViewController {
         }
     }
     
+    @IBAction func reloadList(_ sender: Any) {
+        myEA = []
+        containerView.isHidden = true
+        titleNameLabel.stringValue = "Manage EA"
+        approvalButton.isHidden = true
+        retriveMyEA()
+    }
+    
     deinit {
         print("deinit: \(self)")
     }
 }
 
+// MARK: - Table view extension
 extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         return 129
@@ -147,7 +169,10 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         let ea = myEA[row]
         
         view.eaNameLabel.stringValue = ea.name
-        view.locationLabel.stringValue = ea.location
+        
+        let eaLocation = (ea.location.count > 0) ? ea.location : "No location"
+        
+        view.locationLabel.stringValue = eaLocation
         view.timeLabel.stringValue = ea.timeModeForDisplay()
         
         if ea.supervisorEmails.count > 0 {
@@ -184,12 +209,18 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: nil)
         
         titleNameLabel.stringValue = ea.name
-    }
-    
-    @IBAction func reloadList(_ sender: Any) {
-        myEA = []
-        containerView.isHidden = true
-        titleNameLabel.stringValue = "Manage EA"
-        retriveMyEA()
+        
+        if ea.approved == 2 {
+            // Approved
+            approvalButton.isHidden = true
+        } else if ea.approved == 1 {
+            approvalButton.isHidden = false
+            approvalButton.isEnabled = false
+            approvalButton.stringValue = "Waiting for approval"
+        } else if ea.approved == 0 {
+            approvalButton.isHidden = false
+            approvalButton.isEnabled = true
+            approvalButton.stringValue = "Submit this EA for approval"
+        }
     }
 }

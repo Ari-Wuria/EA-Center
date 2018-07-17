@@ -928,6 +928,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="approvalButton" destination="FG2-Cc-XSB" id="0d8-2d-6T6"/>
                         <outlet property="containerView" destination="GKA-56-kXh" id="NhV-pY-YbQ"/>
                         <outlet property="tableView" destination="AIo-ZV-XXz" id="3HP-9t-h2s"/>
                         <outlet property="titleNameLabel" destination="PJJ-35-CdX" id="FT4-la-ctO"/>

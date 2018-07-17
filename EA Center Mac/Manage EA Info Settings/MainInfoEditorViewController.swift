@@ -76,6 +76,12 @@ class MainInfoEditorViewController: NSViewController {
             return
         }
         
+        // Now check location length
+        if location.count > 45 {
+            showAlert(withTitle: "Please use fewer words to describe the location.")
+            return
+        }
+        
         // To save bandwidth, don't update short description and proposal if it didn't change
         var sameShortDesc = false
         var sameProposal = false

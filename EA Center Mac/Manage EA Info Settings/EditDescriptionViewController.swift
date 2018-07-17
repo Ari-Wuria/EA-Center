@@ -116,8 +116,20 @@ class EditDescriptionViewController: NSViewController {
                 }
             }
             // Look, I updated the description! 😀
-            let httpResponse = response as! HTTPURLResponse
-            if httpResponse.statusCode != 200 {
+            let httpResponse = response as? HTTPURLResponse
+            if httpResponse == nil {
+                DispatchQueue.main.async {
+                    let alert = NSAlert()
+                    alert.messageText = "Error Uploading"
+                    alert.informativeText = "Can not upload. (no response)"
+                    alert.runModal()
+                    
+                    self.failed()
+                    return
+                }
+            }
+            
+            if httpResponse!.statusCode != 200 {
                 DispatchQueue.main.async {
                     let alert = NSAlert()
                     alert.messageText = "Error Uploading"

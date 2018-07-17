@@ -52,6 +52,7 @@ class ViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(loggedOut(_:)), name: LogoutNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: EAUpdatedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(descriptionUpdated(_:)), name: ManagerDescriptionUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eaCreated(_:)), name: EACreatedNotification, object: nil)
         
         statusVisualEffectView.isHidden = true
         
@@ -90,6 +91,14 @@ class ViewController: NSViewController {
             }
             longDescTextView.textStorage?.setAttributedString(content)
         }
+    }
+    
+    @objc func eaCreated(_ obj: Notification) {
+        let dic = obj.object as! [String:Any]
+        let ea = dic["ea"] as! EnrichmentActivity
+        allEA.append(ea)
+        
+        listTableView.reloadData()
     }
     
     @objc func eaUpdated(_ notification: Notification) {

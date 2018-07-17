@@ -87,7 +87,7 @@ class EnrichmentActivity: NSObject {
         let hashiv = randomAlphanumericString(length: 16)
         let hashEncrypted = aesEncrypt(GlobalAPIHash, GlobalAPIEncryptKey, hashiv)!
         
-        print("Hash: \(hashEncrypted), iv: \(hashiv)")
+        //print("Hash: \(hashEncrypted), iv: \(hashiv)")
         
         let urlString = MainServerAddress + "/manageea/createea"
         let url = URL(string: urlString)!
@@ -99,7 +99,7 @@ class EnrichmentActivity: NSObject {
         request.httpBody = postString.data(using: .utf8)
         
         // Temporary
-        URLCache.shared.removeAllCachedResponses()
+        //URLCache.shared.removeAllCachedResponses()
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request) { (data, response, error) in
@@ -135,6 +135,7 @@ class EnrichmentActivity: NSObject {
                     let resultID = responseDict["resultid"] as! Int
                     let newEA = EnrichmentActivity()
                     newEA.id = resultID
+                    newEA.name = name
                     newEA.leaderEmails = [leaderEmail]
                     completion(true, newEA, nil)
                 } else {

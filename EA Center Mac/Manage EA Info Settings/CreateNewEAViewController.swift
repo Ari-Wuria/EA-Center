@@ -27,7 +27,7 @@ class CreateNewEAViewController: NSViewController {
         
         nameTextField.becomeFirstResponder()
         
-        createButton.isEnabled = false
+        //createButton.isEnabled = false
         
         addESCEvent()
     }
