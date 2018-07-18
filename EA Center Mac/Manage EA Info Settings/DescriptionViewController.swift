@@ -104,14 +104,21 @@ class DescriptionViewController: NSViewController {
         downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
             guard error == nil else {
                 // Can't download with an error
-                print("Error: \(error!.localizedDescription)")
+                //print("Error: \(error!.localizedDescription)")
+                if (error as! URLError).code == URLError.cancelled {
+                    DispatchQueue.main.async {
+                        self.showErrorAlert(nil, nil, error)
+                    }
+                }
                 return
             }
             
             let httpResponse = urlResponse as? HTTPURLResponse
             guard httpResponse?.statusCode == 200 else {
                 // Wrong response code
-                print("Response code not 200: \(String(describing: httpResponse?.statusCode))")
+                DispatchQueue.main.async {
+                    self.showErrorAlert("Error", "The server returned an invalid response code.")
+                }
                 return
             }
             
@@ -129,7 +136,9 @@ class DescriptionViewController: NSViewController {
                 content = try NSAttributedString(url: locationURL, options: [:], documentAttributes: nil)
             } catch {
                 // Unzipped file failed or file doesn't exist
-                print("Unzipped file failed or file doesn't exist")
+                DispatchQueue.main.async {
+                    self.showErrorAlert("Error", "Unzipped file failed or file doesn't exist")
+                }
                 return
             }
             
@@ -157,5 +166,20 @@ class DescriptionViewController: NSViewController {
             controller.currentEA = currentEA
             controller.currentText = currentAttributedString
         }
+    }
+    
+    func showErrorAlert(_ title: String?, _ message: String?, _ error: Error? = nil) {
+        let alert: NSAlert
+        if let error = error {
+            alert = NSAlert(error: error)
+        } else if let title = title, let message = message {
+            alert = NSAlert()
+            alert.messageText = title
+            alert.informativeText = message
+        } else {
+            alert = NSAlert()
+            alert.messageText = "Error"
+        }
+        alert.runModal()
     }
 }

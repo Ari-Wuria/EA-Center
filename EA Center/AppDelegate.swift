@@ -13,6 +13,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var splitViewController: UISplitViewController {
+        return window!.rootViewController as! UISplitViewController
+    }
+    
+    var masterTabBarController: UITabBarController {
+        return splitViewController.viewControllers.first! as! UITabBarController
+    }
+    
+    var listNavController: UINavigationController {
+        return masterTabBarController.viewControllers?.first! as! UINavigationController
+    }
+    
+    var listViewController: EAListViewController {
+        return listNavController.topViewController as! EAListViewController
+    }
+    
+    var detailNavController: UINavigationController {
+        return splitViewController.viewControllers.last! as! UINavigationController
+    }
+    
+    var detailViewController: EADescriptionViewController {
+        return detailNavController.topViewController as! EADescriptionViewController
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,6 +46,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UserDefaults.standard.set(true, forKey: "rememberlogin")
         
         UIImageView.appearance().accessibilityIgnoresInvertColors = true
+        
+        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        
+        masterTabBarController.title = "All EAs"
+        
+        listViewController.splitViewDetail = detailViewController
+        
+        splitViewController.preferredDisplayMode = .primaryOverlay
         
         return true
     }

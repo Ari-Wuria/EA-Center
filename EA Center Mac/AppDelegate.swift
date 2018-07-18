@@ -17,6 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     var loginWindow: NSWindowController? = nil
     var userSettingsWindow: NSWindowController? = nil
+    var coordinatorSettingsWindow: NSWindowController? = nil
     
     var loggedIn = false
     var currentEmail: String?
@@ -41,6 +42,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             let email = UserDefaults.standard.value(forKey: "LoginEmail") as! String
             guard let passwordData = KeychainHelper.loadKeychain(account: email) else { return }
             let password = String(data: passwordData, encoding: .utf8)
+            
+            loginMenu.isEnabled = false
+            loginMenu.title = "Logging in..."
             AccountProcessor.sendLoginRequest(email, password!) { (success, errCode, errString) in
                 // I don't think we need error handling here
                 // If the login fails then nothing will happen
@@ -49,6 +53,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                     AccountProcessor.retriveUserAccount(from: errCode!) { (account, errCode, errString) in
                         if let userAccount = account {
                             NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":userAccount])
+                        } else {
+                            self.updateMenu()
                         }
                     }
                 }
@@ -126,6 +132,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     func updateMenu() {
+        loginMenu.isEnabled = true
         if loggedIn {
             loginMenu.title = "Logout"
             loginStatusMenu.title = "Logged in as: \(currentEmail!)"
@@ -178,6 +185,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
     
     @IBAction func showCoordinatorOptions(_ sender: Any) {
+        if coordinatorSettingsWindow == nil {
+            let storyboard = NSStoryboard(name: "CoordinatorSettings", bundle: .main)
+            let window = storyboard.instantiateInitialController() as! NSWindowController
+            coordinatorSettingsWindow = window
+            window.showWindow(sender)
+        } else {
+            coordinatorSettingsWindow?.showWindow(sender)
+        }
+    }
+    
+    @IBAction func viewGithub(_ sender: Any) {
+        NSWorkspace.shared.open(URL(string: "https://github.com/TomShen1234/EA-Center")!)
     }
 }
 

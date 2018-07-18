@@ -705,6 +705,16 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
                                     <items>
+                                        <menuItem title="View Github" id="hV9-dK-bQn">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="viewGithub:" target="Voe-Tx-rLC" id="ljV-Nu-xYl"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Email Me" id="gU2-hn-gaS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="dYj-My-Hms"/>
                                         <menuItem title="EA Center Mac Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
@@ -930,11 +940,15 @@
                     <connections>
                         <outlet property="approvalButton" destination="FG2-Cc-XSB" id="0d8-2d-6T6"/>
                         <outlet property="containerView" destination="GKA-56-kXh" id="NhV-pY-YbQ"/>
+                        <outlet property="mainTouchBar" destination="iIV-HH-R6B" id="fwh-XN-ONs"/>
                         <outlet property="tableView" destination="AIo-ZV-XXz" id="3HP-9t-h2s"/>
                         <outlet property="titleNameLabel" destination="PJJ-35-CdX" id="FT4-la-ctO"/>
                     </connections>
                 </viewController>
                 <customObject id="u9Q-ez-QCd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <touchBar id="iIV-HH-R6B">
+                    <nil name="touchBarItems"/>
+                </touchBar>
             </objects>
             <point key="canvasLocation" x="-689" y="1023"/>
         </scene>
@@ -1808,9 +1822,9 @@
                                                                         </textField>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="BCe-Ls-T4X" firstAttribute="centerY" secondItem="Ndp-EO-jVr" secondAttribute="centerY" id="Dkf-FI-jKa"/>
-                                                                        <constraint firstItem="BCe-Ls-T4X" firstAttribute="leading" secondItem="Ndp-EO-jVr" secondAttribute="leading" constant="2" id="cJv-7k-bCk"/>
-                                                                        <constraint firstItem="BCe-Ls-T4X" firstAttribute="centerX" secondItem="Ndp-EO-jVr" secondAttribute="centerX" id="x6K-o1-tDf"/>
+                                                                        <constraint firstItem="BCe-Ls-T4X" firstAttribute="leading" secondItem="Ndp-EO-jVr" secondAttribute="leading" constant="2" id="2lT-ny-Qry"/>
+                                                                        <constraint firstItem="BCe-Ls-T4X" firstAttribute="centerX" secondItem="Ndp-EO-jVr" secondAttribute="centerX" id="cvF-Lg-eFs"/>
+                                                                        <constraint firstItem="BCe-Ls-T4X" firstAttribute="centerY" secondItem="Ndp-EO-jVr" secondAttribute="centerY" id="hpC-O0-Sgq"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="textField" destination="BCe-Ls-T4X" id="847-5c-HF2"/>
@@ -1845,9 +1859,9 @@
                                                                         </textField>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="F6D-Va-Klb" firstAttribute="leading" secondItem="HiM-5D-KXN" secondAttribute="leading" constant="2" id="54U-td-8gG"/>
-                                                                        <constraint firstItem="F6D-Va-Klb" firstAttribute="centerY" secondItem="HiM-5D-KXN" secondAttribute="centerY" id="JvF-Yf-zqm"/>
-                                                                        <constraint firstItem="F6D-Va-Klb" firstAttribute="centerX" secondItem="HiM-5D-KXN" secondAttribute="centerX" id="oaJ-P0-Nlr"/>
+                                                                        <constraint firstItem="F6D-Va-Klb" firstAttribute="centerY" secondItem="HiM-5D-KXN" secondAttribute="centerY" id="Dtm-at-fDL"/>
+                                                                        <constraint firstItem="F6D-Va-Klb" firstAttribute="centerX" secondItem="HiM-5D-KXN" secondAttribute="centerX" id="Ubo-tz-VDW"/>
+                                                                        <constraint firstItem="F6D-Va-Klb" firstAttribute="leading" secondItem="HiM-5D-KXN" secondAttribute="leading" constant="2" id="w0C-0D-y5J"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="textField" destination="F6D-Va-Klb" id="sR4-lO-fyq"/>
@@ -1934,9 +1948,9 @@
                                                                         </textField>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="sWK-wm-XoC" firstAttribute="centerX" secondItem="axY-rI-Pc3" secondAttribute="centerX" id="5t0-wL-EWn"/>
-                                                                        <constraint firstItem="sWK-wm-XoC" firstAttribute="top" secondItem="axY-rI-Pc3" secondAttribute="top" id="C0B-Rf-LZ7"/>
-                                                                        <constraint firstItem="sWK-wm-XoC" firstAttribute="leading" secondItem="axY-rI-Pc3" secondAttribute="leading" constant="2" id="juY-AQ-WXo"/>
+                                                                        <constraint firstItem="sWK-wm-XoC" firstAttribute="centerX" secondItem="axY-rI-Pc3" secondAttribute="centerX" id="C6B-1s-ICw"/>
+                                                                        <constraint firstItem="sWK-wm-XoC" firstAttribute="centerY" secondItem="axY-rI-Pc3" secondAttribute="centerY" id="ZYB-Qu-UWF"/>
+                                                                        <constraint firstItem="sWK-wm-XoC" firstAttribute="leading" secondItem="axY-rI-Pc3" secondAttribute="leading" constant="2" id="bz6-YB-sh0"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="textField" destination="sWK-wm-XoC" id="dSZ-3j-RLq"/>
@@ -1971,9 +1985,9 @@
                                                                         </textField>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="8Jx-ga-Uxj" firstAttribute="top" secondItem="lUd-wU-7oA" secondAttribute="top" id="36V-Ww-oKe"/>
-                                                                        <constraint firstItem="8Jx-ga-Uxj" firstAttribute="leading" secondItem="lUd-wU-7oA" secondAttribute="leading" constant="2" id="J1a-5q-QxT"/>
-                                                                        <constraint firstItem="8Jx-ga-Uxj" firstAttribute="centerX" secondItem="lUd-wU-7oA" secondAttribute="centerX" id="Jqw-le-pUE"/>
+                                                                        <constraint firstItem="8Jx-ga-Uxj" firstAttribute="centerX" secondItem="lUd-wU-7oA" secondAttribute="centerX" id="GlW-md-j0c"/>
+                                                                        <constraint firstItem="8Jx-ga-Uxj" firstAttribute="centerY" secondItem="lUd-wU-7oA" secondAttribute="centerY" id="RCq-88-9Uf"/>
+                                                                        <constraint firstItem="8Jx-ga-Uxj" firstAttribute="leading" secondItem="lUd-wU-7oA" secondAttribute="leading" constant="2" id="mC6-pC-LhE"/>
                                                                     </constraints>
                                                                     <connections>
                                                                         <outlet property="textField" destination="8Jx-ga-Uxj" id="CLZ-dA-Taq"/>
@@ -2014,9 +2028,10 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="MUk-bq-FOr" firstAttribute="leading" secondItem="Xq8-wv-Fjm" secondAttribute="leading" id="EUt-fh-yCs"/>
-                                    <constraint firstItem="NfP-Sk-3cw" firstAttribute="leading" secondItem="Xq8-wv-Fjm" secondAttribute="leading" id="FH7-PK-aLp"/>
-                                    <constraint firstItem="dtZ-lX-6cS" firstAttribute="top" secondItem="Xq8-wv-Fjm" secondAttribute="top" constant="209" id="ctd-sF-bYW"/>
+                                    <constraint firstItem="NfP-Sk-3cw" firstAttribute="leading" secondItem="Xq8-wv-Fjm" secondAttribute="leading" id="8Xv-zA-8ir"/>
+                                    <constraint firstItem="dtZ-lX-6cS" firstAttribute="top" secondItem="Xq8-wv-Fjm" secondAttribute="top" constant="209" id="HDo-tY-tB6"/>
+                                    <constraint firstItem="NfP-Sk-3cw" firstAttribute="leading" secondItem="o2O-ce-UuS" secondAttribute="leading" id="mSC-iT-Z7U"/>
+                                    <constraint firstItem="o2O-ce-UuS" firstAttribute="leading" secondItem="MUk-bq-FOr" secondAttribute="leading" id="ty0-J3-cyV"/>
                                 </constraints>
                                 <visibilityPriorities>
                                     <integer value="1000"/>
@@ -2037,10 +2052,10 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Xq8-wv-Fjm" firstAttribute="leading" secondItem="G1F-m3-GUS" secondAttribute="leading" constant="20" symbolic="YES" id="0p3-gQ-ghV"/>
-                            <constraint firstAttribute="trailing" secondItem="Xq8-wv-Fjm" secondAttribute="trailing" constant="20" symbolic="YES" id="78e-wh-Ui6"/>
-                            <constraint firstItem="Xq8-wv-Fjm" firstAttribute="top" secondItem="G1F-m3-GUS" secondAttribute="top" constant="20" symbolic="YES" id="eH3-ST-v0T"/>
-                            <constraint firstAttribute="bottom" secondItem="Xq8-wv-Fjm" secondAttribute="bottom" constant="20" symbolic="YES" id="qsF-Sb-ahp"/>
+                            <constraint firstAttribute="bottom" secondItem="Xq8-wv-Fjm" secondAttribute="bottom" constant="20" symbolic="YES" id="3wI-CV-1Cq"/>
+                            <constraint firstItem="Xq8-wv-Fjm" firstAttribute="leading" secondItem="G1F-m3-GUS" secondAttribute="leading" constant="20" symbolic="YES" id="CYt-hA-niH"/>
+                            <constraint firstItem="Xq8-wv-Fjm" firstAttribute="top" secondItem="G1F-m3-GUS" secondAttribute="top" constant="20" symbolic="YES" id="ezF-kj-8ld"/>
+                            <constraint firstAttribute="trailing" secondItem="Xq8-wv-Fjm" secondAttribute="trailing" constant="20" symbolic="YES" id="flN-bk-qTv"/>
                         </constraints>
                     </view>
                     <connections>
@@ -2369,6 +2384,26 @@
                                                                 <outlet property="shortDescLabel" destination="atd-N3-NUr" id="vgx-am-HT3"/>
                                                             </connections>
                                                         </tableCellView>
+                                                        <tableCellView identifier="Nothing" id="o9b-Cr-aFT">
+                                                            <rect key="frame" x="1" y="106" width="303" height="103"/>
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                            <subviews>
+                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hZr-jW-Gh8">
+                                                                    <rect key="frame" x="15" y="43" width="273" height="17"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Unfortunately, there's nothing you can join :(" id="ab8-xB-RtK">
+                                                                        <font key="font" usesAppearanceFont="YES"/>
+                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                    </textFieldCell>
+                                                                </textField>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="hZr-jW-Gh8" firstAttribute="top" secondItem="o9b-Cr-aFT" secondAttribute="top" constant="43" id="ARb-Wd-HzJ"/>
+                                                                <constraint firstItem="hZr-jW-Gh8" firstAttribute="leading" secondItem="o9b-Cr-aFT" secondAttribute="leading" constant="17" id="E4B-f6-50d"/>
+                                                                <constraint firstAttribute="bottom" secondItem="hZr-jW-Gh8" secondAttribute="bottom" constant="43" id="Uqa-8F-ZfZ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="hZr-jW-Gh8" secondAttribute="trailing" constant="17" id="bgl-TA-0uI"/>
+                                                            </constraints>
+                                                        </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
                                             </tableColumns>
@@ -2431,29 +2466,6 @@
                                     </button>
                                 </subviews>
                             </visualEffectView>
-                            <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qmj-Dk-qtz" customClass="MyScrollView" customModule="EA_Center_Mac" customModuleProvider="target">
-                                <rect key="frame" x="308" y="61" width="642" height="639"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="5zs-pN-St8">
-                                    <rect key="frame" x="0.0" y="0.0" width="642" height="639"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textView ambiguous="YES" editable="NO" verticallyResizable="YES" allowsDocumentBackgroundColorChange="YES" spellingCorrection="YES" smartInsertDelete="YES" id="ZIu-7X-b5X">
-                                            <rect key="frame" x="0.0" y="0.0" width="642" height="639"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <size key="minSize" width="642" height="639"/>
-                                            <size key="maxSize" width="642" height="10000000"/>
-                                            <color key="insertionPointColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                        </textView>
-                                    </subviews>
-                                </clipView>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="Buw-IN-VeD">
-                                    <rect key="frame" x="626" y="0.0" width="16" height="639"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </scroller>
-                            </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="64J-BS-qSC">
                                 <rect key="frame" x="597" y="372" width="64" height="17"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
@@ -2463,6 +2475,29 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XI7-P4-VON" customClass="MyScrollView" customModule="EA_Center_Mac" customModuleProvider="target">
+                                <rect key="frame" x="308" y="61" width="642" height="639"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="7Tr-QY-IUq">
+                                    <rect key="frame" x="0.0" y="0.0" width="642" height="639"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textView ambiguous="YES" editable="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="E9q-C5-aa7">
+                                            <rect key="frame" x="0.0" y="0.0" width="642" height="639"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <size key="minSize" width="642" height="639"/>
+                                            <size key="maxSize" width="655" height="10000000"/>
+                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                        </textView>
+                                    </subviews>
+                                </clipView>
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="k36-xG-2EC">
+                                    <rect key="frame" x="626" y="0.0" width="16" height="639"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="JBF-PP-14M" secondAttribute="bottom" constant="9" id="SQW-x5-tBF"/>
@@ -2477,7 +2512,7 @@
                         <outlet property="loadingIndicatorView" destination="JBF-PP-14M" id="chD-2k-95Z"/>
                         <outlet property="loadingSpinner" destination="2iM-DL-aiY" id="GDB-jG-84x"/>
                         <outlet property="longDescLoadingLabel" destination="64J-BS-qSC" id="zMx-B1-VXb"/>
-                        <outlet property="longDescTextView" destination="ZIu-7X-b5X" id="soW-Vp-Yl3"/>
+                        <outlet property="longDescTextView" destination="E9q-C5-aa7" id="jCh-5I-Bia"/>
                         <outlet property="statusVisualEffectView" destination="Kbu-92-FZa" id="Vmp-gD-h1M"/>
                     </connections>
                 </viewController>

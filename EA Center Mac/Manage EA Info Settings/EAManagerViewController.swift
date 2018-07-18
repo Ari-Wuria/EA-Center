@@ -22,6 +22,8 @@ class EAManagerViewController: NSViewController {
     
     @IBOutlet var approvalButton: NSButton!
     
+    @IBOutlet var mainTouchBar: NSTouchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -206,21 +208,25 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         }
         
         let ea = myEA[tableView.selectedRow]
-        NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: nil)
+        NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: ["currentLogin":loggedInEmail])
         
         titleNameLabel.stringValue = ea.name
         
-        if ea.approved == 2 {
+        if ea.approved == 2 || ea.approved == 3 {
             // Approved
             approvalButton.isHidden = true
         } else if ea.approved == 1 {
             approvalButton.isHidden = false
             approvalButton.isEnabled = false
-            approvalButton.stringValue = "Waiting for approval"
+            approvalButton.title = "Waiting for approval..."
         } else if ea.approved == 0 {
             approvalButton.isHidden = false
             approvalButton.isEnabled = true
-            approvalButton.stringValue = "Submit this EA for approval"
+            approvalButton.title = "Submit this EA for approval"
         }
+    }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
     }
 }

@@ -10,6 +10,7 @@ import UIKit
 
 class EAListViewController: UITableViewController {
     var allEA: [EnrichmentActivity] = []
+    var joinableEA: [EnrichmentActivity] = []
     
     var filteredEA = [EnrichmentActivity]()
     
@@ -18,10 +19,11 @@ class EAListViewController: UITableViewController {
     var loading: Bool = true
     
     let searchController = UISearchController(searchResultsController: nil)
+    
+    weak var splitViewDetail: EADescriptionViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         listRefreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         
         refreshControl = listRefreshControl
@@ -59,6 +61,8 @@ class EAListViewController: UITableViewController {
         
         allEA[position] = updatedEA
         
+        updateJoinableEA()
+        
         tableView.reloadData()
     }
     
@@ -76,11 +80,11 @@ class EAListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if loading == true || allEA.count == 0 || (isFiltering() && filteredEA.count == 0) {
             return 1
-        } else if loading == false && allEA.count > 0 {
+        } else if loading == false && joinableEA.count > 0 {
             if isFiltering() {
                 return filteredEA.count
             } else {
-                return allEA.count
+                return joinableEA.count
             }
         }
         return 0
@@ -90,7 +94,7 @@ class EAListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if loading == true {
             return tableView.dequeueReusableCell(withIdentifier: "LoadingCell")!
-        } else if allEA.count == 0 || (isFiltering() && filteredEA.count == 0) {
+        } else if joinableEA.count == 0 || (isFiltering() && filteredEA.count == 0) {
             return tableView.dequeueReusableCell(withIdentifier: "NothingCell")!
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "EACell", for: indexPath) as! EAListCell
@@ -101,19 +105,24 @@ class EAListViewController: UITableViewController {
             if isFiltering() {
                 ea = filteredEA[indexPath.row]
             } else {
-                ea = allEA[indexPath.row]
+                ea = joinableEA[indexPath.row]
             }
             
             cell.nameLabel.text = ea.name
             cell.shortDescriptionLabel.text = ea.shortDescription
             cell.shortDescriptionLabel.sizeToFit()
             
+            // Give it a random color for now
+            //let number = 1 + arc4random() % 6
+            let number = indexPath.row + 4
+            cell.backgroundColor = UIColor(named: "Table Cell Color \(number)")
+            
             return cell
         }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if loading == true || allEA.count == 0 || (isFiltering() && filteredEA.count == 0) {
+        if loading == true || joinableEA.count == 0 || (isFiltering() && filteredEA.count == 0) {
             // Loading height
             return 109
         } else {
@@ -123,17 +132,42 @@ class EAListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if loading == true || allEA.count == 0 {
+        if loading == true || joinableEA.count == 0 {
             return nil
         }
         return indexPath
     }
     
-    /*
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            let cell = tableView.cellForRow(at: indexPath)
+            performSegue(withIdentifier: "ShowEADetail", sender: cell)
+        } else {
+            //let detail = splitViewController.
+            searchController.searchBar.resignFirstResponder()
+            if isFiltering() {
+                splitViewDetail?.ea = filteredEA[indexPath.row]
+            } else {
+                splitViewDetail?.ea = joinableEA[indexPath.row]
+            }
+            
+            if splitViewController!.displayMode == .primaryOverlay {
+                hideMasterPane()
+            }
+        }
     }
-*/
+    
+    // MARK: - Split View
+    
+    func hideMasterPane() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.splitViewController!.preferredDisplayMode = .primaryHidden
+        }, completion: { _ in
+            self.splitViewController!.preferredDisplayMode = .automatic
+        })
+    }
     
     // MARK: - Navigation
 
@@ -151,7 +185,7 @@ class EAListViewController: UITableViewController {
             if isFiltering() {
                 ea = filteredEA[indexPath.row]
             } else {
-                ea = allEA[indexPath.row]
+                ea = joinableEA[indexPath.row]
             }
             
             let destinationController = segue.destination as! EADescriptionViewController
@@ -174,6 +208,7 @@ class EAListViewController: UITableViewController {
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     delay(0.3) {
+                        self.updateJoinableEA()
                         self.tableView.reloadData()
                         self.listRefreshControl.endRefreshing()
                     }
@@ -225,6 +260,16 @@ class EAListViewController: UITableViewController {
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         present(alert, animated: true, completion: nil)
     }
+    
+    func updateJoinableEA() {
+        joinableEA = allEA.filter { (ea) -> Bool in
+            return (ea.approved == 2) || (ea.approved == 3)
+        }
+    }
+}
+
+extension EAListViewController: UINavigationControllerDelegate {
+    
 }
 
 // Extension for searching
@@ -241,7 +286,7 @@ extension EAListViewController: UISearchResultsUpdating, UISearchBarDelegate {
     }
     
     func filterContentForSearchText(_ searchText: String, scope: String = "Name") {
-        filteredEA = allEA.filter({( ea : EnrichmentActivity) -> Bool in
+        filteredEA = joinableEA.filter({( ea : EnrichmentActivity) -> Bool in
             if scope == "Name" {
                 return ea.name.lowercased().contains(searchText.lowercased())
             } else if scope == "Short Description" {

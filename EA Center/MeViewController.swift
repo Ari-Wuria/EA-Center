@@ -25,8 +25,8 @@ class MeViewController: UITableViewController {
         let rememberLogin = UserDefaults.standard.bool(forKey: "rememberlogin")
         if rememberLogin {
             // Retrive email from keyhain
-            let email = UserDefaults.standard.object(forKey: "loginemail") as! String
-            if email != "" {
+            let email = UserDefaults.standard.object(forKey: "loginemail") as? String
+            if let email = email, email != "" {
                 let password = KeychainHelper.loadKeychain(account: email)
                 if password != nil {
                     let passwordString = String(data: password!, encoding: .utf8)!
@@ -232,13 +232,17 @@ class MeViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "EditProfile" {
-            let dest = segue.destination as! ProfileEditorViewController
+            let nav = segue.destination as! UINavigationController
+            let dest = nav.topViewController as! ProfileEditorViewController
             dest.userAccount = currentUserAccount
         } else if segue.identifier == "ViewSettings" {
             let dest = segue.destination as! SettingsViewController
             dest.userAccount = currentUserAccount
             dest.loggedIn = loggedIn
         }
+    }
+    
+    @IBAction func profileCanceled(_ sender: UIStoryboardSegue) {
     }
 
 }

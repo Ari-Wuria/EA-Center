@@ -26,8 +26,15 @@ class ViewController: NSViewController {
     var loggedIn: Bool = false
     
     var allEA: [EnrichmentActivity] = []
+    var joinableEA: [EnrichmentActivity] = []
     
     var currentAccount: UserAccount?
+    
+    var downloadTask: URLSessionDownloadTask?
+    
+    var loading = true
+    
+    var selectedEA: EnrichmentActivity?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +105,8 @@ class ViewController: NSViewController {
         let ea = dic["ea"] as! EnrichmentActivity
         allEA.append(ea)
         
+        updateJoinableEA()
+        
         listTableView.reloadData()
     }
     
@@ -117,6 +126,8 @@ class ViewController: NSViewController {
         
         allEA[updatedEALocation] = updatedEA
         
+        updateJoinableEA()
+        
         listTableView.reloadData()
     }
     
@@ -125,15 +136,15 @@ class ViewController: NSViewController {
         let userAccount = object["account"] as! UserAccount
         currentAccount = userAccount
         
-        eaStatusLabel.stringValue = "Join this EA!"
-        joinButton.isHidden = false
+        loggedIn = true
+        updateLoginLabel()
     }
     
     @objc func loggedOut(_ notification: Notification) {
         currentAccount = nil
         
-        eaStatusLabel.stringValue = "Login to join EAs"
-        joinButton.isHidden = true
+        loggedIn = false
+        updateLoginLabel()
     }
 
     override func makeTouchBar() -> NSTouchBar? {
@@ -145,11 +156,24 @@ class ViewController: NSViewController {
     }
     
     func downloadEAList() {
+        loading = true
+        
         let urlString = MainServerAddress + "/manageea/getealist.php"
         let url = URL(string: urlString)!
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: url) { (data, urlReponse, error) in
+            defer {
+                DispatchQueue.main.async {
+                    self.loading = false
+                    self.updateJoinableEA()
+                    
+                    self.listTableView.reloadData()
+                    
+                    self.loadingIndicatorView.isHidden = true
+                }
+            }
+            
             guard error == nil else {
                 // Can't download with an error
                 //print("Error: \(error!.localizedDescription)")
@@ -194,14 +218,14 @@ class ViewController: NSViewController {
                 let enrichmentActivity = EnrichmentActivity(dictionary: eaDictionary)
                 self.allEA.append(enrichmentActivity)
             }
-            
-            DispatchQueue.main.async {
-                self.listTableView.reloadData()
-                
-                self.loadingIndicatorView.isHidden = true
-            }
         }
         dataTask.resume()
+    }
+    
+    func updateJoinableEA() {
+        joinableEA = allEA.filter { (ea) -> Bool in
+            return (ea.approved == 2) || (ea.approved == 3)
+        }
     }
     
     func updateEADescription(_ row: Int) {
@@ -215,7 +239,7 @@ class ViewController: NSViewController {
         
         statusVisualEffectView.isHidden = false
         
-        let ea = allEA[row]
+        let ea = joinableEA[row]
         let eaID = ea.id
         let eaName = ea.name
         
@@ -224,18 +248,25 @@ class ViewController: NSViewController {
         let urlString = MainServerAddress + pathEncoded
         let url = URL(string: urlString)!
         
+        if downloadTask != nil {
+            downloadTask!.cancel()
+            downloadTask = nil
+        }
+        
         // No cache download
         let config = URLSessionConfiguration.default
         config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
         config.urlCache = nil
         let session = URLSession(configuration: config)
-        let downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
+        downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
             
             guard error == nil else {
                 // Can't download with an error
                 DispatchQueue.main.async {
-                    let alert = NSAlert(error: error!)
-                    alert.runModal()
+                    if (error as! URLError).code == URLError.cancelled {
+                        let alert = NSAlert(error: error!)
+                        alert.runModal()
+                    }
                 }
                 return
             }
@@ -287,8 +318,7 @@ class ViewController: NSViewController {
                 self.longDescLoadingLabel.isHidden = true
             }
         }
-        
-        downloadTask.resume()
+        downloadTask!.resume()
     }
     
     func failedDownloadCleanup() {
@@ -300,6 +330,18 @@ class ViewController: NSViewController {
         if loggedIn == false {
             eaStatusLabel.stringValue = "Login to join EAs"
             joinButton.isHidden = true
+        } else {
+            if selectedEA != nil {
+                if selectedEA?.approved == 2 {
+                    eaStatusLabel.stringValue = "Join this EA!"
+                    joinButton.isHidden = false
+                    joinButton.isEnabled = true
+                } else if selectedEA?.approved == 3 {
+                    eaStatusLabel.stringValue = "This EA is closed"
+                    joinButton.isHidden = false
+                    joinButton.isEnabled = false
+                }
+            }
         }
     }
     
@@ -310,13 +352,25 @@ class ViewController: NSViewController {
 
 extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return allEA.count
+        //return allEA.count
+        
+        if loading == true {
+            return 0
+        } else if joinableEA.count == 0 {
+            return 1
+        } else {
+            return joinableEA.count
+        }
     }
     // TODO: Hide unapproved activities in server
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        if joinableEA.count == 0 {
+            return tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Nothing"), owner: nil)
+        }
+        
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CellIdentifier"), owner: nil) as? EAListCellView
         
-        let enrichmentActivity = allEA[row]
+        let enrichmentActivity = joinableEA[row]
         
         cell?.nameLabel.stringValue = enrichmentActivity.name
         cell?.activityID = enrichmentActivity.id
@@ -329,9 +383,18 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         let row = listTableView.selectedRow
         
         longDescTextView.string = ""
+        
+        if row == -1 {
+            statusVisualEffectView.isHidden = true
+            return
+        }
+        
         longDescLoadingLabel.isHidden = false
         
         updateEADescription(row)
+        
+        selectedEA = joinableEA[row]
+        updateLoginLabel()
     }
     
     @IBAction func reloadList(_ sender: Any) {
@@ -342,6 +405,12 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         downloadEAList()
     }
  
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        if joinableEA.count == 0 {
+            return false
+        }
+        return true
+    }
 }
 
 class MyScrollView: NSScrollView {

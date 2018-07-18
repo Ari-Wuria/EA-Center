@@ -29,6 +29,8 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         locationTextField.delegate = self
+        
+        tableView.backgroundColor = UIColor(named: "Menu Color")
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		053A8D0020F9C71A003FE84F /* GenericTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */; };
+		0541489420FF46E200EFC7C1 /* EditPosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541489320FF46E200EFC7C1 /* EditPosterViewController.swift */; };
+		0541489820FF62CA00EFC7C1 /* CoordinatorSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0541489720FF62CA00EFC7C1 /* CoordinatorSettings.storyboard */; };
+		0541489B20FF6D5F00EFC7C1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541489A20FF6D5F00EFC7C1 /* AboutViewController.swift */; };
 		0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */; };
 		0558B2AB20F5E3A4009B62E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */; };
 		0558B2AD20F602AA009B62E4 /* StudentBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */; };
@@ -101,6 +104,9 @@
 
 /* Begin PBXFileReference section */
 		053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericTableCell.swift; sourceTree = "<group>"; };
+		0541489320FF46E200EFC7C1 /* EditPosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPosterViewController.swift; sourceTree = "<group>"; };
+		0541489720FF62CA00EFC7C1 /* CoordinatorSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoordinatorSettings.storyboard; sourceTree = "<group>"; };
+		0541489A20FF6D5F00EFC7C1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADetailViewController.swift; sourceTree = "<group>"; };
 		0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentBulletinViewController.swift; sourceTree = "<group>"; };
@@ -216,6 +222,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0541489920FF637A00EFC7C1 /* Supervisor Settings */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Supervisor Settings";
+			sourceTree = "<group>";
+		};
 		D02572F720D8A1E30078AE89 = {
 			isa = PBXGroup;
 			children = (
@@ -253,11 +266,13 @@
 				D017800F20E77FA9003757A7 /* MeViewController.swift */,
 				D0B7C47920ECFC2A004DE8F3 /* ProfileEditorViewController.swift */,
 				D0B7C47B20EF94BF004DE8F3 /* ManagerViewController.swift */,
+				0541489320FF46E200EFC7C1 /* EditPosterViewController.swift */,
 				D0B7C47D20EF94D8004DE8F3 /* EAManageCell.swift */,
 				0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */,
 				0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */,
 				0597CD4620F78985006B4590 /* TextEditorViewController.swift */,
 				0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */,
+				0541489A20FF6D5F00EFC7C1 /* AboutViewController.swift */,
 				053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */,
 				D025730720D8A1E30078AE89 /* Main.storyboard */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
@@ -316,9 +331,11 @@
 				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
 				D0CCB37520E4FFE40009AC07 /* Account Management */,
 				D0A7661D20E27006001B4317 /* Manage EA Info Settings */,
+				0541489920FF637A00EFC7C1 /* Supervisor Settings */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
 				D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */,
+				0541489720FF62CA00EFC7C1 /* CoordinatorSettings.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
 				D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */,
@@ -492,6 +509,7 @@
 				D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */,
 				D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */,
 				D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */,
+				0541489820FF62CA00EFC7C1 /* CoordinatorSettings.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,8 +541,10 @@
 				0597CD4420F76523006B4590 /* HelperFunctions.swift in Sources */,
 				0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */,
 				D0B7C47C20EF94BF004DE8F3 /* ManagerViewController.swift in Sources */,
+				0541489420FF46E200EFC7C1 /* EditPosterViewController.swift in Sources */,
 				D017800D20E77DB2003757A7 /* AccountProcessor.swift in Sources */,
 				D017800120E77ACB003757A7 /* ioapi_mem.c in Sources */,
+				0541489B20FF6D5F00EFC7C1 /* AboutViewController.swift in Sources */,
 				D017801020E77FA9003757A7 /* MeViewController.swift in Sources */,
 				0558B2AD20F602AA009B62E4 /* StudentBulletinViewController.swift in Sources */,
 				D017800A20E77AD6003757A7 /* pwd2key.c in Sources */,

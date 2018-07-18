@@ -18,6 +18,8 @@ class ProfileEditorViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.backgroundColor = UIColor(named: "Menu Color")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,7 +73,8 @@ class ProfileEditorViewController: UITableViewController {
                 }
                 if success {
                     self.presentAlert("Success!", "Account info updated") { _ in
-                        self.navigationController?.popViewController(animated: true)
+                        //self.navigationController?.popViewController(animated: true)
+                        self.navigationController?.dismiss(animated: true, completion: nil)
                     }
                 } else {
                     self.presentAlert("Can not update info", errString!)

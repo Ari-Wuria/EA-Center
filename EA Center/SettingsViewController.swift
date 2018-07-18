@@ -16,6 +16,8 @@ class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.backgroundColor = UIColor(named: "Menu Color")
     }
     
     override func viewWillAppear(_ animated: Bool) {

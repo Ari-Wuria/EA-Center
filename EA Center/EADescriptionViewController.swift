@@ -9,7 +9,15 @@
 import UIKit
 
 class EADescriptionViewController: UIViewController {
-    var ea: EnrichmentActivity! = EnrichmentActivity()
+    var ea: EnrichmentActivity? {
+        didSet {
+            if isViewLoaded {
+                textView.text = ""
+            }
+            updateEADescription()
+            title = ea!.name
+        }
+    }
     
     @IBOutlet weak var textView: UITextView!
     
@@ -18,14 +26,17 @@ class EADescriptionViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
-        title = ea.name
-        
         textView.text = ""
-        updateEADescription()
+        
+        if ea != nil {
+            title = ea!.name
+        } else {
+            title = "EA Center"
+        }
     }
     
     func updateEADescription() {
-        let downloadPath = "/longdescriptions/\(ea.id).rtfd.zip"
+        let downloadPath = "/longdescriptions/\(ea!.id).rtfd.zip"
         let pathEncoded = downloadPath.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)!
         let urlString = MainServerAddress + pathEncoded
         let url = URL(string: urlString)!
@@ -54,8 +65,8 @@ class EADescriptionViewController: UIViewController {
             }
             
             let tempDir = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-            let unzipLocation = tempDir + "/longdescriptions/\(self.ea.id)"
-            let location = unzipLocation + "/\(self.ea.name).rtfd"
+            let unzipLocation = tempDir + "/longdescriptions/\(self.ea!.id)"
+            let location = unzipLocation + "/\(self.ea!.name).rtfd"
             let locationURL = URL(fileURLWithPath: location)
             
             // Unzip

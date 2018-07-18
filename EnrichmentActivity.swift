@@ -337,9 +337,6 @@ class EnrichmentActivity: NSObject {
     }
     
     func updateLeader(newLeader: UserAccount, isSupervisor: Bool, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
-        let urlString = MainServerAddress + "/updateealeader.php"
-        let url = URL(string: urlString)!
-        
         let supervisor = (isSupervisor) ? 1 : 0
         let newEmail = newLeader.userEmail
         let newEmailString: String
@@ -354,10 +351,37 @@ class EnrichmentActivity: NSObject {
             }
         }
         
+        updateLeaderString(supervisor, newEmailString, completion)
+    }
+    
+    func deleteLeader(email: String, isSupervisor: Bool, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let supervisor = (isSupervisor) ? 1 : 0
+        let newEmailString: String
+        if supervisor == 0 {
+            // Leader email count will never be 0
+            //newEmailString = leaderEmails.joined(separator: ",") + ",\(newEmail)"
+            let index = leaderEmails.firstIndex(of: email)!
+            var copy = leaderEmails
+            copy.remove(at: index)
+            newEmailString = copy.joined(separator: ",")
+        } else {
+            let index = supervisorEmails.firstIndex(of: email)!
+            var copy = supervisorEmails
+            copy.remove(at: index)
+            newEmailString = copy.joined(separator: ",")
+        }
+        
+        updateLeaderString(supervisor, newEmailString, completion)
+    }
+    
+    private func updateLeaderString(_ isSupervisor: Int, _ leaderString: String, _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let urlString = MainServerAddress + "/updateealeader.php"
+        let url = URL(string: urlString)!
+        
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "id=\(id)&issupervisor=\(supervisor)&email=\(newEmailString)"
+        let postString = "id=\(id)&issupervisor=\(isSupervisor)&email=\(leaderString)"
         request.httpBody = postString.data(using: .utf8)
         
         let session = URLSession.shared
@@ -391,10 +415,10 @@ class EnrichmentActivity: NSObject {
             let success = responseDict["success"] as! Bool
             DispatchQueue.main.async {
                 if success {
-                    if isSupervisor == true {
-                        self.supervisorEmails.append(newEmail)
+                    if isSupervisor == 1 {
+                        self.supervisorEmails = leaderString.split(separator: ",").map{String($0)}
                     } else {
-                        self.leaderEmails.append(newEmail)
+                        self.leaderEmails = leaderString.split(separator: ",").map{String($0)} 
                     }
                     
                     completion(true, nil)
@@ -405,5 +429,14 @@ class EnrichmentActivity: NSObject {
             }
         }
         dataTask.resume()
+    }
+    
+    func checkOwner(_ validateEmail: String) -> Bool {
+        // TODO: Check online too!
+        if leaderEmails.contains(validateEmail) || supervisorEmails.contains(validateEmail) {
+            return true
+        } else {
+            return false
+        }
     }
 }

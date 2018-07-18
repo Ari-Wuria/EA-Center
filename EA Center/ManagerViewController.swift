@@ -150,7 +150,10 @@ class ManagerViewController: UITableViewController {
             let ea = myEA[indexPath.row]
             
             cell.nameLabel.text = ea.name
-            cell.locationLabel.text = ea.location
+            
+            let location = (ea.location.count > 0) ? ea.location : "Location Unspecified"
+            cell.locationLabel.text = location
+            
             cell.timeLabel.text = ea.timeModeForDisplay()
             
             return cell
@@ -201,4 +204,7 @@ class ManagerViewController: UITableViewController {
         }
     }
 
+    @IBAction func createNewEA(_ sender: Any) {
+        
+    }
 }

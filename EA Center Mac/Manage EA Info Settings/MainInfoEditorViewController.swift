@@ -27,6 +27,8 @@ class MainInfoEditorViewController: NSViewController {
     
     var currentEA: EnrichmentActivity?
     
+    var currentLoginEmail: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -59,6 +61,8 @@ class MainInfoEditorViewController: NSViewController {
         wednesdayCheckbox.state = ea.days.contains(3) ? .on : .off
         thursdayCheckbox.state = ea.days.contains(4) ? .on : .off
         fridayCheckbox.state = ea.days.contains(5) ? .on : .off
+        
+        currentLoginEmail = notification.userInfo!["currentLogin"] as! String
     }
     
     @IBAction func saveChanges(_ sender: Any) {
@@ -111,6 +115,11 @@ class MainInfoEditorViewController: NSViewController {
             daysArray.append(5)
         }
         let days = daysArray.map{"\($0)"}.joined(separator: ",")
+        
+        guard currentEA!.checkOwner(currentLoginEmail!) else {
+            showAlert(withTitle: "Can not modify data", message: "You no longer own this EA!")
+            return
+        }
         
         // Update
         currentEA!.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: !sameShortDesc ? shortDesc : nil, newProposal: !sameProposal ? proposal : nil, newDays: days) { (success, errString) in

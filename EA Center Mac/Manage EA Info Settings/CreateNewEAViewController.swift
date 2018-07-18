@@ -17,6 +17,8 @@ class CreateNewEAViewController: NSViewController {
     
     var currentEmail: String?
     
+    var dismissed = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -79,6 +81,7 @@ class CreateNewEAViewController: NSViewController {
             
             if event.keyCode == 53 {
                 // esc pressed
+                self.dismissed = true
                 self.dismiss(nil)
                 return nil
             }
@@ -97,8 +100,8 @@ class CreateNewEAViewController: NSViewController {
 
 extension CreateNewEAViewController: NSTextFieldDelegate {
     override func controlTextDidEndEditing(_ obj: Notification) {
-        if createButton.isEnabled {
-            create(obj)
+        if createButton.isEnabled && !dismissed {
+            
         }
     }
 }

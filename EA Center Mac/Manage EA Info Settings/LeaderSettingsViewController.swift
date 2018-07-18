@@ -14,6 +14,13 @@ class LeaderSettingsViewController: NSViewController {
     
     var currentEA: EnrichmentActivity? = nil
     
+    var loggedInEmail: String?
+    
+    // 0: Nothing
+    // 1: Leader
+    // 2: Supervisor
+    var currentSelectedTable: Int = 0
+    
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
@@ -34,6 +41,8 @@ class LeaderSettingsViewController: NSViewController {
             leaderTableView.reloadData()
             supervisorTableView.reloadData()
         }
+        
+        loggedInEmail = notification.userInfo!["currentLogin"] as? String
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -49,9 +58,64 @@ class LeaderSettingsViewController: NSViewController {
             controller.delegate = self
         }
     }
+    
+    override func keyDown(with event: NSEvent) {
+        interpretKeyEvents([event])
+    }
+    
+    override func deleteBackward(_ sender: Any?) {
+        if currentSelectedTable == 0 {
+            return
+        } else if currentSelectedTable == 1 {
+            let leader = currentEA!.leaderEmails[leaderTableView.selectedRow]
+            if leader == loggedInEmail! {
+                showErrorAlert("Error", "You can't remove yourself from the leader list. If you do want to do that, get another leader or supervisor in this EA to remove you.")
+                return
+            }
+            //print("Delete leader: \(leader)")
+            currentEA?.deleteLeader(email: leader, isSupervisor: false, completion: { (success, errString) in
+                if success {
+                    self.leaderTableView.reloadData()
+                    NotificationCenter.default.post(name: EAUpdatedNotification, object: ["id":self.currentEA!.id, "updatedEA":self.currentEA!])
+                } else {
+                    self.showErrorAlert("Error", errString)
+                }
+            })
+        } else if currentSelectedTable == 2 {
+            let supervisor = currentEA!.supervisorEmails[supervisorTableView.selectedRow]
+            if supervisor == loggedInEmail {
+                showErrorAlert("Error", "You can't remove yourself from the supervisor list. If you do want to do that, get another leader or supervisor in this EA to remove you.")
+                return
+            }
+            //print("Delete supervisor: \(supervisor)")
+            currentEA?.deleteLeader(email: supervisor, isSupervisor: true, completion: { (success, errString) in
+                if success {
+                    self.supervisorTableView.reloadData()
+                    NotificationCenter.default.post(name: EAUpdatedNotification, object: ["id":self.currentEA!.id, "updatedEA":self.currentEA!])
+                } else {
+                    self.showErrorAlert("Error", errString)
+                }
+            })
+        }
+    }
  
     deinit {
         print("deinit: \(self)")
+    }
+    
+    func showErrorAlert(_ title: String?, _ message: String?, _ error: Error? = nil) {
+        let alert: NSAlert
+        if let error = error {
+            alert = NSAlert(error: error)
+        } else if let title = title, let message = message {
+            alert = NSAlert()
+            alert.messageText = title
+            alert.informativeText = message
+        } else {
+            alert = NSAlert()
+            alert.messageText = "Error"
+        }
+        alert.runModal()
     }
 }
 
@@ -105,6 +169,18 @@ extension LeaderSettingsViewController: NSTableViewDataSource, NSTableViewDelega
             view?.textField?.stringValue = supervisorEmail
         }
         return view
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        let table = notification.object as! NSTableView
+        let currentRow = table.selectedRow
+        if currentRow == -1 {
+            currentSelectedTable = 0
+        } else if table == leaderTableView {
+            currentSelectedTable = 1
+        } else if table == supervisorTableView {
+            currentSelectedTable = 2
+        }
     }
 }
 
