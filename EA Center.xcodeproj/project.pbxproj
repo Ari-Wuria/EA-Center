@@ -11,6 +11,7 @@
 		0541489420FF46E200EFC7C1 /* EditPosterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541489320FF46E200EFC7C1 /* EditPosterViewController.swift */; };
 		0541489820FF62CA00EFC7C1 /* CoordinatorSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0541489720FF62CA00EFC7C1 /* CoordinatorSettings.storyboard */; };
 		0541489B20FF6D5F00EFC7C1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541489A20FF6D5F00EFC7C1 /* AboutViewController.swift */; };
+		0541489D2100E5ED00EFC7C1 /* CreateEAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0541489C2100E5ED00EFC7C1 /* CreateEAViewController.swift */; };
 		0558B2A920F5E09B009B62E4 /* EADetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */; };
 		0558B2AB20F5E3A4009B62E4 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */; };
 		0558B2AD20F602AA009B62E4 /* StudentBulletinViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */; };
@@ -107,6 +108,7 @@
 		0541489320FF46E200EFC7C1 /* EditPosterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPosterViewController.swift; sourceTree = "<group>"; };
 		0541489720FF62CA00EFC7C1 /* CoordinatorSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoordinatorSettings.storyboard; sourceTree = "<group>"; };
 		0541489A20FF6D5F00EFC7C1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		0541489C2100E5ED00EFC7C1 /* CreateEAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateEAViewController.swift; sourceTree = "<group>"; };
 		0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADetailViewController.swift; sourceTree = "<group>"; };
 		0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentBulletinViewController.swift; sourceTree = "<group>"; };
@@ -263,17 +265,18 @@
 				D0177FF120E67B3C003757A7 /* EAListViewController.swift */,
 				D0177FF320E67B59003757A7 /* EAListCell.swift */,
 				D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */,
-				D017800F20E77FA9003757A7 /* MeViewController.swift */,
-				D0B7C47920ECFC2A004DE8F3 /* ProfileEditorViewController.swift */,
 				D0B7C47B20EF94BF004DE8F3 /* ManagerViewController.swift */,
 				0541489320FF46E200EFC7C1 /* EditPosterViewController.swift */,
 				D0B7C47D20EF94D8004DE8F3 /* EAManageCell.swift */,
 				0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */,
+				D017800F20E77FA9003757A7 /* MeViewController.swift */,
+				D0B7C47920ECFC2A004DE8F3 /* ProfileEditorViewController.swift */,
 				0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */,
 				0597CD4620F78985006B4590 /* TextEditorViewController.swift */,
 				0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */,
 				0541489A20FF6D5F00EFC7C1 /* AboutViewController.swift */,
 				053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */,
+				0541489C2100E5ED00EFC7C1 /* CreateEAViewController.swift */,
 				D025730720D8A1E30078AE89 /* Main.storyboard */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
@@ -520,6 +523,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0541489D2100E5ED00EFC7C1 /* CreateEAViewController.swift in Sources */,
 				D0CCB37820E5298B0009AC07 /* AESCrypto.swift in Sources */,
 				0597CD4720F78985006B4590 /* TextEditorViewController.swift in Sources */,
 				D017800220E77ACB003757A7 /* minishared.c in Sources */,

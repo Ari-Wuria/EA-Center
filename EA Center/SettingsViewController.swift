@@ -23,11 +23,13 @@ class SettingsViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        rememberSwitch.isOn = loggedIn
+        rememberSwitch.isOn = UserDefaults.standard.bool(forKey: "rememberlogin")
         
-        if loggedIn == true {
-            rememberSwitch.isEnabled = false
-        }
+        updateUI()
+    }
+    
+    func updateUI() {
+        rememberSwitch.isEnabled = !loggedIn
     }
     
     func updateTableView() {

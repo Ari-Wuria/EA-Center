@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol EAListSplitViewControlling {
+    func eaListRequestSplitViewDetail(_ controller: EAListViewController)
+}
+
 class EAListViewController: UITableViewController {
     var allEA: [EnrichmentActivity] = []
     var joinableEA: [EnrichmentActivity] = []
@@ -20,7 +24,9 @@ class EAListViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    weak var splitViewDetail: EADescriptionViewController?
+    var splitViewDetail: EADescriptionViewController?
+    
+    var splitViewControllingDelegate: EAListSplitViewControlling?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,16 +151,22 @@ class EAListViewController: UITableViewController {
             let cell = tableView.cellForRow(at: indexPath)
             performSegue(withIdentifier: "ShowEADetail", sender: cell)
         } else {
-            //let detail = splitViewController.
             searchController.searchBar.resignFirstResponder()
+            
+            performSegue(withIdentifier: "EADescDetail", sender: nil)
+            splitViewControllingDelegate?.eaListRequestSplitViewDetail(self)
+            
             if isFiltering() {
                 splitViewDetail?.ea = filteredEA[indexPath.row]
             } else {
                 splitViewDetail?.ea = joinableEA[indexPath.row]
             }
             
-            if splitViewController!.displayMode == .primaryOverlay {
-                hideMasterPane()
+            if splitViewController!.displayMode != .allVisible {
+                // Temporary fix for segue animation
+                delay(0.01) {
+                    self.hideMasterPane()
+                }
             }
         }
     }

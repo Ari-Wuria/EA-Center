@@ -23,7 +23,13 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var minGradeSelector: UISegmentedControl!
     @IBOutlet var maxGradeSelector: UISegmentedControl!
     
-    var currentEA: EnrichmentActivity? = nil
+    var currentEA: EnrichmentActivity? {
+        didSet {
+            if isViewLoaded {
+                updateUI()
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +41,12 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateUI()
         
-        title = currentEA!.name
+        title = currentEA?.name ?? "EA Center"
+        
+        if currentEA != nil {
+            updateUI()
+        }
     }
     
     func updateUI() {
@@ -151,6 +160,9 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         }
     }
 
+    deinit {
+        print("deinit: \(self)")
+    }
 }
 
 /// Button which can toggle highlighted state with custom highlight color.

@@ -8,10 +8,18 @@
 
 import UIKit
 
+protocol ManagerSplitViewControlling {
+    func managerRequestSplitViewDetail(_ controller: ManagerViewController)
+}
+
 class ManagerViewController: UITableViewController {
     var myEA: [EnrichmentActivity] = []
     var loggedIn: Bool = false
     var currentAccount: UserAccount?
+    
+    var splitViewDetail: EADetailViewController?
+    
+    var splitViewControllingDelegate: ManagerSplitViewControlling?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -187,7 +195,31 @@ class ManagerViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+            let cell = tableView.cellForRow(at: indexPath)
+            performSegue(withIdentifier: "ManageEADetail", sender: cell)
+        } else {
+            // TODO: Why do the cell just gets deselected???
+            performSegue(withIdentifier: "EADetail", sender: nil)
+            splitViewControllingDelegate?.managerRequestSplitViewDetail(self)
+            
+            splitViewDetail!.currentEA = myEA[indexPath.row]
+            
+            if splitViewController!.displayMode != .allVisible {
+                // Temporary fix for segue animation
+                delay(0.01) {
+                    self.hideMasterPane()
+                }
+            }
+        }
+    }
+    
+    func hideMasterPane() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.splitViewController!.preferredDisplayMode = .primaryHidden
+        }, completion: { _ in
+            self.splitViewController!.preferredDisplayMode = .automatic
+        })
     }
 
     // MARK: - Navigation
@@ -201,10 +233,16 @@ class ManagerViewController: UITableViewController {
             let controller = segue.destination as! EADetailViewController
             let selectedIndexPath = tableView.indexPath(for: (sender as! UITableViewCell))
             controller.currentEA = myEA[selectedIndexPath!.row]
+        } else if segue.identifier == "Create" {
+            let nav = segue.destination as! UINavigationController
+            nav.modalPresentationStyle = .formSheet
         }
     }
 
     @IBAction func createNewEA(_ sender: Any) {
-        
+        // Might not be used.
+    }
+    
+    @IBAction func backFromCreate(_ sender: UIStoryboardSegue) {
     }
 }

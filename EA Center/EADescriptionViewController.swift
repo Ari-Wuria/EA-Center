@@ -13,22 +13,30 @@ class EADescriptionViewController: UIViewController {
         didSet {
             if isViewLoaded {
                 textView.text = ""
+                updateEADescription()
             }
-            updateEADescription()
             title = ea!.name
         }
     }
     
     @IBOutlet weak var textView: UITextView!
     
+    var downloadTask: URLSessionDownloadTask?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
         textView.text = ""
-        
         if ea != nil {
+            if downloadTask == nil {
+                updateEADescription()
+            }
             title = ea!.name
         } else {
             title = "EA Center"
@@ -44,7 +52,7 @@ class EADescriptionViewController: UIViewController {
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         let session = URLSession.shared
-        let downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
+        downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
             defer {
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -92,7 +100,11 @@ class EADescriptionViewController: UIViewController {
             }
         }
         
-        downloadTask.resume()
+        downloadTask!.resume()
+    }
+    
+    deinit {
+        print("deinit: \(self)")
     }
 
     /*

@@ -29,31 +29,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return listNavController.topViewController as! EAListViewController
     }
     
+    var managerNavController: UINavigationController {
+        return masterTabBarController.viewControllers?[1] as! UINavigationController
+    }
+    
+    var managerController: ManagerViewController {
+        return managerNavController.topViewController as! ManagerViewController
+    }
+    
     var detailNavController: UINavigationController {
         return splitViewController.viewControllers.last! as! UINavigationController
     }
     
+    var detailViewController: UIViewController {
+        return detailNavController.topViewController!
+    }
+    /*
     var detailViewController: EADescriptionViewController {
         return detailNavController.topViewController as! EADescriptionViewController
     }
+    
+    var managerDetailController: EADetailViewController {
+        return detailNavController.topViewController as! EADetailViewController
+    }
+    */
+    var meNavController: UINavigationController {
+        return masterTabBarController.viewControllers?[2] as! UINavigationController
+    }
+    
+    var meController: MeViewController {
+        return meNavController.topViewController as! MeViewController
+    }
+    /*
+    var profileEditorDetail: ProfileEditorViewController {
+        return detailNavController.topViewController as! ProfileEditorViewController
+    }
+    */
+    //var currentDetailController: UIViewController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let defaults: [String:Any] = ["rememberlogin":true, "loginemail":"", "biometriclock":false]
+        let defaults: [String:Any] = ["rememberlogin":true, "loginemail":"", "biometriclock":false, "launched": false]
         UserDefaults.standard.register(defaults: defaults)
         
-        UserDefaults.standard.set(true, forKey: "rememberlogin")
+        let firstLaunched = UserDefaults.standard.bool(forKey: "launched")
+        if firstLaunched == false {
+            // First launch processing
+            UserDefaults.standard.set(true, forKey: "rememberlogin")
+            UserDefaults.standard.set(true, forKey: "launched")
+        }
         
         UIImageView.appearance().accessibilityIgnoresInvertColors = true
         
-        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+        // -------
         
-        masterTabBarController.title = "All EAs"
-        
-        listViewController.splitViewDetail = detailViewController
-        
-        splitViewController.preferredDisplayMode = .primaryOverlay
+        if !(window!.rootViewController!.traitCollection.horizontalSizeClass == .compact) {
+            detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+            
+            masterTabBarController.title = "All EAs"
+            
+            splitViewController.preferredDisplayMode = .primaryOverlay
+            splitViewController.preferredDisplayMode = .automatic
+            
+            // App Delegate implemented the view switching
+            listViewController.splitViewControllingDelegate = self
+            managerController.splitViewControllingDelegate = self
+            meController.splitViewControllingDelegate = self
+        }
         
         return true
     }
@@ -83,3 +126,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+// MARK: - Extension for Split View Handling
+extension AppDelegate: EAListSplitViewControlling, ManagerSplitViewControlling, MeSplitViewControlling {
+    func currentSplitViewDetail(_ controller: MeViewController) -> UIViewController {
+        return detailViewController
+    }
+    
+    func meViewRequestSplitViewDetail(_ controller: MeViewController, mode: Int) {
+        controller.splitViewDetail = detailViewController
+        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+    }
+    
+    func eaListRequestSplitViewDetail(_ controller: EAListViewController) {
+        //currentDetailController = detailViewController
+        controller.splitViewDetail = detailViewController as? EADescriptionViewController
+        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+    }
+    
+    func managerRequestSplitViewDetail(_ controller: ManagerViewController) {
+        //currentDetailController = managerDetailController
+        controller.splitViewDetail = detailViewController as? EADetailViewController
+        detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+    }
+}

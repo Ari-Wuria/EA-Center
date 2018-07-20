@@ -8,6 +8,17 @@
 
 import UIKit
 
+protocol MeSplitViewControlling {
+    // Mode:
+    // 1: Profile
+    // 2: Settings
+    // 3: Student Bulletin
+    // 4: My EAs
+    // 5: Register (Coming soon...)
+    func meViewRequestSplitViewDetail(_ controller: MeViewController, mode: Int)
+    func currentSplitViewDetail(_ controller: MeViewController) -> UIViewController
+}
+
 class MeViewController: UITableViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -18,6 +29,10 @@ class MeViewController: UITableViewController {
     @IBOutlet weak var classLabel: UILabel!
     
     var loggedIn: Bool = false
+    
+    var splitViewControllingDelegate: MeSplitViewControlling?
+    
+    var splitViewDetail: Any?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -73,7 +88,6 @@ class MeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 && indexPath.row == 1 {
             if currentUserAccount == nil {
                 login(withEmail: emailTextField.text!, password: passwordTextField.text!)
@@ -101,6 +115,12 @@ class MeViewController: UITableViewController {
                 let _ = KeychainHelper.deleteKeychain(account: currentUserAccount!.userEmail)
                 
                 currentUserAccount = nil
+                
+                if let settingsWindow = splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
+                    settingsWindow.loggedIn = false
+                    settingsWindow.userAccount = nil
+                    settingsWindow.updateUI()
+                }
             }
         } else if indexPath.section == 0 && indexPath.row == 2 {
             // Register
@@ -109,7 +129,57 @@ class MeViewController: UITableViewController {
                 self.presentAlert("Hahahaha", "Did I tried to make that error really serious? Lol")
             }))
             present(alert, animated: true, completion: nil)
+        } else if indexPath.section == 1 && indexPath.row == 0 {
+            // Profile
+            if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+                performSegue(withIdentifier: "EditProfile", sender: nil)
+            } else {
+                performSegue(withIdentifier: "EditProfileReplace", sender: nil)
+                splitViewControllingDelegate?.meViewRequestSplitViewDetail(self, mode: 1)
+                (splitViewDetail as! ProfileEditorViewController).userAccount = currentUserAccount
+                
+                if splitViewController!.displayMode != .allVisible {
+                    // Temporary fix for segue animation
+                    delay(0.01) {
+                        self.hideMasterPane()
+                    }
+                }
+                return
+            }
+        } else if indexPath.section == 1 && indexPath.row == 1 {
+            if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+                performSegue(withIdentifier: "ViewSettings", sender: nil)
+            } else {
+                performSegue(withIdentifier: "ViewSettingsReplace", sender: nil)
+                splitViewControllingDelegate?.meViewRequestSplitViewDetail(self, mode: 2)
+                (splitViewDetail as! SettingsViewController).userAccount = currentUserAccount
+                (splitViewDetail as! SettingsViewController).loggedIn = loggedIn
+                
+                if splitViewController!.displayMode != .allVisible {
+                    // Temporary fix for segue animation
+                    delay(0.01) {
+                        self.hideMasterPane()
+                    }
+                }
+                return
+            }
+        } else if indexPath.section == 2 && indexPath.row == 0 {
+            if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+                performSegue(withIdentifier: "ShowSB", sender: nil)
+            } else {
+                performSegue(withIdentifier: "ShowSBReplace", sender: nil)
+                splitViewControllingDelegate?.meViewRequestSplitViewDetail(self, mode: 3)
+                
+                if splitViewController!.displayMode != .allVisible {
+                    // Temporary fix for segue animation
+                    delay(0.01) {
+                        self.hideMasterPane()
+                    }
+                }
+                return
+            }
         }
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func presentAlert(_ title: String, _ message: String) {
@@ -159,6 +229,12 @@ class MeViewController: UITableViewController {
                                 UserDefaults.standard.set(true, forKey: "rememberlogin")
                                 UserDefaults.standard.set(email, forKey: "loginemail")
                             }
+                        }
+                        
+                        if let settingsWindow = self.splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
+                            settingsWindow.loggedIn = true
+                            settingsWindow.userAccount = self.currentUserAccount
+                            settingsWindow.updateUI()
                         }
                     } else {
                         switch errCode {
@@ -239,10 +315,18 @@ class MeViewController: UITableViewController {
             let dest = segue.destination as! SettingsViewController
             dest.userAccount = currentUserAccount
             dest.loggedIn = loggedIn
-        }
+        } 
     }
     
     @IBAction func profileCanceled(_ sender: UIStoryboardSegue) {
+    }
+    
+    func hideMasterPane() {
+        UIView.animate(withDuration: 0.25, animations: {
+            self.splitViewController!.preferredDisplayMode = .primaryHidden
+        }, completion: { _ in
+            self.splitViewController!.preferredDisplayMode = .automatic
+        })
     }
 
 }
