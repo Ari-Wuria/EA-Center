@@ -9,7 +9,11 @@
 import Cocoa
 
 class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTableViewDelegate {
+    @objc var containingTabViewController: ManagerTabViewController?
+    
     @IBOutlet weak var studentListTable: NSTableView!
+    
+    @IBOutlet var mainTouchBar: NSTouchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,5 +22,9 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
     
     func numberOfRows(in tableView: NSTableView) -> Int {
         return 1
+    }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
     }
 }

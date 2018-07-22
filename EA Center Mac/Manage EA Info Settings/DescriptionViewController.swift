@@ -9,6 +9,8 @@
 import Cocoa
 
 class DescriptionViewController: NSViewController {
+    @objc var containingTabViewController: ManagerTabViewController?
+    
     @IBOutlet var textView: NSTextView!
     
     var currentEA: EnrichmentActivity?
@@ -17,6 +19,8 @@ class DescriptionViewController: NSViewController {
     var downloadTask: URLSessionDownloadTask?
     
     @IBOutlet var editButton: NSButton!
+    
+    @IBOutlet var mainTouchBar: NSTouchBar!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -181,5 +185,13 @@ class DescriptionViewController: NSViewController {
             alert.messageText = "Error"
         }
         alert.runModal()
+    }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
+    }
+    
+    @IBAction func touchEdit(_ sender: Any) {
+        performSegue(withIdentifier: "EditDesc", sender: sender)
     }
 }

@@ -49,6 +49,7 @@ class EAListViewController: UITableViewController {
         searchController.searchBar.delegate = self
         
         NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: EAUpdatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eaCreated(_:)), name: EACreatedNotification, object: nil)
         
         //NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: UIAccessibility.invertColorsStatusDidChangeNotification, object: nil)
     }
@@ -69,6 +70,14 @@ class EAListViewController: UITableViewController {
         
         updateJoinableEA()
         
+        tableView.reloadData()
+    }
+    
+    @objc func eaCreated(_ notification: Notification) {
+        let obj = notification.object as! [String:Any]
+        let createdEA = obj["ea"] as! EnrichmentActivity
+        allEA.append(createdEA)
+        updateJoinableEA()
         tableView.reloadData()
     }
     
@@ -119,8 +128,9 @@ class EAListViewController: UITableViewController {
             cell.shortDescriptionLabel.sizeToFit()
             
             // Give it a random color for now
-            //let number = 1 + arc4random() % 6
-            let number = indexPath.row + 4
+            // TODO: Set color based on category
+            let number = 1 + arc4random() % 6
+            //let number = indexPath.row + 4
             cell.backgroundColor = UIColor(named: "Table Cell Color \(number)")
             
             return cell

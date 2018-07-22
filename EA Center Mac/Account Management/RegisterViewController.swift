@@ -22,6 +22,8 @@ class RegisterViewController: NSViewController {
     var passwordValid: Bool = false
     var confirmValid: Bool = false
     
+    @IBOutlet var mainTouchBar: NSTouchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -29,6 +31,20 @@ class RegisterViewController: NSViewController {
         statusLabel.stringValue = "Please use valid BCIS email."
         
         //registerButton.isEnabled = false
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        emailTextField.becomeFirstResponder()
+        emailTextField.currentEditor()?.insertText("@bcis.cn")
+        emailTextField.currentEditor()?.moveToBeginningOfLine(nil)
+        
+        view.window!.title = "Register"
     }
     
     @IBAction func cancelRegister(_ sender: Any) {
@@ -40,12 +56,12 @@ class RegisterViewController: NSViewController {
         // Validate email
         let email = emailTextField.stringValue
         
-        guard isValidEmail(email) else {
+        guard AccountProcessor.isValidEmail(email) else {
             statusLabel.stringValue = "Please enter a valid email"
             return
         }
         
-        guard isBCISEmail(email) else {
+        guard AccountProcessor.isBCISEmail(email) else {
             statusLabel.stringValue = "Please use valid BCIS email"
             return
         }
@@ -58,7 +74,7 @@ class RegisterViewController: NSViewController {
             return
         }
         
-        guard isAlphanumeral(password) else {
+        guard AccountProcessor.isAlphanumeral(password) else {
             statusLabel.stringValue = "Password must be alphanumeral"
             return
         }
@@ -80,42 +96,12 @@ class RegisterViewController: NSViewController {
         }
         
         // Encrypt password
-        guard let passwordEncrypted = encrypt(password) else {
+        guard let passwordEncrypted = AccountProcessor.encrypt(password) else {
             statusLabel.stringValue = "Can not prepare registration data. Report bug."
             return
         }
         
         sendRegistrationData(email, passwordEncrypted, accountType)
-    }
-    
-    func isValidEmail(_ testStr:String) -> Bool {
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: testStr)
-    }
-    
-    func isBCISEmail(_ testStr: String) -> Bool {
-        if testStr.hasSuffix("@mybcis.cn") || testStr.count == 20 {
-            return true
-        }
-        
-        if testStr.hasSuffix("@bcis.cn") {
-            return true
-        }
-        
-        return false
-    }
-    
-    func isAlphanumeral(_ testStr: String) -> Bool {
-        let letters = CharacterSet.letters
-        let digits = CharacterSet.decimalDigits
-        
-        if testStr.rangeOfCharacter(from: letters) != nil && testStr.rangeOfCharacter(from: digits) != nil {
-            return true
-        } else {
-            return false
-        }
     }
     
     func getAccountType(from email: String) -> Int {
@@ -132,64 +118,20 @@ class RegisterViewController: NSViewController {
         return -1
     }
     
-    func encrypt(_ str: String) -> String? {
-        return aesEncrypt(str, GlobalAESKey, GlobalAESIV)
-    }
-    
     func sendRegistrationData(_ email: String, _ encryptedPassword: String, _ accountType: Int) {
         statusLabel.stringValue = "Registering..."
         
-        let urlString = MainServerAddress + "/login/register.php"
-        let url = URL(string: urlString)!
-        
-        var request = URLRequest(url: url)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        let postString = "register=1&type=\(accountType)&password=\(encryptedPassword)&email=\(email)"
-        //let postStringEscaped = postString.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
-        //request.httpBody = postStringEscaped?.data(using: .utf8)
-        request.httpBody = postString.data(using: .utf8)
-        let session = URLSession.shared
-        let dataTask = session.dataTask(with: request) { (data, response, error) in
-            guard error == nil else {
-                print("Error: \(error!.localizedDescription)")
-                return
-            }
-            
-            let httpResponse = response as! HTTPURLResponse
-            guard httpResponse.statusCode == 200 else {
-                print("Wrong Status Code")
-                return
-            }
-            
-            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
-            guard let responseDict = jsonData else {
-                print("No JSON data")
-                return
-            }
-            
-            let failure = responseDict["failure"] as! Bool
-            if failure == true {
-                // Fail
-                let reason = responseDict["error"] as! Int
-                DispatchQueue.main.async {
-                    if reason == 1 {
-                        self.statusLabel.stringValue = "Account already exist"
-                    } else if reason == 2 {
-                        self.statusLabel.stringValue = "Please activate account. Don't register again."
-                    }
-                    return
-                }
-            }
-            
-            let success = responseDict["success"] as? Bool
+        AccountProcessor.sendRegistrationData(email, encryptedPassword, accountType) { (success, errStr) in
             if success == true {
-                DispatchQueue.main.async {
-                    let window = self.view.window?.windowController as! LoginWindowController
-                    window.registerFinished(withEmail: email)
-                }
+                let window = self.view.window?.windowController as! LoginWindowController
+                window.registerFinished(withEmail: email)
+            } else {
+                self.statusLabel.stringValue = errStr
             }
         }
-        dataTask.resume()
+    }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
     }
 }

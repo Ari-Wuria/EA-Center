@@ -129,6 +129,15 @@ class MeViewController: UITableViewController {
                 self.presentAlert("Hahahaha", "Did I tried to make that error really serious? Lol")
             }))
             present(alert, animated: true, completion: nil)
+            
+            let email = emailTextField.text!
+            guard AccountProcessor.validateEmail(email) else {
+                presentAlert("Invalid Email", "Please use valid BCIS Email")
+                return
+            }
+            
+            // TODO: Complete register
+            //let password = passwordTextField.text!
         } else if indexPath.section == 1 && indexPath.row == 0 {
             // Profile
             if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
@@ -335,8 +344,15 @@ extension MeViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == emailTextField {
             emailTextField.resignFirstResponder()
+            if emailTextField.text == "" {
+                return true
+            }
             passwordTextField.becomeFirstResponder()
         } else if textField == passwordTextField {
+            passwordTextField.resignFirstResponder()
+            if emailTextField.text == "" {
+                return true
+            }
             login(withEmail: emailTextField.text!, password: passwordTextField.text!)
         }
         return true

@@ -19,6 +19,8 @@ class CreateNewEAViewController: NSViewController {
     
     var dismissed = false
     
+    @IBOutlet var mainTouchBar: NSTouchBar!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -96,12 +98,16 @@ class CreateNewEAViewController: NSViewController {
         }
         escEvent = nil
     }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
+    }
 }
 
 extension CreateNewEAViewController: NSTextFieldDelegate {
     override func controlTextDidEndEditing(_ obj: Notification) {
         if createButton.isEnabled && !dismissed {
-            
+            create(obj)
         }
     }
 }

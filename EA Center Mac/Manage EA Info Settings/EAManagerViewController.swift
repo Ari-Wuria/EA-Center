@@ -24,6 +24,14 @@ class EAManagerViewController: NSViewController {
     
     @IBOutlet var mainTouchBar: NSTouchBar!
     
+    @IBOutlet weak var loadingSpinner: NSProgressIndicator!
+    
+    var success = false
+    
+    var containingTabViewController: ManagerTabViewController?
+    
+    @IBOutlet weak var computer: NSImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -33,12 +41,6 @@ class EAManagerViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated), name: EAUpdatedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(eaCreated(_:)), name: EACreatedNotification, object: nil)
-        
-        view.wantsLayer = true
-        view.layer = CALayer()
-        view.layer?.backgroundColor = NSColor(named: "Main Background")!.cgColor
-        view.window?.styleMask = .texturedBackground
-        view.window?.backgroundColor = NSColor(named: "Main Background")!
         
         approvalButton.isHidden = true
     }
@@ -62,6 +64,8 @@ class EAManagerViewController: NSViewController {
     }
     
     func retriveMyEA() {
+        loadingSpinner.startAnimation(nil)
+        
         let urlString = MainServerAddress + "/manageea/getmyea.php"
         let url = URL(string: urlString)!
         
@@ -73,11 +77,19 @@ class EAManagerViewController: NSViewController {
         
         let session = URLSession.shared
         let dataTask = session.dataTask(with: request) { (data, response, error) in
+            defer {
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.loadingSpinner.stopAnimation(nil)
+                }
+            }
+            
             guard error == nil else {
                 print("Error: \(error!.localizedDescription)")
                 DispatchQueue.main.async {
                     //completion(false, -1, error!.localizedDescription)
                     self.showErrorAlert(nil, nil, error!)
+                    self.success = false
                 }
                 return
             }
@@ -88,6 +100,7 @@ class EAManagerViewController: NSViewController {
                 DispatchQueue.main.async {
                     //completion(false, -2, "Wrong Status Code: \(httpResponse.statusCode)")
                     self.showErrorAlert("Error", "Wrong Status Code: \(httpResponse.statusCode)")
+                    self.success = false
                 }
                 return
             }
@@ -98,11 +111,13 @@ class EAManagerViewController: NSViewController {
             } catch {
                 //print("No JSON data: \(error)")
                 self.showErrorAlert(nil, nil, error)
+                self.success = false
                 return
             }
             
             guard jsonData is [String:Any] else {
-                // No EA. Empty array
+                // No EA. Empty array, but success.
+                self.success = true
                 return
             }
             
@@ -114,9 +129,9 @@ class EAManagerViewController: NSViewController {
                 self.myEA.append(ea)
             }
             
-            DispatchQueue.main.async {
-                self.tableView.reloadData()
-            }
+            self.success = true
+            
+            // Defer block
         }
         dataTask.resume()
     }
@@ -140,6 +155,10 @@ class EAManagerViewController: NSViewController {
         if segue.identifier == "CreateEA" {
             let dest = segue.destinationController as! CreateNewEAViewController
             dest.currentEmail = self.loggedInEmail
+        } else if segue.identifier == "EmbedEditor" {
+            let tabController = segue.destinationController as! NSTabViewController as! ManagerTabViewController
+            containingTabViewController = tabController
+            tabController.parentManagerController = self
         }
     }
     
@@ -150,6 +169,24 @@ class EAManagerViewController: NSViewController {
         approvalButton.isHidden = true
         retriveMyEA()
     }
+
+    override func makeTouchBar() -> NSTouchBar? {
+        if containerView.isHidden == false {
+            let selectedItem = containingTabViewController!.tabView.selectedTabViewItem
+            let index = containingTabViewController!.tabView.indexOfTabViewItem(selectedItem!)
+            let controller = containingTabViewController!.children[index]
+            
+            //containingTabViewController!.tabView.delegate = self
+            
+            return controller.makeTouchBar()
+        } else {
+            return mainTouchBar
+        }
+    }
+    
+    @IBAction func touchNewEA(_ sender: Any) {
+        performSegue(withIdentifier: "CreateEA", sender: sender)
+    }
     
     deinit {
         print("deinit: \(self)")
@@ -158,15 +195,34 @@ class EAManagerViewController: NSViewController {
 
 // MARK: - Table view extension
 extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
+    func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+        if myEA.count == 0 {
+            return false
+        }
+        return true
+    }
+    
     func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
         return 129
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return myEA.count
+        if myEA.count == 0 {
+            return 1
+        } else if myEA.count > 0 {
+            return myEA.count
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+        if myEA.count == 0 && success {
+            return tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CreateCell"), owner: nil)
+        } else if success == false {
+            return tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "ErrorCell"), owner: nil)
+        }
+        
         let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier("ManageCell"), owner: nil) as! ManagerCellView
         let ea = myEA[row]
         
@@ -199,13 +255,16 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        containerView.isHidden = false
-        
         if tableView.selectedRow == -1 {
             containerView.isHidden = true
             titleNameLabel.stringValue = "Manage EA"
+            touchBar = nil
+            computer.isHidden = false
             return
         }
+        
+        containerView.isHidden = false
+        computer.isHidden = true
         
         let ea = myEA[tableView.selectedRow]
         NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: ["currentLogin":loggedInEmail])
@@ -224,9 +283,26 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
             approvalButton.isEnabled = true
             approvalButton.title = "Submit this EA for approval"
         }
+        
+        touchBar = nil
+    }
+}
+
+// MARK: - Class for tab view controlling
+class ManagerTabViewController: NSTabViewController {
+    var parentManagerController: EAManagerViewController?
+    override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
+        super.tabView(tabView, didSelect: tabViewItem)
+        
+        parentManagerController!.touchBar = nil
     }
     
-    override func makeTouchBar() -> NSTouchBar? {
-        return mainTouchBar
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        for child in children {
+            // Set the containing tab view controller for sub controllers
+            child.setValue(self, forKey: "containingTabViewController")
+        }
     }
 }

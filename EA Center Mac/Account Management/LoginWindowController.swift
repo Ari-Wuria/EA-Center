@@ -16,6 +16,15 @@ class LoginWindowController: NSWindowController {
         super.windowDidLoad()
     
         // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        
+        // Remove unused top button
+        let minimizeButton = window?.standardWindowButton(.miniaturizeButton)
+        //minimizeButton?.frame.size = CGSize.zero
+        minimizeButton?.removeFromSuperview()
+        
+        let resizeButton = window?.standardWindowButton(.zoomButton)
+        //resizeButton?.frame.size = CGSize.zero
+        resizeButton?.removeFromSuperview()
     }
     
     func register() {
@@ -43,6 +52,8 @@ class LoginWindowController: NSWindowController {
             
             loginView?.verifyLabel.isHidden = false
             loginView?.verifyLabel.stringValue = "Email isn't implemented. WeChat me to activate."
+            
+            loginView?.finishedRegister = true
             
             registerView = nil
         }

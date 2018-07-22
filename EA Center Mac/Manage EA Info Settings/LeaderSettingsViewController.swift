@@ -9,6 +9,8 @@
 import Cocoa
 
 class LeaderSettingsViewController: NSViewController {
+    @objc var containingTabViewController: ManagerTabViewController?
+    
     @IBOutlet var leaderTableView: NSTableView!
     @IBOutlet var supervisorTableView: NSTableView!
     
@@ -20,6 +22,8 @@ class LeaderSettingsViewController: NSViewController {
     // 1: Leader
     // 2: Supervisor
     var currentSelectedTable: Int = 0
+    
+    @IBOutlet var mainTouchBar: NSTouchBar!
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -181,6 +185,18 @@ extension LeaderSettingsViewController: NSTableViewDataSource, NSTableViewDelega
         } else if table == supervisorTableView {
             currentSelectedTable = 2
         }
+    }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
+    }
+    
+    @IBAction func addLeader(_ sender: Any) {
+        performSegue(withIdentifier: "AddLeader", sender: sender)
+    }
+    
+    @IBAction func addSupervisor(_ sender: Any) {
+        performSegue(withIdentifier: "AddSupervisor", sender: sender)
     }
 }
 

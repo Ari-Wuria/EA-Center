@@ -16,6 +16,8 @@ class MainWindowController: NSWindowController {
     var loggedIn = false
     
     var currentEmail: String = ""
+    
+    var requestedManager = false
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -38,6 +40,11 @@ class MainWindowController: NSWindowController {
         let object = notification.object as! [String:Any]
         let account = object["account"] as! UserAccount
         currentEmail = account.userEmail
+        
+        if requestedManager {
+            showManager(notification)
+            requestedManager = false
+        }
     }
     
     @objc func logout(_ notification: Notification) {
@@ -95,6 +102,7 @@ class MainWindowController: NSWindowController {
             }
         } else {
             (NSApp.delegate as! AppDelegate).toggleLoginState(sender)
+            requestedManager = true
         }
     }
     

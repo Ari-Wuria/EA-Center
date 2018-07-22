@@ -21,6 +21,8 @@ class ManagerViewController: UITableViewController {
     
     var splitViewControllingDelegate: ManagerSplitViewControlling?
     
+    @IBOutlet var createButton: UIBarButtonItem!
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         NotificationCenter.default.addObserver(self, selector: #selector(loggedInSuccess(_:)), name: LoginSuccessNotification, object: nil)
@@ -35,6 +37,10 @@ class ManagerViewController: UITableViewController {
         self.refreshControl = refreshControl
         
         tableView.backgroundColor = UIColor(named: "Main Table Color")
+        
+        if !loggedIn {
+            navigationItem.rightBarButtonItems = []
+        }
     }
     
     @objc func eaUpdated(_ notification: Notification) {
@@ -47,6 +53,7 @@ class ManagerViewController: UITableViewController {
         let userAccount = dic["account"] as! UserAccount
         currentAccount = userAccount
         retriveMyEA()
+        navigationItem.rightBarButtonItems = [createButton]
     }
     
     @objc func logout(_ notification: Notification) {
@@ -54,6 +61,7 @@ class ManagerViewController: UITableViewController {
         currentAccount = nil
         myEA = []
         tableView.reloadData()
+        navigationItem.rightBarButtonItems = []
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -236,6 +244,9 @@ class ManagerViewController: UITableViewController {
         } else if segue.identifier == "Create" {
             let nav = segue.destination as! UINavigationController
             nav.modalPresentationStyle = .formSheet
+            let controller = nav.topViewController as! CreateEAViewController
+            controller.email = currentAccount!.userEmail
+            controller.delegate = self
         }
     }
 
@@ -244,5 +255,13 @@ class ManagerViewController: UITableViewController {
     }
     
     @IBAction func backFromCreate(_ sender: UIStoryboardSegue) {
+    }
+}
+
+extension ManagerViewController: CreateEAViewControllerDelegate {
+    func createEAViewController(_ controller: CreateEAViewController, didFinishWith enrichmentActivity: EnrichmentActivity) {
+        dismiss(animated: true, completion: nil)
+        myEA.append(enrichmentActivity)
+        tableView.reloadData()
     }
 }

@@ -160,6 +160,19 @@ class EnrichmentActivity: NSObject {
         }
     }
     
+    func weekModeForDisplay() -> String {
+        switch weekMode {
+        case 1:
+            return "Every Week"
+        case 2:
+            return "Every 2 Weeks"
+        case 3:
+            return "Every Month"
+        default:
+            return "Invalid Timemode"
+        }
+    }
+    
     func updateDetail(newWeekMode: Int, newTimeMode: Int, newLocation: String, newMinGrade: Int, newMaxGrade: Int, newShortDesc: String?, newProposal: String?, newDays: String, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
         let urlString = MainServerAddress + "/updateeainfo.php"
         let url = URL(string: urlString)!

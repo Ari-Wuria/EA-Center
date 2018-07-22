@@ -23,16 +23,34 @@ class LoginViewController: NSViewController {
     @IBOutlet var touchRegisterButton: NSButton!
     @IBOutlet var touchLoginButton: NSButton!
     
+    var finishedRegister = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
         
-        // Remove unused top button
-        let minimizeButton = view.window?.standardWindowButton(.miniaturizeButton)
-        minimizeButton?.frame.size = CGSize.zero
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
+    }
+    
+    override func viewWillAppear() {
+        super.viewWillAppear()
         
-        let resizeButton = view.window?.standardWindowButton(.zoomButton)
-        resizeButton?.frame.size = CGSize.zero
+        if emailTextField.stringValue == "" {
+            emailTextField.becomeFirstResponder()
+            emailTextField.currentEditor()?.insertText("@bcis.cn")
+            emailTextField.currentEditor()?.moveToBeginningOfLine(nil)
+        }
+    }
+    
+    override func viewDidAppear() {
+        super.viewDidAppear()
+        
+        view.window!.title = "Login"
+        
+        if finishedRegister == true {
+            view.window?.makeFirstResponder(passwordTextField)
+        }
     }
     
     @IBAction func register(_ sender: Any) {
@@ -101,6 +119,7 @@ class LoginViewController: NSViewController {
                         self.registerButton.isEnabled = true
                         self.touchLoginButton.isEnabled = true
                         self.touchRegisterButton.isEnabled = true
+                        self.verifyLabel.stringValue = "Failed!"
                         switch errCode {
                         case -1:
                             // Error
@@ -129,6 +148,7 @@ class LoginViewController: NSViewController {
                 self.registerButton.isEnabled = true
                 self.touchLoginButton.isEnabled = true
                 self.touchRegisterButton.isEnabled = true
+                self.verifyLabel.stringValue = "Failed!"
                 switch errCode {
                 case -1:
                     // Error
@@ -167,5 +187,16 @@ class LoginViewController: NSViewController {
     
     @IBAction func touchLogin(_ sender: Any) {
         login(sender)
+    }
+}
+
+extension LoginViewController: NSTextFieldDelegate {
+    override func controlTextDidEndEditing(_ obj: Notification) {
+        let textField = obj.object as? NSTextField
+        if textField == emailTextField {
+            view.window?.makeFirstResponder(passwordTextField)
+        } else if textField == passwordTextField {
+            login(textField as Any)
+        }
     }
 }

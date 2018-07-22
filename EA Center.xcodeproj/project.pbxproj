@@ -49,9 +49,11 @@
 		D025730920D8A1E30078AE89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730720D8A1E30078AE89 /* Main.storyboard */; };
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
+		D041203E2102128000EDC5D4 /* CoordinatorSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041203C2102128000EDC5D4 /* CoordinatorSettingsViewController.swift */; };
 		D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */; };
 		D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042C18D20DBA0860017DE4F /* LoginViewController.swift */; };
 		D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */; };
+		D05E85D42104BDA900EA4577 /* UserSettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D32104BDA900EA4577 /* UserSettingsWindowController.swift */; };
 		D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2A7320D947480044C7F1 /* MainWindowController.swift */; };
 		D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */; };
 		D085146D20EA6DEE00A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
@@ -129,9 +131,11 @@
 		D025730A20D8A1E40078AE89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D025730D20D8A1E40078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D025730F20D8A1E40078AE89 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D041203C2102128000EDC5D4 /* CoordinatorSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorSettingsViewController.swift; sourceTree = "<group>"; };
 		D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
 		D042C18D20DBA0860017DE4F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAManagerViewController.swift; sourceTree = "<group>"; };
+		D05E85D32104BDA900EA4577 /* UserSettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsWindowController.swift; sourceTree = "<group>"; };
 		D05F2A7320D947480044C7F1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
 		D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
@@ -224,13 +228,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0541489920FF637A00EFC7C1 /* Supervisor Settings */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Supervisor Settings";
-			sourceTree = "<group>";
-		};
 		D02572F720D8A1E30078AE89 = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +283,14 @@
 			path = "EA Center";
 			sourceTree = "<group>";
 		};
+		D041203B2102126A00EDC5D4 /* Supervisor Settings */ = {
+			isa = PBXGroup;
+			children = (
+				D041203C2102128000EDC5D4 /* CoordinatorSettingsViewController.swift */,
+			);
+			path = "Supervisor Settings";
+			sourceTree = "<group>";
+		};
 		D0A7661D20E27006001B4317 /* Manage EA Info Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +314,7 @@
 				D042C18D20DBA0860017DE4F /* LoginViewController.swift */,
 				D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */,
 				D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */,
+				D05E85D32104BDA900EA4577 /* UserSettingsWindowController.swift */,
 			);
 			path = "Account Management";
 			sourceTree = "<group>";
@@ -334,7 +340,7 @@
 				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
 				D0CCB37520E4FFE40009AC07 /* Account Management */,
 				D0A7661D20E27006001B4317 /* Manage EA Info Settings */,
-				0541489920FF637A00EFC7C1 /* Supervisor Settings */,
+				D041203B2102126A00EDC5D4 /* Supervisor Settings */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
 				D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */,
@@ -579,6 +585,7 @@
 				D0B7C47820EC9620004DE8F3 /* AccountSettingsViewController.swift in Sources */,
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
 				D017800E20E77DB6003757A7 /* AccountProcessor.swift in Sources */,
+				D041203E2102128000EDC5D4 /* CoordinatorSettingsViewController.swift in Sources */,
 				D0DB6AE520DA26DE00BBE8F0 /* BulletinWindowController.swift in Sources */,
 				D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */,
 				D0FEB74720E147AF009CB82E /* sha1.c in Sources */,
@@ -596,6 +603,7 @@
 				D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */,
 				D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */,
 				D0FEB70E20E128CC009CB82E /* EnrichmentActivity.swift in Sources */,
+				D05E85D42104BDA900EA4577 /* UserSettingsWindowController.swift in Sources */,
 				D0FEB74020E147AF009CB82E /* ioapi_buf.c in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
 				D0FEB74520E147AF009CB82E /* aescrypt.c in Sources */,

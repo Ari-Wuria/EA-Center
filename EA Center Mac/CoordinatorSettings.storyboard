@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14295.6" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kf3-LD-Mz1">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="kf3-LD-Mz1">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14295.6"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14306.4"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="-437" y="34"/>
         </scene>
-        <!--View Controller-->
+        <!--Coordinator Settings View Controller-->
         <scene sceneID="LDO-uD-7ur">
             <objects>
-                <viewController id="XGh-Vm-2Qv" sceneMemberID="viewController">
+                <viewController id="XGh-Vm-2Qv" customClass="CoordinatorSettingsViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="qU2-bS-3vc">
                         <rect key="frame" x="0.0" y="0.0" width="700" height="500"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -62,12 +62,12 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="ivB-Jc-oBr">
+                                                        <tableCellView misplaced="YES" id="ivB-Jc-oBr">
                                                             <rect key="frame" x="1" y="1" width="265" height="114"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K56-u3-bHH">
-                                                                    <rect key="frame" x="6" y="83" width="252" height="24"/>
+                                                                    <rect key="frame" x="6" y="86" width="252" height="24"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="EA Name" usesSingleLineMode="YES" id="Yb2-YZ-Cr5">
                                                                         <font key="font" metaFont="systemBold" size="20"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -75,7 +75,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pWP-Bf-Pya">
-                                                                    <rect key="frame" x="8" y="58" width="250" height="17"/>
+                                                                    <rect key="frame" x="8" y="60" width="250" height="18"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="EA Leaders" usesSingleLineMode="YES" id="FuA-o2-Zdp">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -83,7 +83,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="yVi-hp-5G2">
-                                                                    <rect key="frame" x="8" y="33" width="250" height="17"/>
+                                                                    <rect key="frame" x="8" y="34" width="250" height="18"/>
                                                                     <textFieldCell key="cell" lineBreakMode="clipping" title="EA Supervisors" usesSingleLineMode="YES" id="xaw-QM-a2A">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -91,7 +91,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hkK-PS-qzP">
-                                                                    <rect key="frame" x="8" y="8" width="250" height="17"/>
+                                                                    <rect key="frame" x="8" y="8" width="250" height="18"/>
                                                                     <textFieldCell key="cell" title="EA Proposal" id="Hsn-gs-awY">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -121,11 +121,11 @@
                                         </tableView>
                                     </subviews>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="d9G-zA-fo6">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="d9G-zA-fo6">
                                     <rect key="frame" x="1" y="483" width="268" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="NO" id="Usf-aM-YZO">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Usf-aM-YZO">
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>

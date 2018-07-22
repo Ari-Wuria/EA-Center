@@ -9,6 +9,7 @@
 import Cocoa
 
 class MainInfoEditorViewController: NSViewController {
+    @objc var containingTabViewController: ManagerTabViewController?
     
     @IBOutlet weak var weekSelector: NSPopUpButton!
     @IBOutlet weak var timeSelector: NSPopUpButton!
@@ -24,6 +25,22 @@ class MainInfoEditorViewController: NSViewController {
     
     @IBOutlet weak var shortDescTextView: NSTextView!
     @IBOutlet weak var proposalTextView: NSTextView!
+    
+    @IBOutlet var mainTouchBar: NSTouchBar!
+    @IBOutlet weak var touchWeekPopover: NSPopoverTouchBarItem!
+    @IBOutlet weak var touchWeekSelector: NSSegmentedControl!
+    @IBOutlet weak var touchDaysPopover: NSPopoverTouchBarItem!
+    @IBOutlet weak var touchMondayButton: NSButton!
+    @IBOutlet weak var touchTuesdayButton: NSButton!
+    @IBOutlet weak var touchWednesdayButton: NSButton!
+    @IBOutlet weak var touchThursdayButton: NSButton!
+    @IBOutlet weak var touchFridayButton: NSButton!
+    @IBOutlet weak var touchTimePopover: NSPopoverTouchBarItem!
+    @IBOutlet weak var touchTimeSelector: NSSegmentedControl!
+    @IBOutlet weak var touchMinGradePopover: NSPopoverTouchBarItem!
+    @IBOutlet weak var touchMaxGradePopover: NSPopoverTouchBarItem!
+    @IBOutlet weak var touchMinGradeSelector: NSSegmentedControl!
+    @IBOutlet weak var touchMaxGradeSelector: NSSegmentedControl!
     
     var currentEA: EnrichmentActivity?
     
@@ -41,6 +58,15 @@ class MainInfoEditorViewController: NSViewController {
         
         //shortDescTextView.isHorizontallyResizable = false
         //shortDescTextView.textContainer?.widthTracksTextView = true
+    }
+    
+    override func setValue(_ value: Any?, forKey key: String) {
+        if key == "containingTabViewController" {
+            containingTabViewController = value as? ManagerTabViewController
+            return
+        }
+        
+        super.setValue(value, forKey: key)
     }
     
     @objc func newNotification(_ notification: Notification) {
@@ -62,7 +88,27 @@ class MainInfoEditorViewController: NSViewController {
         thursdayCheckbox.state = ea.days.contains(4) ? .on : .off
         fridayCheckbox.state = ea.days.contains(5) ? .on : .off
         
-        currentLoginEmail = notification.userInfo!["currentLogin"] as! String
+        currentLoginEmail = notification.userInfo!["currentLogin"] as? String
+        
+        touchWeekPopover.collapsedRepresentationLabel = ea.weekModeForDisplay()
+        touchWeekSelector.selectSegment(withTag: ea.weekMode - 1)
+        touchMondayButton.state = mondayCheckbox.state
+        touchTuesdayButton.state = tuesdayCheckbox.state
+        touchWednesdayButton.state = wednesdayCheckbox.state
+        touchThursdayButton.state = thursdayCheckbox.state
+        touchFridayButton.state = fridayCheckbox.state
+        touchTimePopover.collapsedRepresentationLabel = ea.timeModeForDisplay()
+        touchTimeSelector.selectSegment(withTag: ea.timeMode - 1)
+        touchMinGradePopover.collapsedRepresentationLabel = "Grade \(ea.minGrade)"
+        touchMaxGradePopover.collapsedRepresentationLabel = "Grade \(ea.maxGrade)"
+        touchMinGradeSelector.selectSegment(withTag: ea.minGrade - 6)
+        touchMaxGradeSelector.selectSegment(withTag: ea.maxGrade - 6)
+        
+        touchWeekPopover.dismissPopover(nil)
+        touchTimePopover.dismissPopover(nil)
+        touchDaysPopover.dismissPopover(nil)
+        touchMinGradePopover.dismissPopover(nil)
+        touchMaxGradePopover.dismissPopover(nil)
     }
     
     @IBAction func saveChanges(_ sender: Any) {
@@ -76,7 +122,7 @@ class MainInfoEditorViewController: NSViewController {
         
         // Start by checking min and max grade
         if minGrade > maxGrade {
-            showAlert(withTitle: "Minimum grade has to be greater than maximum grade")
+            showAlert(withTitle: "Maximum grade has to be greater than minimum grade")
             return
         }
         
@@ -115,12 +161,12 @@ class MainInfoEditorViewController: NSViewController {
             daysArray.append(5)
         }
         let days = daysArray.map{"\($0)"}.joined(separator: ",")
-        
+        /*
         guard currentEA!.checkOwner(currentLoginEmail!) else {
             showAlert(withTitle: "Can not modify data", message: "You no longer own this EA!")
             return
         }
-        
+        */
         // Update
         currentEA!.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: !sameShortDesc ? shortDesc : nil, newProposal: !sameProposal ? proposal : nil, newDays: days) { (success, errString) in
             if !success {
@@ -138,6 +184,104 @@ class MainInfoEditorViewController: NSViewController {
         alert.messageText = title
         alert.informativeText = message
         alert.runModal()
+    }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
+    }
+    
+    override func mouseDown(with event: NSEvent) {
+        let location = event.locationInWindow
+        let viewAtLocation = view.hitTest(location)
+        if viewAtLocation != shortDescTextView.enclosingScrollView && viewAtLocation != proposalTextView.enclosingScrollView {
+            // Resign first responder of text view to revive touch bar
+            dismissTextView()
+        }
+    }
+    
+    // TODO: Make it also work when clicked outside this view controller's view
+    func dismissTextView() {
+        // Make container ManagerViewController as first responder
+        view.window?.makeFirstResponder(containingTabViewController?.parentManagerController)
+    }
+    
+    @IBAction func weekChanged(_ sender: Any) {
+        if let button = sender as? NSPopUpButton, button == weekSelector {
+            touchWeekSelector.selectSegment(withTag: weekSelector.indexOfSelectedItem)
+        } else {
+            weekSelector.selectItem(at: touchWeekSelector.indexOfSelectedItem)
+        }
+        
+        touchWeekPopover.collapsedRepresentationLabel = weekSelector.selectedItem!.title
+    }
+    
+    @IBAction func timeChanged(_ sender: Any) {
+        if let button = sender as? NSPopUpButton, button == timeSelector {
+            touchTimeSelector.selectSegment(withTag: timeSelector.indexOfSelectedItem)
+        } else {
+            timeSelector.selectItem(at: touchTimeSelector.indexOfSelectedItem)
+        }
+        
+        touchTimePopover.collapsedRepresentationLabel = timeSelector.selectedItem!.title
+    }
+    
+    @IBAction func daysChanged(_ sender: Any) {
+        if let button = sender as? NSButton {
+            switch button {
+            case mondayCheckbox:
+                touchMondayButton.state = mondayCheckbox.state
+                break
+            case touchMondayButton:
+                mondayCheckbox.state = touchMondayButton.state
+                break
+            case tuesdayCheckbox:
+                touchTuesdayButton.state = tuesdayCheckbox.state
+                break
+            case touchTuesdayButton:
+                tuesdayCheckbox.state = touchTuesdayButton.state
+                break
+            case wednesdayCheckbox:
+                touchWednesdayButton.state = wednesdayCheckbox.state
+                break
+            case touchWednesdayButton:
+                wednesdayCheckbox.state = touchWednesdayButton.state
+                break
+            case thursdayCheckbox:
+                touchThursdayButton.state = thursdayCheckbox.state
+                break
+            case touchThursdayButton:
+                thursdayCheckbox.state = touchThursdayButton.state
+                break
+            case fridayCheckbox:
+                touchFridayButton.state = fridayCheckbox.state
+                break
+            case touchFridayButton:
+                fridayCheckbox.state = touchFridayButton.state
+                break
+            default:
+                break
+            }
+        }
+    }
+    
+    @IBAction func gradeSelectorChanged(_ sender: Any) {
+        if let button = sender as? NSPopUpButton {
+            if button == minGradeSelector {
+                touchMinGradeSelector.selectSegment(withTag: minGradeSelector.indexOfSelectedItem)
+                touchMinGradePopover.collapsedRepresentationLabel = "Grade \(minGradeSelector.indexOfSelectedItem + 6)"
+            } else if button == maxGradeSelector {
+                touchMaxGradeSelector.selectSegment(withTag: maxGradeSelector.indexOfSelectedItem)
+                touchMaxGradePopover.collapsedRepresentationLabel = "Grade \(maxGradeSelector.indexOfSelectedItem + 6)"
+            }
+        } else if let button = sender as? NSSegmentedControl {
+            if button == touchMinGradeSelector {
+                minGradeSelector.selectItem(at: touchMinGradeSelector.indexOfSelectedItem)
+                touchMinGradePopover.collapsedRepresentationLabel = "Grade \(minGradeSelector.indexOfSelectedItem + 6)"
+            } else if button == touchMaxGradeSelector {
+                maxGradeSelector.selectItem(at: touchMaxGradeSelector.indexOfSelectedItem)
+                touchMaxGradePopover.collapsedRepresentationLabel = "Grade \(maxGradeSelector.indexOfSelectedItem + 6)"
+            }
+        }
     }
     
     deinit {

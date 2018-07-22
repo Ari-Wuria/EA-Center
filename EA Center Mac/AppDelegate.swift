@@ -45,6 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             
             loginMenu.isEnabled = false
             loginMenu.title = "Logging in..."
+            
             AccountProcessor.sendLoginRequest(email, password!) { (success, errCode, errString) in
                 // I don't think we need error handling here
                 // If the login fails then nothing will happen
@@ -54,9 +55,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                         if let userAccount = account {
                             NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":userAccount])
                         } else {
-                            self.updateMenu()
+                            self.loginStatusMenu.title = "Auto login failed"
+                            self.loginMenu.isEnabled = true
+                            self.loginMenu.title = "Login"
                         }
                     }
+                } else {
+                    self.loginStatusMenu.title = "Auto login failed"
+                    self.loginMenu.isEnabled = true
+                    self.loginMenu.title = "Login"
                 }
             }
         }
@@ -86,6 +93,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         currentAccount = account
         
         updateMenu()
+        
+        if currentAccount?.username == "" {
+            userSettings(notification)
+        }
     }
     
     @IBAction func toggleLoginState(_ sender: Any) {
@@ -126,9 +137,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 UserDefaults.standard.set(false, forKey: "RememberLogin")
             }
         }
-    }
-    
-    @IBAction func showUserSettings(_ sender: Any) {
     }
     
     func updateMenu() {

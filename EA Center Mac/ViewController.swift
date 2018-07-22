@@ -23,6 +23,8 @@ class ViewController: NSViewController {
     @IBOutlet weak var eaStatusLabel: NSTextField!
     @IBOutlet weak var joinButton: NSButton!
     
+    @IBOutlet weak var pencilPaper: NSImageView!
+    
     var loggedIn: Bool = false
     
     var allEA: [EnrichmentActivity] = []
@@ -63,9 +65,13 @@ class ViewController: NSViewController {
         
         statusVisualEffectView.isHidden = true
         
-        view.wantsLayer = true
-        view.layer = CALayer()
-        view.layer?.backgroundColor = NSColor(named: "Main Background")?.cgColor
+        //view.wantsLayer = true
+        //view.layer = CALayer()
+        //view.layer?.backgroundColor = NSColor(named: "Main Background")?.cgColor
+    }
+    
+    override func viewDidLayout() {
+        super.viewDidLayout()
     }
 
     override var representedObject: Any? {
@@ -386,8 +392,11 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         
         if row == -1 {
             statusVisualEffectView.isHidden = true
+            pencilPaper.isHidden = false
             return
         }
+        
+        pencilPaper.isHidden = true
         
         longDescLoadingLabel.isHidden = false
         
@@ -413,12 +422,48 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
     }
 }
 
+// TODO: Fix text view clipping
 class MyScrollView: NSScrollView {
+    
     override var isFlipped: Bool {
         return true
     }
     
     func scrollToTop() {
         documentView?.scroll(CGPoint.zero)
+    }
+    /*
+    override var alignmentRectInsets: NSEdgeInsets {
+        return NSEdgeInsets(top: 0, left: 0, bottom: 60.0, right: 0)
+    }
+ */
+}
+
+class MyTextView: NSTextView {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        //layer = NoClippingLayer()
+        //let _ = layer as! NoClippingLayer
+        
+        needsDisplay = true
+    }
+    
+    override var alignmentRectInsets: NSEdgeInsets {
+        return NSEdgeInsets(top: 0, left: 0, bottom: 2000.0, right: 0)
+    }
+    
+    override var wantsDefaultClipping: Bool {
+        return false
+    }
+}
+
+class NoClippingLayer: CALayer {
+    override var masksToBounds: Bool {
+        set {
+            
+        }
+        get {
+            return false
+        }
     }
 }

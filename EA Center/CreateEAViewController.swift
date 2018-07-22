@@ -8,8 +8,19 @@
 
 import UIKit
 
-class CreateEAViewController: UITableViewController {
+protocol CreateEAViewControllerDelegate {
+    func createEAViewController(_ controller: CreateEAViewController, didFinishWith enrichmentActivity: EnrichmentActivity)
+}
 
+class CreateEAViewController: UITableViewController {
+    @IBOutlet weak var nameTextField: UITextField!
+    var email: String = ""
+    
+    var delegate: CreateEAViewControllerDelegate?
+    
+    @IBOutlet weak var doneButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -23,6 +34,35 @@ class CreateEAViewController: UITableViewController {
     }
 
     @IBAction func done(_ sender: Any) {
+        let name = nameTextField.text!
+        if name == "" {
+            presentAlert(withTitle: "Error", message: "Please enter a proper EA name.")
+        }
+        
+        doneButton.isEnabled = false
+        cancelButton.isEnabled = false
+        
+        EnrichmentActivity.create(withName: name, email: email) { (success, ea, errStr) in
+            if success {
+                NotificationCenter.default.post(name: EACreatedNotification, object: ["ea":ea!])
+                self.delegate?.createEAViewController(self, didFinishWith: ea!)
+            } else {
+                self.presentAlert(withTitle: "Error", message: errStr!)
+                
+                self.doneButton.isEnabled = true
+                self.cancelButton.isEnabled = true
+            }
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+    }
+    
+    func presentAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
     
     // MARK: - Table view data source
