@@ -25,6 +25,8 @@ class TextEditorViewController: UITableViewController {
         } else if saveMode == 2 {
             textView.text = currentEA?.proposal
         }
+        
+        tableView.backgroundColor = UIColor(named: "Menu Color")
     }
 
     @IBAction func save(_ sender: Any) {

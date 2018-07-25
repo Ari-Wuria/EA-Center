@@ -98,7 +98,7 @@ class ManagerViewController: UITableViewController {
                 print("Error: \(error!.localizedDescription)")
                 DispatchQueue.main.async {
                     //completion(false, -1, error!.localizedDescription)
-                    self.presentAlert(withTitle: "Error", message: error!.localizedDescription)
+                    self.presentAlert(withTitle: "Failed retriving my EAs", message: error!.localizedDescription)
                 }
                 return
             }
@@ -108,7 +108,7 @@ class ManagerViewController: UITableViewController {
                 print("Wrong Status Code")
                 DispatchQueue.main.async {
                     //completion(false, -2, "Wrong Status Code: \(httpResponse.statusCode)")
-                    self.presentAlert(withTitle: "Error", message: "The server returned an invalid response code. (something that's not 200)")
+                    self.presentAlert(withTitle: "Failed retriving my EAs", message: "The server returned an invalid response code. (something that's not 200)")
                 }
                 return
             }
@@ -118,7 +118,7 @@ class ManagerViewController: UITableViewController {
                 jsonData = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
             } catch {
                 //print("No JSON data: \(error)")
-                self.presentAlert(withTitle: "Error", message: "This app is having trouble understanding the data that the server had provided. (No JSON data)")
+                self.presentAlert(withTitle: "Failed retriving my EAs", message: "This app is having trouble understanding the data that the server had provided. (No JSON data)")
                 return
             }
             

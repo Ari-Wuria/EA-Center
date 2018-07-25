@@ -45,7 +45,7 @@ class MeViewController: UITableViewController {
                 let password = KeychainHelper.loadKeychain(account: email)
                 if password != nil {
                     let passwordString = String(data: password!, encoding: .utf8)!
-                    login(withEmail: email, password: passwordString)
+                    login(withEmail: email, password: passwordString, automatic: true)
                 }
             }
         }
@@ -207,7 +207,7 @@ class MeViewController: UITableViewController {
         tableView.endUpdates()
     }
     
-    func login(withEmail email: String, password: String) {
+    func login(withEmail email: String, password: String, automatic: Bool = false) {
         guard AccountProcessor.validateEmail(email) else {
             presentAlert("Invalid Email", "Please use valid BCIS Email")
             return
@@ -249,11 +249,11 @@ class MeViewController: UITableViewController {
                         switch errCode {
                         case -1:
                             // Error
-                            self.presentAlert("Error", errStr!)
+                            self.presentAlert("Error logging in", errStr!)
                         case -2, -3:
                             // -2: Wrong Status Code
                             // -3: No JSON data
-                            self.presentAlert("Error", "Reason: \(errStr!)")
+                            self.presentAlert("Error logging in", "Reason: \(errStr!)")
                         default: break
                         }
                     }
@@ -262,15 +262,24 @@ class MeViewController: UITableViewController {
                 switch errCode {
                 case -1:
                     // Error
-                    self.presentAlert("Error", errStr!)
+                    self.presentAlert("Error logging in", errStr!)
                 case -2, -3:
                     // -2: Wrong Status Code
                     // -3: No JSON data
-                    self.presentAlert("Error", "Reason: \(errStr!)")
+                    self.presentAlert("Error logging in", "Reason: \(errStr!)")
                 case 1, 3:
                     // 1: Wrong password
                     // 3: Account don't exist
-                    self.presentAlert("Invalid Username or Password", "Please try again.")
+                    if automatic {
+                        if errCode == 1 {
+                            self.presentAlert("Password Change Detected", "Please login manually.")
+                        } else {
+                            self.presentAlert("Can not auto login", "Please login manually.")
+                        }
+                        
+                    } else {
+                        self.presentAlert("Invalid Username or Password", "Please try again.")
+                    }
                 case 2:
                     // No activation
                     self.presentAlert("Not Activated", "Did you forgot to activate your account?")

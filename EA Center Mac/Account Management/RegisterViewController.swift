@@ -52,6 +52,22 @@ class RegisterViewController: NSViewController {
         window.closeRegister()
     }
     
+    @IBAction func emailReturned(_ sender: Any) {
+        view.window?.makeFirstResponder(passwordTextField)
+    }
+    
+    @IBAction func passwordReturned(_ sender: Any) {
+        if passwordTextField.stringValue != "" {
+            view.window?.makeFirstResponder(confirmTextField)
+        }
+    }
+    
+    @IBAction func confirmReturned(_ sender: Any) {
+        if confirmTextField.stringValue != "" {
+            register(sender)
+        }
+    }
+    
     @IBAction func register(_ sender: Any) {
         // Validate email
         let email = emailTextField.stringValue

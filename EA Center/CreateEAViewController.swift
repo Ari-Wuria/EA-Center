@@ -47,7 +47,7 @@ class CreateEAViewController: UITableViewController {
                 NotificationCenter.default.post(name: EACreatedNotification, object: ["ea":ea!])
                 self.delegate?.createEAViewController(self, didFinishWith: ea!)
             } else {
-                self.presentAlert(withTitle: "Error", message: errStr!)
+                self.presentAlert(withTitle: "Can not create EA", message: errStr!)
                 
                 self.doneButton.isEnabled = true
                 self.cancelButton.isEnabled = true

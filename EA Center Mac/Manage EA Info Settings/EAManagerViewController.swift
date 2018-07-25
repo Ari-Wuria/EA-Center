@@ -99,7 +99,7 @@ class EAManagerViewController: NSViewController {
                 print("Wrong Status Code")
                 DispatchQueue.main.async {
                     //completion(false, -2, "Wrong Status Code: \(httpResponse.statusCode)")
-                    self.showErrorAlert("Error", "Wrong Status Code: \(httpResponse.statusCode)")
+                    self.showErrorAlert("Can not retrive EA", "Wrong Status Code: \(httpResponse.statusCode)")
                     self.success = false
                 }
                 return

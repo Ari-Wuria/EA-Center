@@ -241,7 +241,7 @@ class EAListViewController: UITableViewController {
                 // Can't download with an error
                 //print("Error: \(error!.localizedDescription)")
                 DispatchQueue.main.async {
-                    self.presentAlert(withTitle: "Error", message: error!.localizedDescription)
+                    self.presentAlert(withTitle: "Failed downloading EAs", message: error!.localizedDescription)
                 }
                 return
             }
@@ -251,7 +251,7 @@ class EAListViewController: UITableViewController {
                 // Wrong response code
                 //print("Response code not 200")
                 DispatchQueue.main.async {
-                    self.presentAlert(withTitle: "Error", message: "The server returned an invalid response code. (something that's not 200)")
+                    self.presentAlert(withTitle: "Failed downloading EAs", message: "The server returned an invalid response code. (something that's not 200)")
                 }
                 return
             }
@@ -261,7 +261,7 @@ class EAListViewController: UITableViewController {
                 // Not a dictionary or it doesn't exist
                 //print("Not a dictionary")
                 DispatchQueue.main.async {
-                    self.presentAlert(withTitle: "Error", message: "This app is having trouble understanding the data that the server had provided. (No JSON data)")
+                    self.presentAlert(withTitle: "Failed downloading EAs", message: "This app is having trouble understanding the data that the server had provided. (No JSON data)")
                 }
                 return
             }

@@ -120,7 +120,7 @@ class AddLeaderViewController: NSViewController {
                 // Wrong response code
                 //print("Response code not 200")
                 DispatchQueue.main.async {
-                    self.showErrorAlert("error", "The server returned an invalid response. (not 200)")
+                    self.showErrorAlert("Failed retriving user list", "The server returned an invalid response. (not 200)")
                 }
                 return
             }
@@ -130,7 +130,7 @@ class AddLeaderViewController: NSViewController {
                 // Not a dictionary or it doesn't exist
                 //print("Not a dictionary")
                 DispatchQueue.main.async {
-                    self.showErrorAlert("Error", "The server returned an invalid object. (not a dictionary)")
+                    self.showErrorAlert("Failed retriving user list", "The server returned an invalid object. (not a dictionary)")
                 }
                 return
             }

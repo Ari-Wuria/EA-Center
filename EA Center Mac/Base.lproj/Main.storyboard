@@ -692,7 +692,7 @@
                                                 <action selector="userSettings:" target="Voe-Tx-rLC" id="eAo-Rk-3US"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="EA Supervisor Only" id="Efk-rv-yjh">
+                                        <menuItem title="EA Coordinator Only" id="Efk-rv-yjh">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showCoordinatorOptions:" target="Voe-Tx-rLC" id="VEX-Cs-Ohm"/>
@@ -785,7 +785,7 @@
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="158" horizontalPageScroll="10" verticalLineScroll="158" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6f1-et-2cY">
                                 <rect key="frame" x="0.0" y="0.0" width="309" height="582"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                                <clipView key="contentView" ambiguous="YES" id="kTQ-PQ-gie">
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="kTQ-PQ-gie">
                                     <rect key="frame" x="1" y="1" width="307" height="580"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -904,7 +904,7 @@
                                                                     </constraints>
                                                                     <textFieldCell key="cell" alignment="center" id="QNn-ea-23q">
                                                                         <font key="font" usesAppearanceFont="YES"/>
-                                                                        <string key="title">You currently don't own any EA yet. Become an EA leader by pressing the "New EA" button or let an existing EA leader add you into the EA.</string>
+                                                                        <string key="title">You currently don't own any EA yet. Become an EA leader by pressing the "New EA" button or let an existing EA leader add you into an EA.</string>
                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -951,6 +951,7 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
+                                    <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="eWj-gw-tCZ">
                                     <rect key="frame" x="1" y="431" width="264" height="16"/>
@@ -967,6 +968,8 @@
                                 <buttonCell key="cell" type="push" title="New EA" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YHy-ke-YQP">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">n</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <connections>
                                     <segue destination="dsr-xa-fdK" kind="sheet" identifier="CreateEA" id="wMa-BA-xr3"/>
@@ -1026,7 +1029,7 @@
                         <touchBarItem id="K4e-Ou-FJF">
                             <viewController key="viewController" id="bGI-DW-KPa">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tJK-MS-i0k">
-                                    <rect key="frame" x="0.0" y="-11" width="108" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="96" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="96" id="6Cn-ze-ajE"/>
                                     </constraints>
@@ -2058,10 +2061,10 @@
                                 <touchBarItems>
                                     <touchBarItem id="PZN-W9-Tye">
                                         <viewController key="viewController" id="FaB-6i-IvB">
-                                            <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5Qa-3d-A0W">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                            <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Qa-3d-A0W">
+                                                <rect key="frame" x="0.0" y="-11" width="112" height="41"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="7N8-dy-IM9"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="7N8-dy-IM9"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="push" title="Monday" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WL3-ZN-c3L">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -2076,10 +2079,10 @@
                                     </touchBarItem>
                                     <touchBarItem id="SVc-lF-Z8d">
                                         <viewController key="viewController" id="cXN-lL-1MI">
-                                            <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t2H-ek-mTl">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                            <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="t2H-ek-mTl">
+                                                <rect key="frame" x="0.0" y="-11" width="112" height="41"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="frw-j6-Rt0"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="frw-j6-Rt0"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="push" title="Tuesday" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="aCs-gq-6pD">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -2097,7 +2100,7 @@
                                             <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vrz-Mg-Q8V">
                                                 <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="mIa-J8-aUx"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="mIa-J8-aUx"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="push" title="Wednesday" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="cPG-aF-5EE">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -2115,7 +2118,7 @@
                                             <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="taQ-qm-hTe">
                                                 <rect key="frame" x="0.0" y="-11" width="112" height="41"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="mPe-vs-DFr"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="mPe-vs-DFr"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="push" title="Thursday" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3MR-ll-dnI">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -2130,10 +2133,10 @@
                                     </touchBarItem>
                                     <touchBarItem id="nQ7-FU-u7c">
                                         <viewController key="viewController" id="utW-NV-NyH">
-                                            <button key="view" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="J20-7a-gVL">
-                                                <rect key="frame" x="0.0" y="0.0" width="100" height="30"/>
+                                            <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J20-7a-gVL">
+                                                <rect key="frame" x="0.0" y="-11" width="112" height="41"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="width" constant="100" id="0x5-nz-m15"/>
+                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="0x5-nz-m15"/>
                                                 </constraints>
                                                 <buttonCell key="cell" type="push" title="Friday" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="O8Y-Ko-3xR">
                                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
@@ -2263,7 +2266,7 @@
                     </touchBarItems>
                 </touchBar>
             </objects>
-            <point key="canvasLocation" x="-50" y="2241"/>
+            <point key="canvasLocation" x="-49" y="2309"/>
         </scene>
         <!--Leaders-->
         <scene sceneID="HiB-ha-pJR">
@@ -2772,7 +2775,7 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="EA Center" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="336" y="294" width="950" height="700"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -2834,7 +2837,7 @@
                             <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="105" horizontalPageScroll="10" verticalLineScroll="105" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c5f-OB-uiU">
                                 <rect key="frame" x="0.0" y="0.0" width="308" height="700"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" heightSizable="YES"/>
-                                <clipView key="contentView" ambiguous="YES" id="Ds5-yI-FD3">
+                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="Ds5-yI-FD3">
                                     <rect key="frame" x="1" y="1" width="306" height="698"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -2842,7 +2845,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="306" height="698"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="Menu Color"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn editable="NO" width="303" minWidth="40" maxWidth="1000" id="bp5-QB-pjJ">
@@ -2865,7 +2868,7 @@
                                                                 <stackView identifier="StackView" distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDf-FW-BYx">
                                                                     <rect key="frame" x="13" y="13" width="277" height="77"/>
                                                                     <subviews>
-                                                                        <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Egh-Ts-azx">
+                                                                        <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="Egh-Ts-azx">
                                                                             <rect key="frame" x="0.0" y="48" width="277" height="29"/>
                                                                             <subviews>
                                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zzc-uH-Y1J">
@@ -2935,12 +2938,14 @@
                                                                 <constraint firstAttribute="trailing" secondItem="nDf-FW-BYx" secondAttribute="trailing" constant="13" id="KfC-GH-EUY"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="categoryLabel" destination="XYE-sP-jBI" id="9QL-nu-Lmb"/>
+                                                                <outlet property="likeButton" destination="afA-lK-bLq" id="Tej-gu-7Ex"/>
                                                                 <outlet property="nameLabel" destination="zzc-uH-Y1J" id="lGu-G3-Zix"/>
                                                                 <outlet property="shortDescLabel" destination="atd-N3-NUr" id="vgx-am-HT3"/>
                                                             </connections>
                                                         </tableCellView>
-                                                        <tableCellView identifier="Nothing" misplaced="YES" id="o9b-Cr-aFT">
-                                                            <rect key="frame" x="1" y="106" width="303" height="103"/>
+                                                        <tableCellView identifier="Nothing" id="o9b-Cr-aFT">
+                                                            <rect key="frame" x="1" y="106" width="303" height="104"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hZr-jW-Gh8">
@@ -3197,6 +3202,9 @@
         </namedColor>
         <namedColor name="Manage Background">
             <color red="0.84705882352941175" green="0.94117647058823528" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Menu Color">
+            <color red="0.66666666666666663" green="0.85490196078431369" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="Text View Background">
             <color red="0.89800000190734863" green="0.89800000190734863" blue="0.89800000190734863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

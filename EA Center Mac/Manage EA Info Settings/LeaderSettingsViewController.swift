@@ -82,7 +82,7 @@ class LeaderSettingsViewController: NSViewController {
                     self.leaderTableView.reloadData()
                     NotificationCenter.default.post(name: EAUpdatedNotification, object: ["id":self.currentEA!.id, "updatedEA":self.currentEA!])
                 } else {
-                    self.showErrorAlert("Error", errString)
+                    self.showErrorAlert("Can not remove leader", errString)
                 }
             })
         } else if currentSelectedTable == 2 {
@@ -97,7 +97,7 @@ class LeaderSettingsViewController: NSViewController {
                     self.supervisorTableView.reloadData()
                     NotificationCenter.default.post(name: EAUpdatedNotification, object: ["id":self.currentEA!.id, "updatedEA":self.currentEA!])
                 } else {
-                    self.showErrorAlert("Error", errString)
+                    self.showErrorAlert("Can not remove supervisor", errString)
                 }
             })
         }

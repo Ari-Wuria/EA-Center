@@ -90,4 +90,64 @@ class UserAccount: NSObject {
         }
         dataTask.resume()
     }
+    
+    func updatePassword(_ oldPassword: String, _ newPassword: String, _ completion: @escaping (_ success: Bool, _ errStr: String?) -> ()) {
+        let urlString = MainServerAddress + "/login/changepass.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "changepass&email=\(userEmail)&password=\(oldPassword)&newpass=\(newPassword)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    if (error as! URLError).code == URLError.Code.notConnectedToInternet {
+                        completion(false, "Please get on the internet.")
+                    }
+                    completion(false, "Error accessing server.")
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    completion(true, nil)
+                } else {
+                    let errCode = responseDict["error"] as! Int
+                    var errString = ""
+                    if errCode == 1 {
+                        errString = "Wrong password."
+                    } else if errCode == 2 {
+                        errString = "Server error while updating."
+                    }
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
 }

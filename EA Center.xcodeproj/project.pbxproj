@@ -54,6 +54,10 @@
 		D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042C18D20DBA0860017DE4F /* LoginViewController.swift */; };
 		D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */; };
 		D05E85D42104BDA900EA4577 /* UserSettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D32104BDA900EA4577 /* UserSettingsWindowController.swift */; };
+		D05E85D62104D5D200EA4577 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D52104D5D200EA4577 /* ChangePasswordViewController.swift */; };
+		D05E85D82104DE5F00EA4577 /* CoordinatorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D72104DE5F00EA4577 /* CoordinatorDetailViewController.swift */; };
+		D05E85DA210614DC00EA4577 /* CoordinatorSettingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D9210614DC00EA4577 /* CoordinatorSettingsCellView.swift */; };
+		D05E85DC21061E5300EA4577 /* ViewDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85DB21061E5300EA4577 /* ViewDescriptionViewController.swift */; };
 		D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2A7320D947480044C7F1 /* MainWindowController.swift */; };
 		D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */; };
 		D085146D20EA6DEE00A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
@@ -136,6 +140,10 @@
 		D042C18D20DBA0860017DE4F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAManagerViewController.swift; sourceTree = "<group>"; };
 		D05E85D32104BDA900EA4577 /* UserSettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsWindowController.swift; sourceTree = "<group>"; };
+		D05E85D52104D5D200EA4577 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		D05E85D72104DE5F00EA4577 /* CoordinatorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDetailViewController.swift; sourceTree = "<group>"; };
+		D05E85D9210614DC00EA4577 /* CoordinatorSettingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorSettingsCellView.swift; sourceTree = "<group>"; };
+		D05E85DB21061E5300EA4577 /* ViewDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDescriptionViewController.swift; sourceTree = "<group>"; };
 		D05F2A7320D947480044C7F1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
 		D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
@@ -157,7 +165,7 @@
 		D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarHeight.swift; sourceTree = "<group>"; };
 		D0DFCED520D8A41200DBB70E /* EA Center Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DFCED720D8A41200DBB70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D0DFCED920D8A41200DBB70E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D0DFCED920D8A41200DBB70E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0DFCEDE20D8A41300DBB70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0DFCEE020D8A41300DBB70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -287,6 +295,9 @@
 			isa = PBXGroup;
 			children = (
 				D041203C2102128000EDC5D4 /* CoordinatorSettingsViewController.swift */,
+				D05E85D72104DE5F00EA4577 /* CoordinatorDetailViewController.swift */,
+				D05E85D9210614DC00EA4577 /* CoordinatorSettingsCellView.swift */,
+				D05E85DB21061E5300EA4577 /* ViewDescriptionViewController.swift */,
 			);
 			path = "Supervisor Settings";
 			sourceTree = "<group>";
@@ -313,8 +324,9 @@
 				D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */,
 				D042C18D20DBA0860017DE4F /* LoginViewController.swift */,
 				D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */,
-				D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */,
 				D05E85D32104BDA900EA4577 /* UserSettingsWindowController.swift */,
+				D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */,
+				D05E85D52104D5D200EA4577 /* ChangePasswordViewController.swift */,
 			);
 			path = "Account Management";
 			sourceTree = "<group>";
@@ -582,6 +594,7 @@
 				D0FEB74B20E147B0009CB82E /* aestab.c in Sources */,
 				D0FEB74320E147AF009CB82E /* aeskey.c in Sources */,
 				05ADD16720FB59C1008754A0 /* CreateNewEAViewController.swift in Sources */,
+				D05E85DA210614DC00EA4577 /* CoordinatorSettingsCellView.swift in Sources */,
 				D0B7C47820EC9620004DE8F3 /* AccountSettingsViewController.swift in Sources */,
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
 				D017800E20E77DB6003757A7 /* AccountProcessor.swift in Sources */,
@@ -598,10 +611,12 @@
 				D0FEB74220E147AF009CB82E /* minishared.c in Sources */,
 				D0A7662320E27056001B4317 /* AttendenceViewController.swift in Sources */,
 				D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */,
+				D05E85D82104DE5F00EA4577 /* CoordinatorDetailViewController.swift in Sources */,
 				D0FEB73E20E147AF009CB82E /* zip.c in Sources */,
 				D0A7662520E27FFA001B4317 /* EditDescriptionViewController.swift in Sources */,
 				D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */,
 				D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */,
+				D05E85DC21061E5300EA4577 /* ViewDescriptionViewController.swift in Sources */,
 				D0FEB70E20E128CC009CB82E /* EnrichmentActivity.swift in Sources */,
 				D05E85D42104BDA900EA4577 /* UserSettingsWindowController.swift in Sources */,
 				D0FEB74020E147AF009CB82E /* ioapi_buf.c in Sources */,
@@ -618,6 +633,7 @@
 				D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */,
 				05ECDEE420F9E7CE0075DBB3 /* AddLeaderViewController.swift in Sources */,
 				D0FEB74120E147AF009CB82E /* ioapi_mem.c in Sources */,
+				D05E85D62104D5D200EA4577 /* ChangePasswordViewController.swift in Sources */,
 				D0FEB73F20E147AF009CB82E /* ioapi.c in Sources */,
 				D0B7C47620EC8DE7004DE8F3 /* UserAccount.swift in Sources */,
 				D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */,

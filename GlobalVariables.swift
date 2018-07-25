@@ -26,10 +26,9 @@ let GlobalAESIV = "752Dh5l3SV5biDuc"
 // Current API has no security and bad guys can tamper the links to update EAs without the app or owner's permission
 // Using AES for the hash, hash iv will be randomly generated and sent using hashkey param
 // The key will be kept private within this app and the server
-// TODO: Change this to key instead of iv for better protection
-let GlobalAPIEncryptKey = "Xd3kanp4ujl63wQU1RByh7lXWehzwTgE"
+//let GlobalAPIEncryptKey = "Xd3kanp4ujl63wQU1RByh7lXWehzwTgE"
 // Key to encrypt
-let GlobalAPIHash = "EJopPs6ohpwuk31fppMqDUxUx9NYZg4w"
+//let GlobalAPIHash = "EJopPs6ohpwuk31fppMqDUxUx9NYZg4w"
 
 // Login notification keys
 let LoginSuccessNotification = Notification.Name("eacenter.loginsuccessnotification")

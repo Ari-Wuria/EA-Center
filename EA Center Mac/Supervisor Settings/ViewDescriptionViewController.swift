@@ -1,92 +1,29 @@
 //
-//  DescriptionEditorViewController.swift
+//  ViewDescriptionViewController.swift
 //  EA Center Mac
 //
-//  Created by Tom Shen on 2018/6/26.
+//  Created by Tom Shen on 2018/7/23.
 //  Copyright © 2018 Tom Shen. All rights reserved.
 //
 
 import Cocoa
 
-class DescriptionViewController: NSViewController {
-    @objc var containingTabViewController: ManagerTabViewController?
-    
-    @IBOutlet var textView: NSTextView!
-    
-    var currentEA: EnrichmentActivity?
-    var currentAttributedString: NSAttributedString?
+class ViewDescriptionViewController: NSViewController {
+    @IBOutlet var descriptionTextView: NSTextView!
+    var currentEA: EnrichmentActivity? {
+        didSet {
+            loadDescription()
+        }
+    }
     
     var downloadTask: URLSessionDownloadTask?
-    
-    @IBOutlet var editButton: NSButton!
-    
-    @IBOutlet var mainTouchBar: NSTouchBar!
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(newNotification(_:)), name: ManagerSelectionChangedNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDescription(_:)), name: ManagerDescriptionUpdatedNotification, object: nil)
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        
-        //textView.toggleRuler(nil)
-        
-        editButton.isEnabled = false
-        
-        if currentEA != nil {
-            downloadDescription()
-        }
     }
     
-    
-    @objc func newNotification(_ notification: Notification) {
-        let ea = notification.object as! EnrichmentActivity
-        currentEA = ea
-        
-        if isViewLoaded {
-            editButton.isEnabled = false
-            downloadDescription()
-        }
-    }
-    
-    @objc func updateDescription(_ notification: Notification) {
-        let dic = notification.object as! [String:Any]
-        let zipLocation = dic["zipPath"] as! String
-        let rtfdPath = dic["rtfdPath"] as! String
-        
-        // Update new RTFD
-        let content: NSAttributedString
-        do {
-            content = try NSAttributedString(url: URL(fileURLWithPath: rtfdPath), options: [:], documentAttributes: nil)
-        } catch {
-            // Unzipped file failed or file doesn't exist
-            print("Unzipped file failed or file doesn't exist")
-            return
-        }
-        self.textView.textStorage?.setAttributedString(content)
-        
-        delay(0.5) {
-            // Delete original RTFD and zip
-            do {
-                try FileManager.default.removeItem(at: URL(fileURLWithPath: zipLocation))
-                try FileManager.default.removeItem(at: URL(fileURLWithPath: rtfdPath))
-            } catch {
-                let alert = NSAlert(error: error)
-                alert.runModal()
-                return
-            }
-        }
-    }
-    /*
-    @IBAction func save(_ sender: Any) {
-        
-    }
-    */
-    func downloadDescription() {
+    func loadDescription() {
         let eaID = currentEA!.id
         let eaName = currentEA!.name
         
@@ -121,7 +58,7 @@ class DescriptionViewController: NSViewController {
             guard httpResponse?.statusCode == 200 else {
                 // Wrong response code
                 DispatchQueue.main.async {
-                    self.showErrorAlert("Can not download poster", "The server returned an invalid response code.")
+                    self.showErrorAlert("Can not load poster", "The server returned an invalid response code.")
                 }
                 return
             }
@@ -141,7 +78,7 @@ class DescriptionViewController: NSViewController {
             } catch {
                 // Unzipped file failed or file doesn't exist
                 DispatchQueue.main.async {
-                    self.showErrorAlert("Can not reading poster", "Unzipped file failed or file doesn't exist")
+                    self.showErrorAlert("Can not load poster", "Unzipped file failed or file doesn't exist")
                 }
                 return
             }
@@ -150,26 +87,14 @@ class DescriptionViewController: NSViewController {
                 // TODO: Scroll to top and update size
                 //(self.longDescTextView.enclosingScrollView as! MyScrollView).scrollToTop()
                 
-                self.textView.textStorage?.setAttributedString(content)
-                
-                self.currentAttributedString = content
+                self.descriptionTextView.textStorage?.setAttributedString(content)
                 
                 // Delete file after displaying to prevent taking up space
                 try? FileManager.default.removeItem(at: URL(fileURLWithPath: unzipLocation))
-                
-                self.editButton.isEnabled = true
             }
         }
         
         downloadTask!.resume()
-    }
-    
-    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        if segue.identifier == "EditDesc" {
-            let controller = segue.destinationController as! EditDescriptionViewController
-            controller.currentEA = currentEA
-            controller.currentText = currentAttributedString
-        }
     }
     
     func showErrorAlert(_ title: String?, _ message: String?, _ error: Error? = nil) {
@@ -187,11 +112,7 @@ class DescriptionViewController: NSViewController {
         alert.runModal()
     }
     
-    override func makeTouchBar() -> NSTouchBar? {
-        return mainTouchBar
-    }
-    
-    @IBAction func touchEdit(_ sender: Any) {
-        performSegue(withIdentifier: "EditDesc", sender: sender)
+    deinit {
+        print("deinit: \(self)")
     }
 }

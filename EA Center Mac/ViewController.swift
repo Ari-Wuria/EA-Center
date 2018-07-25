@@ -45,6 +45,7 @@ class ViewController: NSViewController {
         
         listTableView.dataSource = self
         listTableView.delegate = self
+        listTableView.selectionHighlightStyle = .none
         
         loadingSpinner.startAnimation(nil)
         
@@ -72,6 +73,8 @@ class ViewController: NSViewController {
     
     override func viewDidLayout() {
         super.viewDidLayout()
+        
+        listTableView.backgroundColor = NSColor(named: "Table Color")!
     }
 
     override var representedObject: Any? {
@@ -144,6 +147,8 @@ class ViewController: NSViewController {
         
         loggedIn = true
         updateLoginLabel()
+        
+        listTableView.reloadData()
     }
     
     @objc func loggedOut(_ notification: Notification) {
@@ -151,6 +156,8 @@ class ViewController: NSViewController {
         
         loggedIn = false
         updateLoginLabel()
+        
+        listTableView.reloadData()
     }
 
     override func makeTouchBar() -> NSTouchBar? {
@@ -219,6 +226,8 @@ class ViewController: NSViewController {
                 return
             }
             
+            //print(String(data: data!, encoding: .utf8))
+            
             let eaArray = response["allea"] as! [[String:Any]]
             for eaDictionary in eaArray {
                 let enrichmentActivity = EnrichmentActivity(dictionary: eaDictionary)
@@ -230,6 +239,7 @@ class ViewController: NSViewController {
     
     func updateJoinableEA() {
         joinableEA = allEA.filter { (ea) -> Bool in
+            // Also include closed EA just for show
             return (ea.approved == 2) || (ea.approved == 3)
         }
     }
@@ -368,6 +378,7 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
             return joinableEA.count
         }
     }
+    
     // TODO: Hide unapproved activities in server
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         if joinableEA.count == 0 {
@@ -379,8 +390,21 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         let enrichmentActivity = joinableEA[row]
         
         cell?.nameLabel.stringValue = enrichmentActivity.name
-        cell?.activityID = enrichmentActivity.id
         cell?.shortDescLabel.stringValue = enrichmentActivity.shortDescription
+        
+        cell?.ea = enrichmentActivity
+        
+        if loggedIn {
+            // TODO: Check liked
+            cell?.likeButton.isHidden = false
+            cell?.userID = currentAccount!.userID
+            
+            if enrichmentActivity.likedUserID!.contains(currentAccount!.userID) {
+                cell?.toggleLikedState(online: false)
+            }
+        } else {
+            cell?.likeButton.isHidden = true
+        }
         
         return cell
     }
@@ -419,6 +443,33 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
             return false
         }
         return true
+    }
+    
+    func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+        let view = ListRowView()
+        let rand = 1 + arc4random_uniform(6)
+        view.backgroundColorName = "Table Cell Color \(rand)"
+        return view
+    }
+}
+
+class ListRowView: NSTableRowView {
+    var backgroundColorName: String?
+    
+    override var isSelected: Bool {
+        didSet {
+            setNeedsDisplay(bounds)
+        }
+    }
+    
+    override func draw(_ dirtyRect: NSRect) {
+        if isSelected {
+            NSColor(named: "Table Selection Color")!.setFill()
+            bounds.fill()
+        } else {
+            NSColor(named: backgroundColorName!)!.setFill()
+            bounds.fill()
+        }
     }
 }
 

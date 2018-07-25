@@ -102,7 +102,7 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
             if success {
                 self.presentAlert(withTitle: "Success", message: "EA Info Updated")
             } else {
-                self.presentAlert(withTitle: "Error", message: errString!)
+                self.presentAlert(withTitle: "Failed updating EA info", message: errString!)
             }
             
             NotificationCenter.default.post(name: EAUpdatedNotification, object: ["updatedea":self.currentEA])

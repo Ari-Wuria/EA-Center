@@ -28,9 +28,6 @@ class LoginViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-        
-        emailTextField.delegate = self
-        passwordTextField.delegate = self
     }
     
     override func viewWillAppear() {
@@ -50,6 +47,16 @@ class LoginViewController: NSViewController {
         
         if finishedRegister == true {
             view.window?.makeFirstResponder(passwordTextField)
+        }
+    }
+    
+    @IBAction func emailReturn(_ sender: Any) {
+        view.window?.makeFirstResponder(passwordTextField)
+    }
+    
+    @IBAction func passwordReturn(_ sender: Any) {
+        if passwordTextField.stringValue != "" {
+            login(sender)
         }
     }
     
@@ -187,16 +194,5 @@ class LoginViewController: NSViewController {
     
     @IBAction func touchLogin(_ sender: Any) {
         login(sender)
-    }
-}
-
-extension LoginViewController: NSTextFieldDelegate {
-    override func controlTextDidEndEditing(_ obj: Notification) {
-        let textField = obj.object as? NSTextField
-        if textField == emailTextField {
-            view.window?.makeFirstResponder(passwordTextField)
-        } else if textField == passwordTextField {
-            login(textField as Any)
-        }
     }
 }

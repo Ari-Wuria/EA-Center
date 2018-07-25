@@ -111,6 +111,13 @@ class AccountSettingsViewController: NSViewController {
         return true
     }
     
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ChangePassword" {
+            let controller = segue.destinationController as! ChangePasswordViewController
+            controller.currentAccount = userAccount
+        }
+    }
+    
     @IBAction func touchUpdate(_ sender: Any) {
         updateInfo(sender)
     }

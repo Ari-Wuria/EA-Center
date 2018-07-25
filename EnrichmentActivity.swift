@@ -29,6 +29,7 @@ class EnrichmentActivity: NSObject {
     var categoryID: Int
     var startDate: Date?
     var endDate: Date?
+    var likedUserID: [Int]?
     
     override init() {
         // Initialize with default values
@@ -76,6 +77,9 @@ class EnrichmentActivity: NSObject {
         dateFormatter.locale = Locale(identifier: "en_US")
         startDate = dateFormatter.date(from: dictionary["startdate"] as? String ?? "")
         endDate = dateFormatter.date(from: dictionary["enddate"] as? String ?? "")
+        
+        let likeString = dictionary["likeduserid"] as? String ?? ""
+        likedUserID = likeString.split(separator: ",").map{Int($0)!}
         
         super.init()
     }
@@ -174,7 +178,7 @@ class EnrichmentActivity: NSObject {
     }
     
     func updateDetail(newWeekMode: Int, newTimeMode: Int, newLocation: String, newMinGrade: Int, newMaxGrade: Int, newShortDesc: String?, newProposal: String?, newDays: String, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
-        let urlString = MainServerAddress + "/updateeainfo.php"
+        let urlString = MainServerAddress + "/manageea/updateeainfo.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
@@ -244,7 +248,7 @@ class EnrichmentActivity: NSObject {
     }
     
     func updateShortDesc(newShortDesc: String, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
-        let urlString = MainServerAddress + "/updateeadesc.php"
+        let urlString = MainServerAddress + "/manageea/updateeadesc.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
@@ -297,7 +301,7 @@ class EnrichmentActivity: NSObject {
     }
     
     func updateProposal(newProposal: String, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
-        let urlString = MainServerAddress + "/updateeadesc.php"
+        let urlString = MainServerAddress + "/manageea/updateeadesc.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
@@ -388,7 +392,7 @@ class EnrichmentActivity: NSObject {
     }
     
     private func updateLeaderString(_ isSupervisor: Int, _ leaderString: String, _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
-        let urlString = MainServerAddress + "/updateealeader.php"
+        let urlString = MainServerAddress + "/manageea/updateealeader.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
@@ -437,6 +441,116 @@ class EnrichmentActivity: NSObject {
                     completion(true, nil)
                 } else {
                     let errString = responseDict["error"] as! String
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func updateApprovalState(_ newState: Int, _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let urlString = MainServerAddress + "/manageea/updateapproval.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "id=\(id)&approval=\(newState)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    self.approved = newState
+                    
+                    completion(true, nil)
+                } else {
+                    let errString = responseDict["error"] as! String
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func updateLikeState(_ newState: Bool, _ userID: Int, _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let urlString = MainServerAddress + "/manageea/setlikeea.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        let remove = newState ? 0 : 1
+        let postString = "id=\(id)&likeuserid=\(userID)&remove=\(remove)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    //self.approved = newState
+                    let newLikeState = responseDict["newlike"] as! String
+                    self.likedUserID = newLikeState.split(separator: ",").map{Int($0)!}
+                    
+                    completion(true, nil)
+                } else {
+                    let errString = responseDict["errStr"] as! String
                     completion(false, errString)
                 }
             }

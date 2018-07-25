@@ -47,14 +47,14 @@ class ProfileEditorViewController: UITableViewController {
             // Save
             let username = nameTextField.text!
             if username.count == 0 {
-                presentAlert("Error", "Please enter your name")
+                presentAlert("Can not update user info", "Please enter your name")
                 return
             }
             
             let advisory = classTextField.text!.uppercased().filter{"01234567890QWERTYUIOPASDFGHJKLZXCVBNM".contains($0)}
             classTextField.text = advisory
             if validateClass(advisory) == false {
-                presentAlert("Error", "Invalid Advisory")
+                presentAlert("Can not update user info", "Invalid Advisory")
                 return
             }
             
@@ -77,7 +77,7 @@ class ProfileEditorViewController: UITableViewController {
                         self.navigationController?.dismiss(animated: true, completion: nil)
                     }
                 } else {
-                    self.presentAlert("Can not update info", errString!)
+                    self.presentAlert("Can not update user info", errString!)
                 }
                 tableView.deselectRow(at: indexPath, animated: true)
             }
