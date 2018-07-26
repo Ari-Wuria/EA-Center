@@ -240,7 +240,7 @@ class ViewController: NSViewController {
     func updateJoinableEA() {
         joinableEA = allEA.filter { (ea) -> Bool in
             // Also include closed EA just for show
-            return (ea.approved == 2) || (ea.approved == 3)
+            return (ea.approved == 2) || (ea.approved == 3) || (ea.approved == 5)
         }
     }
     
@@ -357,6 +357,12 @@ class ViewController: NSViewController {
                     joinButton.isHidden = false
                     joinButton.isEnabled = false
                 }
+                
+                let currentDate = Date()
+                if currentDate > (selectedEA?.endDate)! {
+                    eaStatusLabel.stringValue = "This EA has ended."
+                    joinButton.isHidden = true
+                }
             }
         }
     }
@@ -406,6 +412,8 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
             cell?.likeButton.isHidden = true
         }
         
+        cell?.toolTip = tooltip(for: row)
+        
         return cell
     }
     
@@ -450,6 +458,18 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         let rand = 1 + arc4random_uniform(6)
         view.backgroundColorName = "Table Cell Color \(rand)"
         return view
+    }
+    
+    func tooltip(for row: Int) -> String {
+        let ea = joinableEA[row]
+        let leaderEmail = ea.leaderEmails
+        let leaderString: String
+        if leaderEmail.count > 1 {
+            leaderString = "\(leaderEmail[0]) + \(leaderEmail.count - 1) more"
+        } else {
+            leaderString = leaderEmail[0]
+        }
+        return "Location: \(ea.location)\nLeader email: \(leaderString)"
     }
 }
 

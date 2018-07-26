@@ -12,6 +12,17 @@ class EAListCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var shortDescriptionLabel: UILabel!
+    @IBOutlet weak var likeButton: UIButton!
+    
+    var liked: Bool = false {
+        didSet {
+            let imageName = liked ? "Closed Heart" : "Open Heart"
+            likeButton.setImage(UIImage(named: imageName), for: .normal)
+        }
+    }
+    
+    var currentEA: EnrichmentActivity?
+    var currentUser: UserAccount?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,4 +39,15 @@ class EAListCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func toggleLiked(_ sender: Any) {
+        liked = !liked
+        
+        currentEA?.updateLikeState(liked, currentUser!.userID) { (success, errStr) in
+            if success {
+                // Success
+            } else {
+                self.liked = !self.liked
+            }
+        }
+    }
 }

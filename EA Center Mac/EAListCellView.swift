@@ -18,7 +18,9 @@ class EAListCellView: NSTableCellView {
     
     var liked: Bool = false {
         didSet {
-            likeButton.title = liked ? "Unlike" : "Like"
+            //likeButton.title = liked ? "Unlike" : "Like"
+            let imageName = liked ? "Closed Heart" : "Open Heart"
+            likeButton.image = NSImage(named: imageName)!
         }
     }
     
@@ -40,7 +42,7 @@ class EAListCellView: NSTableCellView {
     
     func toggleLikedState(online toggleOnline: Bool = true) {
         liked = !liked
-        likeButton.title = liked ? "Unlike" : "Like"
+        //likeButton.title = liked ? "Unlike" : "Like"
         if toggleOnline {
             updateLikeState()
         }

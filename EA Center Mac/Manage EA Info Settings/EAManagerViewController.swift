@@ -188,6 +188,9 @@ class EAManagerViewController: NSViewController {
         performSegue(withIdentifier: "CreateEA", sender: sender)
     }
     
+    @IBAction func deleteEA(_ sender: Any) {
+    }
+    
     deinit {
         print("deinit: \(self)")
     }
@@ -282,6 +285,19 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
             approvalButton.isHidden = false
             approvalButton.isEnabled = true
             approvalButton.title = "Submit this EA for approval"
+        } else if ea.approved == 4 {
+            approvalButton.isHidden = false
+            approvalButton.isEnabled = true
+            approvalButton.title = "Rejected. Resubmit approval."
+        }
+        
+        if ea.endDate != nil {
+            let currentDate = Date()
+            if ea.endDate! < currentDate {
+                approvalButton.isHidden = false
+                approvalButton.isEnabled = true
+                approvalButton.title = "Resubmit to run again."
+            }
         }
         
         touchBar = nil

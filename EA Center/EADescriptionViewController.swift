@@ -13,6 +13,7 @@ class EADescriptionViewController: UIViewController {
         didSet {
             if isViewLoaded {
                 textView.text = ""
+                pencilPaper?.isHidden = true
                 updateEADescription()
             }
             title = ea!.name
@@ -22,6 +23,8 @@ class EADescriptionViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     
     var downloadTask: URLSessionDownloadTask?
+    
+    @IBOutlet var pencilPaper: UIImageView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,8 +41,12 @@ class EADescriptionViewController: UIViewController {
                 updateEADescription()
             }
             title = ea!.name
+            
+            pencilPaper?.isHidden = true
         } else {
-            title = "EA Center"
+            title = "EASLINK"
+            
+            pencilPaper?.isHidden = false
         }
     }
     

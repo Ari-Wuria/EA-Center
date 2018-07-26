@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let defaults: [String:Any] = ["rememberlogin":true, "loginemail":"", "biometriclock":false, "launched": false]
+        let defaults: [String:Any] = ["rememberlogin":true, "loginemail":"", "biometriclock":false, "launched": false, "passwordchanged":false]
         UserDefaults.standard.register(defaults: defaults)
         
         let firstLaunched = UserDefaults.standard.bool(forKey: "launched")

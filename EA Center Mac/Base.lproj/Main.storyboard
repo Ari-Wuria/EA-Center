@@ -793,7 +793,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="307" height="580"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
-                                            <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="Menu Color"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
                                                 <tableColumn width="304" minWidth="40" maxWidth="1000" id="7W8-V0-sSX">
@@ -948,6 +948,7 @@
                                             <connections>
                                                 <outlet property="dataSource" destination="dFO-K9-tAl" id="JfB-CY-zre"/>
                                                 <outlet property="delegate" destination="dFO-K9-tAl" id="uOd-s6-820"/>
+                                                <outlet property="menu" destination="IgA-yt-wMJ" id="1lD-10-THs"/>
                                             </connections>
                                         </tableView>
                                     </subviews>
@@ -992,12 +993,15 @@
                                 </connections>
                             </containerView>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FG2-Cc-XSB">
-                                <rect key="frame" x="585" y="545" width="205" height="32"/>
+                                <rect key="frame" x="569" y="545" width="221" height="32"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="push" title="Submit this EA for approval" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="FL5-ax-Ngb">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <segue destination="cX8-zI-jTU" kind="sheet" id="7tK-yV-vYs"/>
+                                </connections>
                             </button>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="d5Y-CD-lgf">
                                 <rect key="frame" x="18" y="13" width="16" height="16"/>
@@ -1021,6 +1025,7 @@
                         <outlet property="mainTouchBar" destination="iIV-HH-R6B" id="fwh-XN-ONs"/>
                         <outlet property="tableView" destination="AIo-ZV-XXz" id="3HP-9t-h2s"/>
                         <outlet property="titleNameLabel" destination="PJJ-35-CdX" id="FT4-la-ctO"/>
+                        <segue destination="3ST-hG-J3e" kind="sheet" id="0s4-JP-FBX"/>
                     </connections>
                 </viewController>
                 <customObject id="u9Q-ez-QCd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1046,6 +1051,22 @@
                         </touchBarItem>
                     </touchBarItems>
                 </touchBar>
+                <menu id="IgA-yt-wMJ">
+                    <items>
+                        <menuItem title="Delete This EA" id="nVc-t3-2RI">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="deleteEA:" target="dFO-K9-tAl" id="bct-Xr-rXl"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Maybe I'll put something here" hidden="YES" id="tuI-Vw-yeF">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Maybe I'll put something here" hidden="YES" id="ecH-g2-OOB">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="-689" y="1023"/>
         </scene>
@@ -1533,6 +1554,73 @@
                 </tabViewController>
             </objects>
             <point key="canvasLocation" x="-680" y="1653"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="eYs-h1-eSb">
+            <objects>
+                <viewController id="cX8-zI-jTU" sceneMemberID="viewController">
+                    <view key="view" id="E4M-td-Vm0">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="252"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="gKV-K7-yNm" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-197" y="1800"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="TAP-Uh-zio">
+            <objects>
+                <viewController id="3ST-hG-J3e" sceneMemberID="viewController">
+                    <view key="view" id="1NM-LT-cs0">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="109"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nC3-gb-nRv">
+                                <rect key="frame" x="18" y="71" width="414" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Are you sure you want to delete this EA? You can't undo this action." id="9hL-pU-AEt">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pf9-K4-ce8">
+                                <rect key="frame" x="20" y="41" width="410" height="22"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="UCy-i1-Lez">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lPD-aq-UuM">
+                                <rect key="frame" x="186" y="5" width="80" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xbN-9G-PBB">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="tuJ-l0-CC3">
+                                <rect key="frame" x="414" y="12" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="twF-qq-VJo">
+                                <rect key="frame" x="20" y="12" width="122" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Press esc to cancel" id="jZe-On-b3g">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="DHC-1N-uvv" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="545" y="1859.5"/>
         </scene>
         <!--Main Info-->
         <scene sceneID="sdC-xY-Rsy">
@@ -2212,6 +2300,9 @@
                                                         <segment label="12" width="50" tag="6"/>
                                                     </segments>
                                                 </segmentedCell>
+                                                <connections>
+                                                    <action selector="gradeSelectorChanged:" target="20c-tH-8cc" id="BTT-ro-SY0"/>
+                                                </connections>
                                             </segmentedControl>
                                         </viewController>
                                         <size key="designTimeSize" width="368" height="30"/>
@@ -2775,7 +2866,7 @@
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="EA Center" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" fullSizeContentView="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" texturedBackground="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="336" y="294" width="950" height="700"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -2865,28 +2956,32 @@
                                                             <rect key="frame" x="1" y="1" width="303" height="103"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <stackView identifier="StackView" distribution="fill" orientation="vertical" alignment="leading" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nDf-FW-BYx">
-                                                                    <rect key="frame" x="13" y="13" width="277" height="77"/>
+                                                                <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="eb3-df-Q3h">
+                                                                    <rect key="frame" x="12" y="12" width="279" height="79"/>
                                                                     <subviews>
-                                                                        <stackView distribution="equalSpacing" orientation="horizontal" alignment="centerY" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="Egh-Ts-azx">
-                                                                            <rect key="frame" x="0.0" y="48" width="277" height="29"/>
+                                                                        <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="iE8-x7-OlV">
+                                                                            <rect key="frame" x="0.0" y="52" width="279" height="27"/>
                                                                             <subviews>
                                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zzc-uH-Y1J">
-                                                                                    <rect key="frame" x="-2" y="1" width="98" height="27"/>
+                                                                                    <rect key="frame" x="-2" y="0.0" width="248" height="27"/>
                                                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="EA Name" usesSingleLineMode="YES" id="3z3-MO-41X">
                                                                                         <font key="font" metaFont="systemBold" size="22"/>
                                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
                                                                                 </textField>
-                                                                                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="afA-lK-bLq">
-                                                                                    <rect key="frame" x="218" y="-3" width="65" height="32"/>
-                                                                                    <buttonCell key="cell" type="push" title="Like" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="XSF-29-Fz3">
+                                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="cwZ-AQ-qFY">
+                                                                                    <rect key="frame" x="252" y="0.0" width="27" height="27"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="27" id="D0B-pI-HBr"/>
+                                                                                        <constraint firstAttribute="height" constant="27" id="Ofz-ne-DHe"/>
+                                                                                    </constraints>
+                                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Open Heart" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="17h-15-PZ7">
                                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                                         <font key="font" metaFont="system"/>
                                                                                     </buttonCell>
                                                                                     <connections>
-                                                                                        <action selector="likeActivity:" target="skk-E4-8ww" id="LpV-mL-ZPe"/>
+                                                                                        <action selector="likeActivity:" target="skk-E4-8ww" id="fZO-ra-Z0q"/>
                                                                                     </connections>
                                                                                 </button>
                                                                             </subviews>
@@ -2900,7 +2995,7 @@
                                                                             </customSpacing>
                                                                         </stackView>
                                                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XYE-sP-jBI">
-                                                                            <rect key="frame" x="-2" y="24" width="80" height="18"/>
+                                                                            <rect key="frame" x="-2" y="26" width="80" height="18"/>
                                                                             <textFieldCell key="cell" lineBreakMode="clipping" title="EA Category" usesSingleLineMode="YES" id="aXN-Es-wgy">
                                                                                 <font key="font" metaFont="system"/>
                                                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -2917,7 +3012,8 @@
                                                                         </textField>
                                                                     </subviews>
                                                                     <constraints>
-                                                                        <constraint firstItem="Egh-Ts-azx" firstAttribute="centerX" secondItem="nDf-FW-BYx" secondAttribute="centerX" id="5rv-xl-hgx"/>
+                                                                        <constraint firstAttribute="trailing" secondItem="iE8-x7-OlV" secondAttribute="trailing" id="6qC-AI-WoS"/>
+                                                                        <constraint firstItem="iE8-x7-OlV" firstAttribute="leading" secondItem="eb3-df-Q3h" secondAttribute="leading" id="Zgy-oA-AW4"/>
                                                                     </constraints>
                                                                     <visibilityPriorities>
                                                                         <integer value="1000"/>
@@ -2932,14 +3028,14 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="nDf-FW-BYx" firstAttribute="top" secondItem="skk-E4-8ww" secondAttribute="top" constant="13" id="6QC-ct-WsF"/>
-                                                                <constraint firstAttribute="bottom" secondItem="nDf-FW-BYx" secondAttribute="bottom" constant="13" id="DsI-aq-6X7"/>
-                                                                <constraint firstItem="nDf-FW-BYx" firstAttribute="leading" secondItem="skk-E4-8ww" secondAttribute="leading" constant="13" id="JgX-c5-aWd"/>
-                                                                <constraint firstAttribute="trailing" secondItem="nDf-FW-BYx" secondAttribute="trailing" constant="13" id="KfC-GH-EUY"/>
+                                                                <constraint firstAttribute="bottom" secondItem="eb3-df-Q3h" secondAttribute="bottom" constant="12" id="8nq-Ne-aak"/>
+                                                                <constraint firstItem="eb3-df-Q3h" firstAttribute="leading" secondItem="skk-E4-8ww" secondAttribute="leading" constant="12" id="IN9-ks-yma"/>
+                                                                <constraint firstItem="eb3-df-Q3h" firstAttribute="top" secondItem="skk-E4-8ww" secondAttribute="top" constant="12" id="Ihx-9g-N9V"/>
+                                                                <constraint firstAttribute="trailing" secondItem="eb3-df-Q3h" secondAttribute="trailing" constant="12" id="uCk-TR-07U"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="categoryLabel" destination="XYE-sP-jBI" id="9QL-nu-Lmb"/>
-                                                                <outlet property="likeButton" destination="afA-lK-bLq" id="Tej-gu-7Ex"/>
+                                                                <outlet property="likeButton" destination="cwZ-AQ-qFY" id="ePA-xB-Des"/>
                                                                 <outlet property="nameLabel" destination="zzc-uH-Y1J" id="lGu-G3-Zix"/>
                                                                 <outlet property="shortDescLabel" destination="atd-N3-NUr" id="vgx-am-HT3"/>
                                                             </connections>
@@ -3130,6 +3226,19 @@
                         </touchBarItem>
                     </touchBarItems>
                 </touchBar>
+                <menu id="1vD-Ca-onI">
+                    <items>
+                        <menuItem title="Item 1" id="vyl-JF-EKy">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Item 2" id="g7z-Z7-o9s">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                        <menuItem title="Item 3" id="alC-MW-WOs">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                        </menuItem>
+                    </items>
+                </menu>
             </objects>
             <point key="canvasLocation" x="238" y="1097"/>
         </scene>
@@ -3194,6 +3303,7 @@
         <image name="Cog" width="26.5" height="26.5"/>
         <image name="Computer" width="431.5" height="423.5"/>
         <image name="NSInfo" width="128" height="128"/>
+        <image name="Open Heart" width="138" height="122"/>
         <image name="Pencil Paper" width="206.5" height="207"/>
         <image name="User" width="27.5" height="29.5"/>
         <image name="User White" width="27.5" height="29.5"/>

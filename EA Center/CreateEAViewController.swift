@@ -31,6 +31,8 @@ class CreateEAViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         tableView.backgroundColor = UIColor(named: "Menu Color")
+        
+        nameTextField.delegate = self
     }
 
     @IBAction func done(_ sender: Any) {
@@ -77,4 +79,11 @@ class CreateEAViewController: UITableViewController {
     }
     */
 
+}
+
+extension CreateEAViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

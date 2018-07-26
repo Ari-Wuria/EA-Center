@@ -62,6 +62,17 @@ class ChangePasswordViewController: NSViewController {
             if success {
                 self.statusLabel.isHidden = false
                 self.statusLabel.stringValue = "Success. Dismissing."
+                
+                let passwordData = newPassEnc.data(using: .utf8)!
+                let _ = KeychainHelper.deleteKeychain(account: self.currentAccount!.userEmail)
+                let success = KeychainHelper.saveKeychain(account: self.currentAccount!.userEmail, password: passwordData)
+                if success == true {
+                    //UserDefaults.standard.set(email, forKey: "LoginEmail")
+                    // Save Password Good :)
+                } else {
+                    UserDefaults.standard.set(false, forKey: "RememberLogin")
+                }
+                
                 delay(1) {
                     self.dismiss(nil)
                 }

@@ -27,6 +27,8 @@ class EAListViewController: UITableViewController {
     var splitViewDetail: EADescriptionViewController?
     
     var splitViewControllingDelegate: EAListSplitViewControlling?
+    
+    var currentAccount: UserAccount?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +53,25 @@ class EAListViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: EAUpdatedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(eaCreated(_:)), name: EACreatedNotification, object: nil)
         
+        NotificationCenter.default.addObserver(self, selector: #selector(login(_:)), name: LoginSuccessNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(logout(_:)), name: LogoutNotification, object: nil)
+        
+        
         //NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: UIAccessibility.invertColorsStatusDidChangeNotification, object: nil)
+    }
+    
+    @objc func login(_ notification: Notification) {
+        let object = notification.object as! [String:Any]
+        let userAccount = object["account"]
+        currentAccount = userAccount as! UserAccount
+        
+        tableView.reloadData()
+    }
+    
+    @objc func logout(_ notification: Notification) {
+        currentAccount = nil
+        
+        tableView.reloadData()
     }
     
     @objc func eaUpdated(_ notification: Notification) {
@@ -126,6 +146,18 @@ class EAListViewController: UITableViewController {
             cell.nameLabel.text = ea.name
             cell.shortDescriptionLabel.text = ea.shortDescription
             cell.shortDescriptionLabel.sizeToFit()
+            
+            cell.currentEA = ea
+            
+            if currentAccount == nil {
+                cell.likeButton.isHidden = true
+                cell.currentUser = nil
+            } else {
+                cell.likeButton.isHidden = false
+                
+                cell.liked = ea.likedUserID!.contains(currentAccount!.userID)
+                cell.currentUser = currentAccount
+            }
             
             // Give it a random color for now
             // TODO: Set color based on category

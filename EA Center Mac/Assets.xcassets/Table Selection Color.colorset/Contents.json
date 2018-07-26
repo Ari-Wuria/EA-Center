@@ -15,6 +15,24 @@
           "green" : "152"
         }
       }
+    },
+    {
+      "idiom" : "mac",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "color" : {
+        "color-space" : "srgb",
+        "components" : {
+          "red" : "0.051",
+          "alpha" : "1.000",
+          "blue" : "0.774",
+          "green" : "0.369"
+        }
+      }
     }
   ]
 }

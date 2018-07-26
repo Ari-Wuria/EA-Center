@@ -43,7 +43,7 @@ class ProfileEditorViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 1 && indexPath.row == 0 {
+        if indexPath.section == 0 && indexPath.row == 3 {
             // Save
             let username = nameTextField.text!
             if username.count == 0 {
@@ -128,14 +128,17 @@ class ProfileEditorViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
+        
+        if segue.identifier == "ChangePass" {
+            let dest = segue.destination as! ChangePasswordViewController
+            dest.currentAccount = userAccount
+        }
     }
-    */
 
 }

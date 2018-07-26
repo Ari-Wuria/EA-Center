@@ -24,6 +24,8 @@ class CoordinatorSettingsViewController: NSViewController {
     var allEA = [EnrichmentActivity]()
     var needApprovalEA = [EnrichmentActivity]()
     
+    @IBOutlet weak var letters: NSImageView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -31,8 +33,6 @@ class CoordinatorSettingsViewController: NSViewController {
         containerView.isHidden = true
         
         NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: EAUpdatedNotification, object: nil)
-        
-        downloadEAList()
     }
     
     override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
@@ -45,6 +45,11 @@ class CoordinatorSettingsViewController: NSViewController {
     @objc func eaUpdated(_ notification: Notification) {
         updateNeedApproval()
         tableView.reloadData()
+    }
+    
+    override func viewWillAppear() {
+        allEA = []
+        downloadEAList()
     }
     
     func downloadEAList() {
@@ -127,6 +132,11 @@ class CoordinatorSettingsViewController: NSViewController {
         }
     }
     
+    @IBAction func reloadList(_ sender: Any) {
+        allEA = []
+        downloadEAList()
+    }
+    
     deinit {
         print("deinit: \(self)")
     }
@@ -196,10 +206,12 @@ extension CoordinatorSettingsViewController: NSTableViewDataSource, NSTableViewD
         if tableView.selectedRow == -1 {
             containerView.isHidden = true
             titleLabel.stringValue = "Coordinator Manager"
+            letters.isHidden = false
             return
         }
         
         containerView.isHidden = false
+        letters.isHidden = true
         
         let ea = needApprovalEA[tableView.selectedRow]
         titleLabel.stringValue = ea.name

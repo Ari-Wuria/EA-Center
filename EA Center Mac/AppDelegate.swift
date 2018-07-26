@@ -61,6 +61,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                         }
                     }
                 } else {
+                    if errCode == 1 {
+                        let alert = NSAlert()
+                        alert.messageText = "Password change detected!"
+                        alert.informativeText = "Please login manually."
+                        alert.runModal()
+                        
+                        self.loginStatusMenu.title = "Password Changed"
+                        self.loginMenu.isEnabled = true
+                        self.loginMenu.title = "Login"
+                        return
+                    }
+                    
                     self.loginStatusMenu.title = "Auto login failed"
                     self.loginMenu.isEnabled = true
                     self.loginMenu.title = "Login"

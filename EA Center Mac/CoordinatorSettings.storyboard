@@ -210,6 +210,11 @@
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="sIc-Nc-cRu">
                                 <rect key="frame" x="10" y="9" width="16" height="16"/>
                             </progressIndicator>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u6s-19-zbV">
+                                <rect key="frame" x="396" y="159" width="181" height="181"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Letters" id="MKJ-hz-GBE"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sIc-Nc-cRu" firstAttribute="leading" secondItem="qU2-bS-3vc" secondAttribute="leading" constant="10" id="LWz-s9-ihN"/>
@@ -218,6 +223,7 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="4aZ-ZH-Zu8" id="bjO-p0-sJ0"/>
+                        <outlet property="letters" destination="u6s-19-zbV" id="G8P-qS-2Ww"/>
                         <outlet property="spinner" destination="sIc-Nc-cRu" id="32a-Sn-m2H"/>
                         <outlet property="tableView" destination="Eoy-u5-yMf" id="ekS-Hw-TJO"/>
                         <outlet property="titleLabel" destination="6U6-s3-POK" id="bmu-Df-fX0"/>
@@ -325,7 +331,7 @@
                                                 </textField>
                                             </gridCell>
                                             <gridCell row="8wP-OH-yRc" column="Kf8-K0-b54" xPlacement="trailing" id="POT-LT-asz">
-                                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H47-Dd-aEP">
+                                                <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H47-Dd-aEP">
                                                     <rect key="frame" x="359" y="96" width="50" height="24"/>
                                                     <textFieldCell key="cell" lineBreakMode="truncatingMiddle" title="Label" usesSingleLineMode="YES" id="QGU-iW-1TK">
                                                         <font key="font" metaFont="system" size="20"/>
@@ -532,6 +538,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Letters" width="146.5" height="166"/>
         <namedColor name="Manage Background">
             <color red="0.84705882352941175" green="0.94117647058823528" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

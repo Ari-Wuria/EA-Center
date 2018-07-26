@@ -38,7 +38,8 @@ class MeViewController: UITableViewController {
         super.init(coder: aDecoder)
         
         let rememberLogin = UserDefaults.standard.bool(forKey: "rememberlogin")
-        if rememberLogin {
+        let passwordChanged = UserDefaults.standard.bool(forKey: "passwordchanged")
+        if rememberLogin && !passwordChanged {
             // Retrive email from keyhain
             let email = UserDefaults.standard.object(forKey: "loginemail") as? String
             if let email = email, email != "" {
@@ -229,6 +230,8 @@ class MeViewController: UITableViewController {
                             self.updateLoginUI(account: account!)
                         }
                         
+                        UserDefaults.standard.set(false, forKey: "passwordchanged")
+                        
                         NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":resultAccount])
                         
                         let rememberLogin = UserDefaults.standard.bool(forKey: "rememberlogin")
@@ -273,10 +276,10 @@ class MeViewController: UITableViewController {
                     if automatic {
                         if errCode == 1 {
                             self.presentAlert("Password Change Detected", "Please login manually.")
+                            UserDefaults.standard.set(true, forKey: "passwordchanged")
                         } else {
                             self.presentAlert("Can not auto login", "Please login manually.")
                         }
-                        
                     } else {
                         self.presentAlert("Invalid Username or Password", "Please try again.")
                     }
