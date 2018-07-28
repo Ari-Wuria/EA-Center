@@ -47,6 +47,7 @@ class EnrichmentActivity: NSObject {
         supervisorEmails = []
         approved = 0
         categoryID = 0
+        likedUserID = []
         //startDate = Date()
         //endDate = Date()
         super.init()
@@ -392,6 +393,12 @@ class EnrichmentActivity: NSObject {
     }
     
     private func updateLeaderString(_ isSupervisor: Int, _ leaderString: String, _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        if leaderString.count > 1000 {
+            // It shouldn't happen though...
+            completion(false, "Too many leaders!")
+            return
+        }
+        
         let urlString = MainServerAddress + "/manageea/updateealeader.php"
         let url = URL(string: urlString)!
         
@@ -551,6 +558,58 @@ class EnrichmentActivity: NSObject {
                     completion(true, nil)
                 } else {
                     let errString = responseDict["errStr"] as! String
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func delete(_ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let urlString = MainServerAddress + "/manageea/delete.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+
+        let postString = "id=\(id)&deleteea"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    completion(true, nil)
+                } else {
+                    let errString = responseDict["error"] as! String
                     completion(false, errString)
                 }
             }

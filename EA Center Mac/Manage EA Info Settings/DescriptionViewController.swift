@@ -121,6 +121,11 @@ class DescriptionViewController: NSViewController {
             guard httpResponse?.statusCode == 200 else {
                 // Wrong response code
                 DispatchQueue.main.async {
+                    if httpResponse?.statusCode == 404 {
+                        self.showErrorAlert("Error", "Thie EA no longer exists.")
+                        NotificationCenter.default.post(name: EADeletedNotification, object: self.currentEA!)
+                    }
+                    
                     self.showErrorAlert("Can not download poster", "The server returned an invalid response code.")
                 }
                 return

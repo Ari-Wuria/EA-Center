@@ -123,15 +123,13 @@ class RegisterViewController: NSViewController {
     func getAccountType(from email: String) -> Int {
         // Only student and teachers can be registered
         // Other types of accounts must be created directly from database
-        if email.hasSuffix("@mybcis.cn") {
-            // Student
+        let emailPrefix = String(email.prefix(10))
+        if emailPrefix.isNumber {
             return 4
-        }
-        if email.hasSuffix("@bcis.cn") {
-            // Teachers
+        } else {
             return 3
         }
-        return -1
+        //return -1
     }
     
     func sendRegistrationData(_ email: String, _ encryptedPassword: String, _ accountType: Int) {

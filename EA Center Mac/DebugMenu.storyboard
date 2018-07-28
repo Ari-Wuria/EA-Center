@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="3z7-aO-VPy">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14306.4"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="iiM-rD-6a0">
+            <objects>
+                <windowController id="3z7-aO-VPy" sceneMemberID="viewController">
+                    <window key="window" title="Debug" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gqp-nI-RvB">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="3z7-aO-VPy" id="m5Y-il-dk5"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="7m5-1D-lLc" kind="relationship" relationship="window.shadowedContentViewController" id="aJS-TA-gwF"/>
+                    </connections>
+                </windowController>
+                <customObject id="jmd-9e-ByX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="85" y="142"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="bnb-y5-kVr">
+            <objects>
+                <viewController id="7m5-1D-lLc" sceneMemberID="viewController">
+                    <view key="view" id="fTL-wZ-ej8">
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k4K-tB-tz2">
+                                <rect key="frame" x="161" y="126" width="158" height="18"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="This is the debug window" id="k2U-WR-22n">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="k4K-tB-tz2" firstAttribute="centerX" secondItem="fTL-wZ-ej8" secondAttribute="centerX" id="ABj-Ec-4N4"/>
+                            <constraint firstItem="k4K-tB-tz2" firstAttribute="centerY" secondItem="fTL-wZ-ej8" secondAttribute="centerY" id="Ajf-fq-s9F"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="yIn-4V-qTq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="85" y="610"/>
+        </scene>
+    </scenes>
+</document>

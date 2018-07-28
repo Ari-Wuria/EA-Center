@@ -23,8 +23,11 @@ class MainInfoEditorViewController: NSViewController {
     @IBOutlet weak var thursdayCheckbox: NSButton!
     @IBOutlet weak var fridayCheckbox: NSButton!
     
-    @IBOutlet weak var shortDescTextView: NSTextView!
-    @IBOutlet weak var proposalTextView: NSTextView!
+    @IBOutlet weak var shortDescTextView: NSTextField!
+    @IBOutlet weak var proposalTextView: NSTextField!
+    
+    @IBOutlet weak var shortDescWordCount: NSTextField!
+    @IBOutlet weak var proposalWordCount: NSTextField!
     
     @IBOutlet var mainTouchBar: NSTouchBar!
     @IBOutlet weak var touchWeekPopover: NSPopoverTouchBarItem!
@@ -56,10 +59,10 @@ class MainInfoEditorViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(newNotification(_:)), name: ManagerSelectionChangedNotification, object: nil)
         
-        //shortDescTextView.isHorizontallyResizable = false
-        //shortDescTextView.textContainer?.widthTracksTextView = true
+        shortDescTextView.delegate = self
+        proposalTextView.delegate = self
     }
-    
+    /*
     override func setValue(_ value: Any?, forKey key: String) {
         if key == "containingTabViewController" {
             containingTabViewController = value as? ManagerTabViewController
@@ -68,7 +71,7 @@ class MainInfoEditorViewController: NSViewController {
         
         super.setValue(value, forKey: key)
     }
-    
+    */
     @objc func newNotification(_ notification: Notification) {
         let ea = notification.object as! EnrichmentActivity
         currentEA = ea
@@ -79,8 +82,8 @@ class MainInfoEditorViewController: NSViewController {
         minGradeSelector.selectItem(at: ea.minGrade - 6)
         maxGradeSelector.selectItem(at: ea.maxGrade - 6)
         
-        shortDescTextView.string = ea.shortDescription
-        proposalTextView.string = ea.proposal
+        shortDescTextView.stringValue = ea.shortDescription
+        proposalTextView.stringValue = ea.proposal
         
         mondayCheckbox.state = ea.days.contains(1) ? .on : .off
         tuesdayCheckbox.state = ea.days.contains(2) ? .on : .off
@@ -109,6 +112,9 @@ class MainInfoEditorViewController: NSViewController {
         touchDaysPopover.dismissPopover(nil)
         touchMinGradePopover.dismissPopover(nil)
         touchMaxGradePopover.dismissPopover(nil)
+        
+        updateShortDescWordCount()
+        updateProposalWordCount()
     }
     
     @IBAction func saveChanges(_ sender: Any) {
@@ -117,12 +123,28 @@ class MainInfoEditorViewController: NSViewController {
         let location = locationTextField.stringValue
         let minGrade = minGradeSelector.indexOfSelectedItem + 6
         let maxGrade = maxGradeSelector.indexOfSelectedItem + 6
-        let shortDesc = shortDescTextView.string
-        let proposal = proposalTextView.string
+        let shortDesc = shortDescTextView.stringValue
+        let proposal = proposalTextView.stringValue
         
-        // Start by checking min and max grade
+        // Start by checking word counts and character count
+        if shortDesc.words.count > 150 {
+            showAlert(withTitle: "Short description too long.")
+            return
+        }
+        
+        if proposal.words.count > 100 {
+            showAlert(withTitle: "Proposal too long.")
+            return
+        }
+        
+        if shortDesc.count > 1000 || proposal.count > 1000 {
+            showAlert(withTitle: "Short description and proposal can not have more than 1000 characters.")
+            return
+        }
+        
+        // Check min and max grade
         if minGrade > maxGrade {
-            showAlert(withTitle: "Maximum grade has to be greater than minimum grade")
+            showAlert(withTitle: "Maximum grade has to be greater than minimum grade.")
             return
         }
         
@@ -171,6 +193,10 @@ class MainInfoEditorViewController: NSViewController {
         currentEA!.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: !sameShortDesc ? shortDesc : nil, newProposal: !sameProposal ? proposal : nil, newDays: days) { (success, errString) in
             if !success {
                 self.showAlert(withTitle: "Error Updating Info", message: errString!)
+                
+                if errString! == "This EA no longer exists." {
+                    NotificationCenter.default.post(name: EADeletedNotification, object: self.currentEA!)
+                }
             } else {
                 self.showAlert(withTitle: "EA Info Updated! 😀")
                 NotificationCenter.default.post(name: EAUpdatedNotification, object: ["id":self.currentEA!.id, "updatedEA":self.currentEA!])
@@ -193,7 +219,7 @@ class MainInfoEditorViewController: NSViewController {
     override func mouseDown(with event: NSEvent) {
         let location = event.locationInWindow
         let viewAtLocation = view.hitTest(location)
-        if viewAtLocation != shortDescTextView.enclosingScrollView && viewAtLocation != proposalTextView.enclosingScrollView {
+        if viewAtLocation != shortDescTextView && viewAtLocation != proposalTextView {
             // Resign first responder of text view to revive touch bar
             dismissTextView()
         }
@@ -286,5 +312,36 @@ class MainInfoEditorViewController: NSViewController {
     
     deinit {
         print("deinit: \(self)")
+    }
+    
+    func updateShortDescWordCount() {
+        let wordsCount = shortDescTextView.stringValue.words.count
+        shortDescWordCount.stringValue = "\(wordsCount) words out of 150 words."
+        if wordsCount > 150 {
+            shortDescWordCount.textColor = NSColor.red
+        } else {
+            shortDescWordCount.textColor = NSColor.labelColor
+        }
+    }
+    
+    func updateProposalWordCount() {
+        let wordsCount = proposalTextView.stringValue.words.count
+        proposalWordCount.stringValue = "\(wordsCount) words out of 100 words."
+        if wordsCount > 100 {
+            proposalWordCount.textColor = NSColor.red
+        } else {
+            proposalWordCount.textColor = NSColor.labelColor
+        }
+    }
+}
+
+extension MainInfoEditorViewController: NSTextFieldDelegate {
+    override func controlTextDidChange(_ obj: Notification) {
+        let textField = obj.object as! NSTextField
+        if textField == shortDescTextView {
+            updateShortDescWordCount()
+        } else if textField == proposalTextView {
+            updateProposalWordCount()
+        }
     }
 }

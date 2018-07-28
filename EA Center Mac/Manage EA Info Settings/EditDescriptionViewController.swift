@@ -8,6 +8,7 @@
 
 import Cocoa
 
+// TODO: Make the freakin text view not crash!
 class EditDescriptionViewController: NSViewController {
     @IBOutlet var textView: NSTextView!
     @IBOutlet var spinner: NSProgressIndicator!
@@ -199,7 +200,7 @@ class EditDescriptionViewController: NSViewController {
     
     override func viewDidDisappear() {
         removeESCEvent()
-        textView.string = ""
+        //textView.string = ""
     }
     
     deinit {

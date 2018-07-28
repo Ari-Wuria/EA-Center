@@ -214,6 +214,10 @@ class AddLeaderViewController: NSViewController {
             } else {
                 self.showAlert("Error", errString!)
                 self.spinner.stopAnimation(nil)
+                
+                if errString! == "This EA no longer exists." {
+                    NotificationCenter.default.post(name: EADeletedNotification, object: self.currentEA!)
+                }
             }
         })
     }

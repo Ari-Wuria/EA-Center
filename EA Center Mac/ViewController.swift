@@ -25,6 +25,10 @@ class ViewController: NSViewController {
     
     @IBOutlet weak var pencilPaper: NSImageView!
     
+    @IBOutlet var debugGestureRecognizer: NSClickGestureRecognizer!
+    var debugWindowVisible = false
+    var debugWindow: NSWindowController?
+    
     var loggedIn: Bool = false
     
     var allEA: [EnrichmentActivity] = []
@@ -37,7 +41,15 @@ class ViewController: NSViewController {
     var loading = true
     
     var selectedEA: EnrichmentActivity?
-
+    
+    var searching = false
+    @IBOutlet weak var searchField: NSSearchField!
+    var filteredContent = [EnrichmentActivity]()
+    
+    // 1: Popularity 2: Name Forward 3: Name Backward
+    var filterMode = 1
+    @IBOutlet weak var filterPopup: NSPopUpButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -66,9 +78,9 @@ class ViewController: NSViewController {
         
         statusVisualEffectView.isHidden = true
         
-        //view.wantsLayer = true
-        //view.layer = CALayer()
-        //view.layer?.backgroundColor = NSColor(named: "Main Background")?.cgColor
+        pencilPaper.addGestureRecognizer(debugGestureRecognizer)
+        
+        searchField.delegate = self
     }
     
     override func viewDidLayout() {
@@ -242,6 +254,16 @@ class ViewController: NSViewController {
             // Also include closed EA just for show
             return (ea.approved == 2) || (ea.approved == 3) || (ea.approved == 5)
         }
+        joinableEA.sort { (first, second) -> Bool in
+            if filterMode == 1 {
+                return first.likedUserID!.count > second.likedUserID!.count
+            } else if filterMode == 2 {
+                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+            } else if filterMode == 3 {
+                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedDescending
+            }
+            return false
+        }
     }
     
     func updateEADescription(_ row: Int) {
@@ -279,7 +301,7 @@ class ViewController: NSViewController {
             guard error == nil else {
                 // Can't download with an error
                 DispatchQueue.main.async {
-                    if (error as! URLError).code == URLError.cancelled {
+                    if (error as! URLError).code != URLError.cancelled {
                         let alert = NSAlert(error: error!)
                         alert.runModal()
                     }
@@ -356,6 +378,9 @@ class ViewController: NSViewController {
                     eaStatusLabel.stringValue = "This EA is closed"
                     joinButton.isHidden = false
                     joinButton.isEnabled = false
+                } else if selectedEA?.approved == 5 {
+                    eaStatusLabel.stringValue = "Waiting for approval"
+                    joinButton.isHidden = true
                 }
                 
                 let currentDate = Date()
@@ -365,6 +390,46 @@ class ViewController: NSViewController {
                 }
             }
         }
+    }
+    
+    @IBAction func changeSortMode(_ sender: Any) {
+        let popup = sender as! NSPopUpButton
+        filterMode = popup.indexOfSelectedItem + 1
+        
+        if searching {
+            sortFilteredContent()
+        }
+        
+        updateJoinableEA()
+        listTableView.reloadData()
+    }
+    
+    @IBAction func reloadList(_ sender: Any) {
+        allEA = []
+        longDescTextView.string = ""
+        listTableView.reloadData()
+        statusVisualEffectView.isHidden = true
+        downloadEAList()
+    }
+    
+    @IBAction func showDebugWindow(_ sender: Any) {
+        if currentAccount?.accountType == 1 && debugWindowVisible == false {
+            let storyboard = NSStoryboard(name: "DebugMenu", bundle: .main)
+            let window = storyboard.instantiateInitialController() as! NSWindowController
+            window.showWindow(sender)
+            debugWindowVisible = true
+            debugWindow = window
+            
+            let closeButton = debugWindow?.window?.standardWindowButton(.closeButton)
+            closeButton?.target = self
+            closeButton?.action = #selector(debugWindowClosed(_:))
+        }
+    }
+    
+    @objc func debugWindowClosed(_ sender: Any) {
+        debugWindow?.close()
+        
+        debugWindowVisible = false
     }
     
     deinit {
@@ -380,6 +445,8 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
             return 0
         } else if joinableEA.count == 0 {
             return 1
+        } else if searching && searchField.stringValue != "" {
+            return filteredContent.count
         } else {
             return joinableEA.count
         }
@@ -393,7 +460,13 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         
         let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "CellIdentifier"), owner: nil) as? EAListCellView
         
-        let enrichmentActivity = joinableEA[row]
+        //let enrichmentActivity = joinableEA[row]
+        let enrichmentActivity: EnrichmentActivity
+        if searching && searchField.stringValue != "" {
+            enrichmentActivity = filteredContent[row]
+        } else {
+            enrichmentActivity = joinableEA[row]
+        }
         
         cell?.nameLabel.stringValue = enrichmentActivity.name
         cell?.shortDescLabel.stringValue = enrichmentActivity.shortDescription
@@ -402,14 +475,18 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         
         if loggedIn {
             // TODO: Check liked
-            cell?.likeButton.isHidden = false
+            cell?.likeButtonContainer.isHidden = false
             cell?.userID = currentAccount!.userID
             
             if enrichmentActivity.likedUserID!.contains(currentAccount!.userID) {
-                cell?.toggleLikedState(online: false)
+                cell?.liked = true
+            } else {
+                cell?.liked = false
             }
+            
+            cell?.likeCountLabel.stringValue = "\(enrichmentActivity.likedUserID!.count)"
         } else {
-            cell?.likeButton.isHidden = true
+            cell?.likeButtonContainer.isHidden = true
         }
         
         cell?.toolTip = tooltip(for: row)
@@ -437,14 +514,6 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         selectedEA = joinableEA[row]
         updateLoginLabel()
     }
-    
-    @IBAction func reloadList(_ sender: Any) {
-        allEA = []
-        longDescTextView.string = ""
-        listTableView.reloadData()
-        statusVisualEffectView.isHidden = true
-        downloadEAList()
-    }
  
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         if joinableEA.count == 0 {
@@ -454,10 +523,14 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        let view = ListRowView()
-        let rand = 1 + arc4random_uniform(6)
-        view.backgroundColorName = "Table Cell Color \(rand)"
-        return view
+        if joinableEA.count > 0 {
+            let view = ListRowView()
+            let rand = 1 + arc4random_uniform(7)
+            view.backgroundColorName = "Table Cell Color \(rand)"
+            return view
+        } else {
+            return nil
+        }
     }
     
     func tooltip(for row: Int) -> String {
@@ -470,6 +543,44 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
             leaderString = leaderEmail[0]
         }
         return "Location: \(ea.location)\nLeader email: \(leaderString)"
+    }
+}
+
+// MARK: Search Extension
+extension ViewController: NSSearchFieldDelegate {
+    func searchFieldDidStartSearching(_ sender: NSSearchField) {
+        searching = true
+    }
+    
+    func searchFieldDidEndSearching(_ sender: NSSearchField) {
+        searching = false
+        listTableView.reloadData()
+    }
+    
+    override func controlTextDidChange(_ obj: Notification) {
+        if searchField.stringValue != "" {
+            searching = true
+            filteredContent = joinableEA.filter { (ea) -> Bool in
+                return ea.name.contains(searchField.stringValue)
+            }
+            sortFilteredContent()
+        } else {
+            searching = false
+        }
+        listTableView.reloadData()
+    }
+    
+    func sortFilteredContent() {
+        filteredContent.sort { (first, second) -> Bool in
+            if filterMode == 1 {
+                return first.likedUserID!.count > second.likedUserID!.count
+            } else if filterMode == 2 {
+                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+            } else if filterMode == 3 {
+                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedDescending
+            }
+            return false
+        }
     }
 }
 

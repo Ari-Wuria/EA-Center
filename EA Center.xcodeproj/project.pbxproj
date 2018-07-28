@@ -59,10 +59,13 @@
 		D05E85DA210614DC00EA4577 /* CoordinatorSettingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D9210614DC00EA4577 /* CoordinatorSettingsCellView.swift */; };
 		D05E85DC21061E5300EA4577 /* ViewDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85DB21061E5300EA4577 /* ViewDescriptionViewController.swift */; };
 		D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2A7320D947480044C7F1 /* MainWindowController.swift */; };
+		D0656E36210CA606008A2E3B /* SendApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */; };
 		D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */; };
 		D085146D20EA6DEE00A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
 		D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
 		D09D05012109F873000577B7 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09D05002109F873000577B7 /* ChangePasswordViewController.swift */; };
+		D09D0505210B0A13000577B7 /* DeleteEAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09D0503210B0A13000577B7 /* DeleteEAViewController.swift */; };
+		D09D0508210B0FBF000577B7 /* DebugMenu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D09D0507210B0FBF000577B7 /* DebugMenu.storyboard */; };
 		D0A7661F20E27033001B4317 /* DescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7661E20E27033001B4317 /* DescriptionViewController.swift */; };
 		D0A7662120E27049001B4317 /* LeaderSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */; };
 		D0A7662320E27056001B4317 /* AttendenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662220E27056001B4317 /* AttendenceViewController.swift */; };
@@ -146,9 +149,12 @@
 		D05E85D9210614DC00EA4577 /* CoordinatorSettingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorSettingsCellView.swift; sourceTree = "<group>"; };
 		D05E85DB21061E5300EA4577 /* ViewDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDescriptionViewController.swift; sourceTree = "<group>"; };
 		D05F2A7320D947480044C7F1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendApprovalViewController.swift; sourceTree = "<group>"; };
 		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
 		D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		D09D05002109F873000577B7 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		D09D0503210B0A13000577B7 /* DeleteEAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteEAViewController.swift; sourceTree = "<group>"; };
+		D09D0507210B0FBF000577B7 /* DebugMenu.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DebugMenu.storyboard; sourceTree = "<group>"; };
 		D0A7661E20E27033001B4317 /* DescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionViewController.swift; sourceTree = "<group>"; };
 		D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderSettingsViewController.swift; sourceTree = "<group>"; };
 		D0A7662220E27056001B4317 /* AttendenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendenceViewController.swift; sourceTree = "<group>"; };
@@ -320,11 +326,13 @@
 				D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */,
 				05ADD16520FB59C1008754A0 /* CreateNewEAViewController.swift */,
 				D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */,
-				D0A7662220E27056001B4317 /* AttendenceViewController.swift */,
 				D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */,
 				05ECDEE320F9E7CE0075DBB3 /* AddLeaderViewController.swift */,
+				D0A7662220E27056001B4317 /* AttendenceViewController.swift */,
 				D0A7661E20E27033001B4317 /* DescriptionViewController.swift */,
 				D0A7662420E27FFA001B4317 /* EditDescriptionViewController.swift */,
+				D09D0503210B0A13000577B7 /* DeleteEAViewController.swift */,
+				D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */,
 			);
 			path = "Manage EA Info Settings";
 			sourceTree = "<group>";
@@ -368,6 +376,7 @@
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
 				D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */,
 				0541489720FF62CA00EFC7C1 /* CoordinatorSettings.storyboard */,
+				D09D0507210B0FBF000577B7 /* DebugMenu.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
 				D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */,
@@ -540,6 +549,7 @@
 				D0FEB74D20E147B0009CB82E /* Info.plist in Resources */,
 				D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */,
 				D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */,
+				D09D0508210B0FBF000577B7 /* DebugMenu.storyboard in Resources */,
 				D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */,
 				0541489820FF62CA00EFC7C1 /* CoordinatorSettings.storyboard in Resources */,
 			);
@@ -634,6 +644,7 @@
 				D0FEB74020E147AF009CB82E /* ioapi_buf.c in Sources */,
 				D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */,
 				D0FEB74520E147AF009CB82E /* aescrypt.c in Sources */,
+				D0656E36210CA606008A2E3B /* SendApprovalViewController.swift in Sources */,
 				D0FEB74420E147AF009CB82E /* hmac.c in Sources */,
 				D0FEB74820E147AF009CB82E /* aes_ni.c in Sources */,
 				D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */,
@@ -646,6 +657,7 @@
 				05ECDEE420F9E7CE0075DBB3 /* AddLeaderViewController.swift in Sources */,
 				D0FEB74120E147AF009CB82E /* ioapi_mem.c in Sources */,
 				D05E85D62104D5D200EA4577 /* ChangePasswordViewController.swift in Sources */,
+				D09D0505210B0A13000577B7 /* DeleteEAViewController.swift in Sources */,
 				D0FEB73F20E147AF009CB82E /* ioapi.c in Sources */,
 				D0B7C47620EC8DE7004DE8F3 /* UserAccount.swift in Sources */,
 				D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */,
@@ -860,6 +872,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "EA Center Mac/EA-Center-Mac-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
@@ -887,6 +900,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "EA Center Mac/EA-Center-Mac-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

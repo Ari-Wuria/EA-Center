@@ -29,6 +29,8 @@ class EAListViewController: UITableViewController {
     var splitViewControllingDelegate: EAListSplitViewControlling?
     
     var currentAccount: UserAccount?
+    
+    var filterMode: Int = 1
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +107,19 @@ class EAListViewController: UITableViewController {
         allEA.removeAll()
         downloadEAList()
     }
-
+    
+    @IBAction func filterModeChanged(_ sender: Any) {
+        let control = sender as! UISegmentedControl
+        filterMode = control.selectedSegmentIndex + 1
+        
+        if isFiltering() {
+            sortFilteredEA()
+        }
+        
+        updateJoinableEA()
+        tableView.reloadData()
+    }
+    
     // MARK: - Table view data source and delegate
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -150,18 +164,20 @@ class EAListViewController: UITableViewController {
             cell.currentEA = ea
             
             if currentAccount == nil {
-                cell.likeButton.isHidden = true
+                cell.likeContainerView.isHidden = true
                 cell.currentUser = nil
             } else {
-                cell.likeButton.isHidden = false
+                cell.likeContainerView.isHidden = false
                 
                 cell.liked = ea.likedUserID!.contains(currentAccount!.userID)
                 cell.currentUser = currentAccount
+                
+                cell.likeCountLabel.text = "\(ea.likedUserID!.count)"
             }
             
             // Give it a random color for now
             // TODO: Set color based on category
-            let number = 1 + arc4random() % 6
+            let number = 1 + arc4random() % 7
             //let number = indexPath.row + 4
             cell.backgroundColor = UIColor(named: "Table Cell Color \(number)")
             
@@ -319,6 +335,17 @@ class EAListViewController: UITableViewController {
         joinableEA = allEA.filter { (ea) -> Bool in
             return (ea.approved == 2) || (ea.approved == 3)
         }
+        
+        joinableEA.sort { (first, second) -> Bool in
+            if filterMode == 1 {
+                return first.likedUserID!.count > second.likedUserID!.count
+            } else if filterMode == 2 {
+                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+            } else if filterMode == 3 {
+                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedDescending
+            }
+            return false
+        }
     }
 }
 
@@ -353,7 +380,22 @@ extension EAListViewController: UISearchResultsUpdating, UISearchBarDelegate {
             }
         })
         
+        sortFilteredEA()
+        
         tableView.reloadData()
+    }
+    
+    func sortFilteredEA() {
+        filteredEA.sort { (first, second) -> Bool in
+            if filterMode == 1 {
+                return first.likedUserID!.count > second.likedUserID!.count
+            } else if filterMode == 2 {
+                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+            } else if filterMode == 3 {
+                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedDescending
+            }
+            return false
+        }
     }
     
     func isFiltering() -> Bool {

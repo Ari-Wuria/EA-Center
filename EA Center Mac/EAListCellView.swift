@@ -15,6 +15,8 @@ class EAListCellView: NSTableCellView {
     @IBOutlet weak var shortDescLabel: NSTextField!
     @IBOutlet weak var categoryLabel: NSTextField!
     @IBOutlet weak var likeButton: NSButton!
+    @IBOutlet weak var likeButtonContainer: NSStackView!
+    @IBOutlet weak var likeCountLabel: NSTextField!
     
     var liked: Bool = false {
         didSet {
@@ -46,6 +48,15 @@ class EAListCellView: NSTableCellView {
         if toggleOnline {
             updateLikeState()
         }
+        
+        if !liked {
+            let index = ea!.likedUserID!.firstIndex(of: userID!)
+            ea?.likedUserID?.remove(at: index!)
+        } else {
+            ea?.likedUserID?.append(userID!)
+        }
+        
+        likeCountLabel.stringValue = "\(ea!.likedUserID!.count)"
     }
     
     func updateLikeState() {

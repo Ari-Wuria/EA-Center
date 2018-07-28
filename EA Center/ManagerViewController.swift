@@ -177,12 +177,48 @@ class ManagerViewController: UITableViewController {
             return tableView.dequeueReusableCell(withIdentifier: "LoginWarningCell")!
         }
     }
-
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
             //tableView.deleteRows(at: [indexPath], with: .fade)
+            
+            let ea = myEA[indexPath.row]
+            if ea.approved == 0 || ea.approved == 1 || ea.approved == 4 || ea.approved == 5 {
+                let alert = UIAlertController(title: "Are you sure?", message: "Do you really want to delete this EA?\nEnter EA name to confirm.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+                let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                    let textField = alert.textFields![0]
+                    let confirmText = textField.text
+                    if confirmText == ea.name {
+                        ea.delete { (success, errStr) in
+                            if success {
+                                NotificationCenter.default.post(name: EADeletedNotification, object: ea)
+                                self.myEA.remove(at: indexPath.row)
+                                tableView.deleteRows(at: [indexPath], with: .fade)
+                            } else {
+                                self.presentAlert(withTitle: "Can not delete EA!", message: errStr!)
+                                
+                                if errStr == "This EA no longer exists." {
+                                    NotificationCenter.default.post(name: EADeletedNotification, object: ea)
+                                    self.myEA.remove(at: indexPath.row)
+                                    tableView.deleteRows(at: [indexPath], with: .fade)
+                                }
+                            }
+                        }
+                    } else {
+                        self.presentAlert(withTitle: "Error", message: "Confirm name do not match.")
+                    }
+                })
+                alert.addAction(delete)
+                alert.addTextField { (textField) in
+                    textField.placeholder = "Enter EA name"
+                }
+                present(alert, animated: true, completion: nil)
+            } else {
+                presentAlert(withTitle: "Error", message: "You can't delete an EA that's currently running.")
+            }
         }
     }
     

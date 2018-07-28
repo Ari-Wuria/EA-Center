@@ -34,8 +34,9 @@ let GlobalAPIHash = "EJopPs6ohpwuk31fppMqDUxUx9NYZg4w"
 let LoginSuccessNotification = Notification.Name("eacenter.loginsuccessnotification")
 let LogoutNotification = Notification.Name("eacenter.logoutnotification")
 
-// Other notification keys
+// Manager notification keys
 let ManagerSelectionChangedNotification = Notification.Name("eacenter.managerselectionchanged")
 let EAUpdatedNotification = Notification.Name("eacenter.eaupdated")
 let ManagerDescriptionUpdatedNotification = Notification.Name("eacenter.descupdated")
 let EACreatedNotification = Notification.Name("eacenter.neweacreated")
+let EADeletedNotification = Notification.Name("eacenter.deletedea")

@@ -83,6 +83,10 @@ class LeaderSettingsViewController: NSViewController {
                     NotificationCenter.default.post(name: EAUpdatedNotification, object: ["id":self.currentEA!.id, "updatedEA":self.currentEA!])
                 } else {
                     self.showErrorAlert("Can not remove leader", errString)
+                    
+                    if errString! == "This EA no longer exists." {
+                        NotificationCenter.default.post(name: EADeletedNotification, object: self.currentEA!)
+                    }
                 }
             })
         } else if currentSelectedTable == 2 {
@@ -98,6 +102,10 @@ class LeaderSettingsViewController: NSViewController {
                     NotificationCenter.default.post(name: EAUpdatedNotification, object: ["id":self.currentEA!.id, "updatedEA":self.currentEA!])
                 } else {
                     self.showErrorAlert("Can not remove supervisor", errString)
+                    
+                    if errString! == "This EA no longer exists." {
+                        NotificationCenter.default.post(name: EADeletedNotification, object: self.currentEA!)
+                    }
                 }
             })
         }

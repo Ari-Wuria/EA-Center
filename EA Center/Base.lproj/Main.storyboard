@@ -188,9 +188,42 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="R4J-bA-G4I">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="10T-R0-jd0">
+                                    <rect key="frame" x="58" y="8" width="298.33333333333331" height="28"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sort By:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NXK-95-VGj">
+                                            <rect key="frame" x="0.0" y="0.0" width="61.333333333333336" height="28"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <segmentedControl opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="7m1-Vt-EYe">
+                                            <rect key="frame" x="68.333333333333314" y="0.0" width="230" height="29"/>
+                                            <segments>
+                                                <segment title="Popularity"/>
+                                                <segment title="Name A-Z"/>
+                                                <segment title="Name Z-A"/>
+                                            </segments>
+                                            <connections>
+                                                <action selector="filterModeChanged:" destination="Wdt-GH-WHx" eventType="valueChanged" id="KgY-7C-FVp"/>
+                                            </connections>
+                                        </segmentedControl>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" name="Main Table Color"/>
+                            <constraints>
+                                <constraint firstItem="10T-R0-jd0" firstAttribute="centerY" secondItem="R4J-bA-G4I" secondAttribute="centerY" id="SN6-gm-YeV"/>
+                                <constraint firstItem="10T-R0-jd0" firstAttribute="centerX" secondItem="R4J-bA-G4I" secondAttribute="centerX" id="ynH-ts-w9v"/>
+                            </constraints>
+                        </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="EACell" rowHeight="109" id="ABd-sa-inn" customClass="EAListCell" customModule="EA_Center" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="109"/>
+                                <rect key="frame" x="0.0" y="72" width="414" height="109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ABd-sa-inn" id="84J-eV-CmN">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="108.66666666666667"/>
@@ -203,22 +236,36 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="374" height="27"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EA Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFe-eV-UQw">
-                                                            <rect key="frame" x="0.0" y="0.0" width="339" height="27"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="305.66666666666669" height="27"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ty0-Dd-93b">
-                                                            <rect key="frame" x="347" y="0.0" width="27" height="27"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="height" constant="27" id="9b7-pQ-JWo"/>
-                                                                <constraint firstAttribute="width" constant="27" id="glx-2P-xnc"/>
-                                                            </constraints>
-                                                            <state key="normal" image="Open Heart"/>
-                                                            <connections>
-                                                                <action selector="toggleLiked:" destination="ABd-sa-inn" eventType="touchUpInside" id="Vf1-Yr-hgM"/>
-                                                            </connections>
-                                                        </button>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="zQn-3w-oHC">
+                                                            <rect key="frame" x="313.66666666666669" y="0.0" width="60.333333333333314" height="27"/>
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ALB-fE-vDi">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="28.333333333333332" height="27"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="28.329999999999998" id="2id-qd-zGq"/>
+                                                                    </constraints>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="textColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ty0-Dd-93b">
+                                                                    <rect key="frame" x="33.333333333333314" y="0.0" width="27" height="27"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="27" id="9b7-pQ-JWo"/>
+                                                                        <constraint firstAttribute="width" constant="27" id="glx-2P-xnc"/>
+                                                                    </constraints>
+                                                                    <state key="normal" image="Open Heart"/>
+                                                                    <connections>
+                                                                        <action selector="toggleLiked:" destination="ABd-sa-inn" eventType="touchUpInside" id="Vf1-Yr-hgM"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                        </stackView>
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EA Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5f-3J-eRH">
@@ -246,12 +293,14 @@
                                 <connections>
                                     <outlet property="categoryLabel" destination="z5f-3J-eRH" id="2Yn-fw-Wbx"/>
                                     <outlet property="likeButton" destination="ty0-Dd-93b" id="KoR-5F-UUw"/>
+                                    <outlet property="likeContainerView" destination="zQn-3w-oHC" id="86F-n7-J87"/>
+                                    <outlet property="likeCountLabel" destination="ALB-fE-vDi" id="k4f-Yy-lDt"/>
                                     <outlet property="nameLabel" destination="xFe-eV-UQw" id="QTM-6c-uoR"/>
                                     <outlet property="shortDescriptionLabel" destination="1MJ-fZ-QeA" id="I27-j2-IoV"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="LoadingCell" rowHeight="109" id="7eA-Zr-dhP" customClass="EAListCell" customModule="EA_Center" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="137" width="414" height="109"/>
+                                <rect key="frame" x="0.0" y="181" width="414" height="109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="7eA-Zr-dhP" id="nx8-rj-1lW">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="108.66666666666667"/>
@@ -283,7 +332,7 @@
                                 <color key="backgroundColor" name="Main Table Color"/>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NothingCell" rowHeight="109" id="FU8-kV-nXY" customClass="EAListCell" customModule="EA_Center" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="246" width="414" height="109"/>
+                                <rect key="frame" x="0.0" y="290" width="414" height="109"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="FU8-kV-nXY" id="Xdz-AK-tey">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="108.66666666666667"/>
@@ -2349,7 +2398,7 @@
         <segue reference="lgv-1u-bUA"/>
         <segue reference="MFX-JC-pe6"/>
         <segue reference="gpO-Bd-wZX"/>
-        <segue reference="VEa-F1-gVm"/>
+        <segue reference="PBW-2A-8Zm"/>
         <segue reference="sHY-9m-DWb"/>
     </inferredMetricsTieBreakers>
 </document>

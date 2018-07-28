@@ -26,6 +26,9 @@ class EAManagerViewController: NSViewController {
     
     @IBOutlet weak var loadingSpinner: NSProgressIndicator!
     
+    @IBOutlet var tableMenu: NSMenu!
+    @IBOutlet weak var deleteMenu: NSMenuItem!
+    
     var success = false
     
     var containingTabViewController: ManagerTabViewController?
@@ -41,14 +44,29 @@ class EAManagerViewController: NSViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated), name: EAUpdatedNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(eaCreated(_:)), name: EACreatedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eaDeleted(_:)), name: EADeletedNotification, object: nil)
         
         approvalButton.isHidden = true
+        
+        tableMenu.delegate = self
     }
     
     override func viewWillAppear() {
         super.viewWillAppear()
         
         retriveMyEA()
+    }
+    
+    @objc func eaDeleted(_ obj: Notification) {
+        let ea = obj.object as! EnrichmentActivity
+        let index = myEA.firstIndex(of: ea)
+        myEA.remove(at: index!)
+        
+        containerView.isHidden = true
+        titleNameLabel.stringValue = "Manage EA"
+        computer.isHidden = false
+        
+        tableView.reloadData()
     }
     
     @objc func eaUpdated() {
@@ -159,6 +177,9 @@ class EAManagerViewController: NSViewController {
             let tabController = segue.destinationController as! NSTabViewController as! ManagerTabViewController
             containingTabViewController = tabController
             tabController.parentManagerController = self
+        } else if segue.identifier == "DeleteEA" {
+            let dest = segue.destinationController as! DeleteEAViewController
+            dest.deleteEA = myEA[tableView.clickedRow]
         }
     }
     
@@ -189,6 +210,7 @@ class EAManagerViewController: NSViewController {
     }
     
     @IBAction func deleteEA(_ sender: Any) {
+        performSegue(withIdentifier: "DeleteEA", sender: sender)
     }
     
     deinit {
@@ -296,11 +318,33 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
             if ea.endDate! < currentDate {
                 approvalButton.isHidden = false
                 approvalButton.isEnabled = true
-                approvalButton.title = "Resubmit to run again."
+                approvalButton.title = "Resubmit approval to run again."
             }
         }
         
         touchBar = nil
+    }
+}
+
+extension EAManagerViewController: NSMenuDelegate {
+    func menuNeedsUpdate(_ menu: NSMenu) {
+        //print("Update")
+        let row = tableView.clickedRow
+        // TODO: Fix menu
+        let ea = myEA[row]
+        print("\(ea.approved)")
+        if ea.approved == 0 || ea.approved == 1 || ea.approved == 4 || ea.approved == 5 {
+            deleteMenu.isEnabled = true
+            deleteMenu.title = "Delete This EA"
+        } else {
+            if (ea.endDate ?? Date()) < Date() {
+                deleteMenu.isEnabled = true
+                deleteMenu.title = "Delete This EA"
+                return
+            }
+            deleteMenu.isEnabled = false
+            deleteMenu.title = "You can't delete a running EA"
+        }
     }
 }
 

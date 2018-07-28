@@ -37,9 +37,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>EASLINK</string>
 	<key>CFBundleDisplayName</key>
-	<string>EA Center</string>
+	<string>EASLINK</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
