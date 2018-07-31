@@ -11,7 +11,7 @@
         <scene sceneID="fLs-1m-BeQ">
             <objects>
                 <windowController id="kf3-LD-Mz1" sceneMemberID="viewController">
-                    <window key="window" identifier="SupervisorSettings" title="Coordinator Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="jHy-Gj-sVv">
+                    <window key="window" identifier="SupervisorSettings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="jHy-Gj-sVv">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="163" y="199" width="480" height="270"/>

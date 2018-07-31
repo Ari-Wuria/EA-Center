@@ -51,6 +51,11 @@ class ProfileEditorViewController: UITableViewController {
                 return
             }
             
+            if username.count > 20 {
+                presentAlert("Name too long...", "Please use your first name if it doesn't fit...")
+                return
+            }
+            
             let advisory = classTextField.text!.uppercased().filter{"01234567890QWERTYUIOPASDFGHJKLZXCVBNM".contains($0)}
             classTextField.text = advisory
             if validateClass(advisory) == false {

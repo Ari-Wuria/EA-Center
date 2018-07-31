@@ -42,11 +42,11 @@ class EAListCellView: NSTableCellView {
         toggleLikedState()
     }
     
-    func toggleLikedState(online toggleOnline: Bool = true) {
+    func toggleLikedState(online toggleOnline: Bool = true, _ completion: ((_ success: Bool) -> ())? = nil) {
         liked = !liked
         //likeButton.title = liked ? "Unlike" : "Like"
         if toggleOnline {
-            updateLikeState()
+            updateLikeState(completion)
         }
         
         if !liked {
@@ -59,7 +59,7 @@ class EAListCellView: NSTableCellView {
         likeCountLabel.stringValue = "\(ea!.likedUserID!.count)"
     }
     
-    func updateLikeState() {
+    func updateLikeState(_ completion: ((_ success: Bool) -> ())? = nil) {
         ea?.updateLikeState(liked, userID!) { (success, errStr) in
             if success {
                 // Success
@@ -70,6 +70,7 @@ class EAListCellView: NSTableCellView {
                 alert.runModal()
                 self.toggleLikedState(online: false)
             }
+            completion?(success)
         }
     }
 }

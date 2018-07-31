@@ -134,6 +134,9 @@ class CoordinatorSettingsViewController: NSViewController {
     
     @IBAction func reloadList(_ sender: Any) {
         allEA = []
+        titleLabel.stringValue = "Coordinator Manager"
+        letters.isHidden = false
+        containerView.isHidden = true
         downloadEAList()
     }
     

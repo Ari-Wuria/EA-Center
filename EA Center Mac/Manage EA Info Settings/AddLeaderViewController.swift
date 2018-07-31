@@ -8,7 +8,7 @@
 
 import Cocoa
 
-protocol AddLeaderViewControllerDelegate {
+protocol AddLeaderViewControllerDelegate: class {
     func controller(_ controller: AddLeaderViewController, finishedWithAccountEmail email: String)
 }
 
@@ -27,7 +27,7 @@ class AddLeaderViewController: NSViewController {
     // 2: Supervisor
     var updateMode: Int = 0
     
-    var delegate: AddLeaderViewControllerDelegate?
+    weak var delegate: AddLeaderViewControllerDelegate?
     
     var currentEA: EnrichmentActivity? = nil
     

@@ -172,6 +172,25 @@ class ManagerViewController: UITableViewController {
             
             cell.timeLabel.text = ea.timeModeForDisplay()
             
+            let supervisors = ea.supervisorEmails
+            if supervisors.count > 0 {
+                cell.supervisorLabel.text = "Loading supervisor info..."
+                let firstSupervisorEmail = supervisors[0]
+                AccountProcessor.name(from: firstSupervisorEmail) { (name) in
+                    if let supervisorName = name {
+                        if supervisors.count > 1 {
+                            cell.supervisorLabel.text = "\(supervisorName) + \(supervisors.count - 1) more"
+                        } else {
+                            cell.supervisorLabel.text = supervisorName
+                        }
+                    } else {
+                        cell.supervisorLabel.text = "Failed retriving supervisor info."
+                    }
+                }
+            } else {
+                cell.supervisorLabel.text = "No supervisor"
+            }
+            
             return cell
         } else {
             return tableView.dequeueReusableCell(withIdentifier: "LoginWarningCell")!

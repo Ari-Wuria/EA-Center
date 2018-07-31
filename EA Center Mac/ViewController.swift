@@ -26,6 +26,10 @@ class ViewController: NSViewController {
     @IBOutlet weak var pencilPaper: NSImageView!
     
     @IBOutlet var debugGestureRecognizer: NSClickGestureRecognizer!
+    
+    @IBOutlet weak var touchLikeButton: NSButton!
+    @IBOutlet weak var touchJoinButton: NSButton!
+    
     var debugWindowVisible = false
     var debugWindow: NSWindowController?
     
@@ -49,6 +53,9 @@ class ViewController: NSViewController {
     // 1: Popularity 2: Name Forward 3: Name Backward
     var filterMode = 1
     @IBOutlet weak var filterPopup: NSPopUpButton!
+    
+    // Used for reselecting row in table view without updating long desc
+    var descriptionNeedsUpdate = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,6 +88,9 @@ class ViewController: NSViewController {
         pencilPaper.addGestureRecognizer(debugGestureRecognizer)
         
         searchField.delegate = self
+        
+        touchLikeButton.isHidden = true
+        touchJoinButton.isHidden = true
     }
     
     override func viewDidLayout() {
@@ -157,6 +167,12 @@ class ViewController: NSViewController {
         let userAccount = object["account"] as! UserAccount
         currentAccount = userAccount
         
+        if listTableView.selectedRow != -1 {
+            touchLikeButton.isHidden = false
+        } else {
+            touchLikeButton.isHidden = true
+        }
+        
         loggedIn = true
         updateLoginLabel()
         
@@ -165,6 +181,8 @@ class ViewController: NSViewController {
     
     @objc func loggedOut(_ notification: Notification) {
         currentAccount = nil
+        
+        touchLikeButton.isHidden = true
         
         loggedIn = false
         updateLoginLabel()
@@ -277,7 +295,12 @@ class ViewController: NSViewController {
         
         statusVisualEffectView.isHidden = false
         
-        let ea = joinableEA[row]
+        let ea: EnrichmentActivity
+        if searching == false {
+            ea = joinableEA[row]
+        } else {
+            ea = filteredContent[row]
+        }
         let eaID = ea.id
         let eaName = ea.name
         
@@ -364,29 +387,82 @@ class ViewController: NSViewController {
         // TODO: Show something to show error
     }
     
-    func updateLoginLabel() {
+    func updateLoginLabel(with ea: EnrichmentActivity? = nil) {
         if loggedIn == false {
             eaStatusLabel.stringValue = "Login to join EAs"
             joinButton.isHidden = true
-        } else {
+            touchJoinButton.isHidden = true
+        } else if currentAccount!.accountType == 4 || currentAccount?.accountType == 1 {
             if selectedEA != nil {
-                if selectedEA?.approved == 2 {
-                    eaStatusLabel.stringValue = "Join this EA!"
-                    joinButton.isHidden = false
-                    joinButton.isEnabled = true
-                } else if selectedEA?.approved == 3 {
-                    eaStatusLabel.stringValue = "This EA is closed"
-                    joinButton.isHidden = false
-                    joinButton.isEnabled = false
-                } else if selectedEA?.approved == 5 {
-                    eaStatusLabel.stringValue = "Waiting for approval"
+                if selectedEA!.joinedUserID!.contains(currentAccount!.userID) {
+                    eaStatusLabel.stringValue = "You are already in this EA"
                     joinButton.isHidden = true
+                    touchJoinButton.isHidden = true
+                } else {
+                    if selectedEA?.approved == 2 {
+                        if let ea = ea {
+                            eaStatusLabel.stringValue = "Join \(ea.name)!"
+                        } else {
+                            eaStatusLabel.stringValue = "Join this EA!"
+                        }
+                        joinButton.isHidden = false
+                        joinButton.isEnabled = true
+                        touchJoinButton.isHidden = false
+                        touchJoinButton.isEnabled = true
+                    } else if selectedEA?.approved == 3 {
+                        eaStatusLabel.stringValue = "This EA is closed"
+                        joinButton.isHidden = false
+                        joinButton.isEnabled = false
+                        touchJoinButton.isHidden = false
+                        touchJoinButton.isEnabled = false
+                    } else if selectedEA?.approved == 5 {
+                        eaStatusLabel.stringValue = "Waiting for approval"
+                        joinButton.isHidden = true
+                        touchJoinButton.isHidden = true
+                    }
                 }
                 
                 let currentDate = Date()
                 if currentDate > (selectedEA?.endDate)! {
-                    eaStatusLabel.stringValue = "This EA has ended."
+                    eaStatusLabel.stringValue = "This EA has ended"
                     joinButton.isHidden = true
+                    touchJoinButton.isHidden = true
+                }
+            }
+        } else {
+            eaStatusLabel.stringValue = "You can't join EA as a teacher"
+            joinButton.isHidden = true
+            touchJoinButton.isHidden = true
+        }
+    }
+    
+    @IBAction func joinEA(_ sender: Any) {
+        let ea: EnrichmentActivity
+        if searching {
+            ea = filteredContent[listTableView.selectedRow]
+        } else {
+            ea = joinableEA[listTableView.selectedRow]
+        }
+        
+        let alert = NSAlert()
+        alert.messageText = "Are you sure you want to join \(ea.name)?"
+        alert.informativeText = "I will implement joining in the next push"
+        alert.addButton(withTitle: "Join!")
+        alert.addButton(withTitle: "Cancel")
+        alert.beginSheetModal(for: view.window!) { (response) in
+            if response == .alertFirstButtonReturn {
+                // Join
+            }
+        }
+    }
+    
+    @IBAction func touchToggleLike(_ sender: Any) {
+        if listTableView.selectedRow != -1 {
+            let cellView = listTableView.view(atColumn: 0, row: listTableView.selectedRow, makeIfNecessary: true) as! EAListCellView
+            cellView.toggleLikedState() { success in
+                if success {
+                    let imageName = cellView.liked ? "Closed Heart" : "Open Heart"
+                    self.touchLikeButton.image = NSImage(named: imageName)
                 }
             }
         }
@@ -409,6 +485,9 @@ class ViewController: NSViewController {
         longDescTextView.string = ""
         listTableView.reloadData()
         statusVisualEffectView.isHidden = true
+        pencilPaper.isHidden = false
+        touchLikeButton.isHidden = true
+        touchJoinButton.isHidden = true
         downloadEAList()
     }
     
@@ -469,7 +548,12 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         }
         
         cell?.nameLabel.stringValue = enrichmentActivity.name
-        cell?.shortDescLabel.stringValue = enrichmentActivity.shortDescription
+        //cell?.shortDescLabel.stringValue = enrichmentActivity.shortDescription
+        if enrichmentActivity.shortDescription != "" {
+            cell?.shortDescLabel.stringValue = enrichmentActivity.shortDescription
+        } else {
+            cell?.shortDescLabel.stringValue = "This EA does not have a short description."
+        }
         
         cell?.ea = enrichmentActivity
         
@@ -497,22 +581,45 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
     func tableViewSelectionDidChange(_ notification: Notification) {
         let row = listTableView.selectedRow
         
-        longDescTextView.string = ""
-        
         if row == -1 {
             statusVisualEffectView.isHidden = true
             pencilPaper.isHidden = false
+            longDescTextView.string = ""
+            
+            touchJoinButton.isHidden = true
+            touchLikeButton.isHidden = true
             return
         }
         
         pencilPaper.isHidden = true
         
-        longDescLoadingLabel.isHidden = false
+        if descriptionNeedsUpdate {
+            longDescLoadingLabel.isHidden = false
+            longDescTextView.string = ""
+            updateEADescription(row)
+        }
         
-        updateEADescription(row)
+        let ea: EnrichmentActivity
+        if searching == false {
+            ea = joinableEA[row]
+        } else {
+            ea = filteredContent[row]
+        }
         
-        selectedEA = joinableEA[row]
-        updateLoginLabel()
+        if loggedIn {
+            touchLikeButton.isHidden = false
+            if ea.likedUserID!.contains(currentAccount!.userID) {
+                touchLikeButton.image = NSImage(named: "Closed Heart")
+            } else {
+                touchLikeButton.image = NSImage(named: "Open Heart")
+            }
+        } else {
+            touchLikeButton.isHidden = true
+        }
+        
+        selectedEA = ea
+        
+        updateLoginLabel(with: selectedEA)
     }
  
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
@@ -564,10 +671,38 @@ extension ViewController: NSSearchFieldDelegate {
                 return ea.name.contains(searchField.stringValue)
             }
             sortFilteredContent()
+            
+            listTableView.reloadData()
+            
+            if let selected = selectedEA {
+                if filteredContent.contains(selected) {
+                    descriptionNeedsUpdate = false
+                    let newRow = filteredContent.firstIndex(of: selected)!
+                    listTableView.selectRowIndexes(IndexSet(integer: newRow), byExtendingSelection: false)
+                    descriptionNeedsUpdate = true
+                } else {
+                    statusVisualEffectView.isHidden = true
+                    pencilPaper.isHidden = false
+                    longDescTextView.string = ""
+                    
+                    touchJoinButton.isHidden = true
+                    touchLikeButton.isHidden = true
+                    
+                    selectedEA = nil
+                }
+            }
         } else {
             searching = false
+            
+            listTableView.reloadData()
+            
+            if let selected = selectedEA {
+                descriptionNeedsUpdate = false
+                let newRow = joinableEA.firstIndex(of: selected)!
+                listTableView.selectRowIndexes(IndexSet(integer: newRow), byExtendingSelection: false)
+                descriptionNeedsUpdate = true
+            }
         }
-        listTableView.reloadData()
     }
     
     func sortFilteredContent() {

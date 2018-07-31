@@ -26,13 +26,13 @@ class UserAccount: NSObject {
     }
     */
     init(dictionary: [String:Any]) {
-        self.userID = dictionary["id"] as! Int
-        self.username = dictionary["username"] as? String ?? ""
-        self.userEmail = dictionary["email"] as! String
-        self.accountType = dictionary["type"] as! Int
-        self.grade = dictionary["grade"] as? Int ?? 0
-        self.classInitial = dictionary["classinitial"] as? String ?? ""
-        self.isManager = dictionary["ismanager"] as? Bool ?? false
+        userID = dictionary["id"] as! Int
+        username = dictionary["username"] as? String ?? ""
+        userEmail = dictionary["email"] as! String
+        accountType = dictionary["type"] as! Int
+        grade = dictionary["grade"] as? Int ?? 0
+        classInitial = dictionary["classinitial"] as? String ?? ""
+        isManager = dictionary["ismanager"] as? Bool ?? false
         super.init()
     }
     

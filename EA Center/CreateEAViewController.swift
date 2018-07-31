@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol CreateEAViewControllerDelegate {
+protocol CreateEAViewControllerDelegate: class {
     func createEAViewController(_ controller: CreateEAViewController, didFinishWith enrichmentActivity: EnrichmentActivity)
 }
 
@@ -16,7 +16,7 @@ class CreateEAViewController: UITableViewController {
     @IBOutlet weak var nameTextField: UITextField!
     var email: String = ""
     
-    var delegate: CreateEAViewControllerDelegate?
+    weak var delegate: CreateEAViewControllerDelegate?
     
     @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -33,6 +33,8 @@ class CreateEAViewController: UITableViewController {
         tableView.backgroundColor = UIColor(named: "Menu Color")
         
         nameTextField.delegate = self
+        
+        nameTextField.becomeFirstResponder()
     }
 
     @IBAction func done(_ sender: Any) {
@@ -84,6 +86,7 @@ class CreateEAViewController: UITableViewController {
 extension CreateEAViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        done(textField)
         return true
     }
 }

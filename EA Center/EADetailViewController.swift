@@ -157,6 +157,12 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
             controller.currentEA = currentEA
             controller.saveMode = 2
             controller.title = "Proposal"
+        } else if segue.identifier == "EditPoster" {
+            let controller = segue.destination as! EditPosterViewController
+            controller.ea = currentEA
+        } else if segue.identifier == "ShowLeaders" {
+            let controller = segue.destination as! EALeadersViewController
+            controller.currentEA = currentEA
         }
     }
 
@@ -175,7 +181,7 @@ class DayButton: UIButton {
                 if self.backgroundHighlighted == true {
                     self.backgroundColor = self.highlightTint
                 } else {
-                    self.backgroundColor = UIColor.white
+                    self.backgroundColor = UIColor.clear
                 }
             }
         }

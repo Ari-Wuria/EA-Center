@@ -65,7 +65,7 @@ class EAListViewController: UITableViewController {
     @objc func login(_ notification: Notification) {
         let object = notification.object as! [String:Any]
         let userAccount = object["account"]
-        currentAccount = userAccount as! UserAccount
+        currentAccount = userAccount as? UserAccount
         
         tableView.reloadData()
     }
@@ -158,7 +158,12 @@ class EAListViewController: UITableViewController {
             }
             
             cell.nameLabel.text = ea.name
-            cell.shortDescriptionLabel.text = ea.shortDescription
+            
+            if ea.shortDescription != "" {
+                cell.shortDescriptionLabel.text = ea.shortDescription
+            } else {
+                cell.shortDescriptionLabel.text = "This EA does not have a short description."
+            }
             cell.shortDescriptionLabel.sizeToFit()
             
             cell.currentEA = ea
@@ -180,6 +185,11 @@ class EAListViewController: UITableViewController {
             let number = 1 + arc4random() % 7
             //let number = indexPath.row + 4
             cell.backgroundColor = UIColor(named: "Table Cell Color \(number)")
+    
+            // 3D Touch support
+            if traitCollection.forceTouchCapability == .available {
+                registerForPreviewing(with: self, sourceView: cell)
+            }
             
             return cell
         }
@@ -204,7 +214,7 @@ class EAListViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
-            tableView.deselectRow(at: indexPath, animated: true)
+            //tableView.deselectRow(at: indexPath, animated: true)
             
             let cell = tableView.cellForRow(at: indexPath)
             performSegue(withIdentifier: "ShowEADetail", sender: cell)
@@ -407,3 +417,31 @@ extension EAListViewController: UISearchResultsUpdating, UISearchBarDelegate {
         filterContentForSearchText(searchBar.text!, scope: searchBar.scopeButtonTitles![selectedScope])
     }
 }
+
+// 3D Touch extension
+extension EAListViewController: UIViewControllerPreviewingDelegate {
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        let controller = storyboard.instantiateViewController(withIdentifier: "EADesc") as! EADescriptionViewController
+        let cell = previewingContext.sourceView as! UITableViewCell
+        let indexPath = tableView.indexPath(for: cell)!
+        let ea: EnrichmentActivity
+        if isFiltering() {
+            ea = filteredEA[indexPath.row]
+        } else {
+            ea = joinableEA[indexPath.row]
+        }
+        controller.ea = ea
+        return controller
+    }
+    
+    func previewingContext(_ previewingContext: UIViewControllerPreviewing, commit viewControllerToCommit: UIViewController) {
+        navigationController?.show(viewControllerToCommit, sender: nil)
+    }
+}
+/*
+// Table View Cell 3D Touch Extension
+fileprivate extension UITableViewCell {
+    
+}
+*/

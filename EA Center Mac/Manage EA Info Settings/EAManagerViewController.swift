@@ -188,6 +188,7 @@ class EAManagerViewController: NSViewController {
         containerView.isHidden = true
         titleNameLabel.stringValue = "Manage EA"
         approvalButton.isHidden = true
+        computer.isHidden = false
         retriveMyEA()
     }
 
@@ -275,6 +276,9 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         } else {
             view.supervisorLabel.stringValue = "No Supervisor"
         }
+        
+        let plural = ea.joinedUserID?.count == 1 ? "" : "s"
+        view.numStudentsLabel.stringValue = "\(ea.joinedUserID!.count) Participant\(plural)"
         
         return view
     }

@@ -35,7 +35,6 @@ class EADescriptionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        textView.text = ""
         if ea != nil {
             if downloadTask == nil {
                 updateEADescription()
@@ -45,6 +44,8 @@ class EADescriptionViewController: UIViewController {
             pencilPaper?.isHidden = true
         } else {
             title = "EASLINK"
+            
+            textView.text = ""
             
             pencilPaper?.isHidden = false
         }

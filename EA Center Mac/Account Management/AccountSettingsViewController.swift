@@ -32,6 +32,11 @@ class AccountSettingsViewController: NSViewController {
         }
         usernameTextField.stringValue = userAccount!.username
         statusLabel.isHidden = true
+        
+        if userAccount!.accountType == 2 || userAccount!.accountType == 3 {
+            classTextField.isEnabled = false
+            classTextField.stringValue = "Teacher Account"
+        }
     }
     
     @IBAction func updateInfo(_ sender: Any) {
@@ -42,24 +47,38 @@ class AccountSettingsViewController: NSViewController {
             return
         }
         
-        let newClass = classTextField.stringValue.uppercased().filter{"01234567890QWERTYUIOPASDFGHJKLZXCVBNM".contains($0)}
-        //let newClass = classTextField.stringValue
-        classTextField.stringValue = newClass
-        if validateClass(newClass) == false {
+        if newUsername.count > 20 {
             statusLabel.isHidden = false
-            statusLabel.stringValue = "Invalid Advisory!"
+            statusLabel.stringValue = "Is your name seriously that long..."
             return
         }
         
-        let stringArray = newClass.components(separatedBy: CharacterSet.decimalDigits.inverted)
-        var numberArray: [Int] = []
-        for item in stringArray {
-            if let number = Int(item) {
-                numberArray.append(number)
+        let grade: Int
+        let classInitial: String
+        if userAccount!.accountType == 2 || userAccount!.accountType == 3 {
+            // Teacher Account, no class
+            grade = 12
+            classInitial = "ST"
+        } else {
+            let newClass = classTextField.stringValue.uppercased().filter{"01234567890QWERTYUIOPASDFGHJKLZXCVBNM".contains($0)}
+            //let newClass = classTextField.stringValue
+            classTextField.stringValue = newClass
+            if validateClass(newClass) == false {
+                statusLabel.isHidden = false
+                statusLabel.stringValue = "Invalid Advisory!"
+                return
             }
+            
+            let stringArray = newClass.components(separatedBy: CharacterSet.decimalDigits.inverted)
+            var numberArray: [Int] = []
+            for item in stringArray {
+                if let number = Int(item) {
+                    numberArray.append(number)
+                }
+            }
+            grade = numberArray[0]
+            classInitial = newClass.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789"))
         }
-        let grade = numberArray[0]
-        let classInitial = newClass.trimmingCharacters(in: CharacterSet(charactersIn: "0123456789"))
         
         userAccount?.updateInfo(newUsername, grade, classInitial) { (success, errString) in
             if success {

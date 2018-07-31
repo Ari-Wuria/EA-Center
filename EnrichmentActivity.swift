@@ -30,6 +30,7 @@ class EnrichmentActivity: NSObject {
     var startDate: Date?
     var endDate: Date?
     var likedUserID: [Int]?
+    var joinedUserID: [Int]?
     
     override init() {
         // Initialize with default values
@@ -48,6 +49,7 @@ class EnrichmentActivity: NSObject {
         approved = 0
         categoryID = 0
         likedUserID = []
+        joinedUserID = []
         //startDate = Date()
         //endDate = Date()
         super.init()
@@ -81,6 +83,9 @@ class EnrichmentActivity: NSObject {
         
         let likeString = dictionary["likeduserid"] as? String ?? ""
         likedUserID = likeString.split(separator: ",").map{Int($0)!}
+        
+        let joinString = dictionary["joineduserid"] as? String ?? ""
+        joinedUserID = joinString.split(separator: ",").map{Int($0)!}
         
         super.init()
     }
