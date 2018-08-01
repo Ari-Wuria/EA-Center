@@ -107,6 +107,7 @@ class LoginViewController: NSViewController {
                             if success == true {
                                 UserDefaults.standard.set(true, forKey: "RememberLogin")
                                 UserDefaults.standard.set(email, forKey: "LoginEmail")
+                                UserDefaults.standard.synchronize()
                             }
                         }
                         

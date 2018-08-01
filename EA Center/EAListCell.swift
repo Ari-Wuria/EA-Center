@@ -16,6 +16,8 @@ class EAListCell: UITableViewCell {
     @IBOutlet weak var likeContainerView: UIStackView!
     @IBOutlet weak var likeCountLabel: UILabel!
     
+    var forceTouchRegistered = false
+    
     var liked: Bool = false {
         didSet {
             let imageName = liked ? "Closed Heart" : "Open Heart"

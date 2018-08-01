@@ -25,6 +25,8 @@ class LoginWindowController: NSWindowController {
         let resizeButton = window?.standardWindowButton(.zoomButton)
         //resizeButton?.frame.size = CGSize.zero
         resizeButton?.removeFromSuperview()
+        
+        window?.isMovableByWindowBackground = true
     }
     
     func register() {

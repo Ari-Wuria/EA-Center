@@ -188,7 +188,10 @@ class EAListViewController: UITableViewController {
     
             // 3D Touch support
             if traitCollection.forceTouchCapability == .available {
-                registerForPreviewing(with: self, sourceView: cell)
+                if cell.forceTouchRegistered == false {
+                    registerForPreviewing(with: self, sourceView: cell)
+                    cell.forceTouchRegistered = true
+                }
             }
             
             return cell

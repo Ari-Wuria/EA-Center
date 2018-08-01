@@ -72,6 +72,7 @@ class ChangePasswordViewController: NSViewController {
                 } else {
                     UserDefaults.standard.set(false, forKey: "RememberLogin")
                 }
+                UserDefaults.standard.synchronize()
                 
                 delay(1) {
                     self.dismiss(nil)

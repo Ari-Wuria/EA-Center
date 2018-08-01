@@ -78,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // First launch processing
             UserDefaults.standard.set(true, forKey: "rememberlogin")
             UserDefaults.standard.set(true, forKey: "launched")
+            UserDefaults.standard.synchronize()
         }
         
         UIImageView.appearance().accessibilityIgnoresInvertColors = true

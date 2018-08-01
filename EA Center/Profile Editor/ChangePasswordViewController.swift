@@ -95,6 +95,7 @@ class ChangePasswordViewController: UITableViewController {
                     // Save Password Good :)
                 } else {
                     UserDefaults.standard.set(false, forKey: "rememberlogin")
+                    UserDefaults.standard.synchronize()
                 }
                 
                 self.navigationController?.popViewController(animated: true)

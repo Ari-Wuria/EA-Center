@@ -113,6 +113,7 @@ class MeViewController: UITableViewController {
                 self.emailTextField.becomeFirstResponder()
                 
                 UserDefaults.standard.set("", forKey: "loginemail")
+                UserDefaults.standard.synchronize()
                 let _ = KeychainHelper.deleteKeychain(account: currentUserAccount!.userEmail)
                 
                 currentUserAccount = nil
@@ -242,6 +243,7 @@ class MeViewController: UITableViewController {
                                 UserDefaults.standard.set(email, forKey: "loginemail")
                             }
                         }
+                        UserDefaults.standard.synchronize()
                         
                         if let settingsWindow = self.splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
                             settingsWindow.loggedIn = true
@@ -277,6 +279,7 @@ class MeViewController: UITableViewController {
                         if errCode == 1 {
                             self.presentAlert("Password Change Detected", "Please login manually.")
                             UserDefaults.standard.set(true, forKey: "passwordchanged")
+                            UserDefaults.standard.synchronize()
                         } else {
                             self.presentAlert("Can not auto login", "Please login manually.")
                         }

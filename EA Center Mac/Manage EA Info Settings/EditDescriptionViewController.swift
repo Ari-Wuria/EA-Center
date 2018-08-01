@@ -8,7 +8,7 @@
 
 import Cocoa
 
-// TODO: Make the freakin text view not crash!
+// FIXME: Make the freakin text view not crash!
 class EditDescriptionViewController: NSViewController {
     @IBOutlet var textView: NSTextView!
     @IBOutlet var spinner: NSProgressIndicator!

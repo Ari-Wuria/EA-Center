@@ -147,6 +147,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 let _ = KeychainHelper.deleteKeychain(account: email)
                 UserDefaults.standard.set("", forKey: "LoginEmail")
                 UserDefaults.standard.set(false, forKey: "RememberLogin")
+                UserDefaults.standard.synchronize()
             }
         }
     }

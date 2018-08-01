@@ -40,3 +40,10 @@ let EAUpdatedNotification = Notification.Name("eacenter.eaupdated")
 let ManagerDescriptionUpdatedNotification = Notification.Name("eacenter.descupdated")
 let EACreatedNotification = Notification.Name("eacenter.neweacreated")
 let EADeletedNotification = Notification.Name("eacenter.deletedea")
+
+#if swift(>=4.2) && os(iOS)
+import UIKit.UIGeometry
+extension UIEdgeInsets {
+    public static let zero = UIEdgeInsets()
+}
+#endif

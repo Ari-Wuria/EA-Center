@@ -45,7 +45,9 @@ class SettingsViewController: UITableViewController {
             if let account = userAccount {
                 let _ = KeychainHelper.deleteKeychain(account: account.userEmail)
             }
+            UserDefaults.standard.synchronize()
         }
+        UserDefaults.standard.synchronize()
     }
     
     // MARK: - Table view data source
