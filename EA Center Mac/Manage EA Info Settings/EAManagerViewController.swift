@@ -173,7 +173,7 @@ class EAManagerViewController: NSViewController {
         if segue.identifier == "CreateEA" {
             let dest = segue.destinationController as! CreateNewEAViewController
             dest.currentEmail = self.loggedInEmail
-        } else if segue.identifier == "EmbedEditor" {
+        } else if segue.identifier == "EmbedTabView" {
             let tabController = segue.destinationController as! NSTabViewController as! ManagerTabViewController
             containingTabViewController = tabController
             tabController.parentManagerController = self
@@ -279,6 +279,12 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         
         let plural = ea.joinedUserID?.count == 1 ? "" : "s"
         view.numStudentsLabel.stringValue = "\(ea.joinedUserID!.count) Participant\(plural)"
+        
+        view.updateStatusImageView(with: ea.approved)
+        
+        if let date = ea.endDate, date < Date() {
+            view.updateStatusImageView(with: 6)
+        }
         
         return view
     }

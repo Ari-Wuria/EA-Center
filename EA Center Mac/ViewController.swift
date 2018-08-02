@@ -214,6 +214,22 @@ class ViewController: NSViewController {
                     self.listTableView.reloadData()
                     
                     self.loadingIndicatorView.isHidden = true
+                    
+                    if let selected = self.selectedEA {
+                        if self.searching == true {
+                            let filtered = self.filteredContent.filter{$0.id == selected.id}
+                            if filtered.count == 1 {
+                                let newRow = self.filteredContent.firstIndex(of: filtered[0])!
+                                self.listTableView.selectRowIndexes(IndexSet(integer: newRow), byExtendingSelection: false)
+                            }
+                        } else {
+                            let filtered = self.joinableEA.filter{$0.id == selected.id}
+                            if filtered.count == 1 {
+                                let newRow = self.joinableEA.firstIndex(of: filtered[0])!
+                                self.listTableView.selectRowIndexes(IndexSet(integer: newRow), byExtendingSelection: false)
+                            }
+                        }
+                    }
                 }
             }
             
@@ -398,6 +414,10 @@ class ViewController: NSViewController {
                     eaStatusLabel.stringValue = "You are already in this EA"
                     joinButton.isHidden = true
                     touchJoinButton.isHidden = true
+                } else if selectedEA!.leaderEmails.contains(currentAccount!.userEmail) {
+                    eaStatusLabel.stringValue = "You are the leader of this EA"
+                    joinButton.isHidden = true
+                    touchJoinButton.isHidden = true
                 } else {
                     if selectedEA?.approved == 2 {
                         if let ea = ea {
@@ -430,7 +450,7 @@ class ViewController: NSViewController {
                 }
             }
         } else {
-            eaStatusLabel.stringValue = "You can't join EA as a teacher"
+            eaStatusLabel.stringValue = "Only student accounts can join EAs"
             joinButton.isHidden = true
             touchJoinButton.isHidden = true
         }
@@ -446,14 +466,33 @@ class ViewController: NSViewController {
         
         let alert = NSAlert()
         alert.messageText = "Are you sure you want to join \(ea.name)?"
-        alert.informativeText = "I will implement joining in the next push"
+        //alert.informativeText = "I will implement joining in the next push"
         alert.addButton(withTitle: "Join!")
         alert.addButton(withTitle: "Cancel")
+        let textField = NSTextField(frame: NSRect(x: 0, y: 0, width: 300, height: 24))
+        textField.placeholderString = "Enter any additional message for the leaders."
+        textField.lineBreakMode = NSLineBreakMode.byTruncatingHead
+        alert.accessoryView = textField
         alert.beginSheetModal(for: view.window!) { (response) in
             if response == .alertFirstButtonReturn {
                 // Join
+                //print("Text: \(textField.stringValue)")
+                let joinString = textField.stringValue
+                ea.updateJoinState(true, self.currentAccount!.userID, joinString) { (success, errStr) in
+                    if success {
+                        self.eaStatusLabel.stringValue = "You are already in this EA"
+                        self.joinButton.isHidden = true
+                        self.touchJoinButton.isHidden = true
+                    } else {
+                        let alert = NSAlert()
+                        alert.messageText = "Error"
+                        alert.informativeText = errStr!
+                        alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
+                    }
+                }
             }
         }
+        alert.window.makeFirstResponder(textField)
     }
     
     @IBAction func touchToggleLike(_ sender: Any) {
@@ -677,9 +716,12 @@ extension ViewController: NSSearchFieldDelegate {
             if let selected = selectedEA {
                 if filteredContent.contains(selected) {
                     descriptionNeedsUpdate = false
-                    let newRow = filteredContent.firstIndex(of: selected)!
-                    listTableView.selectRowIndexes(IndexSet(integer: newRow), byExtendingSelection: false)
-                    descriptionNeedsUpdate = true
+                    let filtered = filteredContent.filter{$0.id == selected.id}
+                    if filtered.count == 1 {
+                        let newRow = filteredContent.firstIndex(of: filtered[0])!
+                        listTableView.selectRowIndexes(IndexSet(integer: newRow), byExtendingSelection: false)
+                        descriptionNeedsUpdate = true
+                    }
                 } else {
                     statusVisualEffectView.isHidden = true
                     pencilPaper.isHidden = false
@@ -698,9 +740,12 @@ extension ViewController: NSSearchFieldDelegate {
             
             if let selected = selectedEA {
                 descriptionNeedsUpdate = false
-                let newRow = joinableEA.firstIndex(of: selected)!
-                listTableView.selectRowIndexes(IndexSet(integer: newRow), byExtendingSelection: false)
-                descriptionNeedsUpdate = true
+                let filtered = joinableEA.filter{$0.id == selected.id}
+                if filtered.count == 1 {
+                    let newRow = joinableEA.firstIndex(of: filtered[0])!
+                    listTableView.selectRowIndexes(IndexSet(integer: newRow), byExtendingSelection: false)
+                    descriptionNeedsUpdate = true
+                }
             }
         }
     }

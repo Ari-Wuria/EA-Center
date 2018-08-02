@@ -53,6 +53,7 @@
 		D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */; };
 		D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D042C18D20DBA0860017DE4F /* LoginViewController.swift */; };
 		D0583CC220DB909E0099AC61 /* EAManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */; };
+		D05992EB2111EAA3006DD283 /* EASLINK LOGO.001 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D05992EA2111EAA2006DD283 /* EASLINK LOGO.001 2.jpeg */; };
 		D05E85D42104BDA900EA4577 /* UserSettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D32104BDA900EA4577 /* UserSettingsWindowController.swift */; };
 		D05E85D62104D5D200EA4577 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D52104D5D200EA4577 /* ChangePasswordViewController.swift */; };
 		D05E85D82104DE5F00EA4577 /* CoordinatorDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D72104DE5F00EA4577 /* CoordinatorDetailViewController.swift */; };
@@ -62,6 +63,8 @@
 		D0656E36210CA606008A2E3B /* SendApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */; };
 		D0656E39210DE998008A2E3B /* EALeadersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E38210DE998008A2E3B /* EALeadersViewController.swift */; };
 		D0656E3B210DFBAB008A2E3B /* AddLeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */; };
+		D07DE9522111F09E00423D01 /* AboutScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D07DE9512111F09E00423D01 /* AboutScreen.storyboard */; };
+		D07DE9552111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */; };
 		D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */; };
 		D085146D20EA6DEE00A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
 		D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
@@ -78,6 +81,9 @@
 		D0B7C47A20ECFC2A004DE8F3 /* ProfileEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47920ECFC2A004DE8F3 /* ProfileEditorViewController.swift */; };
 		D0B7C47C20EF94BF004DE8F3 /* ManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47B20EF94BF004DE8F3 /* ManagerViewController.swift */; };
 		D0B7C47E20EF94D8004DE8F3 /* EAManageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47D20EF94D8004DE8F3 /* EAManageCell.swift */; };
+		D0B9A3AB2111F85100AB7AF1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9A3A92111F85100AB7AF1 /* AboutViewController.swift */; };
+		D0C2C0232111FD970002E508 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0C2C0212111FD970002E508 /* Main.storyboard */; };
+		D0C2C0242111FE230002E508 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDD20D8A41300DBB70E /* Main.storyboard */; };
 		D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */; };
 		D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */; };
 		D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37620E529840009AC07 /* AESCrypto.swift */; };
@@ -88,7 +94,7 @@
 		D0DFCED820D8A41200DBB70E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED720D8A41200DBB70E /* AppDelegate.swift */; };
 		D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0DFCED920D8A41200DBB70E /* ViewController.swift */; };
 		D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */; };
-		D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDD20D8A41300DBB70E /* Main.storyboard */; };
+		D0E3A09121130EEE004F2052 /* ManagerDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E3A09021130EEE004F2052 /* ManagerDetail.storyboard */; };
 		D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */; };
 		D0FEB70620E0ED0C009CB82E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */; };
 		D0FEB70920E0F6AD009CB82E /* MainInfoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */; };
@@ -145,6 +151,7 @@
 		D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UserSettings.storyboard; sourceTree = "<group>"; };
 		D042C18D20DBA0860017DE4F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D0583CC020DB909E0099AC61 /* EAManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAManagerViewController.swift; sourceTree = "<group>"; };
+		D05992EA2111EAA2006DD283 /* EASLINK LOGO.001 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EASLINK LOGO.001 2.jpeg"; sourceTree = "<group>"; };
 		D05E85D32104BDA900EA4577 /* UserSettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettingsWindowController.swift; sourceTree = "<group>"; };
 		D05E85D52104D5D200EA4577 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		D05E85D72104DE5F00EA4577 /* CoordinatorDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorDetailViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +161,8 @@
 		D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendApprovalViewController.swift; sourceTree = "<group>"; };
 		D0656E38210DE998008A2E3B /* EALeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EALeadersViewController.swift; sourceTree = "<group>"; };
 		D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeaderViewController.swift; sourceTree = "<group>"; };
+		D07DE9512111F09E00423D01 /* AboutScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutScreen.storyboard; sourceTree = "<group>"; };
+		D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EASLINK LOGO.001 2.jpeg"; sourceTree = "<group>"; };
 		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
 		D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
 		D09D05002109F873000577B7 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +177,8 @@
 		D0B7C47920ECFC2A004DE8F3 /* ProfileEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditorViewController.swift; sourceTree = "<group>"; };
 		D0B7C47B20EF94BF004DE8F3 /* ManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerViewController.swift; sourceTree = "<group>"; };
 		D0B7C47D20EF94D8004DE8F3 /* EAManageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAManageCell.swift; sourceTree = "<group>"; };
+		D0B9A3A92111F85100AB7AF1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		D0C2C0222111FD970002E508 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D0CCB37620E529840009AC07 /* AESCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESCrypto.swift; sourceTree = "<group>"; };
@@ -181,6 +192,7 @@
 		D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0DFCEDE20D8A41300DBB70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0DFCEE020D8A41300DBB70E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0E3A09021130EEE004F2052 /* ManagerDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManagerDetail.storyboard; sourceTree = "<group>"; };
 		D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoEditorViewController.swift; sourceTree = "<group>"; };
 		D0FEB70B20E1280C009CB82E /* EAListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCellView.swift; sourceTree = "<group>"; };
@@ -263,6 +275,7 @@
 				D0DFCED620D8A41200DBB70E /* EA Center Mac */,
 				D025730120D8A1E30078AE89 /* Products */,
 				D0DB6AEA20DA682000BBE8F0 /* Frameworks */,
+				D0C2C0202111FD750002E508 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -278,6 +291,7 @@
 		D025730220D8A1E30078AE89 /* EA Center */ = {
 			isa = PBXGroup;
 			children = (
+				D05992E92111EA95006DD283 /* Resources */,
 				D025730320D8A1E30078AE89 /* AppDelegate.swift */,
 				D0177FF120E67B3C003757A7 /* EAListViewController.swift */,
 				D0177FF320E67B59003757A7 /* EAListCell.swift */,
@@ -296,8 +310,8 @@
 				0541489A20FF6D5F00EFC7C1 /* AboutViewController.swift */,
 				053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */,
 				D09D05022109FD55000577B7 /* Profile Editor */,
-				D025730720D8A1E30078AE89 /* Main.storyboard */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
+				D0C2C0212111FD970002E508 /* Main.storyboard */,
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
 				D025730F20D8A1E40078AE89 /* Info.plist */,
 				D0177FF820E77A14003757A7 /* EA-Center-Bridging-Header.h */,
@@ -314,6 +328,22 @@
 				D05E85DB21061E5300EA4577 /* ViewDescriptionViewController.swift */,
 			);
 			path = "Supervisor Settings";
+			sourceTree = "<group>";
+		};
+		D05992E92111EA95006DD283 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D05992EA2111EAA2006DD283 /* EASLINK LOGO.001 2.jpeg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D07DE9532111F0E300423D01 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		D09D05022109FD55000577B7 /* Profile Editor */ = {
@@ -343,6 +373,22 @@
 			path = "Manage EA Info Settings";
 			sourceTree = "<group>";
 		};
+		D0B9A3A82111F84000AB7AF1 /* About Screens */ = {
+			isa = PBXGroup;
+			children = (
+				D0B9A3A92111F85100AB7AF1 /* AboutViewController.swift */,
+			);
+			path = "About Screens";
+			sourceTree = "<group>";
+		};
+		D0C2C0202111FD750002E508 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				D025730720D8A1E30078AE89 /* Main.storyboard */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		D0CCB37520E4FFE40009AC07 /* Account Management */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +414,7 @@
 		D0DFCED620D8A41200DBB70E /* EA Center Mac */ = {
 			isa = PBXGroup;
 			children = (
+				D07DE9532111F0E300423D01 /* Resources */,
 				D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */,
 				D0DFCED720D8A41200DBB70E /* AppDelegate.swift */,
 				D0DFCED920D8A41200DBB70E /* ViewController.swift */,
@@ -378,11 +425,14 @@
 				D0CCB37520E4FFE40009AC07 /* Account Management */,
 				D0A7661D20E27006001B4317 /* Manage EA Info Settings */,
 				D041203B2102126A00EDC5D4 /* Supervisor Settings */,
+				D0B9A3A82111F84000AB7AF1 /* About Screens */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
+				D0E3A09021130EEE004F2052 /* ManagerDetail.storyboard */,
 				D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */,
 				0541489720FF62CA00EFC7C1 /* CoordinatorSettings.storyboard */,
 				D09D0507210B0FBF000577B7 /* DebugMenu.storyboard */,
+				D07DE9512111F09E00423D01 /* AboutScreen.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0DB6AEF20DA949D00BBE8F0 /* TitleBarHeight.swift */,
 				D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */,
@@ -542,6 +592,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D05992EB2111EAA3006DD283 /* EASLINK LOGO.001 2.jpeg in Resources */,
+				D0C2C0232111FD970002E508 /* Main.storyboard in Resources */,
 				D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */,
 				D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */,
 				D025730920D8A1E30078AE89 /* Main.storyboard in Resources */,
@@ -554,10 +606,13 @@
 			files = (
 				D0FEB74D20E147B0009CB82E /* Info.plist in Resources */,
 				D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */,
-				D0DFCEDF20D8A41300DBB70E /* Main.storyboard in Resources */,
+				D07DE9522111F09E00423D01 /* AboutScreen.storyboard in Resources */,
+				D0E3A09121130EEE004F2052 /* ManagerDetail.storyboard in Resources */,
+				D07DE9552111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg in Resources */,
 				D09D0508210B0FBF000577B7 /* DebugMenu.storyboard in Resources */,
 				D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */,
 				0541489820FF62CA00EFC7C1 /* CoordinatorSettings.storyboard in Resources */,
+				D0C2C0242111FE230002E508 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,6 +721,7 @@
 				D0FEB74120E147AF009CB82E /* ioapi_mem.c in Sources */,
 				D05E85D62104D5D200EA4577 /* ChangePasswordViewController.swift in Sources */,
 				D09D0505210B0A13000577B7 /* DeleteEAViewController.swift in Sources */,
+				D0B9A3AB2111F85100AB7AF1 /* AboutViewController.swift in Sources */,
 				D0FEB73F20E147AF009CB82E /* ioapi.c in Sources */,
 				D0B7C47620EC8DE7004DE8F3 /* UserAccount.swift in Sources */,
 				D0DB6AF020DA949D00BBE8F0 /* TitleBarHeight.swift in Sources */,
@@ -690,6 +746,14 @@
 				D025730D20D8A1E40078AE89 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D0C2C0212111FD970002E508 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0C2C0222111FD970002E508 /* Base */,
+			);
+			name = Main.storyboard;
 			sourceTree = "<group>";
 		};
 		D0DFCEDD20D8A41300DBB70E /* Main.storyboard */ = {

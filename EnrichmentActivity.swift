@@ -622,6 +622,66 @@ class EnrichmentActivity: NSObject {
         dataTask.resume()
     }
     
+    func updateJoinState(_ newState: Bool, _ userID: Int, _ joinString: String = "", _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let urlString = MainServerAddress + "/manageea/updatejoinstatus.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        let remove = newState ? 0 : 1
+        var postString = "id=\(id)&joinuserid=\(userID)&remove=\(remove)"
+        if joinString.count > 0 {
+            postString.append(contentsOf: "&joinmessage=\(joinString)")
+        }
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    //self.approved = newState
+                    let newLikeState = responseDict["newjoinstate"] as! String
+                    self.joinedUserID = newLikeState.split(separator: ",").map{Int($0)!}
+                    
+                    completion(true, nil)
+                } else {
+                    let errString = responseDict["errStr"] as! String
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
     func checkOwner(_ validateEmail: String) -> Bool {
         // TODO: Check online too!
         if leaderEmails.contains(validateEmail) || supervisorEmails.contains(validateEmail) {

@@ -41,6 +41,9 @@ let ManagerDescriptionUpdatedNotification = Notification.Name("eacenter.descupda
 let EACreatedNotification = Notification.Name("eacenter.neweacreated")
 let EADeletedNotification = Notification.Name("eacenter.deletedea")
 
+// Other auxiliary notification keys
+let ApplicationIsOutdatedNotification = Notification.Name("eacenter.appoutdated")
+
 #if swift(>=4.2) && os(iOS)
 import UIKit.UIGeometry
 extension UIEdgeInsets {

@@ -46,4 +46,7 @@ class SendApprovalViewController: NSViewController {
         escEvent = nil
     }
     
+    deinit {
+        print("deinit \(self)")
+    }
 }

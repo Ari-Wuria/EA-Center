@@ -23,4 +23,20 @@ class ManagerCellView: NSTableCellView {
         // Drawing code here.
     }
     
+    func updateStatusImageView(with status: Int) {
+        switch status {
+        case 0,6:
+            // EA ended will use this as well
+            statusImageView.image = NSImage(named: "NSStatusNone")
+        case 1,5:
+            statusImageView.image = NSImage(named: "NSStatusPartialAvailable")
+        case 2,3:
+            statusImageView.image = NSImage(named: "NSStatusAvailable")
+        case 4:
+            statusImageView.image = NSImage(named: "NSStatusUnavailable")
+        default:
+            break
+        }
+    }
+    
 }

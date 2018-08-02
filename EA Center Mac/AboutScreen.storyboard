@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="awk-d6-5de">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.3.2"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Window Controller-->
+        <scene sceneID="D1o-ON-paf">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="awk-d6-5de" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="JQa-6Q-rlj">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="awk-d6-5de" id="nxW-nZ-3Di"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="8OE-3K-60v" kind="relationship" relationship="window.shadowedContentViewController" id="h5B-c5-DW0"/>
+                    </connections>
+                </windowController>
+                <customObject id="giz-4v-Wli" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-80" y="33"/>
+        </scene>
+        <!--About View Controller-->
+        <scene sceneID="sWa-sg-zS9">
+            <objects>
+                <viewController showSeguePresentationStyle="single" id="8OE-3K-60v" customClass="AboutViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="4L8-Xl-T8k">
+                        <rect key="frame" x="0.0" y="0.0" width="589" height="269"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="yW6-4b-AXh">
+                                <rect key="frame" x="0.0" y="0.0" width="589" height="269"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" ambiguous="YES" id="Y4a-fx-M50">
+                                    <rect key="frame" x="1" y="1" width="587" height="267"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qUv-Ag-3n5">
+                                            <rect key="frame" x="39" y="46" width="188" height="188"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="EASLINK LOGO.001 2" id="gqo-DQ-DJl"/>
+                                        </imageView>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="erQ-6y-C27">
+                                            <rect key="frame" x="411" y="23" width="152" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Use of Libraries" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lA3-bY-H4A">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="showUseOfLibraries:" target="8OE-3K-60v" id="hAg-y7-EBi"/>
+                                            </connections>
+                                        </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1s1-vR-Cb4">
+                                            <rect key="frame" x="250" y="68" width="315" height="37"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" title="Copyright © 2018 WALTEROMTYA TECHNOLOGY. All Rights Reserved." id="P76-zX-rAN">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3e2-wz-ZMr">
+                                            <rect key="frame" x="250" y="176" width="111" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" title="version 1.0" id="LRl-Z7-Dwp">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RdL-vU-95D">
+                                            <rect key="frame" x="250" y="202" width="143" height="35"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" title="EASLINK" id="rNZ-O9-0ZK">
+                                                <font key="font" metaFont="system" size="28"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rS4-Dp-Bso">
+                                            <rect key="frame" x="250" y="150" width="263" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" title="A centralized way to manage EAs at BCIS." id="tQd-lE-pab">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4l-Yn-go7">
+                                            <rect key="frame" x="252" y="23" width="144" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="View on GitHub" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Q4-ct-9uK">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="openGithub:" target="8OE-3K-60v" id="zuF-ZB-tcU"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                </view>
+                                <color key="borderColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="fillColor" name="Manage Background"/>
+                            </box>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="qUv-Ag-3n5" id="dOd-cm-B84"/>
+                    </connections>
+                </viewController>
+                <customObject id="sex-Ao-QsY" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="667.5" y="33.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="EASLINK LOGO.001 2" width="1024" height="1024"/>
+        <namedColor name="Manage Background">
+            <color red="0.84705882352941175" green="0.94117647058823528" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

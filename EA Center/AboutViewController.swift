@@ -8,14 +8,18 @@
 
 import UIKit
 
-class AboutViewController: UITableViewController {
-
+class AboutViewController: UIViewController {
+    @IBOutlet weak var logoImageView: UIImageView!
+    
+    @IBOutlet weak var versionLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         
-        tableView.backgroundColor = UIColor(named: "Menu Color")
+        let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
+        versionLabel.text = "Version: \(version!)"
     }
 
     /*

@@ -49,6 +49,8 @@ class AddLeaderViewController: NSViewController {
         addESCEvent()
         
         downloadLeaderList()
+        
+        view.window?.makeFirstResponder(searchBar)
     }
     
     override func viewWillLayout() {
