@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol MeSplitViewControlling {
+protocol MeSplitViewControlling: class {
     // Mode:
     // 1: Profile
     // 2: Settings
@@ -30,9 +30,9 @@ class MeViewController: UITableViewController {
     
     var loggedIn: Bool = false
     
-    var splitViewControllingDelegate: MeSplitViewControlling?
+    weak var splitViewControllingDelegate: MeSplitViewControlling?
     
-    var splitViewDetail: Any?
+    weak var splitViewDetail: UIViewController?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -66,8 +66,9 @@ class MeViewController: UITableViewController {
             updateLoginUI(account: currentUserAccount!)
         }
         
-        //let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
-        //view.addGestureRecognizer(tapRecognizer)
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        tapRecognizer.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapRecognizer)
         
         tableView.backgroundColor = UIColor(named: "Menu Color")
     }
@@ -76,6 +77,10 @@ class MeViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         //tableView.deleteSections(IndexSet(integer: 1), with: .none)
+    }
+    
+    @objc func endEditing() {
+        view.endEditing(true)
     }
 
     // MARK: - Table View Delegate

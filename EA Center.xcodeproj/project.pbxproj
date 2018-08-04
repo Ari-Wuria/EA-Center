@@ -20,6 +20,7 @@
 		0597CD4720F78985006B4590 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597CD4620F78985006B4590 /* TextEditorViewController.swift */; };
 		05ADD16720FB59C1008754A0 /* CreateNewEAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ADD16520FB59C1008754A0 /* CreateNewEAViewController.swift */; };
 		05ECDEE420F9E7CE0075DBB3 /* AddLeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ECDEE320F9E7CE0075DBB3 /* AddLeaderViewController.swift */; };
+		D00961A72115938300717248 /* CampusMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00961A52115938300717248 /* CampusMapViewController.swift */; };
 		D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF120E67B3C003757A7 /* EAListViewController.swift */; };
 		D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF320E67B59003757A7 /* EAListCell.swift */; };
 		D0177FF520E67C25003757A7 /* EnrichmentActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70D20E128CC009CB82E /* EnrichmentActivity.swift */; };
@@ -45,8 +46,8 @@
 		D017800D20E77DB2003757A7 /* AccountProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800C20E77DB2003757A7 /* AccountProcessor.swift */; };
 		D017800E20E77DB6003757A7 /* AccountProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800C20E77DB2003757A7 /* AccountProcessor.swift */; };
 		D017801020E77FA9003757A7 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800F20E77FA9003757A7 /* MeViewController.swift */; };
+		D01B77A2211595FF00B93427 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B77A1211595FF00B93427 /* AboutWindowController.swift */; };
 		D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025730320D8A1E30078AE89 /* AppDelegate.swift */; };
-		D025730920D8A1E30078AE89 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730720D8A1E30078AE89 /* Main.storyboard */; };
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
 		D041203E2102128000EDC5D4 /* CoordinatorSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D041203C2102128000EDC5D4 /* CoordinatorSettingsViewController.swift */; };
@@ -75,6 +76,8 @@
 		D0A7662120E27049001B4317 /* LeaderSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662020E27049001B4317 /* LeaderSettingsViewController.swift */; };
 		D0A7662320E27056001B4317 /* AttendenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662220E27056001B4317 /* AttendenceViewController.swift */; };
 		D0A7662520E27FFA001B4317 /* EditDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A7662420E27FFA001B4317 /* EditDescriptionViewController.swift */; };
+		D0ABBF4D21135DB600BE81F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDD20D8A41300DBB70E /* Main.storyboard */; };
+		D0ABBF4E21135DC500BE81F4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0C2C0212111FD970002E508 /* Main.storyboard */; };
 		D0B7C47520EC8DC4004DE8F3 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */; };
 		D0B7C47620EC8DE7004DE8F3 /* UserAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47420EC8DC4004DE8F3 /* UserAccount.swift */; };
 		D0B7C47820EC9620004DE8F3 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */; };
@@ -82,8 +85,6 @@
 		D0B7C47C20EF94BF004DE8F3 /* ManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47B20EF94BF004DE8F3 /* ManagerViewController.swift */; };
 		D0B7C47E20EF94D8004DE8F3 /* EAManageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47D20EF94D8004DE8F3 /* EAManageCell.swift */; };
 		D0B9A3AB2111F85100AB7AF1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9A3A92111F85100AB7AF1 /* AboutViewController.swift */; };
-		D0C2C0232111FD970002E508 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0C2C0212111FD970002E508 /* Main.storyboard */; };
-		D0C2C0242111FE230002E508 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0DFCEDD20D8A41300DBB70E /* Main.storyboard */; };
 		D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */; };
 		D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */; };
 		D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37620E529840009AC07 /* AESCrypto.swift */; };
@@ -117,7 +118,6 @@
 		D0FEB74A20E147B0009CB82E /* pwd2key.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73420E147AF009CB82E /* pwd2key.c */; };
 		D0FEB74B20E147B0009CB82E /* aestab.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73520E147AF009CB82E /* aestab.c */; };
 		D0FEB74C20E147B0009CB82E /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73A20E147AF009CB82E /* SSZipArchive.m */; };
-		D0FEB74D20E147B0009CB82E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0FEB73B20E147AF009CB82E /* Info.plist */; };
 		D0FEB75820E14864009CB82E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FEB75720E14864009CB82E /* libz.tbd */; };
 /* End PBXBuildFile section */
 
@@ -134,6 +134,7 @@
 		0597CD4620F78985006B4590 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
 		05ADD16520FB59C1008754A0 /* CreateNewEAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEAViewController.swift; sourceTree = "<group>"; };
 		05ECDEE320F9E7CE0075DBB3 /* AddLeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeaderViewController.swift; sourceTree = "<group>"; };
+		D00961A52115938300717248 /* CampusMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapViewController.swift; sourceTree = "<group>"; };
 		D0177FF120E67B3C003757A7 /* EAListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListViewController.swift; sourceTree = "<group>"; };
 		D0177FF320E67B59003757A7 /* EAListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCell.swift; sourceTree = "<group>"; };
 		D0177FF620E6869D003757A7 /* EADescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EADescriptionViewController.swift; sourceTree = "<group>"; };
@@ -141,6 +142,7 @@
 		D0177FFA20E77AB0003757A7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		D017800C20E77DB2003757A7 /* AccountProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProcessor.swift; sourceTree = "<group>"; };
 		D017800F20E77FA9003757A7 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
+		D01B77A1211595FF00B93427 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
 		D025730020D8A1E30078AE89 /* EA Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D025730320D8A1E30078AE89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D025730820D8A1E30078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -377,6 +379,8 @@
 			isa = PBXGroup;
 			children = (
 				D0B9A3A92111F85100AB7AF1 /* AboutViewController.swift */,
+				D00961A52115938300717248 /* CampusMapViewController.swift */,
+				D01B77A1211595FF00B93427 /* AboutWindowController.swift */,
 			);
 			path = "About Screens";
 			sourceTree = "<group>";
@@ -593,10 +597,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D05992EB2111EAA3006DD283 /* EASLINK LOGO.001 2.jpeg in Resources */,
-				D0C2C0232111FD970002E508 /* Main.storyboard in Resources */,
 				D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */,
 				D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */,
-				D025730920D8A1E30078AE89 /* Main.storyboard in Resources */,
+				D0ABBF4E21135DC500BE81F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -604,7 +607,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D0FEB74D20E147B0009CB82E /* Info.plist in Resources */,
 				D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */,
 				D07DE9522111F09E00423D01 /* AboutScreen.storyboard in Resources */,
 				D0E3A09121130EEE004F2052 /* ManagerDetail.storyboard in Resources */,
@@ -612,7 +614,7 @@
 				D09D0508210B0FBF000577B7 /* DebugMenu.storyboard in Resources */,
 				D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */,
 				0541489820FF62CA00EFC7C1 /* CoordinatorSettings.storyboard in Resources */,
-				D0C2C0242111FE230002E508 /* Main.storyboard in Resources */,
+				D0ABBF4D21135DB600BE81F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +681,7 @@
 				D0FEB74B20E147B0009CB82E /* aestab.c in Sources */,
 				D0FEB74320E147AF009CB82E /* aeskey.c in Sources */,
 				05ADD16720FB59C1008754A0 /* CreateNewEAViewController.swift in Sources */,
+				D01B77A2211595FF00B93427 /* AboutWindowController.swift in Sources */,
 				D05E85DA210614DC00EA4577 /* CoordinatorSettingsCellView.swift in Sources */,
 				D0B7C47820EC9620004DE8F3 /* AccountSettingsViewController.swift in Sources */,
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,
@@ -715,6 +718,7 @@
 				D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */,
 				0597CD4520F76523006B4590 /* HelperFunctions.swift in Sources */,
 				D042C18F20DBA0860017DE4F /* LoginViewController.swift in Sources */,
+				D00961A72115938300717248 /* CampusMapViewController.swift in Sources */,
 				D0FEB74C20E147B0009CB82E /* SSZipArchive.m in Sources */,
 				D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */,
 				05ECDEE420F9E7CE0075DBB3 /* AddLeaderViewController.swift in Sources */,

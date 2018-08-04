@@ -63,6 +63,10 @@ class SettingsViewController: UITableViewController {
         let cell: UITableViewCell = super.tableView(tableView, cellForRowAt: indexPath)
         return cell.isHidden ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
     }
+    
+    deinit {
+        print("deinit \(self)")
+    }
 
     /*
     // MARK: - Navigation

@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ManagerSplitViewControlling {
+protocol ManagerSplitViewControlling: class {
     func managerRequestSplitViewDetail(_ controller: ManagerViewController)
 }
 
@@ -17,11 +17,15 @@ class ManagerViewController: UITableViewController {
     var loggedIn: Bool = false
     var currentAccount: UserAccount?
     
-    var splitViewDetail: EADetailViewController?
+    weak var splitViewDetail: EADetailViewController?
     
-    var splitViewControllingDelegate: ManagerSplitViewControlling?
+    weak var splitViewControllingDelegate: ManagerSplitViewControlling?
     
     @IBOutlet var createButton: UIBarButtonItem!
+    
+    var selectedEA: EnrichmentActivity?
+    
+    var successLoading = false
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -40,6 +44,16 @@ class ManagerViewController: UITableViewController {
         
         if !loggedIn {
             navigationItem.rightBarButtonItems = []
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let splitDetailNav = splitViewController?.viewControllers.last as? UINavigationController
+        let splitDetail = splitDetailNav?.topViewController
+        if splitDetail is EADetailViewController {
+            trackSelectedEA()
         }
     }
     
@@ -64,8 +78,27 @@ class ManagerViewController: UITableViewController {
         navigationItem.rightBarButtonItems = []
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func trackSelectedEA() {
+        if view.window!.rootViewController!.traitCollection.horizontalSizeClass != .compact {
+            // iPad only
+            if selectedEA != nil {
+                let eaInArray = myEA.firstIndex(of: selectedEA!)
+                if let row = eaInArray {
+                    tableView.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .middle)
+                }
+            } else {
+                splitViewDetail = nil
+                let splitDetailNav = splitViewController?.viewControllers.last as? UINavigationController
+                let splitDetail = splitDetailNav?.topViewController
+                if splitDetail is EADetailViewController {
+                    // TODO: Try to use reusable detail controller
+                    // Currently using a one time use controller, because this one is the description view, not the detail view.
+                    //performSegue(withIdentifier: "EADescDetail", sender: nil)
+                    let nav = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "DescriptionNav")
+                    splitViewController?.showDetailViewController(nav, sender: nil)
+                }
+            }
+        }
     }
     
     // MARK: - Download
@@ -90,6 +123,14 @@ class ManagerViewController: UITableViewController {
                     delay(0.3) {
                         self.tableView.reloadData()
                         self.refreshControl?.endRefreshing()
+                        
+                        let splitDetailNav = self.splitViewController?.viewControllers.last as? UINavigationController
+                        let splitDetail = splitDetailNav?.topViewController
+                        if splitDetail is EADetailViewController {
+                            // Refresh
+                            self.selectedEA = nil
+                            self.trackSelectedEA()
+                        }
                     }
                 }
             }
@@ -113,20 +154,26 @@ class ManagerViewController: UITableViewController {
                 return
             }
             
-            let jsonData: [String:Any]
+            let jsonData: Any
             do {
-                jsonData = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
+                jsonData = try JSONSerialization.jsonObject(with: data!)
             } catch {
                 //print("No JSON data: \(error)")
                 self.presentAlert(withTitle: "Failed retriving my EAs", message: "This app is having trouble understanding the data that the server had provided. (No JSON data)")
                 return
             }
             
-            let myEAs = jsonData["result"] as! [[String:Any]]
+            guard let jsonResult = jsonData as? [String:Any] else {
+                self.successLoading = true
+                return
+            }
+            
+            let myEAs = jsonResult["result"] as! [[String:Any]]
             for eaDict in myEAs {
                 let ea = EnrichmentActivity(dictionary: eaDict)
                 self.myEA.append(ea)
             }
+            self.successLoading = true
         }
         dataTask.resume()
     }
@@ -136,6 +183,8 @@ class ManagerViewController: UITableViewController {
             refreshControl?.endRefreshing()
             return
         }
+        
+        successLoading = false
         
         myEA.removeAll()
         retriveMyEA()
@@ -151,7 +200,11 @@ class ManagerViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if loggedIn {
-            return myEA.count
+            if myEA.count > 0 {
+                return myEA.count
+            } else {
+                return 1
+            }
         } else {
             return 1
         }
@@ -159,6 +212,12 @@ class ManagerViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if loggedIn {
+            if successLoading == true && myEA.count == 0 {
+                return tableView.dequeueReusableCell(withIdentifier: "StarterCell")!
+            } else if myEA.count == 0 && successLoading == false {
+                return tableView.dequeueReusableCell(withIdentifier: "NothingCell")!
+            }
+            
             let cell = tableView.dequeueReusableCell(withIdentifier: "ManageCell", for: indexPath) as! EAManageCell
             
             // Configure the cell...
@@ -215,7 +274,11 @@ class ManagerViewController: UITableViewController {
                             if success {
                                 NotificationCenter.default.post(name: EADeletedNotification, object: ea)
                                 self.myEA.remove(at: indexPath.row)
-                                tableView.deleteRows(at: [indexPath], with: .fade)
+                                if self.myEA.count > 0 {
+                                    tableView.deleteRows(at: [indexPath], with: .fade)
+                                } else {
+                                    tableView.reloadData()
+                                }
                             } else {
                                 self.presentAlert(withTitle: "Can not delete EA!", message: errStr!)
                                 
@@ -250,7 +313,7 @@ class ManagerViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if loggedIn {
+        if loggedIn && myEA.count > 0 {
             return indexPath
         } else {
             return nil
@@ -262,11 +325,18 @@ class ManagerViewController: UITableViewController {
             let cell = tableView.cellForRow(at: indexPath)
             performSegue(withIdentifier: "ManageEADetail", sender: cell)
         } else {
-            // TODO: Why do the cell just gets deselected???
-            performSegue(withIdentifier: "EADetail", sender: nil)
-            splitViewControllingDelegate?.managerRequestSplitViewDetail(self)
+            let splitDetailNav = splitViewController?.viewControllers.last as? UINavigationController
+            let splitDetail = splitDetailNav?.topViewController
+            if !(splitDetail is EADetailViewController) {
+                performSegue(withIdentifier: "EADetail", sender: nil)
+                splitViewControllingDelegate?.managerRequestSplitViewDetail(self)
+            }
             
-            splitViewDetail!.currentEA = myEA[indexPath.row]
+            let eaToDisplay = myEA[indexPath.row]
+            
+            splitViewDetail!.currentEA = eaToDisplay
+            
+            selectedEA = eaToDisplay
             
             if splitViewController!.displayMode != .allVisible {
                 // Temporary fix for segue animation

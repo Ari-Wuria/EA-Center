@@ -145,5 +145,9 @@ class ProfileEditorViewController: UITableViewController {
             dest.currentAccount = userAccount
         }
     }
+    
+    deinit {
+        print("deinit \(self)")
+    }
 
 }

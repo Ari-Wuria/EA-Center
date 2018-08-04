@@ -741,7 +741,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1001" y="-84"/>
+            <point key="canvasLocation" x="933" y="-57"/>
         </scene>
         <!--AboutScreen-->
         <scene sceneID="LQi-ZK-E52">
@@ -749,7 +749,7 @@
                 <controllerPlaceholder storyboardName="AboutScreen" id="DIg-zD-XT6" sceneMemberID="viewController"/>
                 <customObject id="A3c-jJ-uGz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1001" y="41"/>
+            <point key="canvasLocation" x="933" y="63"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="vhm-oq-Nt7">
@@ -771,7 +771,7 @@
                 </windowController>
                 <customObject id="o2B-QY-A8c" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-830" y="227"/>
+            <point key="canvasLocation" x="-796" y="242"/>
         </scene>
         <!--Manager View Controller-->
         <scene sceneID="ELt-nS-czq">
@@ -1095,7 +1095,7 @@
                 <controllerPlaceholder storyboardName="ManagerDetail" referencedIdentifier="ManagerTabViewController" id="tRV-pf-GxK" sceneMemberID="viewController"/>
                 <customObject id="9vJ-fp-tbK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-774" y="1517"/>
+            <point key="canvasLocation" x="-777" y="1510"/>
         </scene>
         <!--DeleteViewController-->
         <scene sceneID="E9u-01-ANh">
@@ -1103,7 +1103,7 @@
                 <controllerPlaceholder storyboardName="ManagerDetail" referencedIdentifier="DeleteViewController" id="Nyc-qD-tgO" sceneMemberID="viewController"/>
                 <customObject id="edi-8E-gyr" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-581" y="1517"/>
+            <point key="canvasLocation" x="-584" y="1510"/>
         </scene>
         <!--SendApprovalViewController-->
         <scene sceneID="Zkk-BT-Vpj">
@@ -1304,6 +1304,12 @@
                                 <toolbarItem implicitItemIdentifier="669DCBD6-8DA0-4BBE-B2D4-5F093C12FB23" label="Messages" paletteLabel="Messages" tag="-1" image="Bubble" id="ubx-4f-Fao"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="u0j-z2-Vcc"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="93K-p9-sk7"/>
+                                <toolbarItem implicitItemIdentifier="E8B59DF3-FEE4-41F5-8B0E-1F459B0494DF" label="Campus Map" paletteLabel="Campus Map" tag="-1" image="Map Icon" id="3Pk-3a-HFB">
+                                    <connections>
+                                        <action selector="showCampusMap:" target="B8D-0N-5wS" id="js6-pc-363"/>
+                                        <segue destination="zjx-sN-CpF" kind="show" identifier="ShowCampusMap" id="glb-Bt-2IK"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="93K-p9-sk7"/>
@@ -1311,6 +1317,7 @@
                                 <toolbarItem reference="ubx-4f-Fao"/>
                                 <toolbarItem reference="24C-Ll-mhF"/>
                                 <toolbarItem reference="c5g-tm-huA"/>
+                                <toolbarItem reference="3Pk-3a-HFB"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -1323,6 +1330,14 @@
                 </windowController>
             </objects>
             <point key="canvasLocation" x="200" y="220"/>
+        </scene>
+        <!--CampusMap-->
+        <scene sceneID="pJa-KI-q4A">
+            <objects>
+                <controllerPlaceholder storyboardName="AboutScreen" referencedIdentifier="CampusMap" id="zjx-sN-CpF" sceneMemberID="viewController"/>
+                <customObject id="7bz-TH-TDa" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="399" y="688"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -1688,12 +1703,38 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <touchBarItem id="gWE-Lw-0PL">
+                    <viewController key="viewController" id="YyZ-2b-Vh7">
+                        <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7uz-kB-1UB">
+                            <rect key="frame" x="0.0" y="-11" width="156" height="41"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="push" title="Messages" bezelStyle="rounded" image="Bubble White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9XY-2p-S7q">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" usesAppearanceFont="YES"/>
+                            </buttonCell>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="144" height="30"/>
+                </touchBarItem>
+                <touchBarItem id="9U3-oq-22T">
+                    <viewController key="viewController" id="X20-ee-5ch">
+                        <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="19L-sp-F0h">
+                            <rect key="frame" x="0.0" y="-11" width="138" height="41"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="push" title="Timetable" bezelStyle="rounded" image="Clock White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CMg-Jm-mpV">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" usesAppearanceFont="YES"/>
+                            </buttonCell>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="126" height="30"/>
+                </touchBarItem>
                 <touchBar id="F90-RN-1KC">
                     <touchBarItems>
                         <touchBarItem id="a1N-Wp-wjk">
                             <viewController key="viewController" id="eoD-5F-Pqy">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="v4H-zG-ZC7">
-                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" bezelStyle="rounded" image="Open Heart" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyUpOrDown" inset="2" id="aFA-oA-eoO">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1709,7 +1750,7 @@
                         <touchBarItem id="oZp-9W-At5">
                             <viewController key="viewController" id="QJf-Gd-LEV">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="CQi-HQ-f03">
-                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="72" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Join" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sQ9-qg-5Sz">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1725,7 +1766,7 @@
                         <touchBarItem id="Hhs-yp-AaF">
                             <viewController key="viewController" id="U26-73-G0f">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="doK-A1-RYU">
-                                    <rect key="frame" x="0.0" y="-11" width="192" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="180" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Student Bulletin" bezelStyle="rounded" image="User White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0KG-mW-bmI">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1738,31 +1779,21 @@
                             </viewController>
                             <size key="designTimeSize" width="180" height="30"/>
                         </touchBarItem>
-                        <touchBarItem id="gWE-Lw-0PL">
-                            <viewController key="viewController" id="YyZ-2b-Vh7">
-                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7uz-kB-1UB">
-                                    <rect key="frame" x="0.0" y="-11" width="156" height="41"/>
+                        <touchBarItem id="E2q-K7-w9f">
+                            <viewController key="viewController" id="FgD-x2-hqV">
+                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BeB-Fz-Sav">
+                                    <rect key="frame" x="0.0" y="0.0" width="162" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="push" title="Messages" bezelStyle="rounded" image="Bubble White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="9XY-2p-S7q">
+                                    <buttonCell key="cell" type="push" title="Campus Map" bezelStyle="rounded" image="Map Icon White" imagePosition="leading" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="NgY-ad-OVo">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                         <font key="font" usesAppearanceFont="YES"/>
                                     </buttonCell>
+                                    <connections>
+                                        <action selector="touchShowCampusMap:" target="XfG-lQ-9wD" id="SWQ-0T-zFW"/>
+                                    </connections>
                                 </button>
                             </viewController>
-                            <size key="designTimeSize" width="144" height="30"/>
-                        </touchBarItem>
-                        <touchBarItem id="9U3-oq-22T">
-                            <viewController key="viewController" id="X20-ee-5ch">
-                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="19L-sp-F0h">
-                                    <rect key="frame" x="0.0" y="-11" width="138" height="41"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="push" title="Timetable" bezelStyle="rounded" image="Clock White" imagePosition="left" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="CMg-Jm-mpV">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </buttonCell>
-                                </button>
-                            </viewController>
-                            <size key="designTimeSize" width="126" height="30"/>
+                            <size key="designTimeSize" width="162" height="30"/>
                         </touchBarItem>
                     </touchBarItems>
                 </touchBar>
@@ -1785,7 +1816,7 @@
                     </connections>
                 </clickGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="238" y="1097"/>
+            <point key="canvasLocation" x="231" y="1103"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="gJt-th-cbS">
@@ -1806,7 +1837,7 @@
                 </windowController>
                 <customObject id="KLI-IA-9H6" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1041" y="304"/>
+            <point key="canvasLocation" x="961" y="289"/>
         </scene>
         <!--Bulletin View Controller-->
         <scene sceneID="dXf-gP-Zd5">
@@ -1837,7 +1868,7 @@
                 </viewController>
                 <customObject id="6Cc-ss-x7M" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1115" y="836"/>
+            <point key="canvasLocation" x="1086" y="837"/>
         </scene>
     </scenes>
     <resources>
@@ -1847,6 +1878,8 @@
         <image name="Clock White" width="31" height="31"/>
         <image name="Cog" width="26.5" height="26.5"/>
         <image name="Computer" width="431.5" height="423.5"/>
+        <image name="Map Icon" width="91.5" height="78.5"/>
+        <image name="Map Icon White" width="91.5" height="78.5"/>
         <image name="NSStatusNone" width="16" height="16"/>
         <image name="Open Heart" width="138" height="122"/>
         <image name="Pencil Paper" width="206.5" height="207"/>

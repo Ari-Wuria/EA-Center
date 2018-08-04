@@ -11,6 +11,10 @@ import Cocoa
 class AboutViewController: NSViewController {
     @IBOutlet var imageView: NSImageView!
 
+    @IBOutlet var mainTouchBar: NSTouchBar!
+    
+    var escEvent: Any?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -21,6 +25,14 @@ class AboutViewController: NSViewController {
         imageView.canDrawSubviewsIntoLayer = true
         imageView.layer?.masksToBounds = true
         imageView.layer?.cornerRadius = 25
+        
+        addESCEvent()
+    }
+    
+    override func viewDidDisappear() {
+        super.viewDidDisappear()
+        
+        removeESCEvent()
     }
     
     @IBAction func openGithub(_ sender: Any) {
@@ -29,5 +41,36 @@ class AboutViewController: NSViewController {
     
     @IBAction func showUseOfLibraries(_ sender: Any) {
         // TODO: Add use of library
+    }
+    
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
+    }
+    
+    func addESCEvent() {
+        escEvent = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) -> NSEvent? in
+            if event.window != self.view.window {
+                return event
+            }
+            
+            if event.keyCode == 53 {
+                // esc pressed
+                self.view.window?.close()
+                return nil
+            }
+            
+            return event
+        }
+    }
+    
+    func removeESCEvent() {
+        if let event = escEvent {
+            NSEvent.removeMonitor(event)
+        }
+        escEvent = nil
+    }
+    
+    deinit {
+        print("deinit \(self)")
     }
 }

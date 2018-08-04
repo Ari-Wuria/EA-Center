@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol EAListSplitViewControlling {
+protocol EAListSplitViewControlling: class {
     func eaListRequestSplitViewDetail(_ controller: EAListViewController)
 }
 
@@ -24,13 +24,16 @@ class EAListViewController: UITableViewController {
     
     let searchController = UISearchController(searchResultsController: nil)
     
-    var splitViewDetail: EADescriptionViewController?
+    weak var splitViewDetail: EADescriptionViewController?
     
-    var splitViewControllingDelegate: EAListSplitViewControlling?
+    weak var splitViewControllingDelegate: EAListSplitViewControlling?
     
     var currentAccount: UserAccount?
     
     var filterMode: Int = 1
+    
+    // Track selectedEA on iPad
+    var selectedEA: EnrichmentActivity?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +61,20 @@ class EAListViewController: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(login(_:)), name: LoginSuccessNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(logout(_:)), name: LogoutNotification, object: nil)
         
+        // Get the split detail of this view controller at launch because it is the first detail vc shown
+        splitViewControllingDelegate?.eaListRequestSplitViewDetail(self)
         
         //NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: UIAccessibility.invertColorsStatusDidChangeNotification, object: nil)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        let splitDetailNav = splitViewController?.viewControllers.last as? UINavigationController
+        let splitDetail = splitDetailNav?.topViewController
+        if splitDetail is EADescriptionViewController {
+            trackSelectedEA()
+        }
     }
     
     @objc func login(_ notification: Notification) {
@@ -164,7 +179,7 @@ class EAListViewController: UITableViewController {
             } else {
                 cell.shortDescriptionLabel.text = "This EA does not have a short description."
             }
-            cell.shortDescriptionLabel.sizeToFit()
+            //cell.shortDescriptionLabel.sizeToFit()
             
             cell.currentEA = ea
             
@@ -224,14 +239,26 @@ class EAListViewController: UITableViewController {
         } else {
             searchController.searchBar.resignFirstResponder()
             
-            performSegue(withIdentifier: "EADescDetail", sender: nil)
-            splitViewControllingDelegate?.eaListRequestSplitViewDetail(self)
-            
-            if isFiltering() {
-                splitViewDetail?.ea = filteredEA[indexPath.row]
-            } else {
-                splitViewDetail?.ea = joinableEA[indexPath.row]
+            let splitDetailNav = splitViewController?.viewControllers.last as? UINavigationController
+            let splitDetail = splitDetailNav?.topViewController
+            if !(splitDetail is EADescriptionViewController) {
+                performSegue(withIdentifier: "EADescDetail", sender: nil)
+                splitViewControllingDelegate?.eaListRequestSplitViewDetail(self)
+            } else if splitDetail != splitViewDetail {
+                splitViewDetail = splitDetail as? EADescriptionViewController
             }
+            
+            splitViewDetail?.currentAccount = currentAccount
+            
+            let eaToDisplay: EnrichmentActivity
+            if isFiltering() {
+                eaToDisplay = filteredEA[indexPath.row]
+            } else {
+                eaToDisplay = joinableEA[indexPath.row]
+            }
+            splitViewDetail?.ea = eaToDisplay
+            
+            selectedEA = eaToDisplay
             
             if splitViewController!.displayMode != .allVisible {
                 // Temporary fix for segue animation
@@ -260,7 +287,10 @@ class EAListViewController: UITableViewController {
         // Pass the selected object to the new view controller.
         
         if segue.identifier == "ShowEADetail" {
-            //let indexPath = tableView.indexPathForSelectedRow
+            let destinationController = segue.destination as! EADescriptionViewController
+            
+            destinationController.currentAccount = self.currentAccount
+            
             let cell = sender as! UITableViewCell
             let indexPath = tableView.indexPath(for: cell)!
             
@@ -270,8 +300,6 @@ class EAListViewController: UITableViewController {
             } else {
                 ea = joinableEA[indexPath.row]
             }
-            
-            let destinationController = segue.destination as! EADescriptionViewController
             destinationController.ea = ea
         }
     }
@@ -294,6 +322,7 @@ class EAListViewController: UITableViewController {
                         self.updateJoinableEA()
                         self.tableView.reloadData()
                         self.listRefreshControl.endRefreshing()
+                        self.trackSelectedEA()
                     }
                 }
             }
@@ -360,6 +389,37 @@ class EAListViewController: UITableViewController {
             return false
         }
     }
+    
+    func trackSelectedEA() {
+        if view.window!.rootViewController!.traitCollection.horizontalSizeClass != .compact {
+            // iPad only
+            if selectedEA != nil {
+                let eaInArray: Int?
+                if isFiltering() {
+                    eaInArray = filteredEA.firstIndex(of: selectedEA!)
+                } else {
+                    eaInArray = joinableEA.firstIndex(of: selectedEA!)
+                }
+                if let row = eaInArray {
+                    tableView.selectRow(at: IndexPath(row: row, section: 0), animated: false, scrollPosition: .middle)
+                } else {
+                    // Remove selected EA and show empty detail
+                    selectedEA = nil
+                    
+                    let splitDetailNav = splitViewController?.viewControllers.last as? UINavigationController
+                    let splitDetail = splitDetailNav?.topViewController
+                    if !(splitDetail is EADescriptionViewController) {
+                        performSegue(withIdentifier: "EADescDetail", sender: nil)
+                        splitViewControllingDelegate?.eaListRequestSplitViewDetail(self)
+                    }
+                    splitViewDetail?.currentAccount = currentAccount
+                    splitViewDetail?.ea = nil
+                    
+                    //performSegue(withIdentifier: "EADescDetail", sender: nil)
+                }
+            }
+        }
+    }
 }
 
 extension EAListViewController: UINavigationControllerDelegate {
@@ -372,6 +432,7 @@ extension EAListViewController: UISearchResultsUpdating, UISearchBarDelegate {
         let searchBar = searchController.searchBar
         let scope = searchBar.scopeButtonTitles![searchBar.selectedScopeButtonIndex]
         filterContentForSearchText(searchController.searchBar.text!, scope: scope)
+        trackSelectedEA()
     }
     
     func searchBarIsEmpty() -> Bool {
@@ -426,6 +487,8 @@ extension EAListViewController: UIViewControllerPreviewingDelegate {
     func previewingContext(_ previewingContext: UIViewControllerPreviewing, viewControllerForLocation location: CGPoint) -> UIViewController? {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         let controller = storyboard.instantiateViewController(withIdentifier: "EADesc") as! EADescriptionViewController
+        controller.currentAccount = currentAccount
+        
         let cell = previewingContext.sourceView as! UITableViewCell
         let indexPath = tableView.indexPath(for: cell)!
         let ea: EnrichmentActivity
@@ -435,6 +498,7 @@ extension EAListViewController: UIViewControllerPreviewingDelegate {
             ea = joinableEA[indexPath.row]
         }
         controller.ea = ea
+        
         return controller
     }
     

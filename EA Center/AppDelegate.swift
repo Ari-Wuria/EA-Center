@@ -17,8 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return window!.rootViewController as! UISplitViewController
     }
     
-    var masterTabBarController: UITabBarController {
-        return splitViewController.viewControllers.first! as! UITabBarController
+    var masterTabBarController: MyTabBarController {
+        return splitViewController.viewControllers.first! as! MyTabBarController
     }
     
     var listNavController: UINavigationController {
@@ -44,15 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var detailViewController: UIViewController {
         return detailNavController.topViewController!
     }
-    /*
-    var detailViewController: EADescriptionViewController {
-        return detailNavController.topViewController as! EADescriptionViewController
-    }
     
-    var managerDetailController: EADetailViewController {
-        return detailNavController.topViewController as! EADetailViewController
-    }
-    */
     var meNavController: UINavigationController {
         return masterTabBarController.viewControllers?[2] as! UINavigationController
     }
@@ -147,5 +139,12 @@ extension AppDelegate: EAListSplitViewControlling, ManagerSplitViewControlling, 
         //currentDetailController = managerDetailController
         controller.splitViewDetail = detailViewController as? EADetailViewController
         detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+    }
+}
+
+// MARK: Subclasses
+class MyTabBarController: UITabBarController {
+    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        title = tabBar.selectedItem?.title
     }
 }

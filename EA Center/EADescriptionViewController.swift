@@ -11,12 +11,21 @@ import UIKit
 class EADescriptionViewController: UIViewController {
     var ea: EnrichmentActivity? {
         didSet {
-            if isViewLoaded {
-                textView.text = ""
-                pencilPaper?.isHidden = true
-                updateEADescription()
+            if ea != nil {
+                if isViewLoaded {
+                    textView.text = ""
+                    pencilPaper?.isHidden = true
+                    updateEADescription()
+                    updateEAStatusLabel()
+                }
+                title = ea!.name
+            } else {
+                if isViewLoaded {
+                    textView.text = ""
+                    pencilPaper?.isHidden = false
+                }
+                title = "EASLINK"
             }
-            title = ea!.name
         }
     }
     
@@ -24,12 +33,33 @@ class EADescriptionViewController: UIViewController {
     
     var downloadTask: URLSessionDownloadTask?
     
+    var loggedIn = false
+    var currentAccount: UserAccount? {
+        didSet {
+            loggedIn = currentAccount == nil ? false : true
+        }
+    }
+    
     @IBOutlet var pencilPaper: UIImageView?
+    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    
+    @IBOutlet weak var statusLabel: UILabel!
+    
+    @IBOutlet weak var joinButton: UIBarButtonItem!
+    
+    @IBOutlet weak var eaStatusContainerView: UIVisualEffectView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Inset the text view above the blur view
+        textView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 55, right: 0)
+        textView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 55, right: 0)
+        
+        updateEAStatusLabel()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,18 +88,21 @@ class EADescriptionViewController: UIViewController {
         let url = URL(string: urlString)!
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        spinner.startAnimating()
         
         let session = URLSession.shared
         downloadTask = session.downloadTask(with: url) { (filePath, urlResponse, error) in
             defer {
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    self.spinner.stopAnimating()
                 }
             }
             
             guard error == nil else {
                 // Can't download with an error
                 print("Error: \(error!.localizedDescription)")
+                self.presentAlert(withTitle: "Can not download description", message: "\(error!.localizedDescription)")
                 return
             }
             
@@ -77,6 +110,7 @@ class EADescriptionViewController: UIViewController {
             guard httpResponse?.statusCode == 200 else {
                 // Wrong response code
                 print("Response code not 200: \(String(describing: httpResponse?.statusCode))")
+                self.presentAlert(withTitle: "Can not download description", message: "The server returned an invalid response code. (\(String(describing: httpResponse?.statusCode))")
                 return
             }
             
@@ -95,6 +129,7 @@ class EADescriptionViewController: UIViewController {
             } catch {
                 // Unzipped file failed or file doesn't exist
                 print("Unzipped file failed or file doesn't exist")
+                self.presentAlert(withTitle: "Can not load description", message: "I can't process the file downloaded from the server :(\nPlease try again.")
                 return
             }
             
@@ -109,6 +144,67 @@ class EADescriptionViewController: UIViewController {
         }
         
         downloadTask!.resume()
+    }
+    
+    func presentAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    func toggleJoinButtonVisibility(_ visible: Bool) {
+        if !visible {
+            navigationItem.rightBarButtonItems = []
+        } else {
+            navigationItem.rightBarButtonItems = [joinButton]
+        }
+    }
+    
+    func updateEAStatusLabel() {
+        if ea != nil {
+            eaStatusContainerView.isHidden = false
+            if loggedIn == false {
+                statusLabel.text = "Login to join EAs"
+                toggleJoinButtonVisibility(false)
+            } else if currentAccount!.accountType == 4 || currentAccount?.accountType == 1 {
+                if ea!.joinedUserID!.contains(currentAccount!.userID) {
+                    statusLabel.text = "You are already in this EA"
+                    toggleJoinButtonVisibility(false)
+                } else if ea!.leaderEmails.contains(currentAccount!.userEmail) {
+                    statusLabel.text = "You are the leader of this EA"
+                    toggleJoinButtonVisibility(false)
+                } else {
+                    if ea?.approved == 2 {
+                        if let ea = ea {
+                            statusLabel.text = "Join \(ea.name)!"
+                        } else {
+                            statusLabel.text = "Join this EA!"
+                        }
+                        toggleJoinButtonVisibility(true)
+                        joinButton.isEnabled = true
+                    } else if ea?.approved == 3 {
+                        statusLabel.text = "This EA is closed"
+                        toggleJoinButtonVisibility(true)
+                        joinButton.isEnabled = false
+                    } else if ea?.approved == 5 {
+                        statusLabel.text = "Waiting for approval"
+                        toggleJoinButtonVisibility(false)
+                    }
+                }
+                
+                let currentDate = Date()
+                if currentDate > (ea?.endDate)! {
+                    statusLabel.text = "This EA has ended"
+                    toggleJoinButtonVisibility(false)
+                }
+            } else {
+                statusLabel.text = "Only student accounts can join EAs"
+                toggleJoinButtonVisibility(false)
+            }
+        } else {
+            eaStatusContainerView.isHidden = true
+            toggleJoinButtonVisibility(false)
+        }
     }
     
     deinit {

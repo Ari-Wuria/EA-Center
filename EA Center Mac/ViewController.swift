@@ -9,6 +9,7 @@
 import Cocoa
 
 class ViewController: NSViewController {
+    // MARK: - Properties
     @IBOutlet weak var loadingSpinner: NSProgressIndicator!
     @IBOutlet weak var loadingIndicatorView: NSStackView!
     
@@ -57,6 +58,8 @@ class ViewController: NSViewController {
     // Used for reselecting row in table view without updating long desc
     var descriptionNeedsUpdate = true
     
+    // MARK: - Functions
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -70,7 +73,7 @@ class ViewController: NSViewController {
         
         downloadEAList()
         
-        updateLoginLabel()
+        updateEAStatusLabel()
         
         //longDescTextView.wantsLayer = true
         //longDescTextView.layer?.masksToBounds = false
@@ -174,7 +177,7 @@ class ViewController: NSViewController {
         }
         
         loggedIn = true
-        updateLoginLabel()
+        updateEAStatusLabel()
         
         listTableView.reloadData()
     }
@@ -185,7 +188,7 @@ class ViewController: NSViewController {
         touchLikeButton.isHidden = true
         
         loggedIn = false
-        updateLoginLabel()
+        updateEAStatusLabel()
         
         listTableView.reloadData()
     }
@@ -403,7 +406,7 @@ class ViewController: NSViewController {
         // TODO: Show something to show error
     }
     
-    func updateLoginLabel(with ea: EnrichmentActivity? = nil) {
+    func updateEAStatusLabel(with ea: EnrichmentActivity? = nil) {
         if loggedIn == false {
             eaStatusLabel.stringValue = "Login to join EAs"
             joinButton.isHidden = true
@@ -550,11 +553,18 @@ class ViewController: NSViewController {
         debugWindowVisible = false
     }
     
+    @IBAction func touchShowCampusMap(_ sender: Any) {
+        //performSegue(withIdentifier: "ShowCampusMap", sender: sender)
+        view.window?.windowController?.performSegue(withIdentifier: "ShowCampusMap", sender: sender)
+    }
+    
     deinit {
         print("deinit: \(self)")
     }
 }
 
+// MARK: - Extensions
+// MARK: Table view extension
 extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
     func numberOfRows(in tableView: NSTableView) -> Int {
         //return allEA.count
@@ -658,7 +668,7 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         
         selectedEA = ea
         
-        updateLoginLabel(with: selectedEA)
+        updateEAStatusLabel(with: selectedEA)
     }
  
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
@@ -688,7 +698,30 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         } else {
             leaderString = leaderEmail[0]
         }
-        return "Location: \(ea.location)\nLeader email: \(leaderString)"
+        let daysMapped = ea.days.map { (dayInt) -> String in
+            switch dayInt {
+            case 1:
+                return "Monday"
+            case 2:
+                return "Tuesday"
+            case 3:
+                return "Wednesday"
+            case 4:
+                return "Thursday"
+            case 5:
+                return "Friday"
+            default:
+                return "Unknown Day"
+            }
+        }
+        let daysStr = daysMapped.joined(separator: ", ")
+        //return "Location: \(ea.location)\nLeader email: \(leaderString)"
+        return """
+        Location: \(ea.location)
+        Leader email: \(leaderString)
+        Days: \(daysStr)
+        Running \(ea.weekModeForDisplay().lowercased()) \(ea.timeModeForDisplay())
+        """
     }
 }
 
@@ -764,6 +797,7 @@ extension ViewController: NSSearchFieldDelegate {
     }
 }
 
+// MARK: - Other subclasses
 class ListRowView: NSTableRowView {
     var backgroundColorName: String?
     

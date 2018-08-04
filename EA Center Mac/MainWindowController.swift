@@ -106,6 +106,10 @@ class MainWindowController: NSWindowController {
         }
     }
     
+    @IBAction func showCampusMap(_ sender: Any) {
+        
+    }
+    
     @objc func manageClosed() {
         manageController?.close()
         manageController = nil
