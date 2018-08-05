@@ -390,9 +390,9 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khi-hI-grM">
-                                <rect key="frame" x="0.0" y="631" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="631.33333333333337" width="414" height="55.666666666666629"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="SY1-uh-znP">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="55.666666666666629"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EA Status Here." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Fg-Be-xrh">
@@ -456,7 +456,11 @@
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="EA Name" largeTitleDisplayMode="never" id="aFd-4E-rfH">
-                        <barButtonItem key="rightBarButtonItem" title="Join!" id="hNc-Wa-JW6"/>
+                        <barButtonItem key="rightBarButtonItem" title="Join!" id="hNc-Wa-JW6">
+                            <connections>
+                                <action selector="joinEA:" destination="n2a-nB-eAl" id="uVM-mt-1kx"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="eaStatusContainerView" destination="khi-hI-grM" id="vQi-Tv-TfN"/>

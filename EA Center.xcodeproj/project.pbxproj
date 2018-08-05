@@ -163,6 +163,7 @@
 		D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendApprovalViewController.swift; sourceTree = "<group>"; };
 		D0656E38210DE998008A2E3B /* EALeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EALeadersViewController.swift; sourceTree = "<group>"; };
 		D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeaderViewController.swift; sourceTree = "<group>"; };
+		D07639EE2116E1DB00DEF287 /* EA Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center.entitlements"; sourceTree = "<group>"; };
 		D07DE9512111F09E00423D01 /* AboutScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutScreen.storyboard; sourceTree = "<group>"; };
 		D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EASLINK LOGO.001 2.jpeg"; sourceTree = "<group>"; };
 		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
@@ -317,6 +318,7 @@
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
 				D025730F20D8A1E40078AE89 /* Info.plist */,
 				D0177FF820E77A14003757A7 /* EA-Center-Bridging-Header.h */,
+				D07639EE2116E1DB00DEF287 /* EA Center.entitlements */,
 			);
 			path = "EA Center";
 			sourceTree = "<group>";
@@ -555,6 +557,11 @@
 				TargetAttributes = {
 					D02572FF20D8A1E30078AE89 = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 					D0DFCED420D8A41200DBB70E = {
 						CreatedOnToolsVersion = 10.0;
@@ -899,7 +906,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tomandjerry.ea-center";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EA Center/EA-Center-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
@@ -919,7 +926,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.tomandjerry.ea-center";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "EA Center/EA-Center-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

@@ -207,6 +207,26 @@ class EADescriptionViewController: UIViewController {
         }
     }
     
+    @IBAction func joinEA(_ sender: Any) {
+        let alert = UIAlertController(title: "Join this EA?", message: "Are you sure you want to join \(ea!.name)?", preferredStyle: .alert)
+        alert.addTextField { (textField) in
+            textField.placeholder = "Note for EA leader"
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Join!", style: .default, handler: { (action) in
+            let text = alert.textFields![0].text
+            self.ea?.updateJoinState(true, self.currentAccount!.userID, self.currentAccount!.username, text!) { (success, errStr) in
+                if success {
+                    // Success
+                    self.updateEAStatusLabel()
+                } else {
+                    self.presentAlert(withTitle: "Error joining EA", message: errStr!)
+                }
+            }
+        }))
+        present(alert, animated: true, completion: nil)
+    }
+    
     deinit {
         print("deinit: \(self)")
     }

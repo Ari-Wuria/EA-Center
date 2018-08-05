@@ -49,6 +49,8 @@ class MainInfoEditorViewController: NSViewController {
     
     var currentLoginEmail: String?
     
+    var escEvent: Any?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -61,17 +63,25 @@ class MainInfoEditorViewController: NSViewController {
         
         shortDescTextView.delegate = self
         proposalTextView.delegate = self
-    }
-    /*
-    override func setValue(_ value: Any?, forKey key: String) {
-        if key == "containingTabViewController" {
-            containingTabViewController = value as? ManagerTabViewController
-            return
-        }
         
-        super.setValue(value, forKey: key)
+        addESCEvent()
     }
-    */
+    
+    func addESCEvent() {
+        escEvent = NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (event) -> NSEvent? in
+            if event.window != self.view.window {
+                return event
+            }
+            
+            if event.keyCode == 53 {
+                // esc pressed
+                self.view.window?.makeFirstResponder(self.view)
+            }
+            
+            return event
+        }
+    }
+    
     @objc func newNotification(_ notification: Notification) {
         let ea = notification.object as! EnrichmentActivity
         currentEA = ea
@@ -316,7 +326,8 @@ class MainInfoEditorViewController: NSViewController {
     
     func updateShortDescWordCount() {
         let wordsCount = shortDescTextView.stringValue.words.count
-        shortDescWordCount.stringValue = "\(wordsCount) words out of 150 words."
+        let pluralSingularWord = wordsCount == 1 ? "word" : "words"
+        shortDescWordCount.stringValue = "\(wordsCount) \(pluralSingularWord) out of 150 words."
         if wordsCount > 150 {
             shortDescWordCount.textColor = NSColor.red
         } else {
@@ -326,7 +337,8 @@ class MainInfoEditorViewController: NSViewController {
     
     func updateProposalWordCount() {
         let wordsCount = proposalTextView.stringValue.words.count
-        proposalWordCount.stringValue = "\(wordsCount) words out of 100 words."
+        let pluralSingularWord = wordsCount == 1 ? "word" : "words"
+        proposalWordCount.stringValue = "\(wordsCount) \(pluralSingularWord) out of 100 words."
         if wordsCount > 100 {
             proposalWordCount.textColor = NSColor.red
         } else {

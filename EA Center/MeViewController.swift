@@ -34,6 +34,18 @@ class MeViewController: UITableViewController {
     
     weak var splitViewDetail: UIViewController?
     
+    var processing = false
+    
+    // -1: failed
+    // 0: no login
+    // 1: logging in
+    // 2: logged in
+    var autoLoginState = 0
+    var initialViewLoaded = false
+    var autoLoginEmail = ""
+    
+    var pushNotificationToken: String?
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -45,6 +57,8 @@ class MeViewController: UITableViewController {
             if let email = email, email != "" {
                 let password = KeychainHelper.loadKeychain(account: email)
                 if password != nil {
+                    autoLoginState = 1
+                    autoLoginEmail = email
                     let passwordString = String(data: password!, encoding: .utf8)!
                     login(withEmail: email, password: passwordString, automatic: true)
                 }
@@ -77,6 +91,23 @@ class MeViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         //tableView.deleteSections(IndexSet(integer: 1), with: .none)
+        
+        if !initialViewLoaded {
+            if autoLoginState == 1 {
+                emailTextField.text = autoLoginEmail
+                // Just show some dots.
+                passwordTextField.text = "88888888"
+                
+                let loginCell = tableView.cellForRow(at: IndexPath(row: 1, section: 0))
+                loginCell?.textLabel?.textColor = UIColor.gray
+                loginCell?.textLabel?.text = "Logging in..."
+                
+                let registerCell = tableView.cellForRow(at: IndexPath(row: 2, section: 0))
+                registerCell?.textLabel?.textColor = UIColor.gray
+            } else if autoLoginState == -1 {
+                emailTextField.text = autoLoginEmail
+            }
+        }
     }
     
     @objc func endEditing() {
@@ -95,42 +126,61 @@ class MeViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 1 {
+            if processing == true {
+                return
+            }
+            processing = true
+            if autoLoginState == 1 {
+                tableView.deselectRow(at: indexPath, animated: true)
+                return
+            }
             if currentUserAccount == nil {
                 login(withEmail: emailTextField.text!, password: passwordTextField.text!)
             } else {
                 // Logout
-                NotificationCenter.default.post(name: LogoutNotification, object: nil)
-                
-                let loginCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
-                loginCell.textLabel?.text = "Login"
-                let registerCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 2, section: 0))
-                registerCell.isHidden = false
-                let profileCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 0, section: 1))
-                profileCell.isHidden = true
-                self.updateTableView()
-                
-                self.usernameLabel.isHidden = true
-                self.classLabel.isHidden = true
-                self.emailTextField.isHidden = false
-                self.passwordTextField.isHidden = false
-                self.emailTextField.text = ""
-                self.passwordTextField.text = ""
-                self.emailTextField.becomeFirstResponder()
-                
-                UserDefaults.standard.set("", forKey: "loginemail")
-                UserDefaults.standard.synchronize()
-                let _ = KeychainHelper.deleteKeychain(account: currentUserAccount!.userEmail)
-                
-                currentUserAccount = nil
-                
-                if let settingsWindow = splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
-                    settingsWindow.loggedIn = false
-                    settingsWindow.userAccount = nil
-                    settingsWindow.updateUI()
+                logout { (success, errStr) in
+                    if success {
+                        NotificationCenter.default.post(name: LogoutNotification, object: nil)
+                        
+                        let loginCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
+                        loginCell.textLabel?.text = "Login"
+                        let registerCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 2, section: 0))
+                        registerCell.isHidden = false
+                        let profileCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 0, section: 1))
+                        profileCell.isHidden = true
+                        self.updateTableView()
+                        
+                        self.usernameLabel.isHidden = true
+                        self.classLabel.isHidden = true
+                        self.emailTextField.isHidden = false
+                        self.passwordTextField.isHidden = false
+                        self.emailTextField.text = ""
+                        self.passwordTextField.text = ""
+                        self.emailTextField.becomeFirstResponder()
+                        
+                        UserDefaults.standard.set("", forKey: "loginemail")
+                        UserDefaults.standard.synchronize()
+                        let _ = KeychainHelper.deleteKeychain(account: self.currentUserAccount!.userEmail)
+                        
+                        self.currentUserAccount = nil
+                        
+                        if let settingsWindow = self.splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
+                            settingsWindow.loggedIn = false
+                            settingsWindow.userAccount = nil
+                            settingsWindow.updateUI()
+                        }
+                    } else {
+                        self.presentAlert("Can not logout", errStr!)
+                    }
+                    self.processing = false
                 }
             }
         } else if indexPath.section == 0 && indexPath.row == 2 {
             // Register
+            if autoLoginState == 1 {
+                tableView.deselectRow(at: indexPath, animated: true)
+                return
+            }
             let alert = UIAlertController(title: "Error Registering Account", message: "Reason: This feature haven't been implemented by the developer yet.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                 self.presentAlert("Hahahaha", "Did I tried to make that error really serious? Lol")
@@ -214,6 +264,10 @@ class MeViewController: UITableViewController {
         tableView.endUpdates()
     }
     
+    func logout(_ completion: @escaping (_ success: Bool, _ errStr: String?) -> ()) {
+        AccountProcessor.sendLogoutRequest(currentUserAccount!.userID, completion)
+    }
+    
     func login(withEmail email: String, password: String, automatic: Bool = false) {
         guard AccountProcessor.validateEmail(email) else {
             presentAlert("Invalid Email", "Please use valid BCIS Email")
@@ -222,7 +276,15 @@ class MeViewController: UITableViewController {
         
         let encryptedPass = AccountProcessor.encrypt(password)!
         
-        AccountProcessor.sendLoginRequest(email, encryptedPass) { (success, errCode, errStr) in
+        var tokenToSend: String? = nil
+        if automatic == false {
+            // Don't send the token on auto login (when login duplicate checks are implemented this will make sense)
+            // If token don't exist, simply ignore it
+            // TODO: Add check on server to remove it if it doesn't exist on manual logins
+            tokenToSend = self.pushNotificationToken
+        }
+        
+        AccountProcessor.sendLoginRequest(email, encryptedPass, tokenToSend) { (success, errCode, errStr) in
             if success == true {
                 //self.presentAlert("You're now logged in", "Nothing else for now :)")
                 let userID = errCode
@@ -255,18 +317,27 @@ class MeViewController: UITableViewController {
                             settingsWindow.userAccount = self.currentUserAccount
                             settingsWindow.updateUI()
                         }
+                        self.autoLoginState = 2
                     } else {
                         switch errCode {
                         case -1:
                             // Error
-                            self.presentAlert("Error logging in", errStr!)
+                            self.presentAlert("Error logging in", errString!)
                         case -2, -3:
                             // -2: Wrong Status Code
                             // -3: No JSON data
-                            self.presentAlert("Error logging in", "Reason: \(errStr!)")
+                            self.presentAlert("Error logging in", "Reason: \(errString!)")
                         default: break
                         }
+                        self.autoLoginState = -1
+                        
+                        // Update login UI
+                        let loginCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
+                        loginCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+                        let registerCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 2, section: 0))
+                        registerCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
                     }
+                    self.processing = false
                 })
             } else {
                 switch errCode {
@@ -297,6 +368,14 @@ class MeViewController: UITableViewController {
                     
                 default: break
                 }
+                self.autoLoginState = -1
+                
+                // Update login UI
+                let loginCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
+                loginCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+                let registerCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 2, section: 0))
+                registerCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+                self.processing = false
             }
         }
     }
@@ -315,8 +394,10 @@ class MeViewController: UITableViewController {
         
         let loginCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
         loginCell.textLabel?.text = "Logout"
+        loginCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         let registerCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 2, section: 0))
         registerCell.isHidden = true
+        registerCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
         let profileCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 0, section: 1))
         profileCell.isHidden = false
         self.updateTableView()

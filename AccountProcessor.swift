@@ -9,14 +9,24 @@
 import Foundation
 
 class AccountProcessor {
-    class func sendLoginRequest(_ email: String, _ passEnc: String, _ completion: @escaping (_ success: Bool, _ errorCode: Int?, _ errorMsg: String?) -> ()) {
+    class func sendLoginRequest(_ email: String, _ passEnc: String, _ pushToken: String? = nil, _ completion: @escaping (_ success: Bool, _ errorCode: Int?, _ errorMsg: String?) -> ()) {
         let urlString = MainServerAddress + "/login/login.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
+        
+        // Split iOS and macOS code to support push notification
+        #if os(iOS)
+        var postString = "login=1&email=\(email)&password=\(passEnc)"
+        if let token = pushToken {
+            postString.append(contentsOf: "&pushtoken=\(token)")
+        }
+        #elseif os(OSX)
         let postString = "login=1&email=\(email)&password=\(passEnc)"
+        #endif
+        
         request.httpBody = postString.data(using: .utf8)
         
         let session = URLSession.shared
@@ -74,6 +84,67 @@ class AccountProcessor {
                     // We will use the errorCode variable to pass the user id
                     let userID = responseDict["userid"] as! Int
                     completion(true, userID, nil)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    class func sendLogoutRequest(_ userid: Int, _ completion: @escaping (_ success: Bool, _ errorMsg: String?) -> ()) {
+        let urlString = MainServerAddress + "/login/logout.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        let postString = "userid=\(userid)"
+        
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as? Bool
+            if success == true {
+                DispatchQueue.main.async {
+                    completion(true, nil)
+                }
+            } else {
+                let errStr = responseDict["errStr"] as? String
+                if let errStr = errStr {
+                    DispatchQueue.main.async {
+                        completion(false, errStr)
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        completion(false, "No error message :(")
+                    }
                 }
             }
         }
@@ -149,6 +220,24 @@ class AccountProcessor {
                 }
                 return
             }
+            /*
+            print("\(String(data: data!, encoding: .utf8))")
+            // Experimenting with Swift JSONDecoder
+            let decoder = JSONDecoder()
+            do {
+                //let result = try decoder.decode(UserAccount.self, from: data!)
+                let result = try decoder.decode(UserAccount.self, from: data!)
+                DispatchQueue.main.async {
+                    completion(result, nil, nil)
+                }
+            } catch {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(nil, -3, "No JSON Data\n" + error.localizedDescription)
+                }
+                return
+            }
+ */
             
             let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
             guard let responseDict = jsonData else {

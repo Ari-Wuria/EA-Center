@@ -1020,6 +1020,20 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Computer" id="qjg-Hd-efK"/>
                             </imageView>
+                            <segmentedControl verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="02Q-Jh-qrD">
+                                <rect key="frame" x="467" y="550" width="321" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="8gR-qz-Tef">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="Opened for registration" width="157" selected="YES"/>
+                                        <segment label="Closed from registration" width="157" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                                <connections>
+                                    <action selector="updateEAOpenState:" target="dFO-K9-tAl" id="met-CS-d1Q"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="d5Y-CD-lgf" secondAttribute="bottom" constant="13" id="X6m-um-uNf"/>
@@ -1031,6 +1045,7 @@
                         <outlet property="computer" destination="RrC-Tf-o7T" id="7Fv-qT-OQ7"/>
                         <outlet property="containerView" destination="GKA-56-kXh" id="NhV-pY-YbQ"/>
                         <outlet property="deleteMenu" destination="nVc-t3-2RI" id="vBe-SE-nPq"/>
+                        <outlet property="eaStateSwitch" destination="02Q-Jh-qrD" id="e87-jP-9l6"/>
                         <outlet property="loadingSpinner" destination="d5Y-CD-lgf" id="NAV-ho-3xW"/>
                         <outlet property="mainTouchBar" destination="iIV-HH-R6B" id="fwh-XN-ONs"/>
                         <outlet property="tableMenu" destination="IgA-yt-wMJ" id="fev-Nq-DOr"/>

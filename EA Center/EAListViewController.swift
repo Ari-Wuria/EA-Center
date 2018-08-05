@@ -319,7 +319,6 @@ class EAListViewController: UITableViewController {
                 DispatchQueue.main.async {
                     UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     delay(0.3) {
-                        self.updateJoinableEA()
                         self.tableView.reloadData()
                         self.listRefreshControl.endRefreshing()
                         self.trackSelectedEA()
@@ -361,7 +360,7 @@ class EAListViewController: UITableViewController {
                 let enrichmentActivity = EnrichmentActivity(dictionary: eaDictionary)
                 self.allEA.append(enrichmentActivity)
             }
-            
+            self.updateJoinableEA()
             // Defer...
         }
         dataTask.resume()
@@ -464,9 +463,11 @@ extension EAListViewController: UISearchResultsUpdating, UISearchBarDelegate {
             if filterMode == 1 {
                 return first.likedUserID!.count > second.likedUserID!.count
             } else if filterMode == 2 {
-                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedAscending
+                // Sort name ascending
+                return first < second
             } else if filterMode == 3 {
-                return first.name.localizedCaseInsensitiveCompare(second.name) == .orderedDescending
+                // Sort name descending
+                return first > second
             }
             return false
         }

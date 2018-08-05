@@ -40,6 +40,7 @@ let EAUpdatedNotification = Notification.Name("eacenter.eaupdated")
 let ManagerDescriptionUpdatedNotification = Notification.Name("eacenter.descupdated")
 let EACreatedNotification = Notification.Name("eacenter.neweacreated")
 let EADeletedNotification = Notification.Name("eacenter.deletedea")
+let EAReceivedNewAttendeeNotification = Notification.Name("eacenter.newattendee")
 
 // Other auxiliary notification keys
 let ApplicationIsOutdatedNotification = Notification.Name("eacenter.appoutdated")

@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    // MARK: - Properties
     var window: UIWindow?
 
     var splitViewController: UISplitViewController {
@@ -37,6 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return managerNavController.topViewController as! ManagerViewController
     }
     
+    var meNavController: UINavigationController {
+        return masterTabBarController.viewControllers?[2] as! UINavigationController
+    }
+    
+    var meController: MeViewController {
+        return meNavController.topViewController as! MeViewController
+    }
+    
     var detailNavController: UINavigationController {
         return splitViewController.viewControllers.last! as! UINavigationController
     }
@@ -45,20 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return detailNavController.topViewController!
     }
     
-    var meNavController: UINavigationController {
-        return masterTabBarController.viewControllers?[2] as! UINavigationController
-    }
-    
-    var meController: MeViewController {
-        return meNavController.topViewController as! MeViewController
-    }
-    /*
-    var profileEditorDetail: ProfileEditorViewController {
-        return detailNavController.topViewController as! ProfileEditorViewController
-    }
-    */
-    //var currentDetailController: UIViewController?
-
+    var deviceToken: String?
+    // MARK: - Application did finish launching
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -91,9 +88,58 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             meController.splitViewControllingDelegate = self
         }
         
+        // -------
+        registerForPushNotification()
+        
+        application.applicationIconBadgeNumber = 0
+        
+        // Check if launched through remote notification
+        if let notification = launchOptions?[.remoteNotification] as? [String:AnyObject] {
+            // Get aps dict from notification
+            //let aps = notification["aps"] as! [String:AnyObject]
+            // Use aps here, test code below
+            //let extra = aps["extra"] as! String
+            //print("\(extra)")
+        }
+        
         return true
     }
-
+    // MARK: - Push Notification
+    // Used tutorial: https://www.raywenderlich.com/156966/push-notifications-tutorial-getting-started
+    func registerForPushNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            print("Permission granted: \(granted)")
+            guard granted else { return }
+            self.getNotificationSettings()
+        }
+    }
+    
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification settings: \(settings)")
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    // MARK: - Other application delegates
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+        self.deviceToken = token
+        self.meController.pushNotificationToken = token
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed registering remote notification: \(error)")
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
@@ -115,7 +161,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let aps = userInfo["aps"] as! [String: AnyObject]
+        let extra = aps["extra"]
+        print("\(extra!)")
+    }
 }
 
 // MARK: - Extension for Split View Handling

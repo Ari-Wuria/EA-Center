@@ -12,6 +12,16 @@ import Cocoa
 import UIKit
 #endif
 
+/// Sort by EA name ascending
+func < (lhs: EnrichmentActivity, rhs: EnrichmentActivity) -> Bool {
+    return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedAscending
+}
+
+/// Sort by EA name descending
+func > (lhs: EnrichmentActivity, rhs: EnrichmentActivity) -> Bool {
+    return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedDescending
+}
+
 class EnrichmentActivity: NSObject {
     var id: Int
     var name: String
@@ -32,6 +42,10 @@ class EnrichmentActivity: NSObject {
     var likedUserID: [Int]?
     var joinedUserID: [Int]?
     
+    override var description: String {
+        return "Enrichment Activity (id: \(id), name: \(name))"
+    }
+ 
     override init() {
         // Initialize with default values
         id = 0
@@ -622,7 +636,8 @@ class EnrichmentActivity: NSObject {
         dataTask.resume()
     }
     
-    func updateJoinState(_ newState: Bool, _ userID: Int, _ joinString: String = "", _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+    func updateJoinState(_ newState: Bool, _ userID: Int, _ username: String, _ joinString: String = "", _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        // username used for push notification
         let urlString = MainServerAddress + "/manageea/updatejoinstatus.php"
         let url = URL(string: urlString)!
         
@@ -631,7 +646,7 @@ class EnrichmentActivity: NSObject {
         request.httpMethod = "POST"
         
         let remove = newState ? 0 : 1
-        var postString = "id=\(id)&joinuserid=\(userID)&remove=\(remove)"
+        var postString = "id=\(id)&joinuserid=\(userID)&joinusername=\(username)&remove=\(remove)"
         if joinString.count > 0 {
             postString.append(contentsOf: "&joinmessage=\(joinString)")
         }
@@ -656,6 +671,8 @@ class EnrichmentActivity: NSObject {
                 return
             }
             
+            // Debug only
+            print("\(String(data: data!, encoding: .utf8))")
             let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
             guard let responseDict = jsonData else {
                 //print("No JSON data")
@@ -669,8 +686,8 @@ class EnrichmentActivity: NSObject {
             DispatchQueue.main.async {
                 if success {
                     //self.approved = newState
-                    let newLikeState = responseDict["newjoinstate"] as! String
-                    self.joinedUserID = newLikeState.split(separator: ",").map{Int($0)!}
+                    let newJoinedState = responseDict["newjoinstate"] as! String
+                    self.joinedUserID = newJoinedState.split(separator: ",").map{Int($0)!}
                     
                     completion(true, nil)
                 } else {

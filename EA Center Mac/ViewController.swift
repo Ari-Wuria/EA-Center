@@ -212,7 +212,6 @@ class ViewController: NSViewController {
             defer {
                 DispatchQueue.main.async {
                     self.loading = false
-                    self.updateJoinableEA()
                     
                     self.listTableView.reloadData()
                     
@@ -282,6 +281,7 @@ class ViewController: NSViewController {
                 let enrichmentActivity = EnrichmentActivity(dictionary: eaDictionary)
                 self.allEA.append(enrichmentActivity)
             }
+            self.updateJoinableEA()
         }
         dataTask.resume()
     }
@@ -480,8 +480,10 @@ class ViewController: NSViewController {
             if response == .alertFirstButtonReturn {
                 // Join
                 //print("Text: \(textField.stringValue)")
+                self.joinButton.isEnabled = false
+                
                 let joinString = textField.stringValue
-                ea.updateJoinState(true, self.currentAccount!.userID, joinString) { (success, errStr) in
+                ea.updateJoinState(true, self.currentAccount!.userID, self.currentAccount!.username, joinString) { (success, errStr) in
                     if success {
                         self.eaStatusLabel.stringValue = "You are already in this EA"
                         self.joinButton.isHidden = true

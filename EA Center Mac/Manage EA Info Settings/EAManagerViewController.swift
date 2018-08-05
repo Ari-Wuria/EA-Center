@@ -35,6 +35,12 @@ class EAManagerViewController: NSViewController {
     
     @IBOutlet weak var computer: NSImageView!
     
+    @IBOutlet var eaStateSwitch: NSSegmentedControl!
+    
+    var selectedEA: EnrichmentActivity?
+    
+    var wantReloadOnSelection = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -47,6 +53,7 @@ class EAManagerViewController: NSViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(eaDeleted(_:)), name: EADeletedNotification, object: nil)
         
         approvalButton.isHidden = true
+        eaStateSwitch.isHidden = true
         
         tableMenu.delegate = self
     }
@@ -67,10 +74,12 @@ class EAManagerViewController: NSViewController {
         computer.isHidden = false
         
         tableView.reloadData()
+        trackSelectedEA()
     }
     
     @objc func eaUpdated() {
         tableView.reloadData()
+        trackSelectedEA()
     }
     
     @objc func eaCreated(_ obj: Notification) {
@@ -79,6 +88,7 @@ class EAManagerViewController: NSViewController {
         myEA.append(ea)
         
         tableView.reloadData()
+        trackSelectedEA()
     }
     
     func retriveMyEA() {
@@ -214,6 +224,55 @@ class EAManagerViewController: NSViewController {
         performSegue(withIdentifier: "DeleteEA", sender: sender)
     }
     
+    @IBAction func updateEAOpenState(_ sender: Any) {
+        if eaStateSwitch.selectedSegment == 0 {
+            // Opened
+            selectedEA?.updateApprovalState(2) { (success, errStr) in
+                if success {
+                    // Success
+                    NotificationCenter.default.post(name: EAUpdatedNotification, object: ["updatedEA":self.selectedEA!, "id":self.selectedEA!.id])
+                } else {
+                    let alert = NSAlert()
+                    alert.messageText = "Can not set EA open state"
+                    alert.informativeText = errStr!
+                    alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
+                    self.eaStateSwitch.selectSegment(withTag: 1)
+                }
+            }
+        } else {
+            // Closed
+            selectedEA?.updateApprovalState(3) { (success, errStr) in
+                if success {
+                    // Success
+                    NotificationCenter.default.post(name: EAUpdatedNotification, object: ["updatedEA":self.selectedEA!, "id":self.selectedEA!.id])
+                } else {
+                    let alert = NSAlert()
+                    alert.messageText = "Can not set EA open state"
+                    alert.informativeText = errStr!
+                    alert.beginSheetModal(for: self.view.window!, completionHandler: nil)
+                    self.eaStateSwitch.selectSegment(withTag: 0)
+                }
+            }
+        }
+    }
+    
+    func trackSelectedEA() {
+        guard let selected = selectedEA else {
+            return
+        }
+        let array = myEA.filter { ea in
+            return ea.id == selected.id
+        }
+        guard array.count == 1 else {
+            return
+        }
+        let firstEA = array[0]
+        let index = myEA.firstIndex(of: firstEA)!
+        wantReloadOnSelection = false
+        tableView.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
+        wantReloadOnSelection = true
+    }
+    
     deinit {
         print("deinit: \(self)")
     }
@@ -290,6 +349,10 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
+        if wantReloadOnSelection == false {
+            return
+        }
+        
         if tableView.selectedRow == -1 {
             containerView.isHidden = true
             titleNameLabel.stringValue = "Manage EA"
@@ -304,23 +367,30 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         let ea = myEA[tableView.selectedRow]
         NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: ["currentLogin":loggedInEmail])
         
+        selectedEA = ea
+        
         titleNameLabel.stringValue = ea.name
         
         if ea.approved == 2 || ea.approved == 3 {
             // Approved
             approvalButton.isHidden = true
+            eaStateSwitch.isHidden = false
+            eaStateSwitch.selectSegment(withTag: ea.approved - 2)
         } else if ea.approved == 1 {
             approvalButton.isHidden = false
             approvalButton.isEnabled = false
             approvalButton.title = "Waiting for approval..."
+            eaStateSwitch.isHidden = true
         } else if ea.approved == 0 {
             approvalButton.isHidden = false
             approvalButton.isEnabled = true
             approvalButton.title = "Submit this EA for approval"
+            eaStateSwitch.isHidden = true
         } else if ea.approved == 4 {
             approvalButton.isHidden = false
             approvalButton.isEnabled = true
             approvalButton.title = "Rejected. Resubmit approval."
+            eaStateSwitch.isHidden = true
         }
         
         if ea.endDate != nil {
@@ -329,6 +399,7 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
                 approvalButton.isHidden = false
                 approvalButton.isEnabled = true
                 approvalButton.title = "Resubmit approval to run again."
+                eaStateSwitch.isHidden = true
             }
         }
         

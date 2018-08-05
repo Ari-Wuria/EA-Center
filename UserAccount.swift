@@ -8,23 +8,41 @@
 
 import Foundation
 
-class UserAccount: NSObject {
-    var userID: Int
-    var username: String
-    var userEmail: String
-    var accountType: Int
-    var grade: Int
-    var classInitial: String
-    var isManager: Bool
-    /*
-    init(userID: Int, username: String, userEmail: String, accountType: Int) {
-        self.userID = userID
-        self.username = username
-        self.userEmail = userEmail
-        self.accountType = accountType
-        super.init()
+class UserAccount: NSObject, Codable {
+    var userID: Int = 0
+    var username: String = ""
+    var userEmail: String = ""
+    var accountType: Int = 0
+    var grade: Int = 0
+    var classInitial: String = ""
+    var isManager: Bool = false
+    
+    override var description: String {
+        return "EA Center User Account (id: \(userID), email: \(userEmail))"
     }
-    */
+    
+    enum CodingKeys: String, CodingKey {
+        case userID = "id"
+        //case username
+        case userEmail = "email"
+        case accountType = "type"
+        //case grade
+        case classInitial = "classinitial"
+        case isManager = "ismanager"
+        case username, grade
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let decodeContainer = try decoder.container(keyedBy: CodingKeys.self)
+        userID = try decodeContainer.decode(Int.self, forKey: .userID)
+        username = try decodeContainer.decode(String.self, forKey: .username)
+        userEmail = try decodeContainer.decode(String.self, forKey: .userEmail)
+        accountType = try decodeContainer.decode(Int.self, forKey: .accountType)
+        grade = try decodeContainer.decode(Int.self, forKey: .grade)
+        classInitial = try decodeContainer.decode(String.self, forKey: .classInitial)
+        isManager = try decodeContainer.decode(Bool.self, forKey: .isManager)
+    }
+    
     init(dictionary: [String:Any]) {
         userID = dictionary["id"] as! Int
         username = dictionary["username"] as? String ?? ""
