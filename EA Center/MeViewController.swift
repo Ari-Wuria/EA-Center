@@ -244,6 +244,21 @@ class MeViewController: UITableViewController {
                 }
                 return
             }
+        } else if indexPath.section == 3 && indexPath.row == 0 {
+            if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+                performSegue(withIdentifier: "ShowCampusMap", sender: nil)
+            } else {
+                performSegue(withIdentifier: "CampusMapDetail", sender: nil)
+                splitViewControllingDelegate?.meViewRequestSplitViewDetail(self, mode: 4)
+                
+                if splitViewController!.displayMode != .allVisible {
+                    // Temporary fix for segue animation
+                    delay(0.01) {
+                        self.hideMasterPane()
+                    }
+                }
+                return
+            }
         }
         tableView.deselectRow(at: indexPath, animated: true)
     }

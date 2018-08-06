@@ -250,6 +250,9 @@ class ManagerViewController: UITableViewController {
                 cell.supervisorLabel.text = "No supervisor"
             }
             
+            let plural = ea.joinedUserID!.count == 1 ? "" : "s"
+            cell.numStudentsLabel.text = "\(ea.joinedUserID!.count) Participant\(plural)"
+            
             return cell
         } else {
             return tableView.dequeueReusableCell(withIdentifier: "LoginWarningCell")!

@@ -17,12 +17,16 @@ class AccountProcessor {
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         
-        // Split iOS and macOS code to support push notification
+        // Split iOS and macOS code to support push notification (disable for simulator)
         #if os(iOS)
+        #if !targetEnvironment(simulator)
         var postString = "login=1&email=\(email)&password=\(passEnc)"
         if let token = pushToken {
             postString.append(contentsOf: "&pushtoken=\(token)")
         }
+        #else
+        let postString = "login=1&email=\(email)&password=\(passEnc)"
+        #endif
         #elseif os(OSX)
         let postString = "login=1&email=\(email)&password=\(passEnc)"
         #endif

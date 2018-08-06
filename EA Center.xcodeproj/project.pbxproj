@@ -47,6 +47,9 @@
 		D017800E20E77DB6003757A7 /* AccountProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800C20E77DB2003757A7 /* AccountProcessor.swift */; };
 		D017801020E77FA9003757A7 /* MeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D017800F20E77FA9003757A7 /* MeViewController.swift */; };
 		D01B77A2211595FF00B93427 /* AboutWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01B77A1211595FF00B93427 /* AboutWindowController.swift */; };
+		D021135B211881C4000E25CB /* CampusMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021135A211881C4000E25CB /* CampusMapViewController.swift */; };
+		D021135D211881D2000E25CB /* MapImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021135C211881D2000E25CB /* MapImageViewController.swift */; };
+		D021135F211896D3000E25CB /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021135E211896D3000E25CB /* AttendanceViewController.swift */; };
 		D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025730320D8A1E30078AE89 /* AppDelegate.swift */; };
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
@@ -143,6 +146,9 @@
 		D017800C20E77DB2003757A7 /* AccountProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountProcessor.swift; sourceTree = "<group>"; };
 		D017800F20E77FA9003757A7 /* MeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeViewController.swift; sourceTree = "<group>"; };
 		D01B77A1211595FF00B93427 /* AboutWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutWindowController.swift; sourceTree = "<group>"; };
+		D021135A211881C4000E25CB /* CampusMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapViewController.swift; sourceTree = "<group>"; };
+		D021135C211881D2000E25CB /* MapImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageViewController.swift; sourceTree = "<group>"; };
+		D021135E211896D3000E25CB /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		D025730020D8A1E30078AE89 /* EA Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D025730320D8A1E30078AE89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D025730820D8A1E30078AE89 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -263,6 +269,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D0211359211881A3000E25CB /* About Screens */ = {
+			isa = PBXGroup;
+			children = (
+				0541489A20FF6D5F00EFC7C1 /* AboutViewController.swift */,
+				D021135A211881C4000E25CB /* CampusMapViewController.swift */,
+				D021135C211881D2000E25CB /* MapImageViewController.swift */,
+			);
+			path = "About Screens";
+			sourceTree = "<group>";
+		};
 		D02572F720D8A1E30078AE89 = {
 			isa = PBXGroup;
 			children = (
@@ -305,13 +321,14 @@
 				0558B2A820F5E09B009B62E4 /* EADetailViewController.swift */,
 				0541489320FF46E200EFC7C1 /* EditPosterViewController.swift */,
 				0597CD4620F78985006B4590 /* TextEditorViewController.swift */,
+				D021135E211896D3000E25CB /* AttendanceViewController.swift */,
 				D0656E38210DE998008A2E3B /* EALeadersViewController.swift */,
 				D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */,
 				D017800F20E77FA9003757A7 /* MeViewController.swift */,
 				0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */,
 				0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */,
-				0541489A20FF6D5F00EFC7C1 /* AboutViewController.swift */,
 				053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */,
+				D0211359211881A3000E25CB /* About Screens */,
 				D09D05022109FD55000577B7 /* Profile Editor */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
 				D0C2C0212111FD970002E508 /* Main.storyboard */,
@@ -638,6 +655,7 @@
 				D017800220E77ACB003757A7 /* minishared.c in Sources */,
 				D017800520E77AD6003757A7 /* aescrypt.c in Sources */,
 				D0177FFF20E77ACB003757A7 /* ioapi.c in Sources */,
+				D021135B211881C4000E25CB /* CampusMapViewController.swift in Sources */,
 				D017800320E77AD6003757A7 /* aeskey.c in Sources */,
 				D017800020E77ACB003757A7 /* ioapi_buf.c in Sources */,
 				D0177FFD20E77ACB003757A7 /* unzip.c in Sources */,
@@ -662,7 +680,9 @@
 				D0656E39210DE998008A2E3B /* EALeadersViewController.swift in Sources */,
 				D017801020E77FA9003757A7 /* MeViewController.swift in Sources */,
 				0558B2AD20F602AA009B62E4 /* StudentBulletinViewController.swift in Sources */,
+				D021135F211896D3000E25CB /* AttendanceViewController.swift in Sources */,
 				D017800A20E77AD6003757A7 /* pwd2key.c in Sources */,
+				D021135D211881D2000E25CB /* MapImageViewController.swift in Sources */,
 				D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */,
 				D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */,
 				D0177FFE20E77ACB003757A7 /* zip.c in Sources */,

@@ -7,6 +7,11 @@
 //
 
 import Foundation
+#if os(iOS)
+import UIKit
+#elseif os(OSX)
+import AppKit
+#endif
 
 func delay(_ time: Double, _ block: @escaping () -> ()) {
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time, execute: block)
@@ -43,4 +48,32 @@ extension String {
         return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
 }
+
+// UIImage rotate for iOS
+#if os(iOS)
+extension UIImage {
+    func rotate(byDegrees degree: Double) -> UIImage {
+        let radians = CGFloat(degree*Double.pi)/180.0 as CGFloat
+        let rotatedViewBox = UIView(frame: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
+        let t = CGAffineTransform(rotationAngle: radians)
+        rotatedViewBox.transform = t
+        let rotatedSize = rotatedViewBox.frame.size
+        let scale = UIScreen.main.scale
+        UIGraphicsBeginImageContextWithOptions(rotatedSize, false, scale)
+        let bitmap = UIGraphicsGetCurrentContext()!
+        bitmap.translateBy(x: rotatedSize.width / 2, y: rotatedSize.height / 2)
+        
+        bitmap.rotate(by: radians);
+        
+        bitmap.scaleBy(x: 1.0, y: -1.0);
+        //CGContextDrawImage(bitmap, CGRectMake(-self.size.width / 2, -self.size.height / 2 , self.size.width, self.size.height), self.CGImage );
+        bitmap.draw(cgImage!, in: CGRect(x: -size.width / 2, y: -size.height / 2, width: size.width, height: size.height))
+        
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()!
+        
+        return newImage
+    }
+    
+}
+#endif
 
