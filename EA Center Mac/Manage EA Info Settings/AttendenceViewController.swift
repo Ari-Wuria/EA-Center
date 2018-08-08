@@ -18,7 +18,7 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
     var currentEA: EnrichmentActivity?
     var loggedInEmail: String?
     
-    var allSegmentedControls = [NSSegmentedControl]()
+    //var allSegmentedControls = [NSSegmentedControl]()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
@@ -29,13 +29,13 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
     @objc func newNotification(_ notification: Notification) {
         let ea = notification.object as! EnrichmentActivity
         currentEA = ea
-        
+        /*
         // Reset segmented control for reuse
         for segmentedControl in allSegmentedControls {
             segmentedControl.tag = 101
         }
         allSegmentedControls.removeAll()
-        
+        */
         if isViewLoaded {
             studentListTable.reloadData()
         }
@@ -68,13 +68,15 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
             }
             return view
         } else if tableColumn!.identifier.rawValue == "Attendance" {
-            let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Attendance"), owner: nil)
+            let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Attendance"), owner: nil) as! AttendenceCellView
             
             // Using segmented control tag to store account id
-            let segmentedControl = view?.viewWithTag(101) as! NSSegmentedControl
+            //let segmentedControl = view?.viewWithTag(101) as! NSSegmentedControl
             let studentAccountID = currentEA!.joinedUserID![row]
-            segmentedControl.tag = studentAccountID
-            allSegmentedControls.append(segmentedControl)
+            //segmentedControl.tag = studentAccountID
+            //allSegmentedControls.append(segmentedControl)
+            
+            view.attendenceStudentID = studentAccountID
             
             return view
         }

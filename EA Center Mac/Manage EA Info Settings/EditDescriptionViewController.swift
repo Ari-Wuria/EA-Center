@@ -15,6 +15,9 @@ class EditDescriptionViewController: NSViewController {
     @IBOutlet var statusLabel: NSTextField!
     @IBOutlet var saveButton: NSButton!
     
+    @IBOutlet var touchSaveItem: NSTouchBarItem!
+    @IBOutlet var mainTouchBar: NSTouchBar!
+    
     var currentEA: EnrichmentActivity?
     var currentText: NSAttributedString?
     
@@ -203,7 +206,28 @@ class EditDescriptionViewController: NSViewController {
         //textView.string = ""
     }
     
+    override func makeTouchBar() -> NSTouchBar? {
+        let saveButtonIdentifier = NSTouchBarItem.Identifier("Save")
+        mainTouchBar.defaultItemIdentifiers = [saveButtonIdentifier, .fixedSpaceSmall, .otherItemsProxy]
+        
+        mainTouchBar.delegate = self
+        
+        return mainTouchBar
+    }
+    
     deinit {
         print("Editor deinit")
+    }
+}
+
+extension EditDescriptionViewController: NSTouchBarDelegate {
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
+        if identifier.rawValue == "Save" {
+            let item = NSCustomTouchBarItem(identifier: identifier)
+            let button = NSButton(title: "Save", target: self, action: #selector(save(_:)))
+            item.view = button
+            return item
+        }
+        return nil
     }
 }

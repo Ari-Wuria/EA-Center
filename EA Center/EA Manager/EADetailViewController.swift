@@ -23,13 +23,23 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var minGradeSelector: UISegmentedControl!
     @IBOutlet var maxGradeSelector: UISegmentedControl!
     
+    var selectedCategoryID: Int?
+    @IBOutlet var categoryLabel: UILabel!
+    
     var currentEA: EnrichmentActivity? {
         didSet {
             if isViewLoaded {
+                if navigationController?.topViewController != self {
+                    navigationController?.popToViewController(self, animated: true)
+                }
+                viewUpdated = false
                 updateUI()
             }
+            
         }
     }
+    
+    var viewUpdated: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,26 +60,32 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     }
     
     func updateUI() {
-        weekSelector.selectedSegmentIndex = currentEA!.weekMode - 1
-        timeSelector.selectedSegmentIndex = currentEA!.timeMode - 1
-        locationTextField.text = currentEA!.location
-        minGradeSelector.selectedSegmentIndex = currentEA!.minGrade - 6
-        maxGradeSelector.selectedSegmentIndex = currentEA!.maxGrade - 6
-        
-        if currentEA!.days.contains(1) {
-            mondayButton.backgroundHighlighted = true
-        }
-        if currentEA!.days.contains(2) {
-            tuesdayButton.backgroundHighlighted = true
-        }
-        if currentEA!.days.contains(3) {
-            wednesdayButton.backgroundHighlighted = true
-        }
-        if currentEA!.days.contains(4) {
-            thursdayButton.backgroundHighlighted = true
-        }
-        if currentEA!.days.contains(5) {
-            fridayButton.backgroundHighlighted = true
+        if !viewUpdated {
+            weekSelector.selectedSegmentIndex = currentEA!.weekMode - 1
+            timeSelector.selectedSegmentIndex = currentEA!.timeMode - 1
+            locationTextField.text = currentEA!.location
+            minGradeSelector.selectedSegmentIndex = currentEA!.minGrade - 6
+            maxGradeSelector.selectedSegmentIndex = currentEA!.maxGrade - 6
+            
+            if currentEA!.days.contains(1) {
+                mondayButton.backgroundHighlighted = true
+            }
+            if currentEA!.days.contains(2) {
+                tuesdayButton.backgroundHighlighted = true
+            }
+            if currentEA!.days.contains(3) {
+                wednesdayButton.backgroundHighlighted = true
+            }
+            if currentEA!.days.contains(4) {
+                thursdayButton.backgroundHighlighted = true
+            }
+            if currentEA!.days.contains(5) {
+                fridayButton.backgroundHighlighted = true
+            }
+            
+            selectedCategoryID = currentEA!.categoryID
+            categoryLabel.text = currentEA!.categoryForDisplay()
+            viewUpdated = true
         }
     }
     
@@ -98,7 +114,7 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         }
         let daysString = days.map{"\($0)"}.joined(separator: ",")
         
-        currentEA?.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: nil, newProposal: nil, newDays: daysString) { (success, errString) in
+        currentEA?.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: nil, newProposal: nil, newDays: daysString, newCategory: selectedCategoryID!) { (success, errString) in
             if success {
                 self.presentAlert(withTitle: "Success", message: "EA Info Updated")
             } else {
@@ -123,15 +139,22 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if indexPath.section == 0 && indexPath.row != 6 {
+        /*
+        if indexPath.section == 0 && (indexPath.row != 7 || indexPath.row == 6) {
             return nil
         }
-        return indexPath
+ */
+        switch (indexPath.section, indexPath.row) {
+        case (0, 6), (0, 7):
+            return indexPath
+        default:
+            return nil
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 && indexPath.row == 6 {
+        if indexPath.section == 0 && indexPath.row == 7 {
             // Dismiss the location text field
             self.locationTextField.resignFirstResponder()
             
@@ -163,6 +186,9 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         } else if segue.identifier == "ShowLeaders" {
             let controller = segue.destination as! EALeadersViewController
             controller.currentEA = currentEA
+        } else if segue.identifier == "PickCategory" {
+            let controller = segue.destination as! CategoryPickerViewController
+            controller.delegate = self
         }
     }
 
@@ -195,5 +221,14 @@ class DayButton: UIButton {
     
     @objc func toggleSelected() {
         backgroundHighlighted = !backgroundHighlighted
+    }
+}
+
+extension EADetailViewController: CategoryPickerViewControllerDelegate {
+    func categoryPickerViewController(_ controller: CategoryPickerViewController, didPickCategory categoryID: Int, _ categoryString: String) {
+        navigationController?.popViewController(animated: true)
+        // Delay to fix a wierd big where the label don't update.
+        selectedCategoryID = categoryID
+        categoryLabel.text = categoryString
     }
 }

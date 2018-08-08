@@ -45,6 +45,10 @@ class EnrichmentActivity: NSObject {
     override var description: String {
         return "Enrichment Activity (id: \(id), name: \(name))"
     }
+    
+    var timeInformationString: String {
+        return weekModeForDisplay() + timeModeForDisplay()
+    }
  
     override init() {
         // Initialize with default values
@@ -197,14 +201,36 @@ class EnrichmentActivity: NSObject {
         }
     }
     
-    func updateDetail(newWeekMode: Int, newTimeMode: Int, newLocation: String, newMinGrade: Int, newMaxGrade: Int, newShortDesc: String?, newProposal: String?, newDays: String, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+    func categoryForDisplay() -> String {
+        switch categoryID {
+        case 0:
+            return "Uncategorized"
+        case 1:
+            return "Science and Technologies"
+        case 2:
+            return "Arts and Crafts"
+        case 3:
+            return "Sports & Health"
+        case 4:
+            return "Community Based Groups"
+        case 5:
+            return "Recreational Activities"
+        case 6:
+            return "Other"
+        default:
+            return "Invalid Category"
+        }
+    }
+    
+    // Make new category an optional to make it compatible for now
+    func updateDetail(newWeekMode: Int, newTimeMode: Int, newLocation: String, newMinGrade: Int, newMaxGrade: Int, newShortDesc: String?, newProposal: String?, newDays: String, newCategory: Int = 0, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
         let urlString = MainServerAddress + "/manageea/updateeainfo.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        var postString = "updateea=1&id=\(self.id)&weekmode=\(newWeekMode)&timemode=\(newTimeMode)&location=\(newLocation)&mingrade=\(newMinGrade)&maxgrade=\(newMaxGrade)&days=\(newDays)"
+        var postString = "updateea=1&id=\(self.id)&weekmode=\(newWeekMode)&timemode=\(newTimeMode)&location=\(newLocation)&mingrade=\(newMinGrade)&maxgrade=\(newMaxGrade)&days=\(newDays)&category=\(newCategory)"
         if newShortDesc != nil {
             postString += "&shortdesc=\(newShortDesc!)"
         }
@@ -250,6 +276,7 @@ class EnrichmentActivity: NSObject {
                     self.minGrade = newMinGrade
                     self.maxGrade = newMaxGrade
                     self.days = newDays.split(separator: ",").map{Int($0)} as? [Int] ?? []
+                    self.categoryID = newCategory
                     if newShortDesc != nil {
                         self.shortDescription = newShortDesc!
                     }
@@ -672,7 +699,7 @@ class EnrichmentActivity: NSObject {
             }
             
             // Debug only
-            print("\(String(data: data!, encoding: .utf8))")
+            //print("\(String(data: data!, encoding: .utf8))")
             let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
             guard let responseDict = jsonData else {
                 //print("No JSON data")

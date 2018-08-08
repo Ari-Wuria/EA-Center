@@ -21,6 +21,10 @@ class CreateNewEAViewController: NSViewController {
     
     @IBOutlet var mainTouchBar: NSTouchBar!
     
+    @IBOutlet weak var cancelLabel: NSTextField!
+    
+    @IBOutlet var touchBarCancelItem: NSTouchBarItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -100,7 +104,30 @@ class CreateNewEAViewController: NSViewController {
     }
     
     override func makeTouchBar() -> NSTouchBar? {
+        /*
+        // Hide the cancelLabel when making touch bar
+        removeESCEvent()
+        mainTouchBar.delegate = self
+        mainTouchBar.escapeKeyReplacementItemIdentifier = NSTouchBarItem.Identifier(rawValue: "Cancel");
+        */
         return mainTouchBar
+    }
+    
+    @objc func touchBarCancelPressed() {
+        self.dismissed = true
+        self.dismiss(nil)
+    }
+}
+
+extension CreateNewEAViewController: NSTouchBarDelegate {
+    func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
+        if identifier.rawValue == "Cancel" {
+            let item = NSCustomTouchBarItem(identifier: identifier)
+            let button = NSButton(title: "Cancel", target: self, action: #selector(touchBarCancelPressed))
+            item.view = button
+            return item
+        }
+        return nil
     }
 }
 

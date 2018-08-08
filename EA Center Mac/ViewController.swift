@@ -88,12 +88,16 @@ class ViewController: NSViewController {
         
         statusVisualEffectView.isHidden = true
         
+        statusVisualEffectView.material = NSVisualEffectView.Material.appearanceBased
+        
         pencilPaper.addGestureRecognizer(debugGestureRecognizer)
         
         searchField.delegate = self
         
         touchLikeButton.isHidden = true
         touchJoinButton.isHidden = true
+        
+        //longDescTextView.textContainerInset = CGSize(width: 0, height: 30)
     }
     
     override func viewDidLayout() {
@@ -626,6 +630,8 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         
         cell?.toolTip = tooltip(for: row)
         
+        cell?.categoryLabel.stringValue = enrichmentActivity.categoryForDisplay()
+        
         return cell
     }
     
@@ -681,13 +687,24 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
     }
     
     func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
-        if joinableEA.count > 0 {
-            let view = ListRowView()
-            let rand = 1 + arc4random_uniform(7)
-            view.backgroundColorName = "Table Cell Color \(rand)"
-            return view
+        if searching == false {
+            if joinableEA.count > 0 {
+                let view = ListRowView()
+                let ea = joinableEA[row]
+                view.backgroundColorName = "Table Cell Color \(ea.categoryID)"
+                return view
+            } else {
+                return nil
+            }
         } else {
-            return nil
+            if filteredContent.count > 0 {
+                let view = ListRowView()
+                let ea = filteredContent[row]
+                view.backgroundColorName = "Table Cell Color \(ea.categoryID)"
+                return view
+            } else {
+                return nil
+            }
         }
     }
     
@@ -830,11 +847,6 @@ class MyScrollView: NSScrollView {
     func scrollToTop() {
         documentView?.scroll(CGPoint.zero)
     }
-    /*
-    override var alignmentRectInsets: NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: 60.0, right: 0)
-    }
- */
 }
 
 class MyTextView: NSTextView {
@@ -844,10 +856,13 @@ class MyTextView: NSTextView {
         //let _ = layer as! NoClippingLayer
         
         needsDisplay = true
+        
+        textContainerInset = CGSize(width: 0, height: 30)
     }
     
-    override var alignmentRectInsets: NSEdgeInsets {
-        return NSEdgeInsets(top: 0, left: 0, bottom: 2000.0, right: 0)
+    override var textContainerOrigin: NSPoint {
+        let superOrigin = super.textContainerOrigin
+        return NSPoint(x: superOrigin.x, y: superOrigin.y - 30)
     }
     
     override var wantsDefaultClipping: Bool {

@@ -195,11 +195,10 @@ class EAListViewController: UITableViewController {
                 cell.likeCountLabel.text = "\(ea.likedUserID!.count)"
             }
             
-            // Give it a random color for now
-            // TODO: Set color based on category
-            let number = 1 + arc4random() % 7
-            //let number = indexPath.row + 4
-            cell.backgroundColor = UIColor(named: "Table Cell Color \(number)")
+            cell.categoryLabel.text = ea.categoryForDisplay()
+            
+            let categoryID = ea.categoryID
+            cell.backgroundColor = UIColor(named: "Table Cell Color \(categoryID)")
     
             // 3D Touch support
             if traitCollection.forceTouchCapability == .available {

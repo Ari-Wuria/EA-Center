@@ -17,6 +17,8 @@ class DeleteEAViewController: NSViewController {
     @IBOutlet weak var spinner: NSProgressIndicator!
     @IBOutlet weak var textField: NSTextField!
     @IBOutlet weak var deleteButton: NSButton!
+    @IBOutlet weak var touchDeleteButton: NSButton!
+    @IBOutlet var mainTouchBar: NSTouchBar!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,7 @@ class DeleteEAViewController: NSViewController {
         textField.delegate = self
         
         deleteButton.isEnabled = false
+        touchDeleteButton.isEnabled = false
         
         addESCEvent()
     }
@@ -86,6 +89,10 @@ class DeleteEAViewController: NSViewController {
         }
     }
     
+    override func makeTouchBar() -> NSTouchBar? {
+        return mainTouchBar
+    }
+    
     deinit {
         print("deinit \(self)")
     }
@@ -95,8 +102,10 @@ extension DeleteEAViewController: NSTextFieldDelegate {
     override func controlTextDidChange(_ obj: Notification) {
         if textField.stringValue == deleteEA!.name {
             deleteButton.isEnabled = true
+            touchDeleteButton?.isEnabled = true
         } else {
             deleteButton.isEnabled = false
+            touchDeleteButton?.isEnabled = false
         }
     }
     

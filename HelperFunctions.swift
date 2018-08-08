@@ -10,7 +10,7 @@ import Foundation
 #if os(iOS)
 import UIKit
 #elseif os(OSX)
-import AppKit
+import Cocoa
 #endif
 
 func delay(_ time: Double, _ block: @escaping () -> ()) {

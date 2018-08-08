@@ -168,7 +168,12 @@ extension CoordinatorSettingsViewController: NSTableViewDataSource, NSTableViewD
         view.nameLabel.stringValue = ea.name
         view.leaderLabel.stringValue = "Loading leader"
         view.supervisorLabel.stringValue = "Loading supervisor"
-        view.proposalLabel.stringValue = ea.proposal
+        //view.proposalLabel.stringValue = ea.proposal
+        if ea.proposal.count > 0 {
+            view.proposalLabel.stringValue = ea.proposal
+        } else {
+            view.proposalLabel.stringValue = "This EA's leader is lazy and didn't write the proposal."
+        }
         
         let firstLeader = ea.leaderEmails.first
         let firstSupervisor = ea.supervisorEmails.first

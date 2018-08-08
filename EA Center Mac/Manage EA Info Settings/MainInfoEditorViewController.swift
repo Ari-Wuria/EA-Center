@@ -45,6 +45,9 @@ class MainInfoEditorViewController: NSViewController {
     @IBOutlet weak var touchMinGradeSelector: NSSegmentedControl!
     @IBOutlet weak var touchMaxGradeSelector: NSSegmentedControl!
     
+    @IBOutlet weak var categoryPopupPicker: NSPopUpButton!
+    @IBOutlet weak var maxStudentPicker: NSPopUpButton!
+    
     var currentEA: EnrichmentActivity?
     
     var currentLoginEmail: String?
@@ -123,6 +126,10 @@ class MainInfoEditorViewController: NSViewController {
         touchMinGradePopover.dismissPopover(nil)
         touchMaxGradePopover.dismissPopover(nil)
         
+        categoryPopupPicker.selectItem(at: ea.categoryID)
+        
+        // TODO: Update Max Student
+        
         updateShortDescWordCount()
         updateProposalWordCount()
     }
@@ -193,6 +200,8 @@ class MainInfoEditorViewController: NSViewController {
             daysArray.append(5)
         }
         let days = daysArray.map{"\($0)"}.joined(separator: ",")
+        
+        let newCategory = categoryPopupPicker.indexOfSelectedItem
         /*
         guard currentEA!.checkOwner(currentLoginEmail!) else {
             showAlert(withTitle: "Can not modify data", message: "You no longer own this EA!")
@@ -200,7 +209,7 @@ class MainInfoEditorViewController: NSViewController {
         }
         */
         // Update
-        currentEA!.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: !sameShortDesc ? shortDesc : nil, newProposal: !sameProposal ? proposal : nil, newDays: days) { (success, errString) in
+        currentEA!.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: !sameShortDesc ? shortDesc : nil, newProposal: !sameProposal ? proposal : nil, newDays: days, newCategory: newCategory) { (success, errString) in
             if !success {
                 self.showAlert(withTitle: "Error Updating Info", message: errString!)
                 
