@@ -10,5 +10,7 @@
 #define EA_Center_Bridging_Header_h
 
 #import "SSZipArchive.h"
+#import "Reachability.h"
+#import "GradientView.h"
 
 #endif /* EA_Center_Bridging_Header_h */

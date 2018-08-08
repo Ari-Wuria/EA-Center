@@ -9,6 +9,7 @@
 import UIKit
 
 class AttendanceViewController: UITableViewController {
+    var currentEA: EnrichmentActivity!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,13 +26,28 @@ class AttendanceViewController: UITableViewController {
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 1
+        return currentEA.joinedUserID!.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "AttendanceCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "AttendanceCell", for: indexPath) as! AttendenceCell
 
         // Configure the cell...
+        
+        cell.studentNameLabel.text = "Loading name..."
+        let userID = currentEA.joinedUserID![indexPath.row]
+        AccountProcessor.retriveUserAccount(from: userID) { (account, errCode, errStr) in
+            if let account = account {
+                if account.username != "" {
+                    cell.studentNameLabel.text = account.username
+                } else {
+                    cell.studentNameLabel.text = account.userEmail
+                }
+            } else {
+                cell.studentNameLabel.text = "Error retriving name."
+                cell.attendenceSegmentedControl.isHidden = true
+            }
+        }
 
         return cell
     }

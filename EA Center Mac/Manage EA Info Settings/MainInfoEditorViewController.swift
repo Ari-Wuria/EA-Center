@@ -199,6 +199,12 @@ class MainInfoEditorViewController: NSViewController {
         if fridayCheckbox.state == .on {
             daysArray.append(5)
         }
+        
+        guard daysArray.count > 0 else {
+            showAlert(withTitle: "Please select at least one running day.")
+            return
+        }
+        
         let days = daysArray.map{"\($0)"}.joined(separator: ",")
         
         let newCategory = categoryPopupPicker.indexOfSelectedItem

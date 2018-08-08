@@ -16,6 +16,12 @@ class ProfileEditorViewController: UITableViewController {
     
     var userAccount: UserAccount?
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        
+        modalPresentationStyle = .formSheet
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

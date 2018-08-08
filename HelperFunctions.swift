@@ -13,6 +13,8 @@ import UIKit
 import Cocoa
 #endif
 
+import SystemConfiguration
+
 func delay(_ time: Double, _ block: @escaping () -> ()) {
     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + time, execute: block)
 }

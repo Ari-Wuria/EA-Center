@@ -46,7 +46,7 @@ class EADescriptionViewController: UIViewController {
     
     @IBOutlet weak var statusLabel: UILabel!
     
-    @IBOutlet weak var joinButton: UIBarButtonItem!
+    @IBOutlet var joinButton: UIBarButtonItem!
     
     @IBOutlet weak var eaStatusContainerView: UIVisualEffectView!
     

@@ -1,25 +1,87 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Launch View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
-                <viewController id="01J-lp-oVM" sceneMemberID="viewController">
+                <viewController id="01J-lp-oVM" customClass="LaunchViewController" customModule="EA_Center" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0bc-YB-F7w">
+                                <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Internet Connection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lG0-Pb-SVj">
+                                <rect key="frame" x="274" y="885" width="220" height="24"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please connect to the internet and try again." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r0W-jO-HrI">
+                                <rect key="frame" x="248.5" y="917" width="271" height="51"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="51" id="Kek-Xc-qqL"/>
+                                    <constraint firstAttribute="width" constant="271" id="TCA-mt-1la"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yqc-Y9-38X">
+                                <rect key="frame" x="365.5" y="976" width="37" height="30"/>
+                                <state key="normal" title="Retry">
+                                    <color key="titleColor" red="0.89803921568627454" green="0.89803921568627454" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="retryConnectingToInternet:" destination="01J-lp-oVM" eventType="touchUpInside" id="Zqa-yx-2ix"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="yqc-Y9-38X" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="FOB-c5-3th"/>
+                            <constraint firstItem="r0W-jO-HrI" firstAttribute="top" secondItem="lG0-Pb-SVj" secondAttribute="bottom" constant="8" id="LpK-5J-1ts"/>
+                            <constraint firstItem="0bc-YB-F7w" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="N7f-wb-DGy"/>
+                            <constraint firstAttribute="bottom" secondItem="0bc-YB-F7w" secondAttribute="bottom" id="NPy-rv-iLw"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yqc-Y9-38X" secondAttribute="bottom" constant="18" id="NUU-p3-Zvp"/>
+                            <constraint firstItem="0bc-YB-F7w" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="O6h-mP-rfN"/>
+                            <constraint firstItem="r0W-jO-HrI" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="c1R-ZP-ZfX"/>
+                            <constraint firstItem="0bc-YB-F7w" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eoV-zf-9xD"/>
+                            <constraint firstItem="lG0-Pb-SVj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="lmi-I3-oid"/>
+                            <constraint firstItem="yqc-Y9-38X" firstAttribute="top" secondItem="r0W-jO-HrI" secondAttribute="bottom" constant="8" id="xEf-SQ-wCe"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <navigationItem key="navigationItem" id="CnK-WR-wbF"/>
+                    <connections>
+                        <outlet property="launchImageView" destination="0bc-YB-F7w" id="AvQ-dF-V9f"/>
+                        <outlet property="noInternetDescLabel" destination="r0W-jO-HrI" id="7Fg-ig-I1e"/>
+                        <outlet property="noInternetLabel" destination="lG0-Pb-SVj" id="HLx-ow-h1c"/>
+                        <outlet property="retryInternetButton" destination="yqc-Y9-38X" id="6Ft-DI-DqZ"/>
+                        <segue destination="YcW-V9-PNF" kind="presentation" identifier="ShowMain" modalPresentationStyle="fullScreen" modalTransitionStyle="crossDissolve" id="R6S-9L-T7y"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="1865.217391304348" y="374.18478260869568"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="fyg-YP-qEV">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="YcW-V9-PNF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MIS-wp-Rur" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2398" y="374"/>
         </scene>
     </scenes>
 </document>

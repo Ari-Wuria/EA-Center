@@ -112,6 +112,12 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         if fridayButton.backgroundHighlighted {
             days.append(5)
         }
+        
+        guard days.count > 0 else {
+            presentAlert(withTitle: "Invalid days", message: "Please select at least 1 running day.")
+            return
+        }
+        
         let daysString = days.map{"\($0)"}.joined(separator: ",")
         
         currentEA?.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: nil, newProposal: nil, newDays: daysString, newCategory: selectedCategoryID!) { (success, errString) in
@@ -145,7 +151,7 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         }
  */
         switch (indexPath.section, indexPath.row) {
-        case (0, 6), (0, 7):
+        case (0, 6), (0, 7), (1, _), (2, _), (3, _), (4, _):
             return indexPath
         default:
             return nil
@@ -189,6 +195,9 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         } else if segue.identifier == "PickCategory" {
             let controller = segue.destination as! CategoryPickerViewController
             controller.delegate = self
+        } else if segue.identifier == "TakeAttendance" {
+            let controller = segue.destination as! AttendanceViewController
+            controller.currentEA = currentEA!
         }
     }
 

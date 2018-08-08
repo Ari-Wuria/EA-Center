@@ -15,6 +15,12 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
     
     @IBOutlet var mainTouchBar: NSTouchBar!
     
+    @IBOutlet var nextSessionDateLabel: NSTextField!
+    
+    @IBOutlet var touchAllPresentButton: NSButton!
+    @IBOutlet var touchAllAbsentButton: NSButton!
+    @IBOutlet var touchAllLateButton: NSButton!
+    
     var currentEA: EnrichmentActivity?
     var loggedInEmail: String?
     

@@ -13,10 +13,14 @@ import UserNotifications
 class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
     var window: UIWindow?
-
+    
+    var splitViewController: UISplitViewController!
+/*
     var splitViewController: UISplitViewController {
-        return window!.rootViewController as! UISplitViewController
+        //return window!.rootViewController as! UISplitViewController
+        return rootSplitViewController
     }
+    */
     
     var masterTabBarController: MyTabBarController {
         return splitViewController.viewControllers.first! as! MyTabBarController
@@ -74,33 +78,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // -------
         
-        if !(window!.rootViewController!.traitCollection.horizontalSizeClass == .compact) {
-            detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
-            
-            masterTabBarController.title = "All EAs"
-            
-            splitViewController.preferredDisplayMode = .primaryOverlay
-            splitViewController.preferredDisplayMode = .automatic
-            
-            // App Delegate implemented the view switching
-            listViewController.splitViewControllingDelegate = self
-            managerController.splitViewControllingDelegate = self
-            meController.splitViewControllingDelegate = self
-        }
-        
+        let launchController = window!.rootViewController as! LaunchViewController
+        launchController.delegate = self
+        /*
+        // Test Code
+        splitViewController = window!.rootViewController as? UISplitViewController
+        let controller = LaunchViewController()
+        launchScreenPresented(controller, targetController: splitViewController)
+    */
         // -------
         registerForPushNotification()
         
         application.applicationIconBadgeNumber = 0
         
         // Check if launched through remote notification
-        if let notification = launchOptions?[.remoteNotification] as? [String:AnyObject] {
+        //if let notification = launchOptions?[.remoteNotification] as? [String:AnyObject] {
             // Get aps dict from notification
             //let aps = notification["aps"] as! [String:AnyObject]
             // Use aps here, test code below
             //let extra = aps["extra"] as! String
             //print("\(extra)")
-        }
+        //}
         
         return true
     }
@@ -133,7 +131,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let token = tokenParts.joined()
         print("Device Token: \(token)")
         self.deviceToken = token
-        self.meController.pushNotificationToken = token
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
@@ -190,6 +187,38 @@ extension AppDelegate: EAListSplitViewControlling, ManagerSplitViewControlling, 
         //currentDetailController = managerDetailController
         controller.splitViewDetail = detailViewController as? EADetailViewController
         detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+    }
+}
+
+extension AppDelegate: LaunchViewControllerDelegate {
+    func launchScreenPresented(_ controller: LaunchViewController, targetController: UISplitViewController) {
+        // Process iPad split view stuff after launch screen is presented
+        if !(window!.rootViewController!.traitCollection.horizontalSizeClass == .compact) {
+            splitViewController = targetController
+            
+            detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
+            
+            masterTabBarController.title = "All EAs"
+            
+            // App Delegate implemented the view switching
+            listViewController.splitViewControllingDelegate = self
+            managerController.splitViewControllingDelegate = self
+            meController.splitViewControllingDelegate = self
+            
+            meController.pushNotificationToken = deviceToken
+            
+            let orientation = UIDevice.current.orientation
+            if orientation == .portrait || orientation == .portraitUpsideDown {
+                // Wait for crossfade to finish
+                delay(0.2) {
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self.splitViewController.preferredDisplayMode = .primaryOverlay
+                    }, completion: { _ in
+                        self.splitViewController.preferredDisplayMode = .automatic
+                    })
+                }
+            }
+        }
     }
 }
 
