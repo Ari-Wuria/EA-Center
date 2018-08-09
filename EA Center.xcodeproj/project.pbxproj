@@ -64,6 +64,7 @@
 		D05E85DA210614DC00EA4577 /* CoordinatorSettingsCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85D9210614DC00EA4577 /* CoordinatorSettingsCellView.swift */; };
 		D05E85DC21061E5300EA4577 /* ViewDescriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05E85DB21061E5300EA4577 /* ViewDescriptionViewController.swift */; };
 		D05F2A7420D947480044C7F1 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D05F2A7320D947480044C7F1 /* MainWindowController.swift */; };
+		D0637D4E211C7157000D4EAA /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0637D4D211C7157000D4EAA /* ForgotPasswordViewController.swift */; };
 		D0656E36210CA606008A2E3B /* SendApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */; };
 		D0656E39210DE998008A2E3B /* EALeadersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E38210DE998008A2E3B /* EALeadersViewController.swift */; };
 		D0656E3B210DFBAB008A2E3B /* AddLeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */; };
@@ -214,6 +215,7 @@
 		D05E85D9210614DC00EA4577 /* CoordinatorSettingsCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorSettingsCellView.swift; sourceTree = "<group>"; };
 		D05E85DB21061E5300EA4577 /* ViewDescriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewDescriptionViewController.swift; sourceTree = "<group>"; };
 		D05F2A7320D947480044C7F1 /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		D0637D4D211C7157000D4EAA /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendApprovalViewController.swift; sourceTree = "<group>"; };
 		D0656E38210DE998008A2E3B /* EALeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EALeadersViewController.swift; sourceTree = "<group>"; };
 		D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeaderViewController.swift; sourceTree = "<group>"; };
@@ -566,6 +568,7 @@
 				D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */,
 				D042C18D20DBA0860017DE4F /* LoginViewController.swift */,
 				D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */,
+				D0637D4D211C7157000D4EAA /* ForgotPasswordViewController.swift */,
 				D05E85D32104BDA900EA4577 /* UserSettingsWindowController.swift */,
 				D0B7C47720EC9620004DE8F3 /* AccountSettingsViewController.swift */,
 				D05E85D52104D5D200EA4577 /* ChangePasswordViewController.swift */,
@@ -980,6 +983,7 @@
 				D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */,
 				D05E85D82104DE5F00EA4577 /* CoordinatorDetailViewController.swift in Sources */,
 				D0FEB73E20E147AF009CB82E /* zip.c in Sources */,
+				D0637D4E211C7157000D4EAA /* ForgotPasswordViewController.swift in Sources */,
 				D0A7662520E27FFA001B4317 /* EditDescriptionViewController.swift in Sources */,
 				D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */,
 				D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */,

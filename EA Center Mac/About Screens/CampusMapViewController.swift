@@ -16,8 +16,8 @@ class CampusMapViewController: NSViewController {
     @IBOutlet var mainTouchBar: NSTouchBar!
     
     var floorCount = 1
-    let minFloorCount = 1
-    let maxFloorCount = 4
+    let minFloorCount = 0
+    let maxFloorCount = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,6 +54,8 @@ class CampusMapViewController: NSViewController {
     func updateLabel() {
         let labelText: String
         switch floorCount {
+        case 0:
+            labelText = "Sunken Plaza"
         case 1:
             labelText = "1st Floor"
         case 2:
@@ -62,6 +64,8 @@ class CampusMapViewController: NSViewController {
             labelText = "3rd Floor"
         case 4:
             labelText = "4th Floor"
+        case 5:
+            labelText = "5th Floor"
         default:
             labelText = "Unknown Floor"
             break

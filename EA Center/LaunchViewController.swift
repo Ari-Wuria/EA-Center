@@ -35,10 +35,17 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
         setNoInternetLabelVisibility(false, animated: false)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setImage()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         checkInternet()
+        
+        // Do it again for iPads
         setImage()
     }
     

@@ -65,6 +65,11 @@ class LoginViewController: NSViewController {
         window.register()
     }
     
+    @IBAction func forgotPassword(_ sender: Any) {
+        let window = view.window?.windowController as! LoginWindowController
+        window.forgotPassword()
+    }
+    
     func setEmail(_ email: String) {
         emailTextField.stringValue = email
         passwordTextField.stringValue = ""

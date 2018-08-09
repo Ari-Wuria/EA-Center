@@ -219,5 +219,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @IBAction func viewGithub(_ sender: Any) {
         NSWorkspace.shared.open(URL(string: "https://github.com/TomShen1234/EA-Center")!)
     }
+    
+    @IBAction func reportABug(_ sender: Any) {
+        //NSWorkspace.shared.open(URL(string: "https://github.com/TomShen1234/EA-Center/issues")!)
+    }
 }
 

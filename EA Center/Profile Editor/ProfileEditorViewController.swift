@@ -42,6 +42,8 @@ class ProfileEditorViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         if indexPath.section == 1 && indexPath.row == 0 {
             return indexPath
+        } else if indexPath.section == 0 && indexPath.row == 3 {
+            return indexPath
         } else {
             return nil
         }

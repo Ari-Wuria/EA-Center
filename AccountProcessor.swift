@@ -381,4 +381,87 @@ class AccountProcessor {
         }
         dataTask.resume()
     }
+    
+    class func sendForgotPasswordRequest(_ email: String, _ encryptedPassword: String, completion: @escaping (_ success: Bool, _ errStr: String) -> ()) {
+        let urlString = MainServerAddress + "/login/forgotpass.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "forgot&password=\(encryptedPassword)&email=\(email)"
+        //let postStringEscaped = postString.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
+        //request.httpBody = postStringEscaped?.data(using: .utf8)
+        request.httpBody = postString.data(using: .utf8)
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                if (error as! URLError).code == URLError.Code.notConnectedToInternet {
+                    //self.statusLabel.stringValue = "Please get on the internet"
+                    DispatchQueue.main.async {
+                        completion(false, "Please get on the internet")
+                    }
+                } else {
+                    //self.statusLabel.stringValue = "Register failed with error"
+                    DispatchQueue.main.async {
+                        completion(false, "Reset failed with an error")
+                    }
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                //self.statusLabel.stringValue = "Register failed: Wrong status code (\(httpResponse.statusCode))"
+                DispatchQueue.main.async {
+                    completion(false, "Reset failed: Wrong status code (\(httpResponse.statusCode))")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //self.statusLabel.stringValue = "Register failed: No JSON data)"
+                DispatchQueue.main.async {
+                    completion(false, "Reset failed: No JSON data)")
+                }
+                return
+            }
+            /*
+            let failure = responseDict["failure"] as! Bool
+            if failure == true {
+                // Fail
+                let reason = responseDict["error"] as! Int
+                DispatchQueue.main.async {
+                    if reason == 1 {
+                        //self.statusLabel.stringValue = "Account already exist"
+                        completion(false, "Account already exist")
+                    } else if reason == 2 {
+                        //self.statusLabel.stringValue = "Please activate account. Don't register again."
+                        completion(false, "Please activate account. Don't register again.")
+                    }
+                    return
+                }
+            }
+            */
+            let success = responseDict["success"] as? Bool
+            if success == true {
+                DispatchQueue.main.async {
+                    //let window = self.view.window?.windowController as! LoginWindowController
+                    //window.registerFinished(withEmail: email)
+                    completion(true, email)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    //let window = self.view.window?.windowController as! LoginWindowController
+                    //window.registerFinished(withEmail: email)
+                    let errStr = responseDict["errorString"]
+                    completion(false, errStr as! String)
+                }
+            }
+        }
+        dataTask.resume()
+    }
 }

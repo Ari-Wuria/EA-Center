@@ -411,9 +411,8 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dNZ-1g-LKb">
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="dNZ-1g-LKb">
                                 <rect key="frame" x="197" y="358" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pencil Paper" translatesAutoresizingMaskIntoConstraints="NO" id="hqt-cn-fac">
                                 <rect key="frame" x="202" y="234" width="300" height="300"/>
@@ -434,6 +433,8 @@
                             <constraint firstItem="mEy-h2-eZz" firstAttribute="leading" secondItem="raR-xX-fAD" secondAttribute="leading" id="lgP-54-4We"/>
                             <constraint firstItem="mEy-h2-eZz" firstAttribute="top" secondItem="raR-xX-fAD" secondAttribute="top" id="pgD-t1-wBL"/>
                             <constraint firstItem="khi-hI-grM" firstAttribute="trailing" secondItem="raR-xX-fAD" secondAttribute="trailing" id="tSg-oL-k5o"/>
+                            <constraint firstItem="dNZ-1g-LKb" firstAttribute="centerX" secondItem="gig-Mv-1wU" secondAttribute="centerX" id="urS-kv-sMs"/>
+                            <constraint firstItem="dNZ-1g-LKb" firstAttribute="centerY" secondItem="gig-Mv-1wU" secondAttribute="centerY" id="yCB-6V-Iga"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="raR-xX-fAD"/>
                         <variation key="default">
@@ -2555,10 +2556,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1st Floor" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cZy-uk-TJt">
-                                <rect key="frame" x="123" y="664" width="168" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="168" id="6oE-F3-gCD"/>
-                                </constraints>
+                                <rect key="frame" x="147" y="664" width="120" height="40"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="33"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2569,12 +2567,12 @@
                         </subviews>
                         <color key="backgroundColor" name="Menu Color"/>
                         <constraints>
-                            <constraint firstItem="5UT-Wl-B2l" firstAttribute="top" secondItem="GRL-O6-lqY" secondAttribute="top" constant="27" id="Uch-iq-jhK"/>
-                            <constraint firstItem="cZy-uk-TJt" firstAttribute="top" secondItem="5UT-Wl-B2l" secondAttribute="bottom" constant="16" id="VfH-LK-fPH"/>
-                            <constraint firstItem="5UT-Wl-B2l" firstAttribute="centerX" secondItem="cZy-uk-TJt" secondAttribute="centerX" id="adu-oS-MVk"/>
-                            <constraint firstItem="5UT-Wl-B2l" firstAttribute="leading" secondItem="N0h-yq-Kmn" secondAttribute="leading" constant="21" id="xTE-Hy-LJC"/>
-                            <constraint firstItem="GRL-O6-lqY" firstAttribute="bottom" secondItem="cZy-uk-TJt" secondAttribute="bottom" constant="32" id="y4k-5N-psH"/>
-                            <constraint firstAttribute="trailing" secondItem="5UT-Wl-B2l" secondAttribute="trailing" constant="21" id="zp8-ny-u9J"/>
+                            <constraint firstItem="GRL-O6-lqY" firstAttribute="bottom" secondItem="cZy-uk-TJt" secondAttribute="bottom" constant="32" id="2ni-Xc-HJL"/>
+                            <constraint firstItem="5UT-Wl-B2l" firstAttribute="leading" secondItem="GRL-O6-lqY" secondAttribute="leading" constant="21" id="Edl-gl-Bn8"/>
+                            <constraint firstItem="5UT-Wl-B2l" firstAttribute="centerX" secondItem="N0h-yq-Kmn" secondAttribute="centerX" id="Okz-8c-owz"/>
+                            <constraint firstItem="5UT-Wl-B2l" firstAttribute="centerX" secondItem="cZy-uk-TJt" secondAttribute="centerX" id="buB-Sx-pBL"/>
+                            <constraint firstItem="5UT-Wl-B2l" firstAttribute="top" secondItem="GRL-O6-lqY" secondAttribute="top" constant="27" id="hd6-c7-3CS"/>
+                            <constraint firstItem="cZy-uk-TJt" firstAttribute="top" secondItem="5UT-Wl-B2l" secondAttribute="bottom" constant="16" id="tMf-QJ-Sbc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="GRL-O6-lqY"/>
                     </view>

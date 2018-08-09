@@ -11,6 +11,7 @@ import Cocoa
 class LoginWindowController: NSWindowController {
     var loginView: LoginViewController?
     var registerView: RegisterViewController?
+    var forgotView: ForgotPasswordViewController?
 
     override func windowDidLoad() {
         super.windowDidLoad()
@@ -47,17 +48,50 @@ class LoginWindowController: NSWindowController {
         }
     }
     
+    func forgotPassword() {
+        if loginView == nil {
+            loginView = contentViewController as? LoginViewController
+        }
+        
+        let userStoryboard = NSStoryboard(name: "UserSettings", bundle: .main)
+        let controller = userStoryboard.instantiateController(withIdentifier: "ForgotView") as! ForgotPasswordViewController
+        forgotView = controller
+        contentViewController = controller
+    }
+    
+    func closeForgotPassword() {
+        if contentViewController is ForgotPasswordViewController {
+            contentViewController = loginView
+            forgotView = nil
+        }
+    }
+    
     func registerFinished(withEmail email: String) {
         if contentViewController is RegisterViewController {
             contentViewController = loginView
             loginView!.setEmail(email)
             
             loginView?.verifyLabel.isHidden = false
+            //loginView?.verifyLabel.stringValue = "A confirmation email has been sent to your inbox."
             loginView?.verifyLabel.stringValue = "Email isn't implemented. WeChat me to activate."
             
             loginView?.finishedRegister = true
             
             registerView = nil
+        }
+    }
+    
+    func forgotPassFinished(withEmail email: String) {
+        if contentViewController is ForgotPasswordViewController {
+            contentViewController = loginView
+            
+            loginView?.verifyLabel.isHidden = false
+            //loginView?.verifyLabel.stringValue = "A confirmation email has been sent to your inbox."
+            loginView?.verifyLabel.stringValue = "Email isn't implemented. WeChat me to activate."
+            
+            loginView?.finishedRegister = true
+            
+            forgotView = nil
         }
     }
     

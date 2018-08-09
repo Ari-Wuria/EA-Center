@@ -69,6 +69,9 @@ class RegisterViewController: NSViewController {
     }
     
     @IBAction func register(_ sender: Any) {
+        statusLabel.isHidden = false
+        statusLabel.stringValue = ""
+        
         // Validate email
         let email = emailTextField.stringValue
         

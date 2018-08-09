@@ -9,8 +9,8 @@
 import UIKit
 
 class CampusMapViewController: UIPageViewController, UIPageViewControllerDataSource {
-    var indexMin = 1
-    var indexMax = 4
+    var indexMin = 0
+    var indexMax = 5
     
     var allMaps = [MapImageViewController]()
     
@@ -22,8 +22,10 @@ class CampusMapViewController: UIPageViewController, UIPageViewControllerDataSou
         dataSource = self
         
         let mapViewController = UIStoryboard(name: "Main", bundle: .main).instantiateViewController(withIdentifier: "MapViewController") as! MapImageViewController
-        mapViewController.floor = 1
+        mapViewController.floor = indexMin
         setViewControllers([mapViewController], direction: .forward, animated: false, completion: nil)
+        
+        //view.backgroundColor = UIColor(named: "Menu Color")!
         
         // TODO: Add a page control
     }
@@ -56,4 +58,14 @@ class CampusMapViewController: UIPageViewController, UIPageViewControllerDataSou
         newMap.floor = newFloor
         return newMap
     }
+    /*
+    // FIXME: Fix page indicator causing the whole view to push up.
+    func presentationCount(for pageViewController: UIPageViewController) -> Int {
+        return 6
+    }
+    
+    func presentationIndex(for pageViewController: UIPageViewController) -> Int {
+        return 0
+    }
+ */
 }

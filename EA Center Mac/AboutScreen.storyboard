@@ -77,7 +77,7 @@
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Map F1" id="OCx-C0-87B"/>
                                         </imageView>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="syy-BV-f3X">
-                                            <rect key="frame" x="397" y="18" width="49" height="32"/>
+                                            <rect key="frame" x="411" y="18" width="49" height="32"/>
                                             <buttonCell key="cell" type="push" title="&gt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lwV-Ur-lg7">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -86,8 +86,19 @@
                                                 <action selector="goUp:" target="C8B-JD-g6Z" id="QwM-e4-yzX"/>
                                             </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3cr-Nr-OM7">
+                                            <rect key="frame" x="247" y="17" width="164" height="37"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="160" id="DPR-NS-Zei"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="1st Floor" id="kqR-aR-etc">
+                                                <font key="font" metaFont="system" size="27"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MOU-vR-1oP">
-                                            <rect key="frame" x="213" y="18" width="49" height="32"/>
+                                            <rect key="frame" x="198" y="18" width="49" height="32"/>
                                             <buttonCell key="cell" type="push" title="&lt;" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bWV-O7-c6j">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -96,25 +107,14 @@
                                                 <action selector="goDown:" target="C8B-JD-g6Z" id="Ekj-iw-xZx"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3cr-Nr-OM7">
-                                            <rect key="frame" x="271" y="17" width="117" height="37"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="113" id="DPR-NS-Zei"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="1st Floor" id="kqR-aR-etc">
-                                                <font key="font" metaFont="system" size="27"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="uz6-Ys-8zn" firstAttribute="centerX" secondItem="3cr-Nr-OM7" secondAttribute="centerX" id="64b-Qa-Gmz"/>
-                                        <constraint firstItem="3cr-Nr-OM7" firstAttribute="leading" secondItem="MOU-vR-1oP" secondAttribute="trailing" constant="17" id="I4m-OI-Z4C"/>
+                                        <constraint firstItem="3cr-Nr-OM7" firstAttribute="leading" secondItem="MOU-vR-1oP" secondAttribute="trailing" constant="8" id="I4m-OI-Z4C"/>
                                         <constraint firstItem="uz6-Ys-8zn" firstAttribute="centerX" secondItem="V9G-TP-JtV" secondAttribute="centerX" id="I6m-QW-Zv1"/>
                                         <constraint firstItem="MOU-vR-1oP" firstAttribute="baseline" secondItem="syy-BV-f3X" secondAttribute="baseline" id="Ie7-Ur-hll"/>
                                         <constraint firstAttribute="bottom" secondItem="3cr-Nr-OM7" secondAttribute="bottom" constant="17" id="Joa-9G-Zpu"/>
-                                        <constraint firstItem="syy-BV-f3X" firstAttribute="leading" secondItem="3cr-Nr-OM7" secondAttribute="trailing" constant="17" id="Pjx-e5-H4s"/>
+                                        <constraint firstItem="syy-BV-f3X" firstAttribute="leading" secondItem="3cr-Nr-OM7" secondAttribute="trailing" constant="8" id="Pjx-e5-H4s"/>
                                         <constraint firstItem="syy-BV-f3X" firstAttribute="baseline" secondItem="MOU-vR-1oP" secondAttribute="firstBaseline" id="Q8g-YV-d4M"/>
                                         <constraint firstItem="uz6-Ys-8zn" firstAttribute="top" secondItem="V9G-TP-JtV" secondAttribute="top" constant="51" id="TLc-kr-3NS"/>
                                         <constraint firstItem="MOU-vR-1oP" firstAttribute="top" secondItem="uz6-Ys-8zn" secondAttribute="bottom" constant="5" id="TuR-gq-YKq"/>
@@ -162,6 +162,7 @@
                             </viewController>
                             <size key="designTimeSize" width="45" height="30"/>
                         </touchBarItem>
+                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceSmall" id="lXt-Nc-9Xv"/>
                         <touchBarItem id="eCC-ND-JvY">
                             <viewController key="viewController" id="f5Q-rL-SRz">
                                 <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="hIX-LG-lFc">
@@ -176,6 +177,7 @@
                             </viewController>
                             <size key="designTimeSize" width="69" height="22"/>
                         </touchBarItem>
+                        <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFixedSpaceSmall" id="brp-ZH-LFY"/>
                         <touchBarItem id="xYe-ul-Gjq">
                             <viewController key="viewController" id="Jo5-bd-Tvs">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ovQ-74-n2D">

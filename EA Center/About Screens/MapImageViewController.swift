@@ -64,10 +64,15 @@ class MapImageViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        
+        // Test code
+        //view.backgroundColor = UIColor.red
     }
     
     private func updateFloorText(_ newFloor: Int) {
         switch newFloor {
+        case 0:
+            floorText = "Sunken Plaza"
         case 1:
             floorText = "1st Floor"
         case 2:
@@ -76,6 +81,8 @@ class MapImageViewController: UIViewController {
             floorText = "3rd Floor"
         case 4:
             floorText = "4th Floor"
+        case 5:
+            floorText = "5th Floor"
         default:
             break
         }

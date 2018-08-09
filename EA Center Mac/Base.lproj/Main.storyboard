@@ -715,6 +715,13 @@
                                         <menuItem title="Email Me" id="gU2-hn-gaS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="JaC-i2-7xW"/>
+                                        <menuItem title="Report a bug or issue" id="N7b-9c-syW">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="reportABug:" target="Voe-Tx-rLC" id="1wW-J0-Kam"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="dYj-My-Hms"/>
                                         <menuItem title="EA Center Mac Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
