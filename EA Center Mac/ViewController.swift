@@ -870,13 +870,3 @@ class MyTextView: NSTextView {
     }
 }
 
-class NoClippingLayer: CALayer {
-    override var masksToBounds: Bool {
-        set {
-            
-        }
-        get {
-            return false
-        }
-    }
-}

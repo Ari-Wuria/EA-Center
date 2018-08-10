@@ -10,7 +10,7 @@ import Foundation
 import Security
 
 class KeychainHelper {
-    class func saveKeychain(account: String, password: Data) -> Bool {
+    @discardableResult class func saveKeychain(account: String, password: Data) -> Bool {
         let query = [kSecClass as String:kSecClassGenericPassword as String,
                      kSecAttrAccount as String: account,
                      kSecValueData as String: password] as [String : Any]
@@ -24,7 +24,7 @@ class KeychainHelper {
         return true
     }
     
-    class func deleteKeychain(account: String) -> Bool {
+    @discardableResult class func deleteKeychain(account: String) -> Bool {
         let query = [kSecClass as String:kSecClassGenericPassword as String,
                      kSecAttrAccount as String: account] as [String : Any]
         
@@ -35,7 +35,7 @@ class KeychainHelper {
         return true
     }
     
-    class func loadKeychain(account: String) -> Data? {
+    @discardableResult class func loadKeychain(account: String) -> Data? {
         let query = [kSecClass as String:kSecClassGenericPassword,
             kSecAttrAccount as String:account,
             kSecReturnData as String:kCFBooleanTrue,
@@ -45,7 +45,7 @@ class KeychainHelper {
         
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &data)
         if status == noErr {
-            return (data! as! Data)
+            return (data as! Data)
         } else {
             return nil
         }

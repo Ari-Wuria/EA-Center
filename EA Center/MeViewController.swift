@@ -46,6 +46,8 @@ class MeViewController: UITableViewController {
     
     var pushNotificationToken: String?
     
+    var authenticator = BiometricAuth()
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -135,6 +137,7 @@ class MeViewController: UITableViewController {
                 return
             }
             if currentUserAccount == nil {
+                // TODO: Ask for enabling biometric
                 login(withEmail: emailTextField.text!, password: passwordTextField.text!)
             } else {
                 // Logout
@@ -292,12 +295,7 @@ class MeViewController: UITableViewController {
         let encryptedPass = AccountProcessor.encrypt(password)!
         
         var tokenToSend: String? = nil
-        if automatic == false {
-            // Don't send the token on auto login (when login duplicate checks are implemented this will make sense)
-            // If token don't exist, simply ignore it
-            // TODO: Add check on server to remove it if it doesn't exist on manual logins
-            tokenToSend = self.pushNotificationToken
-        }
+        tokenToSend = self.pushNotificationToken
         
         AccountProcessor.sendLoginRequest(email, encryptedPass, tokenToSend) { (success, errCode, errStr) in
             if success == true {
@@ -325,6 +323,20 @@ class MeViewController: UITableViewController {
                                 UserDefaults.standard.set(email, forKey: "loginemail")
                             }
                         }
+                        
+                        let authAsked = UserDefaults.standard.bool(forKey: "biometricasked")
+                        if !authAsked {
+                            self.askForEnableBiometric { (enable) in
+                                if enable {
+                                    UserDefaults.standard.set(true, forKey: "biometriclock")
+                                    if let settingsWindow = self.splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
+                                        settingsWindow.updateUI()
+                                    }
+                                }
+                                UserDefaults.standard.set(true, forKey: "biometricasked")
+                            }
+                        }
+                        
                         UserDefaults.standard.synchronize()
                         
                         if let settingsWindow = self.splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
@@ -392,6 +404,20 @@ class MeViewController: UITableViewController {
                 registerCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
                 self.processing = false
             }
+        }
+    }
+    
+    func askForEnableBiometric(_ completion: @escaping (Bool) -> Void) {
+        if authenticator.canEvaluatePolicy() {
+            let type = authenticator.biometricType()
+            let alert = UIAlertController(title: "Turn on biometric?", message: "If you select yes, \(type.rawValue) will be required to open this app.\n\nYou can change this in the settings menu under the Me tab.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: { _ in
+                completion(false)
+            }))
+            alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { _ in
+                completion(true)
+            }))
+            present(alert, animated: true, completion: nil)
         }
     }
     

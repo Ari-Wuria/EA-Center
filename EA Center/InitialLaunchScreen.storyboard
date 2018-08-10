@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Kb4-eb-IhG">
+    <device id="ipad9_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="4vT-XM-5bN">
+            <objects>
+                <viewController id="Kb4-eb-IhG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6RK-JC-qUl">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iPhone Logo" translatesAutoresizingMaskIntoConstraints="NO" id="Pzq-4a-peW">
+                                <rect key="frame" x="112" y="277" width="545" height="470"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ILV-Ec-zo0" firstAttribute="trailing" secondItem="Pzq-4a-peW" secondAttribute="trailing" constant="26" id="33a-xA-Hp7"/>
+                            <constraint firstItem="ILV-Ec-zo0" firstAttribute="bottom" secondItem="Pzq-4a-peW" secondAttribute="bottom" constant="203" id="7CF-4r-ZH2"/>
+                            <constraint firstItem="Pzq-4a-peW" firstAttribute="leading" secondItem="ILV-Ec-zo0" secondAttribute="leading" constant="112" id="RS7-10-q2Z"/>
+                            <constraint firstItem="Pzq-4a-peW" firstAttribute="leading" secondItem="ILV-Ec-zo0" secondAttribute="leading" constant="27" id="UY0-yr-kZf"/>
+                            <constraint firstItem="Pzq-4a-peW" firstAttribute="top" secondItem="ILV-Ec-zo0" secondAttribute="top" constant="257" id="atr-3L-Q7h"/>
+                            <constraint firstItem="ILV-Ec-zo0" firstAttribute="bottom" secondItem="Pzq-4a-peW" secondAttribute="bottom" constant="277" id="fSJ-XM-Sxz"/>
+                            <constraint firstItem="ILV-Ec-zo0" firstAttribute="trailing" secondItem="Pzq-4a-peW" secondAttribute="trailing" constant="111" id="nDt-mO-cZ4"/>
+                            <constraint firstItem="Pzq-4a-peW" firstAttribute="top" secondItem="ILV-Ec-zo0" secondAttribute="top" constant="184" id="oUD-3j-7ok"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="ILV-Ec-zo0"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="fSJ-XM-Sxz"/>
+                                <exclude reference="nDt-mO-cZ4"/>
+                                <exclude reference="RS7-10-q2Z"/>
+                                <exclude reference="atr-3L-Q7h"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <exclude reference="33a-xA-Hp7"/>
+                                <exclude reference="7CF-4r-ZH2"/>
+                                <include reference="fSJ-XM-Sxz"/>
+                                <include reference="nDt-mO-cZ4"/>
+                                <include reference="RS7-10-q2Z"/>
+                                <exclude reference="UY0-yr-kZf"/>
+                                <include reference="atr-3L-Q7h"/>
+                                <exclude reference="oUD-3j-7ok"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aeH-oI-1v0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="44.53125" y="164.6484375"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="iPhone Logo" width="826" height="596"/>
+    </resources>
+</document>

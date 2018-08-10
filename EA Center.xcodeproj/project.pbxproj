@@ -68,6 +68,9 @@
 		D0656E36210CA606008A2E3B /* SendApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */; };
 		D0656E39210DE998008A2E3B /* EALeadersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E38210DE998008A2E3B /* EALeadersViewController.swift */; };
 		D0656E3B210DFBAB008A2E3B /* AddLeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */; };
+		D07A6688211DAB9100C7F0EC /* InitialLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D07A6687211DAB9100C7F0EC /* InitialLaunchScreen.storyboard */; };
+		D07A668A211DABD600C7F0EC /* iPhone Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D07A6689211DABD600C7F0EC /* iPhone Logo.png */; };
+		D07A668C211DB50500C7F0EC /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A668B211DB50500C7F0EC /* BiometricAuth.swift */; };
 		D07DE9522111F09E00423D01 /* AboutScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D07DE9512111F09E00423D01 /* AboutScreen.storyboard */; };
 		D07DE9552111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */; };
 		D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */; };
@@ -220,6 +223,9 @@
 		D0656E38210DE998008A2E3B /* EALeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EALeadersViewController.swift; sourceTree = "<group>"; };
 		D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeaderViewController.swift; sourceTree = "<group>"; };
 		D07639EE2116E1DB00DEF287 /* EA Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center.entitlements"; sourceTree = "<group>"; };
+		D07A6687211DAB9100C7F0EC /* InitialLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InitialLaunchScreen.storyboard; sourceTree = "<group>"; };
+		D07A6689211DABD600C7F0EC /* iPhone Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Logo.png"; sourceTree = "<group>"; };
+		D07A668B211DB50500C7F0EC /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
 		D07DE9512111F09E00423D01 /* AboutScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutScreen.storyboard; sourceTree = "<group>"; };
 		D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EASLINK LOGO.001 2.jpeg"; sourceTree = "<group>"; };
 		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
@@ -410,6 +416,7 @@
 				D05992E92111EA95006DD283 /* Resources */,
 				D025730320D8A1E30078AE89 /* AppDelegate.swift */,
 				D0B4D97F211ADC8F00B497D4 /* LaunchViewController.swift */,
+				D07A668B211DB50500C7F0EC /* BiometricAuth.swift */,
 				D0B4D983211AE5F200B497D4 /* LaunchAnimator.swift */,
 				D0177FF120E67B3C003757A7 /* EAListViewController.swift */,
 				D0177FF320E67B59003757A7 /* EAListCell.swift */,
@@ -424,6 +431,7 @@
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
 				D0C2C0212111FD970002E508 /* Main.storyboard */,
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
+				D07A6687211DAB9100C7F0EC /* InitialLaunchScreen.storyboard */,
 				D025730F20D8A1E40078AE89 /* Info.plist */,
 				D0177FF820E77A14003757A7 /* EA-Center-Bridging-Header.h */,
 				D07639EE2116E1DB00DEF287 /* EA Center.entitlements */,
@@ -450,6 +458,7 @@
 				D0906950211B1C5F0032061E /* LaunchScreeniPadVert.png */,
 				D0B4D981211AE14E00B497D4 /* LaunchScreenTall.png */,
 				D0906952211B1E7D0032061E /* LaunchScreenNormal.png */,
+				D07A6689211DABD600C7F0EC /* iPhone Logo.png */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -820,10 +829,12 @@
 				D05992EB2111EAA3006DD283 /* EASLINK LOGO.001 2.jpeg in Resources */,
 				D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */,
 				D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */,
+				D07A6688211DAB9100C7F0EC /* InitialLaunchScreen.storyboard in Resources */,
 				D0ABBF4E21135DC500BE81F4 /* Main.storyboard in Resources */,
 				D0B4D982211AE14E00B497D4 /* LaunchScreenTall.png in Resources */,
 				D0906953211B1E7E0032061E /* LaunchScreenNormal.png in Resources */,
 				D0906951211B1C5F0032061E /* LaunchScreeniPadVert.png in Resources */,
+				D07A668A211DABD600C7F0EC /* iPhone Logo.png in Resources */,
 				D090694F211B1C590032061E /* LaunchScreeniPadHorz.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -915,6 +926,7 @@
 				D0656E3B210DFBAB008A2E3B /* AddLeaderViewController.swift in Sources */,
 				D0B7C47E20EF94D8004DE8F3 /* EAManageCell.swift in Sources */,
 				D0B7C47A20ECFC2A004DE8F3 /* ProfileEditorViewController.swift in Sources */,
+				D07A668C211DB50500C7F0EC /* BiometricAuth.swift in Sources */,
 				D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */,
 				D0B4D984211AE5F200B497D4 /* LaunchAnimator.swift in Sources */,
 				053A8D0020F9C71A003FE84F /* GenericTableCell.swift in Sources */,
@@ -1188,7 +1200,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "EA Center/EA Center.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
@@ -1210,7 +1221,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "EA Center/EA Center.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;

@@ -2659,6 +2659,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="RBW-xh-3O6">
                                                     <rect key="frame" x="345" y="6.6666666666666661" width="51" height="30.333333333333336"/>
+                                                    <connections>
+                                                        <action selector="setBiometric:" destination="LYW-9n-HT4" eventType="valueChanged" id="MuK-Hm-Acf"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
@@ -2729,6 +2732,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="MqE-O9-hlw"/>
                     <connections>
+                        <outlet property="biometricSwitch" destination="RBW-xh-3O6" id="dPB-4R-72G"/>
                         <outlet property="rememberSwitch" destination="Yt4-a5-gym" id="XPB-m7-3P3"/>
                     </connections>
                 </tableViewController>
