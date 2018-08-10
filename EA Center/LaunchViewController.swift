@@ -285,15 +285,16 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
             
             loginPending = true
             
-            loginSpinner.startAnimating()
-            
             let email = usernameTextField.text!
             let password = passwordTextField.text!
             
             guard AccountProcessor.validateEmail(email) else {
                 showAlert(withTitle: "Invalid Email", message: "Please use a BCIS email")
+                loginPending = false
                 return
             }
+            
+            loginSpinner.startAnimating()
             
             let encryptedPass = AccountProcessor.encrypt(password)!
             
@@ -421,6 +422,14 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
 }
 
 extension LaunchViewController: UITextFieldDelegate {
+    // Test if another text field is about to become first responder
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if usernameTextField.isFirstResponder || passwordTextField.isFirstResponder {
+            switchingResponder = true
+        }
+        return true
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if view.traitCollection.horizontalSizeClass == .regular && view.traitCollection.verticalSizeClass == .regular {
             // iPad
@@ -445,10 +454,11 @@ extension LaunchViewController: UITextFieldDelegate {
                 })
             }
         }
+        switchingResponder = false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if !passwordTextField.isFirstResponder && !usernameTextField.isFirstResponder {
+        if !usernameTextField.isFirstResponder && !passwordTextField.isFirstResponder {
             // iPad
             if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
                 // Landscape
