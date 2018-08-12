@@ -338,6 +338,7 @@ class ManagerViewController: UITableViewController {
             let eaToDisplay = myEA[indexPath.row]
             
             splitViewDetail!.currentEA = eaToDisplay
+            splitViewDetail!.currentAccount = currentAccount!
             
             selectedEA = eaToDisplay
             
@@ -369,6 +370,7 @@ class ManagerViewController: UITableViewController {
             let controller = segue.destination as! EADetailViewController
             let selectedIndexPath = tableView.indexPath(for: (sender as! UITableViewCell))
             controller.currentEA = myEA[selectedIndexPath!.row]
+            controller.currentAccount = currentAccount!
         } else if segue.identifier == "Create" {
             let nav = segue.destination as! UINavigationController
             nav.modalPresentationStyle = .formSheet

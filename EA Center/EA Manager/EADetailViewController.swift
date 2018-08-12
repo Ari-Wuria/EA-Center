@@ -41,6 +41,8 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     
     var viewUpdated: Bool = false
     
+    var currentAccount: UserAccount!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -192,6 +194,7 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         } else if segue.identifier == "ShowLeaders" {
             let controller = segue.destination as! EALeadersViewController
             controller.currentEA = currentEA
+            controller.currentAccount = currentAccount
         } else if segue.identifier == "PickCategory" {
             let controller = segue.destination as! CategoryPickerViewController
             controller.delegate = self

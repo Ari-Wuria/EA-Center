@@ -54,6 +54,156 @@
             </objects>
             <point key="canvasLocation" x="-80" y="446"/>
         </scene>
+        <!--Window Controller-->
+        <scene sceneID="Qw7-l5-hrF">
+            <objects>
+                <windowController storyboardIdentifier="BugReportWindow" showSeguePresentationStyle="single" id="2TM-3g-Dwh" sceneMemberID="viewController">
+                    <window key="window" title="Report a bug" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="Be3-Sk-BhW">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
+                        <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+                        <rect key="contentRect" x="245" y="301" width="480" height="270"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <connections>
+                            <outlet property="delegate" destination="2TM-3g-Dwh" id="Gdm-pd-Vwh"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="MrS-u5-QJy" kind="relationship" relationship="window.shadowedContentViewController" id="Zwj-Xu-u9a"/>
+                    </connections>
+                </windowController>
+                <customObject id="GL9-yO-Obe" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-80" y="875"/>
+        </scene>
+        <!--Bug Report View Controller-->
+        <scene sceneID="gTC-hL-QfK">
+            <objects>
+                <viewController id="MrS-u5-QJy" customClass="BugReportViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ots-ea-axz">
+                        <rect key="frame" x="0.0" y="0.0" width="395" height="322"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="UIL-Vz-y8t">
+                                <rect key="frame" x="0.0" y="0.0" width="395" height="322"/>
+                                <view key="contentView" id="txn-gu-kyd">
+                                    <rect key="frame" x="1" y="1" width="393" height="320"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gqh-Cz-RAi">
+                                            <rect key="frame" x="20" y="252" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="User" id="eAi-m8-hxL"/>
+                                        </imageView>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nqn-Cz-Pa6">
+                                            <rect key="frame" x="20" y="196" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Cog" id="tHA-D3-5hv"/>
+                                        </imageView>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t46-ch-pVf">
+                                            <rect key="frame" x="20" y="103" width="32" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Tools" id="F1R-ez-4Qy"/>
+                                        </imageView>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4AM-GQ-X1a">
+                                            <rect key="frame" x="72" y="252" width="301" height="32"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Email" drawsBackground="YES" id="eAa-pB-m1U">
+                                                <font key="font" metaFont="system" size="21"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MqS-6E-dhR">
+                                            <rect key="frame" x="72" y="252" width="303" height="32"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Email" id="ZKP-cJ-leu">
+                                                <font key="font" metaFont="system" size="24"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Aso-bt-F7W">
+                                            <rect key="frame" x="294" y="198" width="82" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <popUpButtonCell key="cell" type="push" title="macOS" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="aEn-gx-AFL" id="XdR-wS-SAq">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="menu"/>
+                                                <menu key="menu" id="dWv-0T-v4x">
+                                                    <items>
+                                                        <menuItem title="macOS" state="on" id="aEn-gx-AFL"/>
+                                                        <menuItem title="iOS" id="m8w-B6-IlE"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                        </popUpButton>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uqU-5L-X8l">
+                                            <rect key="frame" x="72" y="203" width="218" height="18"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="You're encountering this bug on:" id="92F-Lg-7R0">
+                                                <font key="font" metaFont="system" size="14"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HGR-xW-bbt">
+                                            <rect key="frame" x="72" y="51" width="301" height="137"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Please leave a short description of the issue. Also make sure you tell us how to reproduce your issue." drawsBackground="YES" id="jQu-5h-P5c">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Owh-gM-zMu">
+                                            <rect key="frame" x="161.5" y="12" width="69" height="23"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="roundTextured" title="Submit" bezelStyle="texturedRounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G3D-y6-ijB">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="submit:" target="MrS-u5-QJy" id="ECy-qz-x0j"/>
+                                            </connections>
+                                        </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qot-DF-fWB">
+                                            <rect key="frame" x="349" y="36" width="26" height="11"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="1000" id="Cbe-3v-taU">
+                                                <font key="font" metaFont="miniSystem"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="sjW-5i-nJ9">
+                                            <rect key="frame" x="357" y="16" width="16" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        </progressIndicator>
+                                    </subviews>
+                                </view>
+                                <color key="borderColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="fillColor" name="Manage Background"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="UIL-Vz-y8t" firstAttribute="leading" secondItem="ots-ea-axz" secondAttribute="leading" id="EaX-sn-whn"/>
+                            <constraint firstAttribute="bottom" secondItem="UIL-Vz-y8t" secondAttribute="bottom" id="Na6-7q-xKI"/>
+                            <constraint firstAttribute="trailing" secondItem="UIL-Vz-y8t" secondAttribute="trailing" id="XRJ-2f-eHH"/>
+                            <constraint firstItem="UIL-Vz-y8t" firstAttribute="top" secondItem="ots-ea-axz" secondAttribute="top" id="YSJ-sU-Z8g"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="charCountLabel" destination="qot-DF-fWB" id="9fT-1i-HLV"/>
+                        <outlet property="emailLabel" destination="MqS-6E-dhR" id="wjP-sZ-ebM"/>
+                        <outlet property="emailTextField" destination="4AM-GQ-X1a" id="2iS-CA-ah7"/>
+                        <outlet property="issueTextField" destination="HGR-xW-bbt" id="l1t-SK-cqi"/>
+                        <outlet property="spinner" destination="sjW-5i-nJ9" id="Q3W-FS-4Nn"/>
+                        <outlet property="systemPopup" destination="Aso-bt-F7W" id="4dA-xB-kFp"/>
+                    </connections>
+                </viewController>
+                <customObject id="5vk-ia-f2S" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="585.5" y="987"/>
+        </scene>
         <!--Campus Map View Controller-->
         <scene sceneID="koY-Pp-J12">
             <objects>
@@ -336,8 +486,11 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Cog" width="26.5" height="26.5"/>
         <image name="EASLINK LOGO.001 2" width="1024" height="1024"/>
         <image name="Map F1" width="1153" height="616.5"/>
+        <image name="Tools" width="55" height="55"/>
+        <image name="User" width="27.5" height="29.5"/>
         <namedColor name="Manage Background">
             <color red="0.84705882352941175" green="0.94117647058823528" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

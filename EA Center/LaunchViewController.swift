@@ -100,36 +100,40 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
         let connection = checkInternet()
         
         if connection {
-            let displayed = UserDefaults.standard.bool(forKey: "firstdisplayed")
-            // Test code
-            if !displayed {
-                // First time opening
-                //UserDefaults.standard.set(true, forKey: "firstdisplayed")
-                
-                delayMoveLogoUp(0)
-                loginContainer.isHidden = false
-                loginContainer.alpha = 0
-                UIView.animate(withDuration: 0.3, delay: 1.8, options: .curveEaseInOut, animations: {
-                    self.loginContainer.alpha = 1
-                }, completion: nil)
-                return
-            }
-            
-            let useBiometric = checkForBiometric()
-            if useBiometric {
-                delayMoveLogoUp(1)
-                biometricContainer.isHidden = false
-                biometricContainer.alpha = 0
-                UIView.animate(withDuration: 0.3, delay: 1.8, options: .curveEaseInOut, animations: {
-                    self.biometricContainer.alpha = 1
-                }, completion: { _ in
-                    self.authenticate(self)
-                })
-                return
-            }
-            
-            delayAndShowMainScreen()
+            startup()
         }
+    }
+    
+    func startup() {
+        let displayed = UserDefaults.standard.bool(forKey: "firstdisplayed")
+        // Test code
+        if !displayed {
+            // First time opening
+            //UserDefaults.standard.set(true, forKey: "firstdisplayed")
+            
+            delayMoveLogoUp(0)
+            loginContainer.isHidden = false
+            loginContainer.alpha = 0
+            UIView.animate(withDuration: 0.3, delay: 1.8, options: .curveEaseInOut, animations: {
+                self.loginContainer.alpha = 1
+            }, completion: nil)
+            return
+        }
+        
+        let useBiometric = checkForBiometric()
+        if useBiometric {
+            delayMoveLogoUp(1)
+            biometricContainer.isHidden = false
+            biometricContainer.alpha = 0
+            UIView.animate(withDuration: 0.3, delay: 1.8, options: .curveEaseInOut, animations: {
+                self.biometricContainer.alpha = 1
+            }, completion: { _ in
+                self.authenticate(self)
+            })
+            return
+        }
+        
+        delayAndShowMainScreen()
     }
     
     @objc func endEditing() {
@@ -214,9 +218,7 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
         imageMover.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
         self.logoImageView.layer.removeAllAnimations()
         self.logoImageView.layer.add(imageMover, forKey: "imageMoverBack")
-        delay(0.5) {
-            self.delayAndShowMainScreen()
-        }
+        self.delayAndShowMainScreen()
     }
     
     func checkForBiometric() -> Bool {
@@ -393,7 +395,8 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
         let result = checkInternet()
         if result {
             setNoInternetLabelVisibility(false, animated: true)
-            delayMoveLogoUp(0)
+            
+            startup()
         }
     }
     

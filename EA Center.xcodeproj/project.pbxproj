@@ -20,6 +20,7 @@
 		0597CD4720F78985006B4590 /* TextEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0597CD4620F78985006B4590 /* TextEditorViewController.swift */; };
 		05ADD16720FB59C1008754A0 /* CreateNewEAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ADD16520FB59C1008754A0 /* CreateNewEAViewController.swift */; };
 		05ECDEE420F9E7CE0075DBB3 /* AddLeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05ECDEE320F9E7CE0075DBB3 /* AddLeaderViewController.swift */; };
+		D000B7EB211EBCED007665F4 /* TitleBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D000B7EA211EBCED007665F4 /* TitleBarView.swift */; };
 		D00961A72115938300717248 /* CampusMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00961A52115938300717248 /* CampusMapViewController.swift */; };
 		D0177FF220E67B3C003757A7 /* EAListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF120E67B3C003757A7 /* EAListViewController.swift */; };
 		D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0177FF320E67B59003757A7 /* EAListCell.swift */; };
@@ -71,6 +72,7 @@
 		D07A6688211DAB9100C7F0EC /* InitialLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D07A6687211DAB9100C7F0EC /* InitialLaunchScreen.storyboard */; };
 		D07A668A211DABD600C7F0EC /* iPhone Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D07A6689211DABD600C7F0EC /* iPhone Logo.png */; };
 		D07A668C211DB50500C7F0EC /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A668B211DB50500C7F0EC /* BiometricAuth.swift */; };
+		D07A668F211E8DD200C7F0EC /* BugReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A668D211E8DD200C7F0EC /* BugReportViewController.swift */; };
 		D07DE9522111F09E00423D01 /* AboutScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D07DE9512111F09E00423D01 /* AboutScreen.storyboard */; };
 		D07DE9552111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */; };
 		D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */; };
@@ -189,6 +191,7 @@
 		0597CD4620F78985006B4590 /* TextEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextEditorViewController.swift; sourceTree = "<group>"; };
 		05ADD16520FB59C1008754A0 /* CreateNewEAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewEAViewController.swift; sourceTree = "<group>"; };
 		05ECDEE320F9E7CE0075DBB3 /* AddLeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeaderViewController.swift; sourceTree = "<group>"; };
+		D000B7EA211EBCED007665F4 /* TitleBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleBarView.swift; sourceTree = "<group>"; };
 		D00961A52115938300717248 /* CampusMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapViewController.swift; sourceTree = "<group>"; };
 		D0177FF120E67B3C003757A7 /* EAListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListViewController.swift; sourceTree = "<group>"; };
 		D0177FF320E67B59003757A7 /* EAListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCell.swift; sourceTree = "<group>"; };
@@ -226,6 +229,7 @@
 		D07A6687211DAB9100C7F0EC /* InitialLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InitialLaunchScreen.storyboard; sourceTree = "<group>"; };
 		D07A6689211DABD600C7F0EC /* iPhone Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Logo.png"; sourceTree = "<group>"; };
 		D07A668B211DB50500C7F0EC /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
+		D07A668D211E8DD200C7F0EC /* BugReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportViewController.swift; sourceTree = "<group>"; };
 		D07DE9512111F09E00423D01 /* AboutScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutScreen.storyboard; sourceTree = "<group>"; };
 		D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EASLINK LOGO.001 2.jpeg"; sourceTree = "<group>"; };
 		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
@@ -600,15 +604,17 @@
 				D07DE9532111F0E300423D01 /* Resources */,
 				D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */,
 				D0DFCED720D8A41200DBB70E /* AppDelegate.swift */,
+				D05F2A7320D947480044C7F1 /* MainWindowController.swift */,
+				D000B7EA211EBCED007665F4 /* TitleBarView.swift */,
 				D0DFCED920D8A41200DBB70E /* ViewController.swift */,
 				D0FEB70B20E1280C009CB82E /* EAListCellView.swift */,
-				D05F2A7320D947480044C7F1 /* MainWindowController.swift */,
 				D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */,
 				D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */,
 				D0CCB37520E4FFE40009AC07 /* Account Management */,
 				D0A7661D20E27006001B4317 /* Manage EA Info Settings */,
 				D041203B2102126A00EDC5D4 /* Supervisor Settings */,
 				D0B9A3A82111F84000AB7AF1 /* About Screens */,
+				D07A668D211E8DD200C7F0EC /* BugReportViewController.swift */,
 				D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */,
 				D0DFCEDD20D8A41300DBB70E /* Main.storyboard */,
 				D0E3A09021130EEE004F2052 /* ManagerDetail.storyboard */,
@@ -771,6 +777,9 @@
 					D02572FF20D8A1E30078AE89 = {
 						CreatedOnToolsVersion = 10.0;
 						SystemCapabilities = {
+							com.apple.AccessWiFi = {
+								enabled = 0;
+							};
 							com.apple.Push = {
 								enabled = 1;
 							};
@@ -989,6 +998,7 @@
 				D0FEB70C20E1280C009CB82E /* EAListCellView.swift in Sources */,
 				D0FEB73D20E147AF009CB82E /* unzip.c in Sources */,
 				D0DB6AE320DA1FFC00BBE8F0 /* BulletinViewController.swift in Sources */,
+				D000B7EB211EBCED007665F4 /* TitleBarView.swift in Sources */,
 				D0FEB74A20E147B0009CB82E /* pwd2key.c in Sources */,
 				D0FEB74220E147AF009CB82E /* minishared.c in Sources */,
 				D0A7662320E27056001B4317 /* AttendenceViewController.swift in Sources */,
@@ -1008,6 +1018,7 @@
 				D0FEB74520E147AF009CB82E /* aescrypt.c in Sources */,
 				D0656E36210CA606008A2E3B /* SendApprovalViewController.swift in Sources */,
 				D0FEB74420E147AF009CB82E /* hmac.c in Sources */,
+				D07A668F211E8DD200C7F0EC /* BugReportViewController.swift in Sources */,
 				D0FEB74820E147AF009CB82E /* aes_ni.c in Sources */,
 				D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */,
 				D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */,

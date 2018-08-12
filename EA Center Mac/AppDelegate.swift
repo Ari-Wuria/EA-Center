@@ -18,6 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var loginWindow: NSWindowController? = nil
     var userSettingsWindow: NSWindowController? = nil
     var coordinatorSettingsWindow: NSWindowController? = nil
+    weak var bugReportController: NSWindowController? = nil
     
     var loggedIn = false
     var currentEmail: String?
@@ -222,6 +223,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     @IBAction func reportABug(_ sender: Any) {
         //NSWorkspace.shared.open(URL(string: "https://github.com/TomShen1234/EA-Center/issues")!)
+        
+        if bugReportController == nil {
+            let aboutStoryboard = NSStoryboard(name: "AboutScreen", bundle: .main)
+            let controller = aboutStoryboard.instantiateController(withIdentifier: "BugReportWindow") as! NSWindowController
+            
+            bugReportController = controller
+            
+            let bugReporter = controller.contentViewController as! BugReportViewController
+            bugReporter.currentAccount = currentAccount
+            
+            controller.showWindow(sender)
+        } else {
+            bugReportController?.showWindow(sender)
+        }
     }
 }
 

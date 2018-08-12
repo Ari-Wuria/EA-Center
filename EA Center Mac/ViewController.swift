@@ -58,6 +58,8 @@ class ViewController: NSViewController {
     // Used for reselecting row in table view without updating long desc
     var descriptionNeedsUpdate = true
     
+    @IBOutlet var titlebarView: TitleBarView!
+    
     // MARK: - Functions
     
     override func viewDidLoad() {
@@ -104,11 +106,13 @@ class ViewController: NSViewController {
         super.viewDidLayout()
         
         listTableView.backgroundColor = NSColor(named: "Table Color")!
+        
+        //titlebarView.setNeedsDisplay(titlebarView.bounds)
     }
-
+    
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // Update the view, if already loaded.
         }
     }
     
@@ -526,6 +530,18 @@ class ViewController: NSViewController {
         
         updateJoinableEA()
         listTableView.reloadData()
+        
+        if let selectedEA = selectedEA {
+            descriptionNeedsUpdate = false
+            let index: Int
+            if searching == true {
+                index = filteredContent.firstIndex(of: selectedEA)!
+            } else {
+                index = joinableEA.firstIndex(of: selectedEA)!
+            }
+            listTableView.selectRowIndexes(IndexSet(integer: index), byExtendingSelection: false)
+            descriptionNeedsUpdate = true
+        }
     }
     
     @IBAction func reloadList(_ sender: Any) {

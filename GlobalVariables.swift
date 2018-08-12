@@ -9,12 +9,28 @@
 // Used to define global variables
 
 import Foundation
+#if os(OSX)
+import CoreWLAN
+#elseif os(iOS)
+//import SystemConfiguration.CaptiveNetwork
+#endif
 
-//let MainServerAddress = "http://jerrytomlouise.asuscomm.com:81/eacenter"
-let MainServerAddress = "http://jerryshenming.6655.la:81/eacenter"
+fileprivate let HomeServerAddress = "http://192.168.50.100/eacenter"
+fileprivate let DynamicServerAddress1 = "http://jerryshenming.6655.la:81/eacenter"
 
-// Local testing only
-//let MainServerAddress = "http://192.168.50.100/eacenter"
+#if os(OSX)
+fileprivate var ssidName: String {
+    return CWWiFiClient.shared().interface(withName: nil)?.ssid() ?? ""
+}
+
+var MainServerAddress: String {
+    return (ssidName == "Jerry5G" || ssidName == "Jerry2.4G" || ssidName == "Tom5G") ? HomeServerAddress : DynamicServerAddress1
+}
+#elseif os(iOS)
+// TODO: Dynamic check SSID too
+//let MainServerAddress = HomeServerAddress
+let MainServerAddress = DynamicServerAddress1
+#endif
 
 // AES keys and iv
 // Change key before moving onto production run

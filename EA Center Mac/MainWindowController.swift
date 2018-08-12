@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class MainWindowController: NSWindowController {
+class MainWindowController: NSWindowController, NSWindowDelegate {
     
     var bulletinController: NSWindowController? = nil
     var manageController: NSWindowController? = nil
@@ -29,6 +29,8 @@ class MainWindowController: NSWindowController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess(_:)), name: LoginSuccessNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(logout(_:)), name: LogoutNotification, object: nil)
+        
+        window?.delegate = self
     }
     
     override func makeTouchBar() -> NSTouchBar? {
@@ -113,5 +115,17 @@ class MainWindowController: NSWindowController {
     @objc func manageClosed() {
         manageController?.close()
         manageController = nil
+    }
+    
+    func windowDidBecomeMain(_ notification: Notification) {
+        //print("Window did become main")
+        let titlebarView = (contentViewController as! ViewController).titlebarView
+        titlebarView?.isFocused = true
+    }
+    
+    func windowDidResignMain(_ notification: Notification) {
+        //print("Window did resign main")
+        let titlebarView = (contentViewController as! ViewController).titlebarView
+        titlebarView?.isFocused = false
     }
 }

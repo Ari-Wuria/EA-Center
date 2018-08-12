@@ -10,6 +10,8 @@ import UIKit
 
 class EALeadersViewController: UITableViewController {
     var currentEA: EnrichmentActivity?
+    
+    var currentAccount: UserAccount!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,6 +119,10 @@ class EALeadersViewController: UITableViewController {
             
             if indexPath.section == 0 {
                 let leader = currentEA?.leaderEmails[indexPath.row]
+                if leader == currentAccount.userEmail {
+                    showAlert("Error", "You can not remove yourself from the leaders list.\n\nIf you do want to do that, let someone else remove you.")
+                    return
+                }
                 currentEA?.deleteLeader(email: leader!, isSupervisor: false, completion: { (success, errStr) in
                     if success {
                         self.tableView.deleteRows(at: [indexPath], with: .fade)
@@ -126,6 +132,10 @@ class EALeadersViewController: UITableViewController {
                 })
             } else if indexPath.section == 1 {
                 let supervisor = currentEA?.supervisorEmails[indexPath.row]
+                if supervisor == currentAccount.userEmail {
+                    showAlert("Error", "You can not remove yourself from the supervisors list.\n\nIf you do want to do that, let someone else remove you.")
+                    return
+                }
                 currentEA?.deleteLeader(email: supervisor!, isSupervisor: true, completion: { (success, errStr) in
                     if success {
                         self.tableView.deleteRows(at: [indexPath], with: .fade)
