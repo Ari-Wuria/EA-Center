@@ -15,5 +15,7 @@ The wiki page has more detail of this app including the progress and some concep
 **Use of libraries**
 
 ZipArchive: https://github.com/ZipArchive/ZipArchive
+
 Reachability: https://developer.apple.com/library/archive/samplecode/Reachability/Introduction/Intro.html
+
 Some code are inspired from Raywenderlich's iOS Apprentice: https://www.raywenderlich.com
