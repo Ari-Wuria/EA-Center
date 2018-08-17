@@ -16,6 +16,8 @@ class ProfileEditorViewController: UITableViewController {
     
     var userAccount: UserAccount?
     
+    var working = false
+    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
@@ -53,6 +55,13 @@ class ProfileEditorViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 && indexPath.row == 3 {
             // Save
+            
+            if working == true {
+                return
+            }
+            
+            working = true
+            
             let username = nameTextField.text!
             if username.count == 0 {
                 presentAlert("Can not update user info", "Please enter your name")
@@ -93,6 +102,8 @@ class ProfileEditorViewController: UITableViewController {
                     self.presentAlert("Can not update user info", errString!)
                 }
                 tableView.deselectRow(at: indexPath, animated: true)
+                
+                self.working = false
             }
         }
     }

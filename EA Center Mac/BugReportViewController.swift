@@ -8,6 +8,10 @@
 
 import Cocoa
 
+protocol BugReportViewControllerDelegate: class {
+    func bugReportViewControllerFinished(_ controller: BugReportViewController)
+}
+
 class BugReportViewController: NSViewController {
     var currentAccount: UserAccount?
     
@@ -17,6 +21,8 @@ class BugReportViewController: NSViewController {
     @IBOutlet weak var issueTextField: NSTextField!
     @IBOutlet weak var charCountLabel: NSTextField!
     @IBOutlet weak var spinner: NSProgressIndicator!
+    
+    weak var delegate: BugReportViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -135,7 +141,8 @@ class BugReportViewController: NSViewController {
                 // Success
                 //print("Bug Report Uploaded")
                 DispatchQueue.main.async {
-                    self.showAlert(withTitle: "Bug report uploaded", message: "I will make the completion screen later")
+                    let window = self.view.window?.windowController as! BugReportWindowController
+                    window.showFinishedScreen()
                 }
             } else {
                 DispatchQueue.main.async {
@@ -152,10 +159,14 @@ class BugReportViewController: NSViewController {
         alert.informativeText = message ?? ""
         alert.runModal()
     }
+    
+    deinit {
+        print("deinit \(self)")
+    }
 }
 
 extension BugReportViewController: NSTextFieldDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         let textField = obj.object as! NSTextField
         if textField == issueTextField {
             let count = issueTextField.stringValue.count

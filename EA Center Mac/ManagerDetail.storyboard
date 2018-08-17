@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14215"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.3.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14215.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.13.2"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
@@ -520,13 +520,13 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="42" horizontalPageScroll="10" verticalLineScroll="42" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3H8-oo-cOr">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="67" horizontalPageScroll="10" verticalLineScroll="67" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3H8-oo-cOr">
                                 <rect key="frame" x="20" y="20" width="430" height="441"/>
                                 <clipView key="contentView" id="ZEH-Uf-c2z">
                                     <rect key="frame" x="1" y="0.0" width="428" height="440"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="40" headerView="wxz-AD-dd7" viewBased="YES" id="IcP-Q6-tnA">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="65" headerView="wxz-AD-dd7" viewBased="YES" id="IcP-Q6-tnA">
                                             <rect key="frame" x="0.0" y="0.0" width="428" height="415"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -591,16 +591,21 @@
                                                                         <segments>
                                                                             <segment label="A" width="42"/>
                                                                             <segment label="P" width="41" tag="1"/>
-                                                                            <segment label="L" width="41"/>
+                                                                            <segment label="L" width="41" tag="2"/>
                                                                         </segments>
                                                                     </segmentedCell>
                                                                     <connections>
                                                                         <action selector="attendenceChanged:" target="mzU-Jj-DmI" id="Z3e-A3-TEO"/>
                                                                     </connections>
                                                                 </segmentedControl>
+                                                                <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="LMl-KJ-HWT">
+                                                                    <rect key="frame" x="1" y="25" width="16" height="16"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                </progressIndicator>
                                                             </subviews>
                                                             <connections>
                                                                 <outlet property="attendenceSegmentControl" destination="Ni9-He-JkP" id="Jzn-UC-Bx3"/>
+                                                                <outlet property="spinner" destination="LMl-KJ-HWT" id="dio-ZB-MnZ"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -644,6 +649,7 @@
                         <outlet property="touchAllAbsentButton" destination="7bD-K1-PAx" id="TeI-TJ-jpX"/>
                         <outlet property="touchAllLateButton" destination="XMQ-Qa-oRY" id="9Js-ik-Jk5"/>
                         <outlet property="touchAllPresentButton" destination="mBX-OO-KMp" id="hZp-Up-aan"/>
+                        <segue destination="ECI-Mg-QQb" kind="popover" identifier="ShowDescription" popoverBehavior="t" preferredEdge="minX" id="Sy3-iQ-Rjy"/>
                     </connections>
                 </viewController>
                 <customObject id="u4g-IA-Xx4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -713,6 +719,35 @@
                 </touchBar>
             </objects>
             <point key="canvasLocation" x="-1519" y="2360"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="013-zT-5iK">
+            <objects>
+                <viewController id="ECI-Mg-QQb" sceneMemberID="viewController">
+                    <view key="view" id="sVe-Zy-Ngc">
+                        <rect key="frame" x="0.0" y="0.0" width="209" height="57"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="hjh-sD-zFs">
+                                <rect key="frame" x="18" y="20" width="173" height="17"/>
+                                <textFieldCell key="cell" selectable="YES" title="Multiline Label" id="lFd-wN-Fa1">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="hjh-sD-zFs" firstAttribute="top" secondItem="sVe-Zy-Ngc" secondAttribute="top" constant="20" id="D4R-QZ-b6o"/>
+                            <constraint firstItem="hjh-sD-zFs" firstAttribute="leading" secondItem="sVe-Zy-Ngc" secondAttribute="leading" constant="20" id="RcN-gg-NR9"/>
+                            <constraint firstAttribute="bottom" secondItem="hjh-sD-zFs" secondAttribute="bottom" constant="20" id="a7j-SP-uK0"/>
+                            <constraint firstAttribute="trailing" secondItem="hjh-sD-zFs" secondAttribute="trailing" constant="20" id="dV1-Wb-P7K"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <customObject id="B4O-Ar-Y4l" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1389" y="2801"/>
         </scene>
         <!--Manager Tab View Controller-->
         <scene sceneID="ZbL-Yk-bpr">
@@ -787,7 +822,7 @@
                                             </gridCell>
                                             <gridCell row="DFt-Yd-bIQ" column="s03-6F-LBv" xPlacement="trailing" yPlacement="center" id="83r-UB-tiI">
                                                 <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qFK-wZ-Fin">
-                                                    <rect key="frame" x="328" y="180" width="127" height="25"/>
+                                                    <rect key="frame" x="328" y="180" width="127" height="24"/>
                                                     <popUpButtonCell key="cell" type="push" title="Every Week" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Rwf-vX-Wuq" id="p2D-uX-wCE">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
@@ -897,7 +932,7 @@
                                             </gridCell>
                                             <gridCell row="szZ-Fb-Kuh" column="s03-6F-LBv" xPlacement="trailing" yPlacement="center" id="beK-t1-68B">
                                                 <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jZ2-CL-TST">
-                                                    <rect key="frame" x="347" y="128" width="108" height="25"/>
+                                                    <rect key="frame" x="347" y="128" width="108" height="24"/>
                                                     <popUpButtonCell key="cell" type="push" title="3:30 - 4:30" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="ot3-5I-sq6" id="F03-Gq-xbV">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
@@ -967,7 +1002,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QY5-Ua-N7V">
-                                                            <rect key="frame" x="41" y="-3" width="53" height="25"/>
+                                                            <rect key="frame" x="41" y="-3" width="53" height="24"/>
                                                             <popUpButtonCell key="cell" type="push" title="6" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="rbj-bq-C8Y" id="dLJ-iR-VLG">
                                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                 <font key="font" metaFont="menu"/>
@@ -996,7 +1031,7 @@
                                                             </textFieldCell>
                                                         </textField>
                                                         <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Em-De-7ya">
-                                                            <rect key="frame" x="124" y="-3" width="53" height="25"/>
+                                                            <rect key="frame" x="124" y="-3" width="53" height="24"/>
                                                             <popUpButtonCell key="cell" type="push" title="6" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="7NT-d1-Uy0" id="jJG-sl-ysJ">
                                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                                 <font key="font" metaFont="menu"/>
@@ -1043,7 +1078,7 @@
                                             </gridCell>
                                             <gridCell row="b1w-FI-YIE" column="s03-6F-LBv" xPlacement="trailing" yPlacement="center" id="Zaj-IF-QRb">
                                                 <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gHj-ip-k6B">
-                                                    <rect key="frame" x="259" y="49" width="196" height="25"/>
+                                                    <rect key="frame" x="259" y="49" width="196" height="24"/>
                                                     <popUpButtonCell key="cell" type="push" title="Uncategorized" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="jBF-kX-QKn" id="qXD-ni-4hZ">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>
@@ -1081,7 +1116,7 @@
                                             </gridCell>
                                             <gridCell row="L6l-3e-3Rf" column="s03-6F-LBv" id="TkN-3a-UK5">
                                                 <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kGQ-Nq-BPh">
-                                                    <rect key="frame" x="401" y="22" width="54" height="26"/>
+                                                    <rect key="frame" x="401" y="22" width="54" height="25"/>
                                                     <popUpButtonCell key="cell" type="push" title="∞" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="jRe-g4-WIX" id="aVL-eA-6wo">
                                                         <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                         <font key="font" metaFont="menu"/>

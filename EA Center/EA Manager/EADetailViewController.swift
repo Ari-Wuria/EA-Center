@@ -26,6 +26,8 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     var selectedCategoryID: Int?
     @IBOutlet var categoryLabel: UILabel!
     
+    var working = false
+    
     var currentEA: EnrichmentActivity? {
         didSet {
             if isViewLoaded {
@@ -130,6 +132,8 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
             }
             
             NotificationCenter.default.post(name: EAUpdatedNotification, object: ["updatedea":self.currentEA])
+            
+            self.working = false
         }
     }
     
@@ -165,6 +169,12 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         if indexPath.section == 0 && indexPath.row == 7 {
             // Dismiss the location text field
             self.locationTextField.resignFirstResponder()
+            
+            if working == true {
+                return
+            }
+            
+            working = true
             
             // Save
             saveData()

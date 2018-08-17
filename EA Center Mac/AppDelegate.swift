@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import UserNotifications
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate {
@@ -18,7 +19,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var loginWindow: NSWindowController? = nil
     var userSettingsWindow: NSWindowController? = nil
     var coordinatorSettingsWindow: NSWindowController? = nil
-    weak var bugReportController: NSWindowController? = nil
+    var bugReportController: NSWindowController? = nil
     
     var loggedIn = false
     var currentEmail: String?
@@ -26,11 +27,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     // Pretty dumb method
     var mainWindow: MainWindowController?
+    
+    var deviceToken: String?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         
         updateMenu()
+        
+        //KeychainHelper.deleteKeychain(account: "2014086051@bcis.cn")
         
         NotificationCenter.default.addObserver(self, selector: #selector(loginSuccess(_:)), name: LoginSuccessNotification, object: nil)
         
@@ -80,6 +85,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
                 }
             }
         }
+        
+        if #available(OSX 10.14, *) {
+            UNUserNotificationCenter.current().delegate = self
+            
+            registerPushNotification()
+        } else {
+            // Fallback on earlier versions
+            registerPushNotificationOld()
+        }
     }
 
     func applicationWillTerminate(_ aNotification: Notification) {
@@ -92,6 +106,50 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, shouldPresent notification: NSUserNotification) -> Bool {
         return true
+    }
+    
+    // TODO: Fix notification title
+    // We may skip notification for the first version on Mac.
+    @available(OSX 10.14, *)
+    func registerPushNotification() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { granted, error in
+            print("Permission granted: \(granted)")
+            guard granted else { return }
+            self.getNotificationSettings()
+        }
+    }
+    
+    @available(OSX 10.14, *)
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            print("Notification settings: \(settings)")
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                NSApp.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+            }
+        }
+    }
+    
+    func registerPushNotificationOld() {
+        NSApp.registerForRemoteNotifications(matching: [.badge, .sound, .alert])
+    }
+    
+    func application(_ application: NSApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+        self.deviceToken = token
+    }
+    
+    func application(_ application: NSApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed registering remote notification: \(error)")
+    }
+    
+    func application(_ application: NSApplication, didReceiveRemoteNotification userInfo: [String : Any]) {
+        print("Received Remote Notification")
     }
     
     @objc func loginSuccess(_ notification: Notification) {
@@ -236,6 +294,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             controller.showWindow(sender)
         } else {
             bugReportController?.showWindow(sender)
+        }
+    }
+}
+
+@available(OSX 10.14, *)
+extension AppDelegate: UNUserNotificationCenterDelegate {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        if notification.request.identifier == "LoginSuccess" {
+            completionHandler([.sound, .alert])
+        } else {
+            // Process Later
         }
     }
 }

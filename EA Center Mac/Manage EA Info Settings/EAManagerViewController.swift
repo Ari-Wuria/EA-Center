@@ -138,8 +138,10 @@ class EAManagerViewController: NSViewController {
                 jsonData = try JSONSerialization.jsonObject(with: data!)
             } catch {
                 //print("No JSON data: \(error)")
-                self.showErrorAlert(nil, nil, error)
-                self.success = false
+                DispatchQueue.main.async {
+                    self.showErrorAlert(nil, nil, error)
+                    self.success = false
+                }
                 return
             }
             

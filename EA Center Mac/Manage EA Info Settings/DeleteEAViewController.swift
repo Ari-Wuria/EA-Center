@@ -99,7 +99,7 @@ class DeleteEAViewController: NSViewController {
 }
 
 extension DeleteEAViewController: NSTextFieldDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         if textField.stringValue == deleteEA!.name {
             deleteButton.isEnabled = true
             touchDeleteButton?.isEnabled = true
@@ -109,7 +109,7 @@ extension DeleteEAViewController: NSTextFieldDelegate {
         }
     }
     
-    override func controlTextDidEndEditing(_ obj: Notification) {
+    func controlTextDidEndEditing(_ obj: Notification) {
         if deleteButton.isEnabled && !dismissed {
             delete(textField)
         }

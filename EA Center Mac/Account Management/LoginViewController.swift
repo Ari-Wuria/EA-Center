@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import UserNotifications
 
 class LoginViewController: NSViewController {
     @IBOutlet weak var verifyLabel: NSTextField!
@@ -116,15 +117,31 @@ class LoginViewController: NSViewController {
                             }
                         }
                         
-                        let notification = NSUserNotification()
-                        notification.title = "Success"
-                        
                         let loginMessageDetail = (userAccount.username != "") ? userAccount.username : email
-                        
-                        notification.informativeText = "You are now logged in as \(loginMessageDetail)"
-                        notification.hasActionButton = false
-                        notification.soundName = NSUserNotificationDefaultSoundName
-                        NSUserNotificationCenter.default.scheduleNotification(notification)
+                        if #available(OSX 10.14, *) {
+                            let content = UNMutableNotificationContent()
+                            content.title = "Success"
+                            content.body = "You are now logged in as \(loginMessageDetail)"
+                            content.sound = UNNotificationSound.default
+                            
+                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                            
+                            let request = UNNotificationRequest(identifier: "LoginSuccess", content: content, trigger: trigger)
+                            let center = UNUserNotificationCenter.current()
+                            center.add(request, withCompletionHandler: { (error) in
+                                if error != nil {
+                                    print("\(error!)")
+                                }
+                            })
+                        } else {
+                            let notification = NSUserNotification()
+                            notification.title = "Success"
+                            
+                            notification.informativeText = "You are now logged in as \(loginMessageDetail)"
+                            notification.hasActionButton = false
+                            notification.soundName = NSUserNotificationDefaultSoundName
+                            NSUserNotificationCenter.default.scheduleNotification(notification)
+                        }
                         
                         NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":userAccount])
                     } else {

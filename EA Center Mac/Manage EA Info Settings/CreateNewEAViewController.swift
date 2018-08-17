@@ -132,7 +132,7 @@ extension CreateNewEAViewController: NSTouchBarDelegate {
 }
 
 extension CreateNewEAViewController: NSTextFieldDelegate {
-    override func controlTextDidEndEditing(_ obj: Notification) {
+    func controlTextDidEndEditing(_ obj: Notification) {
         if createButton.isEnabled && !dismissed {
             create(obj)
         }

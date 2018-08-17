@@ -17,6 +17,7 @@ import CoreWLAN
 
 fileprivate let HomeServerAddress = "http://192.168.50.100/eacenter"
 fileprivate let DynamicServerAddress1 = "http://jerryshenming.6655.la:81/eacenter"
+fileprivate let DynamicServerAddress2 = "http://jerrytomlouise.asuscomm.com:81/eacenter"
 
 #if os(OSX)
 fileprivate var ssidName: String {
@@ -24,12 +25,12 @@ fileprivate var ssidName: String {
 }
 
 var MainServerAddress: String {
-    return (ssidName == "Jerry5G" || ssidName == "Jerry2.4G" || ssidName == "Tom5G") ? HomeServerAddress : DynamicServerAddress1
+    return (ssidName == "Jerry5G" || ssidName == "Jerry2.4G" || ssidName == "Tom5G") ? HomeServerAddress : DynamicServerAddress2
 }
 #elseif os(iOS)
 // TODO: Dynamic check SSID too
 //let MainServerAddress = HomeServerAddress
-let MainServerAddress = DynamicServerAddress1
+let MainServerAddress = DynamicServerAddress2
 #endif
 
 // AES keys and iv

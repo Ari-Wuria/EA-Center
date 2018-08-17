@@ -363,7 +363,7 @@ class MainInfoEditorViewController: NSViewController {
 }
 
 extension MainInfoEditorViewController: NSTextFieldDelegate {
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         let textField = obj.object as! NSTextField
         if textField == shortDescTextView {
             updateShortDescWordCount()

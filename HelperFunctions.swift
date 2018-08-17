@@ -79,3 +79,11 @@ extension UIImage {
 }
 #endif
 
+#if os(OSX)
+extension NSWindow {
+    var titlebarHeight: CGFloat {
+        let contentHeight = contentRect(forFrameRect: frame).height
+        return frame.height - contentHeight
+    }
+}
+#endif

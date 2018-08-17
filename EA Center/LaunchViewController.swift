@@ -52,6 +52,8 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
     var originalContainerLocation: CGPoint?
     var switchingResponder = false
     
+    var deviceToken: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -300,7 +302,7 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
             
             let encryptedPass = AccountProcessor.encrypt(password)!
             
-            AccountProcessor.sendLoginRequest(email, encryptedPass) { (success, errCode, errStr) in
+            AccountProcessor.sendLoginRequest(email, encryptedPass, deviceToken) { (success, errCode, errStr) in
                 if success {
                     let saveSuccess = KeychainHelper.saveKeychain(account: email, password: password.data(using: .utf8)!)
                     if saveSuccess {

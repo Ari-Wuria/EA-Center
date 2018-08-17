@@ -24,12 +24,31 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
     var currentEA: EnrichmentActivity?
     var loggedInEmail: String?
     
+    // Only set if session is on this day
+    var nextSessionDate: Date!
+    
+    lazy var dateFormatter = DateFormatter()
+    
+    var attendenceEnabled = false
+    
     //var allSegmentedControls = [NSSegmentedControl]()
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         
         NotificationCenter.default.addObserver(self, selector: #selector(newNotification(_:)), name: ManagerSelectionChangedNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: EAUpdatedNotification, object: nil)
+        
+        //dateFormatter.dateFormat = "MM-dd-yyyy"
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_US")
+    }
+    
+    @objc func eaUpdated(_ notification: Notification) {
+        let object = notification.object as! [String:Any]
+        let ea = object["updatedEA"] as! EnrichmentActivity
+        newObject(ea)
     }
     
     @objc func newNotification(_ notification: Notification) {
@@ -42,16 +61,84 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
         }
         allSegmentedControls.removeAll()
         */
-        if isViewLoaded {
-            studentListTable.reloadData()
+        
+        newObject(ea, notification.userInfo)
+    }
+    
+    func newObject(_ ea: EnrichmentActivity, _ userInfo: [AnyHashable:Any]? = nil) {
+        defer {
+            // Reload on exit
+            if isViewLoaded {
+                studentListTable.reloadData()
+            }
         }
         
-        loggedInEmail = notification.userInfo!["currentLogin"] as? String
+        let date = Date()
+        let days = currentEA!.days
+        var weekSessionDates = [Date]()
+        for day in days {
+            weekSessionDates.append(date.next(date.weekdayFromInt(day)!, considerToday: true))
+        }
+        weekSessionDates.sort { (date1, date2) -> Bool in
+            return date1 < date2
+        }
+        
+        if !(ea.approved == 2 || ea.approved == 3) || ea.endDate! < Date() {
+            nextSessionDateLabel.stringValue = "EA not approved or is already over :("
+            attendenceEnabled = false
+            return
+        }
+        
+        if weekSessionDates.count == 0 {
+            nextSessionDateLabel.stringValue = "Please select running days"
+            attendenceEnabled = false
+            return
+        }
+        
+        let earliest = weekSessionDates[0]
+        
+        nextSessionDate = earliest
+        
+        if isViewLoaded {
+            let nextSessionStr = dateFormatter.string(from: nextSessionDate)
+            let currentStr = dateFormatter.string(from: Date.today())
+            let prefix: String
+            if nextSessionStr == currentStr {
+                prefix = "Today's session: "
+                attendenceEnabled = true
+            } else {
+                prefix = "Next session: "
+                attendenceEnabled = false
+            }
+            nextSessionDateLabel.stringValue = prefix + nextSessionStr
+        } else {
+            let nextSessionStr = dateFormatter.string(from: nextSessionDate)
+            let currentStr = dateFormatter.string(from: Date.today())
+            if nextSessionStr == currentStr {
+                attendenceEnabled = true
+            } else {
+                attendenceEnabled = false
+            }
+        }
+        
+        if let userInfo = userInfo {
+            loggedInEmail = userInfo["currentLogin"] as? String
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        studentListTable.reloadData()
+        let nextDateStr = dateFormatter.string(from: nextSessionDate)
+        let prefix: String
+        if attendenceEnabled {
+            prefix = "Today's session: "
+        } else {
+            prefix = "Next session: "
+        }
+        nextSessionDateLabel.stringValue = prefix + nextDateStr
     }
     
     func numberOfRows(in tableView: NSTableView) -> Int {
@@ -84,6 +171,39 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
             
             view.attendenceStudentID = studentAccountID
             
+            view.currentEA = currentEA
+            
+            if attendenceEnabled == true {
+                view.attendenceEnabled = true
+                view.attendenceSegmentControl.isEnabled = true
+                view.attendanceDate = nextSessionDate
+            } else {
+                view.attendenceEnabled = false
+                view.attendenceSegmentControl.isEnabled = false
+                view.attendanceDate = nil
+            }
+            
+            let dates = self.currentEA!.todayAttendenceList!
+            if dates.count > 0 {
+                AccountProcessor.retriveUserAccount(from: studentAccountID) { (account, errCode, errStr) in
+                    if let userAccount = account {
+                        let filtered = dates.filter { (attendance) -> Bool in
+                            if attendance.studentID == userAccount.userID {
+                                return true
+                            } else {
+                                return false
+                            }
+                        }
+                        if filtered.count == 1 {
+                            let attendance = filtered.first!
+                            view.attendenceSegmentControl.selectSegment(withTag: attendance.attendanceStatus)
+                        }
+                    } else {
+                        // Do nothing, can't get attendence
+                    }
+                }
+            }
+            
             return view
         }
         return nil
@@ -91,6 +211,20 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
     
     func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
         return false
+    }
+    
+    func tableViewSelectionDidChange(_ notification: Notification) {
+        // TODO: Show Description
+        //performSegue(withIdentifier: "ShowDescription", sender: nil)
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowDescription" {
+            let controller = segue.destinationController as! NSViewController
+            let row = studentListTable.selectedRow
+            let view = studentListTable.view(atColumn: 1, row: row, makeIfNecessary: false)
+            controller.sourceItemView = view
+        }
     }
     
     override func makeTouchBar() -> NSTouchBar? {

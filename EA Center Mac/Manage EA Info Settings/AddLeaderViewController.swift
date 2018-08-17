@@ -271,7 +271,7 @@ extension AddLeaderViewController: NSTableViewDelegate, NSTableViewDataSource, N
         return nil
     }
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         guard let theSearchbar = obj.object as? NSSearchField else {
             return
         }

@@ -58,12 +58,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return detailNavController.topViewController!
     }
     
+    var launchViewController: LaunchViewController?
+    
     var deviceToken: String?
     // MARK: - Application did finish launching
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let defaults: [String:Any] = ["rememberlogin":true, "loginemail":"", "biometriclock":false, "launched": false, "passwordchanged":false, "firstdisplayed":false, "biometricasked":false]
+        let defaults: [String:Any] = ["rememberlogin":true, "loginemail":"", "biometriclock":false, "launched": false, "passwordchanged":false, "firstdisplayed":false, "biometricasked":false, "pushtoken":""]
         UserDefaults.standard.register(defaults: defaults)
         
         let firstLaunched = UserDefaults.standard.bool(forKey: "launched")
@@ -80,6 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let launchController = window!.rootViewController as! LaunchViewController
         launchController.delegate = self
+        launchViewController = launchController
         /*
         // Test Code
         splitViewController = window!.rootViewController as? UISplitViewController
@@ -130,7 +133,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let token = tokenParts.joined()
         print("Device Token: \(token)")
+        //UserDefaults.standard.set(token, forKey: "pushtoken")
+        //UserDefaults.standard.synchronize()
         self.deviceToken = token
+        launchViewController?.deviceToken = token
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {

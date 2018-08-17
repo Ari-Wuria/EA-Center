@@ -22,6 +22,29 @@ func > (lhs: EnrichmentActivity, rhs: EnrichmentActivity) -> Bool {
     return lhs.name.localizedCaseInsensitiveCompare(rhs.name) == .orderedDescending
 }
 
+struct Attendance {
+    var studentID: Int
+    var attendanceStatus: Int
+    var attendanceDate: String
+    
+    init(from initializer: String) {
+        let array = initializer.split(separator: "|").map{String($0)}
+        studentID = Int(array.first!)!
+        attendanceDate = array[1]
+        let attendenceCode = array.last!
+        switch attendenceCode {
+        case "A":
+            attendanceStatus = 0
+        case "P":
+            attendanceStatus = 1
+        case "L":
+            attendanceStatus = 2
+        default:
+            attendanceStatus = -1
+        }
+    }
+}
+
 class EnrichmentActivity: NSObject {
     var id: Int
     var name: String
@@ -41,6 +64,9 @@ class EnrichmentActivity: NSObject {
     var endDate: Date?
     var likedUserID: [Int]?
     var joinedUserID: [Int]?
+    var todayAttendenceList: [Attendance]?
+    
+    var dateFormatter: DateFormatter!
     
     override var description: String {
         return "Enrichment Activity (id: \(id), name: \(name))"
@@ -104,6 +130,21 @@ class EnrichmentActivity: NSObject {
         
         let joinString = dictionary["joineduserid"] as? String ?? ""
         joinedUserID = joinString.split(separator: ",").map{Int($0)!}
+        
+        self.dateFormatter = dateFormatter
+        
+        if let attendance = dictionary["attendance"] as? String {
+            todayAttendenceList = []
+            let attendanceList = attendance.split(separator: ",").map{String($0)}
+            // TODO: Filter attendance list
+            for attendanceStr in attendanceList {
+                let attendance = Attendance(from: attendanceStr)
+                let today = dateFormatter.string(from: Date.today())
+                if today == attendance.attendanceDate {
+                    todayAttendenceList?.append(attendance)
+                }
+            }
+        }
         
         super.init()
     }
@@ -717,6 +758,69 @@ class EnrichmentActivity: NSObject {
                     self.joinedUserID = newJoinedState.split(separator: ",").map{Int($0)!}
                     
                     completion(true, nil)
+                } else {
+                    let errString = responseDict["errStr"] as! String
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func uploadAttendence(_ date: Date, _ attendenceLetter: String, _ userID: Int, _ newState: Bool, _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let dateString = dateFormatter.string(from: date)
+        
+        let urlString = MainServerAddress + "/manageea/attendance.php"
+        let url = URL(string: urlString)!
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        
+        let remove = newState ? 0 : 1
+        let postString = "eaid=\(id)&userid=\(userID)&attendance=\(attendenceLetter)&remove=\(remove)&datestr=\(dateString)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            // Debug only
+            //print("\(String(data: data!, encoding: .utf8))")
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    //self.approved = newState
+                    /*
+                    let newJoinedState = responseDict["newjoinstate"] as! String
+                    self.joinedUserID = newJoinedState.split(separator: ",").map{Int($0)!}
+                    
+                    completion(true, nil)
+ */
                 } else {
                     let errString = responseDict["errStr"] as! String
                     completion(false, errString)

@@ -771,7 +771,7 @@ extension ViewController: NSSearchFieldDelegate {
         listTableView.reloadData()
     }
     
-    override func controlTextDidChange(_ obj: Notification) {
+    func controlTextDidChange(_ obj: Notification) {
         if searchField.stringValue != "" {
             searching = true
             filteredContent = joinableEA.filter { (ea) -> Bool in
