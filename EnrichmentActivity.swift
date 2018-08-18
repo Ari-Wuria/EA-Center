@@ -31,17 +31,27 @@ struct Attendance {
         let array = initializer.split(separator: "|").map{String($0)}
         studentID = Int(array.first!)!
         attendanceDate = array[1]
-        let attendenceCode = array.last!
-        switch attendenceCode {
+        let attendanceCode = array.last!
+        attendanceStatus = Attendance.attendanceIndex(from: attendanceCode)
+    }
+    
+    static func attendanceIndex(from code: String) -> Int {
+        switch code {
         case "A":
-            attendanceStatus = 0
+            return 0
         case "P":
-            attendanceStatus = 1
+            return 1
         case "L":
-            attendanceStatus = 2
+            return 2
         default:
-            attendanceStatus = -1
+            return -1
         }
+    }
+    
+    init(date: String, studentID: Int, attendanceStatus: Int) {
+        self.attendanceDate = date
+        self.studentID = studentID
+        self.attendanceStatus = attendanceStatus
     }
 }
 
@@ -65,6 +75,7 @@ class EnrichmentActivity: NSObject {
     var likedUserID: [Int]?
     var joinedUserID: [Int]?
     var todayAttendenceList: [Attendance]?
+    var maxStudents: Int
     
     var dateFormatter: DateFormatter!
     
@@ -74,6 +85,12 @@ class EnrichmentActivity: NSObject {
     
     var timeInformationString: String {
         return weekModeForDisplay() + timeModeForDisplay()
+    }
+    
+    var joinedCount: Int? {
+        return joinedUserID?.count
+        // Test code
+        //return 20
     }
  
     override init() {
@@ -94,6 +111,7 @@ class EnrichmentActivity: NSObject {
         categoryID = 0
         likedUserID = []
         joinedUserID = []
+        maxStudents = 0
         //startDate = Date()
         //endDate = Date()
         super.init()
@@ -146,7 +164,26 @@ class EnrichmentActivity: NSObject {
             }
         }
         
+        maxStudents = dictionary["maxstudents"] as? Int ?? 0
+        
         super.init()
+    }
+    
+    class func actualMaxStudent(count maxStudents: Int) -> Int {
+        switch maxStudents {
+        case 0:
+            return -1
+        case 1:
+            return 5
+        case 2:
+            return 10
+        case 3:
+            return 15
+        case 4:
+            return 20
+        default:
+            return -100
+        }
     }
     
     /// Create a new EA and add it to database with default values
@@ -264,14 +301,14 @@ class EnrichmentActivity: NSObject {
     }
     
     // Make new category an optional to make it compatible for now
-    func updateDetail(newWeekMode: Int, newTimeMode: Int, newLocation: String, newMinGrade: Int, newMaxGrade: Int, newShortDesc: String?, newProposal: String?, newDays: String, newCategory: Int = 0, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+    func updateDetail(newWeekMode: Int, newTimeMode: Int, newLocation: String, newMinGrade: Int, newMaxGrade: Int, newShortDesc: String?, newProposal: String?, newDays: String, newCategory: Int, newMaxStudentsCount: Int = 0, completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
         let urlString = MainServerAddress + "/manageea/updateeainfo.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        var postString = "updateea=1&id=\(self.id)&weekmode=\(newWeekMode)&timemode=\(newTimeMode)&location=\(newLocation)&mingrade=\(newMinGrade)&maxgrade=\(newMaxGrade)&days=\(newDays)&category=\(newCategory)"
+        var postString = "updateea=1&id=\(self.id)&weekmode=\(newWeekMode)&timemode=\(newTimeMode)&location=\(newLocation)&mingrade=\(newMinGrade)&maxgrade=\(newMaxGrade)&days=\(newDays)&category=\(newCategory)&limitmax=\(newMaxStudentsCount)"
         if newShortDesc != nil {
             postString += "&shortdesc=\(newShortDesc!)"
         }
@@ -814,6 +851,7 @@ class EnrichmentActivity: NSObject {
             let success = responseDict["success"] as! Bool
             DispatchQueue.main.async {
                 if success {
+                    // TODO: Keep track of it
                     //self.approved = newState
                     /*
                     let newJoinedState = responseDict["newjoinstate"] as! String
@@ -821,6 +859,15 @@ class EnrichmentActivity: NSObject {
                     
                     completion(true, nil)
  */
+                    let modified = responseDict["modify"] as! Int
+                    if modified == 0 {
+                        // Add
+                        let newAttendance = Attendance(date: dateString, studentID: userID, attendanceStatus: Attendance.attendanceIndex(from: attendenceLetter))
+                        self.todayAttendenceList?.append(newAttendance)
+                    } else {
+                        // Modify
+                        // TODO: Find and change.
+                    }
                 } else {
                     let errString = responseDict["errStr"] as! String
                     completion(false, errString)

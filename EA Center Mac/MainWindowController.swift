@@ -10,7 +10,7 @@ import Cocoa
 
 class MainWindowController: NSWindowController, NSWindowDelegate {
     
-    var bulletinController: NSWindowController? = nil
+    //var bulletinController: NSWindowController? = nil
     var manageController: NSWindowController? = nil
     
     var loggedIn = false
@@ -55,6 +55,8 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
     }
 
     @IBAction func showStudentBulletin(_ sender: Any) {
+        // Managed by storyboard now
+        /*
         if let window = bulletinController {
             window.showWindow(sender)
         } else {
@@ -70,11 +72,12 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
             
             bulletinController = bulletinWindow
         }
+ */
     }
     
     @objc func bulletinClosed() {
-        bulletinController?.close()
-        bulletinController = nil
+        //bulletinController?.close()
+        //bulletinController = nil
     }
     
     @IBAction func showManager(_ sender: Any) {

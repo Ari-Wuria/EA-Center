@@ -128,6 +128,8 @@ class MainInfoEditorViewController: NSViewController {
         
         categoryPopupPicker.selectItem(at: ea.categoryID)
         
+        maxStudentPicker.selectItem(at: ea.maxStudents)
+        
         // TODO: Update Max Student
         
         updateShortDescWordCount()
@@ -142,6 +144,7 @@ class MainInfoEditorViewController: NSViewController {
         let maxGrade = maxGradeSelector.indexOfSelectedItem + 6
         let shortDesc = shortDescTextView.stringValue
         let proposal = proposalTextView.stringValue
+        let maxCount = maxStudentPicker.indexOfSelectedItem
         
         // Start by checking word counts and character count
         if shortDesc.words.count > 150 {
@@ -168,6 +171,12 @@ class MainInfoEditorViewController: NSViewController {
         // Now check location length
         if location.count > 45 {
             showAlert(withTitle: "Please use fewer words to describe the location.")
+            return
+        }
+        
+        let actualMax = EnrichmentActivity.actualMaxStudent(count: maxCount)
+        if actualMax > 0 && actualMax < currentEA!.joinedCount! {
+            showAlert(withTitle: "Max student can not be greater than amount of joined student.")
             return
         }
         
@@ -215,7 +224,7 @@ class MainInfoEditorViewController: NSViewController {
         }
         */
         // Update
-        currentEA!.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: !sameShortDesc ? shortDesc : nil, newProposal: !sameProposal ? proposal : nil, newDays: days, newCategory: newCategory) { (success, errString) in
+        currentEA!.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: !sameShortDesc ? shortDesc : nil, newProposal: !sameProposal ? proposal : nil, newDays: days, newCategory: newCategory, newMaxStudentsCount: maxCount) { (success, errString) in
             if !success {
                 self.showAlert(withTitle: "Error Updating Info", message: errString!)
                 

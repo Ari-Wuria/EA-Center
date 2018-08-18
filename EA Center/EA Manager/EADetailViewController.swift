@@ -23,6 +23,8 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     @IBOutlet var minGradeSelector: UISegmentedControl!
     @IBOutlet var maxGradeSelector: UISegmentedControl!
     
+    @IBOutlet weak var maxStudentSelector: UISegmentedControl!
+    
     var selectedCategoryID: Int?
     @IBOutlet var categoryLabel: UILabel!
     
@@ -37,7 +39,6 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
                 viewUpdated = false
                 updateUI()
             }
-            
         }
     }
     
@@ -90,6 +91,8 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
             selectedCategoryID = currentEA!.categoryID
             categoryLabel.text = currentEA!.categoryForDisplay()
             viewUpdated = true
+            
+            maxStudentSelector.selectedSegmentIndex = currentEA!.maxStudents
         }
     }
     
@@ -99,6 +102,8 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         let location = locationTextField.text!
         let minGrade = minGradeSelector.selectedSegmentIndex + 6
         let maxGrade = maxGradeSelector.selectedSegmentIndex + 6
+        
+        let maxStudents = maxStudentSelector.selectedSegmentIndex
         
         var days: [Int] = []
         if mondayButton.backgroundHighlighted {
@@ -119,12 +124,20 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         
         guard days.count > 0 else {
             presentAlert(withTitle: "Invalid days", message: "Please select at least 1 running day.")
+            working = false
+            return
+        }
+        
+        let realMaxStudents = EnrichmentActivity.actualMaxStudent(count: maxStudents)
+        guard realMaxStudents > currentEA!.joinedCount! || realMaxStudents < 0 else {
+            presentAlert(withTitle: "Can not update max student count", message: "Max student count can not be less than the amount of currently joined students.")
+            working = false
             return
         }
         
         let daysString = days.map{"\($0)"}.joined(separator: ",")
         
-        currentEA?.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: nil, newProposal: nil, newDays: daysString, newCategory: selectedCategoryID!) { (success, errString) in
+        currentEA?.updateDetail(newWeekMode: weekMode, newTimeMode: timeMode, newLocation: location, newMinGrade: minGrade, newMaxGrade: maxGrade, newShortDesc: nil, newProposal: nil, newDays: daysString, newCategory: selectedCategoryID!, newMaxStudentsCount: maxStudents) { (success, errString) in
             if success {
                 self.presentAlert(withTitle: "Success", message: "EA Info Updated")
             } else {
@@ -157,7 +170,7 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         }
  */
         switch (indexPath.section, indexPath.row) {
-        case (0, 6), (0, 7), (1, _), (2, _), (3, _), (4, _):
+        case (0, 6), (0, 8), (1, _), (2, _), (3, _), (4, _):
             return indexPath
         default:
             return nil
@@ -166,7 +179,7 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.section == 0 && indexPath.row == 7 {
+        if indexPath.section == 0 && indexPath.row == 8 {
             // Dismiss the location text field
             self.locationTextField.resignFirstResponder()
             

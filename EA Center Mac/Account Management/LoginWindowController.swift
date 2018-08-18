@@ -72,8 +72,8 @@ class LoginWindowController: NSWindowController {
             loginView!.setEmail(email)
             
             loginView?.verifyLabel.isHidden = false
-            //loginView?.verifyLabel.stringValue = "A confirmation email has been sent to your inbox."
-            loginView?.verifyLabel.stringValue = "Email isn't implemented. WeChat me to activate."
+            loginView?.verifyLabel.stringValue = "A confirmation email has been sent to your inbox."
+            //loginView?.verifyLabel.stringValue = "Email isn't implemented. WeChat me to activate."
             
             loginView?.finishedRegister = true
             
@@ -86,8 +86,8 @@ class LoginWindowController: NSWindowController {
             contentViewController = loginView
             
             loginView?.verifyLabel.isHidden = false
-            //loginView?.verifyLabel.stringValue = "A confirmation email has been sent to your inbox."
-            loginView?.verifyLabel.stringValue = "Email isn't implemented. WeChat me to activate."
+            loginView?.verifyLabel.stringValue = "A confirmation email has been sent to your inbox."
+            //loginView?.verifyLabel.stringValue = "Email isn't implemented. WeChat me to activate."
             
             loginView?.finishedRegister = true
             

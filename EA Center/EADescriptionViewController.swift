@@ -208,6 +208,17 @@ class EADescriptionViewController: UIViewController {
     }
     
     @IBAction func joinEA(_ sender: Any) {
+        if currentAccount!.grade > ea!.maxGrade || currentAccount!.grade < ea!.minGrade {
+            presentAlert(withTitle: "Grade requirement not matched", message: "This EA is open only to students from grade \(ea!.minGrade) to grade \(ea!.maxGrade).")
+            return
+        }
+        
+        let realMaxStudent = EnrichmentActivity.actualMaxStudent(count: ea!.maxStudents)
+        if realMaxStudent == ea!.joinedCount {
+            presentAlert(withTitle: "This EA is full", message: "You missed it :(\nDon't worry, there are other awesome EAs available for you.")
+            return
+        }
+        
         let alert = UIAlertController(title: "Join this EA?", message: "Are you sure you want to join \(ea!.name)?", preferredStyle: .alert)
         alert.addTextField { (textField) in
             textField.placeholder = "Note for EA leader"

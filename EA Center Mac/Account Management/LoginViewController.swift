@@ -124,7 +124,7 @@ class LoginViewController: NSViewController {
                             content.body = "You are now logged in as \(loginMessageDetail)"
                             content.sound = UNNotificationSound.default
                             
-                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 1, repeats: false)
+                            let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 0.1, repeats: false)
                             
                             let request = UNNotificationRequest(identifier: "LoginSuccess", content: content, trigger: trigger)
                             let center = UNUserNotificationCenter.current()

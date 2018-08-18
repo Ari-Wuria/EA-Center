@@ -267,15 +267,24 @@ class ViewController: NSViewController {
                 }
                 return
             }
-            
-            let responseDict = try! JSONSerialization.jsonObject(with: data!) as? [String:Any]
-            guard let response = responseDict else {
-                // Not a dictionary or it doesn't exist
-                //print("Not a dictionary")
+            let response: [String:Any]
+            do {
+                let responseDict = try JSONSerialization.jsonObject(with: data!) as? [String:Any]
+                if let dict = responseDict {
+                    response = dict
+                } else {
+                    DispatchQueue.main.async {
+                        let alert = NSAlert()
+                        alert.messageText = "Error"
+                        alert.informativeText = "The server returned an invalid object. (not a dictionary)"
+                        alert.runModal()
+                        self.failedDownloadCleanup()
+                    }
+                    return
+                }
+            } catch {
                 DispatchQueue.main.async {
-                    let alert = NSAlert()
-                    alert.messageText = "Error"
-                    alert.informativeText = "The server returned an invalid object. (not a dictionary)"
+                    let alert = NSAlert(error: error)
                     alert.runModal()
                     self.failedDownloadCleanup()
                 }
@@ -473,6 +482,24 @@ class ViewController: NSViewController {
             ea = filteredContent[listTableView.selectedRow]
         } else {
             ea = joinableEA[listTableView.selectedRow]
+        }
+        
+        let currentAccount = self.currentAccount!
+        if currentAccount.grade < ea.minGrade || currentAccount.grade > ea.maxGrade {
+            let alert = NSAlert()
+            alert.messageText = "Grade requirement not matched"
+            alert.informativeText = "This EA is only open to students from grade \(ea.minGrade) to grade \(ea.maxGrade)."
+            alert.beginSheetModal(for: view.window!, completionHandler: nil)
+            return
+        }
+        
+        let realMaxCount = EnrichmentActivity.actualMaxStudent(count: ea.maxStudents)
+        if realMaxCount == ea.joinedCount! {
+            let alert = NSAlert()
+            alert.messageText = "This EA is full"
+            alert.informativeText = "You're late to the game :(\nBut don't worry, there are much more EAs that you can join."
+            alert.beginSheetModal(for: view.window!, completionHandler: nil)
+            return
         }
         
         let alert = NSAlert()

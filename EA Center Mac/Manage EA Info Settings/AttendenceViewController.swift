@@ -31,6 +31,8 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
     
     var attendenceEnabled = false
     
+    var noWeekSession = false
+    
     //var allSegmentedControls = [NSSegmentedControl]()
     
     required init?(coder: NSCoder) {
@@ -83,15 +85,24 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
             return date1 < date2
         }
         
-        if !(ea.approved == 2 || ea.approved == 3) || ea.endDate! < Date() {
-            nextSessionDateLabel.stringValue = "EA not approved or is already over :("
-            attendenceEnabled = false
-            return
+        noWeekSession = false
+        
+        if isViewLoaded {
+            if !(ea.approved == 2 || ea.approved == 3) || ea.endDate! < Date() {
+                nextSessionDateLabel.stringValue = "EA not approved or is already over :("
+                attendenceEnabled = false
+                return
+            }
+            
+            if weekSessionDates.count == 0 {
+                nextSessionDateLabel.stringValue = "Please select running days"
+                attendenceEnabled = false
+                noWeekSession = true
+                return
+            }
         }
         
         if weekSessionDates.count == 0 {
-            nextSessionDateLabel.stringValue = "Please select running days"
-            attendenceEnabled = false
             return
         }
         
@@ -129,6 +140,18 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        if !(currentEA!.approved == 2 || currentEA!.approved == 3) || currentEA!.endDate! < Date() {
+            nextSessionDateLabel.stringValue = "EA not approved or is already over :("
+            attendenceEnabled = false
+            return
+        }
+        
+        if !noWeekSession {
+            nextSessionDateLabel.stringValue = "Please select running days"
+            attendenceEnabled = false
+            return
+        }
         
         studentListTable.reloadData()
         let nextDateStr = dateFormatter.string(from: nextSessionDate)
