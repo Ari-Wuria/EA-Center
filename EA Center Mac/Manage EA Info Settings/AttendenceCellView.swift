@@ -17,6 +17,8 @@ class AttendenceCellView: NSTableCellView {
     var attendanceDate: Date!
     
     var attendenceEnabled = false
+    
+    lazy var dateFormatter = DateFormatter()
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
@@ -43,6 +45,23 @@ class AttendenceCellView: NSTableCellView {
         default:
             attendanceCode = "U"
         }
+        
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        
+        let nextDateString = dateFormatter.string(from: attendanceDate)
+        let currentDateString = dateFormatter.string(from: Date())
+        
+        guard nextDateString == currentDateString else {
+            let alert = NSAlert()
+            alert.messageText = "Error setting attendance"
+            alert.informativeText = "This session had already passed"
+            alert.runModal()
+            
+            segmentedControl.selectedSegment = -1
+            return
+        }
+        
         //spinner.startAnimation(sender)
         currentEA.uploadAttendence(attendanceDate, attendanceCode, attendenceStudentID, true) { (success, errStr) in
             if success {

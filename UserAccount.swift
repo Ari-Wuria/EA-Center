@@ -18,7 +18,7 @@ class UserAccount: NSObject, Codable {
     var isManager: Bool = false
     
     override var description: String {
-        return "EA Center User Account (id: \(userID), email: \(userEmail))"
+        return "User Account (id: \(userID), email: \(userEmail))"
     }
     
     enum CodingKeys: String, CodingKey {

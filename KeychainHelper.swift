@@ -11,10 +11,13 @@ import Security
 
 class KeychainHelper {
     @discardableResult class func saveKeychain(account: String, password: Data) -> Bool {
+        let keychainDisplayAccount = "EASLINK Login Account: \(account)"
         let query = [kSecClass as String:kSecClassGenericPassword as String,
                      kSecAttrAccount as String: account,
+                     kSecAttrLabel as String: keychainDisplayAccount,
                      kSecValueData as String: password] as [String : Any]
         
+        //deleteKeychain(account: account)
         SecItemDelete(query as CFDictionary)
         
         let status: OSStatus = SecItemAdd(query as CFDictionary, nil)

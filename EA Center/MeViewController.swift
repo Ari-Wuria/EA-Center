@@ -297,7 +297,10 @@ class MeViewController: UITableViewController {
         var tokenToSend: String? = nil
         tokenToSend = self.pushNotificationToken
         
-        AccountProcessor.sendLoginRequest(email, encryptedPass, tokenToSend) { (success, errCode, errStr) in
+        // Only send device token when remembering login
+        let rememberLogin = UserDefaults.standard.bool(forKey: "rememberlogin")
+        
+        AccountProcessor.sendLoginRequest(email, encryptedPass, rememberLogin == true ? tokenToSend : nil) { (success, errCode, errStr) in
             if success == true {
                 //self.presentAlert("You're now logged in", "Nothing else for now :)")
                 let userID = errCode
@@ -315,7 +318,6 @@ class MeViewController: UITableViewController {
                         
                         NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":resultAccount])
                         
-                        let rememberLogin = UserDefaults.standard.bool(forKey: "rememberlogin")
                         if rememberLogin {
                             let success = KeychainHelper.saveKeychain(account: email, password: password.data(using: .utf8)!)
                             if success {

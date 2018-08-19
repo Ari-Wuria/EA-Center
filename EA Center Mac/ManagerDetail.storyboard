@@ -504,10 +504,10 @@
             </objects>
             <point key="canvasLocation" x="-2039" y="2112"/>
         </scene>
-        <!--Attendence-->
+        <!--Attendence View Controller-->
         <scene sceneID="Jgj-bV-trL">
             <objects>
-                <viewController title="Attendence" id="1TL-4L-GDJ" customClass="AttendenceViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="" id="1TL-4L-GDJ" customClass="AttendenceViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="5UC-b2-bx3">
                         <rect key="frame" x="0.0" y="0.0" width="470" height="506"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -658,7 +658,7 @@
                         <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="I7E-yR-pIQ"/>
                         <touchBarItem id="MKr-yh-0AH">
                             <viewController key="viewController" id="3cS-G9-qwL">
-                                <textField key="view" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="khZ-qA-bCr">
+                                <textField key="view" hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="khZ-qA-bCr">
                                     <rect key="frame" x="0.0" y="0.0" width="83" height="19"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <textFieldCell key="cell" lineBreakMode="clipping" title="Mark all as:" id="i0F-PA-rTy">
@@ -672,7 +672,7 @@
                         </touchBarItem>
                         <touchBarItem id="Auf-cJ-7Uj">
                             <viewController key="viewController" id="yTr-pR-FzU">
-                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-K1-PAx">
+                                <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-K1-PAx">
                                     <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="wa4-Jk-YbH"/>
@@ -687,7 +687,7 @@
                         </touchBarItem>
                         <touchBarItem id="Lg0-0Z-I0v">
                             <viewController key="viewController" id="QmW-hW-fKI">
-                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-OO-KMp">
+                                <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-OO-KMp">
                                     <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="hsc-ny-N9x"/>
@@ -701,7 +701,7 @@
                         </touchBarItem>
                         <touchBarItem id="ReR-Jm-FQr">
                             <viewController key="viewController" id="Gas-rg-FCG">
-                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XMQ-Qa-oRY">
+                                <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XMQ-Qa-oRY">
                                     <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="Lm7-O7-wiK"/>
@@ -757,7 +757,7 @@
                     <tabViewItems>
                         <tabViewItem identifier="" id="j6y-Hf-zZl"/>
                         <tabViewItem identifier="" id="s9a-fO-GoN"/>
-                        <tabViewItem identifier="" id="rES-ow-ALm"/>
+                        <tabViewItem label="Attendance" identifier="" id="rES-ow-ALm"/>
                         <tabViewItem identifier="" id="SyV-4Z-wS6"/>
                     </tabViewItems>
                     <tabView key="tabView" type="noTabsNoBorder" id="A66-Rn-IB7">
@@ -784,11 +784,11 @@
             <objects>
                 <viewController title="Main Info" id="13p-VX-eKs" customClass="MainInfoEditorViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="B2e-0U-dIi">
-                        <rect key="frame" x="0.0" y="0.0" width="482" height="509"/>
+                        <rect key="frame" x="0.0" y="0.0" width="470" height="506"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="centerX" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="swt-54-nzd">
-                                <rect key="frame" x="15" y="20" width="452" height="469"/>
+                                <rect key="frame" x="9" y="19" width="452" height="469"/>
                                 <subviews>
                                     <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="nfW-eX-N0c">
                                         <rect key="frame" x="0.0" y="266" width="452" height="203"/>
@@ -1262,10 +1262,10 @@
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="swt-54-nzd" secondAttribute="trailing" constant="15" id="IwB-bG-cpr"/>
-                            <constraint firstItem="swt-54-nzd" firstAttribute="top" secondItem="B2e-0U-dIi" secondAttribute="top" constant="20" id="Jvm-LU-1yh"/>
-                            <constraint firstAttribute="bottom" secondItem="swt-54-nzd" secondAttribute="bottom" constant="20" id="MuA-n3-0e4"/>
-                            <constraint firstItem="swt-54-nzd" firstAttribute="leading" secondItem="B2e-0U-dIi" secondAttribute="leading" constant="15" id="ouh-jb-vOg"/>
+                            <constraint firstAttribute="trailing" secondItem="swt-54-nzd" secondAttribute="trailing" constant="9" id="IwB-bG-cpr"/>
+                            <constraint firstItem="swt-54-nzd" firstAttribute="top" secondItem="B2e-0U-dIi" secondAttribute="top" constant="18" id="Jvm-LU-1yh"/>
+                            <constraint firstAttribute="bottom" secondItem="swt-54-nzd" secondAttribute="bottom" constant="19" id="MuA-n3-0e4"/>
+                            <constraint firstItem="swt-54-nzd" firstAttribute="leading" secondItem="B2e-0U-dIi" secondAttribute="leading" constant="9" id="ouh-jb-vOg"/>
                         </constraints>
                     </view>
                     <connections>

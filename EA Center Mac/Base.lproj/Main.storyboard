@@ -1321,7 +1321,7 @@
                         <rect key="contentRect" x="336" y="294" width="950" height="628"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <value key="minSize" type="size" width="950" height="628"/>
-                        <toolbar key="toolbar" implicitIdentifier="2125C316-8DD1-457F-AC86-EBCF281E3B95" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="871-Pg-Zgn">
+                        <toolbar key="toolbar" implicitIdentifier="2125C316-8DD1-457F-AC86-EBCF281E3B95" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="871-Pg-Zgn">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="67F096F6-D15F-427E-ACA5-9B59F2165261" label="Manage Your EA" paletteLabel="Manage Your EA" tag="-1" image="Cog" id="HSQ-eN-cFO">
                                     <connections>
@@ -1742,6 +1742,11 @@
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="10" id="dEq-e3-Up8">
+                    <connections>
+                        <action selector="showDebugWindow:" target="XfG-lQ-9wD" id="Lmk-Jw-zEj"/>
+                    </connections>
+                </clickGestureRecognizer>
                 <touchBarItem id="gWE-Lw-0PL">
                     <viewController key="viewController" id="YyZ-2b-Vh7">
                         <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7uz-kB-1UB">
@@ -1840,24 +1845,6 @@
                         </touchBarItem>
                     </touchBarItems>
                 </touchBar>
-                <menu id="1vD-Ca-onI">
-                    <items>
-                        <menuItem title="Item 1" id="vyl-JF-EKy">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                        <menuItem title="Item 2" id="g7z-Z7-o9s">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                        <menuItem title="Item 3" id="alC-MW-WOs">
-                            <modifierMask key="keyEquivalentModifierMask"/>
-                        </menuItem>
-                    </items>
-                </menu>
-                <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="20" id="dEq-e3-Up8">
-                    <connections>
-                        <action selector="showDebugWindow:" target="XfG-lQ-9wD" id="Lmk-Jw-zEj"/>
-                    </connections>
-                </clickGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="231" y="1123.5"/>
         </scene>
@@ -1926,7 +1913,7 @@
         <image name="Map Icon White" width="91.5" height="78.5"/>
         <image name="NSStatusNone" width="16" height="16"/>
         <image name="Open Heart" width="138" height="122"/>
-        <image name="Pencil Paper" width="206.5" height="207"/>
+        <image name="Pencil Paper" width="248" height="248.5"/>
         <image name="User" width="27.5" height="29.5"/>
         <image name="User White" width="27.5" height="29.5"/>
         <namedColor name="Main Background">

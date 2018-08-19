@@ -11,6 +11,16 @@ import UIKit
 class AttendanceViewController: UITableViewController {
     var currentEA: EnrichmentActivity!
 
+    @IBOutlet weak var sessionInfoLabel: UILabel!
+    
+    var nextSessionDate: Date!
+    
+    lazy var dateFormatter = DateFormatter()
+    
+    var attendenceEnabled = false
+    
+    var noWeekSession = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,6 +31,55 @@ class AttendanceViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         tableView.backgroundColor = UIColor(named: "Main Table Color")
+        
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .none
+        dateFormatter.locale = Locale(identifier: "en_US")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        let date = Date()
+        let days = currentEA!.days
+        var weekSessionDates = [Date]()
+        for day in days {
+            weekSessionDates.append(date.next(date.weekdayFromInt(day)!, considerToday: true))
+        }
+        weekSessionDates.sort { (date1, date2) -> Bool in
+            return date1 < date2
+        }
+        
+        noWeekSession = false
+        
+        if !(currentEA.approved == 2 || currentEA.approved == 3) || currentEA.endDate! < Date() {
+            sessionInfoLabel.text = "EA not approved or is already over :("
+            attendenceEnabled = false
+            return
+        }
+        
+        if weekSessionDates.count == 0 {
+            sessionInfoLabel.text = "Please select running days"
+            attendenceEnabled = false
+            noWeekSession = true
+            return
+        }
+        
+        let earliest = weekSessionDates[0]
+        
+        nextSessionDate = earliest
+        
+        let nextSessionStr = dateFormatter.string(from: nextSessionDate)
+        let currentStr = dateFormatter.string(from: Date.today())
+        let prefix: String
+        if nextSessionStr == currentStr {
+            prefix = "Today's session: "
+            attendenceEnabled = true
+        } else {
+            prefix = "Next session: "
+            attendenceEnabled = false
+        }
+        sessionInfoLabel.text = prefix + nextSessionStr
     }
 
     // MARK: - Table view data source
@@ -35,6 +94,10 @@ class AttendanceViewController: UITableViewController {
         // Configure the cell...
         
         cell.studentNameLabel.text = "Loading name..."
+        cell.attendenceSegmentedControl.isHidden = true
+        
+        let dates = self.currentEA!.todayAttendenceList!
+        
         let userID = currentEA.joinedUserID![indexPath.row]
         AccountProcessor.retriveUserAccount(from: userID) { (account, errCode, errStr) in
             if let account = account {
@@ -42,6 +105,32 @@ class AttendanceViewController: UITableViewController {
                     cell.studentNameLabel.text = account.username
                 } else {
                     cell.studentNameLabel.text = account.userEmail
+                }
+                cell.attendenceSegmentedControl.isHidden = false
+                cell.studentAccount = account
+                cell.currentEA = self.currentEA
+                
+                cell.attendenceSegmentedControl.isEnabled = self.attendenceEnabled
+                
+                // Filter dates to fill in existing attendance data
+                let filtered = dates.filter { (attendance) -> Bool in
+                    if attendance.studentID == account.userID {
+                        return true
+                    } else {
+                        return false
+                    }
+                }
+                if filtered.count == 1 {
+                    let attendance = filtered.first!
+                    cell.attendenceSegmentedControl.selectedSegmentIndex = attendance.attendanceStatus
+                }
+                
+                cell.attendanceDate = self.nextSessionDate
+                
+                cell.errorHandler = { errStr in
+                    let alert = UIAlertController(title: "Error setting attendance", message: errStr, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
             } else {
                 cell.studentNameLabel.text = "Error retriving name."
@@ -54,6 +143,10 @@ class AttendanceViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         return nil
+    }
+    
+    deinit {
+        print("deinit \(self)")
     }
 
     /*

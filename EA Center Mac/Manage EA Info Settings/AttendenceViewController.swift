@@ -141,6 +141,10 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
         super.viewDidLoad()
         // Do view setup here.
         
+        if currentEA == nil {
+            return
+        }
+        
         if !(currentEA!.approved == 2 || currentEA!.approved == 3) || currentEA!.endDate! < Date() {
             nextSessionDateLabel.stringValue = "EA not approved or is already over :("
             attendenceEnabled = false

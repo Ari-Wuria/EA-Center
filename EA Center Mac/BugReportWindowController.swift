@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import AudioToolbox
 
 class BugReportWindowController: AboutWindowController {
 
@@ -20,6 +21,9 @@ class BugReportWindowController: AboutWindowController {
         let aboutStoryboard = NSStoryboard(name: "AboutScreen", bundle: .main)
         let finishedController = aboutStoryboard.instantiateController(withIdentifier: "BugReportFinished")
         contentViewController = finishedController as? NSViewController
+        
+        // TODO: Play sound
+        
         delay(5) {
             self.close()
         }

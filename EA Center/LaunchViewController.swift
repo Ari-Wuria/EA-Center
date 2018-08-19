@@ -325,6 +325,10 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
                                 })
                             }
                         }
+                    } else {
+                        self.loginSpinner.stopAnimating()
+                        self.loginPending = false
+                        self.showAlert(withTitle: "Login Failed", message: "System error when processing login. Please reinstall the app.")
                     }
                 } else {
                     self.loginSpinner.stopAnimating()
