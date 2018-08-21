@@ -29,8 +29,8 @@ var MainServerAddress: String {
 }
 #elseif os(iOS)
 // TODO: Dynamic check SSID too
-let MainServerAddress = HomeServerAddress
-//let MainServerAddress = DynamicServerAddress2
+//let MainServerAddress = HomeServerAddress
+let MainServerAddress = DynamicServerAddress2
 #endif
 
 // AES keys and iv
