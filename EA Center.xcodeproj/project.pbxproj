@@ -76,6 +76,10 @@
 		D07A668A211DABD600C7F0EC /* iPhone Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D07A6689211DABD600C7F0EC /* iPhone Logo.png */; };
 		D07A668C211DB50500C7F0EC /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A668B211DB50500C7F0EC /* BiometricAuth.swift */; };
 		D07A668F211E8DD200C7F0EC /* BugReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A668D211E8DD200C7F0EC /* BugReportViewController.swift */; };
+		D07B5CFE212F02CD003AFC82 /* org.sparkle-project.Downloader.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = D07B5CF8212F028E003AFC82 /* org.sparkle-project.Downloader.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D07B5CFF212F02CD003AFC82 /* org.sparkle-project.InstallerConnection.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = D07B5CF5212F028D003AFC82 /* org.sparkle-project.InstallerConnection.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D07B5D00212F02CD003AFC82 /* org.sparkle-project.InstallerLauncher.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = D07B5CF6212F028E003AFC82 /* org.sparkle-project.InstallerLauncher.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D07B5D01212F02CD003AFC82 /* org.sparkle-project.InstallerStatus.xpc in CopyFiles */ = {isa = PBXBuildFile; fileRef = D07B5CF7212F028E003AFC82 /* org.sparkle-project.InstallerStatus.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D07DE9522111F09E00423D01 /* AboutScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D07DE9512111F09E00423D01 /* AboutScreen.storyboard */; };
 		D07DE9552111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */; };
 		D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */; };
@@ -190,6 +194,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		D07B5CFD212F02C8003AFC82 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
+			files = (
+				D07B5CFE212F02CD003AFC82 /* org.sparkle-project.Downloader.xpc in CopyFiles */,
+				D07B5CFF212F02CD003AFC82 /* org.sparkle-project.InstallerConnection.xpc in CopyFiles */,
+				D07B5D00212F02CD003AFC82 /* org.sparkle-project.InstallerLauncher.xpc in CopyFiles */,
+				D07B5D01212F02CD003AFC82 /* org.sparkle-project.InstallerStatus.xpc in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D0DF9D02212303BA004D85FC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -256,6 +273,10 @@
 		D07A6689211DABD600C7F0EC /* iPhone Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Logo.png"; sourceTree = "<group>"; };
 		D07A668B211DB50500C7F0EC /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
 		D07A668D211E8DD200C7F0EC /* BugReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportViewController.swift; sourceTree = "<group>"; };
+		D07B5CF5212F028D003AFC82 /* org.sparkle-project.InstallerConnection.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerConnection.xpc"; sourceTree = "<group>"; };
+		D07B5CF6212F028E003AFC82 /* org.sparkle-project.InstallerLauncher.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerLauncher.xpc"; sourceTree = "<group>"; };
+		D07B5CF7212F028E003AFC82 /* org.sparkle-project.InstallerStatus.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.InstallerStatus.xpc"; sourceTree = "<group>"; };
+		D07B5CF8212F028E003AFC82 /* org.sparkle-project.Downloader.xpc */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.xpc-service"; path = "org.sparkle-project.Downloader.xpc"; sourceTree = "<group>"; };
 		D07DE9512111F09E00423D01 /* AboutScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AboutScreen.storyboard; sourceTree = "<group>"; };
 		D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EASLINK LOGO.001 2.jpeg"; sourceTree = "<group>"; };
 		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
@@ -307,7 +328,7 @@
 		D0DB6AE220DA1FFC00BBE8F0 /* BulletinViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinViewController.swift; sourceTree = "<group>"; };
 		D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinWindowController.swift; sourceTree = "<group>"; };
 		D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center Mac.entitlements"; sourceTree = "<group>"; };
-		D0DFCED520D8A41200DBB70E /* EA Center Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D0DFCED520D8A41200DBB70E /* EASLINK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EASLINK.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0DFCED720D8A41200DBB70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0DFCED920D8A41200DBB70E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -441,7 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				D025730020D8A1E30078AE89 /* EA Center.app */,
-				D0DFCED520D8A41200DBB70E /* EA Center Mac.app */,
+				D0DFCED520D8A41200DBB70E /* EASLINK.app */,
 				D0B4D94A2119F7C600B497D4 /* EA Center Tests.xctest */,
 				D0B4D9662119F84200B497D4 /* EA Center UI Tests.xctest */,
 			);
@@ -500,6 +521,17 @@
 				D07A6689211DABD600C7F0EC /* iPhone Logo.png */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D07B5CF4212F0282003AFC82 /* XPCServices */ = {
+			isa = PBXGroup;
+			children = (
+				D07B5CF8212F028E003AFC82 /* org.sparkle-project.Downloader.xpc */,
+				D07B5CF5212F028D003AFC82 /* org.sparkle-project.InstallerConnection.xpc */,
+				D07B5CF6212F028E003AFC82 /* org.sparkle-project.InstallerLauncher.xpc */,
+				D07B5CF7212F028E003AFC82 /* org.sparkle-project.InstallerStatus.xpc */,
+			);
+			path = XPCServices;
 			sourceTree = "<group>";
 		};
 		D07DE9532111F0E300423D01 /* Resources */ = {
@@ -667,6 +699,7 @@
 		D0DFCED620D8A41200DBB70E /* EA Center Mac */ = {
 			isa = PBXGroup;
 			children = (
+				D07B5CF4212F0282003AFC82 /* XPCServices */,
 				D07DE9532111F0E300423D01 /* Resources */,
 				D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */,
 				D0DFCED720D8A41200DBB70E /* AppDelegate.swift */,
@@ -822,6 +855,7 @@
 				D0DFCED220D8A41200DBB70E /* Frameworks */,
 				D0DFCED320D8A41200DBB70E /* Resources */,
 				D0DF9D02212303BA004D85FC /* CopyFiles */,
+				D07B5CFD212F02C8003AFC82 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -829,7 +863,7 @@
 			);
 			name = "EA Center Mac";
 			productName = "EA Center Mac";
-			productReference = D0DFCED520D8A41200DBB70E /* EA Center Mac.app */;
+			productReference = D0DFCED520D8A41200DBB70E /* EASLINK.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -868,7 +902,7 @@
 								enabled = 0;
 							};
 							com.apple.HardenedRuntime = {
-								enabled = 0;
+								enabled = 1;
 							};
 							com.apple.Push = {
 								enabled = 1;
@@ -1431,6 +1465,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1443,7 +1478,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EASLINK;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "EA Center Mac/EA-Center-Mac-Bridging-Header.h";
@@ -1460,6 +1495,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -1472,7 +1508,7 @@
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = EASLINK;
 				RUN_CLANG_STATIC_ANALYZER = YES;
 				SDKROOT = macosx;
 				SWIFT_OBJC_BRIDGING_HEADER = "EA Center Mac/EA-Center-Mac-Bridging-Header.h";

@@ -362,7 +362,7 @@
                         <touchBarItem id="VZF-tM-9aK">
                             <viewController key="viewController" id="Ed6-R0-N4w">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wwD-dh-f2k">
-                                    <rect key="frame" x="0.0" y="-11" width="57" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="45" id="1hH-3n-b6y"/>
                                     </constraints>
@@ -396,7 +396,7 @@
                         <touchBarItem id="xYe-ul-Gjq">
                             <viewController key="viewController" id="Jo5-bd-Tvs">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ovQ-74-n2D">
-                                    <rect key="frame" x="0.0" y="-11" width="57" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="45" height="30"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="45" id="tOh-Xm-CCW"/>
                                     </constraints>
@@ -437,7 +437,7 @@
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="EASLINK LOGO.001 2" id="gqo-DQ-DJl"/>
                                         </imageView>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="erQ-6y-C27">
+                                        <button hidden="YES" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="erQ-6y-C27">
                                             <rect key="frame" x="411" y="23" width="152" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Use of Libraries" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="lA3-bY-H4A">
@@ -484,8 +484,17 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U3U-kB-RSn">
+                                            <rect key="frame" x="250" y="59" width="309" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" title="Made by Tom Shen, Hower Chen, Wallington Lin" id="hjF-8z-tUh">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                         <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g4l-Yn-go7">
-                                            <rect key="frame" x="252" y="23" width="144" height="32"/>
+                                            <rect key="frame" x="335" y="23" width="144" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="View on GitHub" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="3Q4-ct-9uK">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -495,15 +504,6 @@
                                                 <action selector="openGithub:" target="8OE-3K-60v" id="zuF-ZB-tcU"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="U3U-kB-RSn">
-                                            <rect key="frame" x="250" y="52" width="309" height="17"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" title="Made by Tom Shen, Hower Chen, Wallington Lin" id="hjF-8z-tUh">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                     </subviews>
                                 </view>
                                 <color key="borderColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -523,7 +523,7 @@
                         <touchBarItem id="ADM-2S-ewo">
                             <viewController key="viewController" id="qAu-11-psf">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kBa-g8-oxl">
-                                    <rect key="frame" x="0.0" y="-11" width="138" height="41"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="126" height="30"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="View on GitHub" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="11K-QL-Qup">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -536,25 +536,25 @@
                             </viewController>
                             <size key="designTimeSize" width="126" height="30"/>
                         </touchBarItem>
-                        <touchBarItem id="XGj-kP-C0Z">
-                            <viewController key="viewController" id="IZe-Q1-ZlW">
-                                <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ihd-O2-5C9">
-                                    <rect key="frame" x="0.0" y="-11" width="156" height="41"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                    <buttonCell key="cell" type="push" title="Use of Libraries" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7W6-SK-IIs">
-                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                        <font key="font" usesAppearanceFont="YES"/>
-                                    </buttonCell>
-                                    <connections>
-                                        <action selector="showUseOfLibraries:" target="8OE-3K-60v" id="RX3-LL-a3a"/>
-                                    </connections>
-                                </button>
-                            </viewController>
-                            <size key="designTimeSize" width="144" height="30"/>
-                        </touchBarItem>
                         <touchBarSpacerItem identifier="NSTouchBarItemIdentifierFlexibleSpace" id="rIV-qb-pe1"/>
                     </touchBarItems>
                 </touchBar>
+                <touchBarItem id="XGj-kP-C0Z">
+                    <viewController key="viewController" id="IZe-Q1-ZlW">
+                        <button key="view" hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ihd-O2-5C9">
+                            <rect key="frame" x="0.0" y="-11" width="156" height="41"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <buttonCell key="cell" type="push" title="Use of Libraries" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="7W6-SK-IIs">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" usesAppearanceFont="YES"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="showUseOfLibraries:" target="8OE-3K-60v" id="RX3-LL-a3a"/>
+                            </connections>
+                        </button>
+                    </viewController>
+                    <size key="designTimeSize" width="144" height="30"/>
+                </touchBarItem>
             </objects>
             <point key="canvasLocation" x="667.5" y="33.5"/>
         </scene>

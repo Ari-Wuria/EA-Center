@@ -17,7 +17,6 @@ class KeychainHelper {
                      kSecAttrLabel as String: keychainDisplayAccount,
                      kSecValueData as String: password] as [String : Any]
         
-        //deleteKeychain(account: account)
         SecItemDelete(query as CFDictionary)
         
         let status: OSStatus = SecItemAdd(query as CFDictionary, nil)

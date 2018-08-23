@@ -269,8 +269,16 @@ class ViewController: NSViewController {
             }
             let response: [String:Any]
             do {
-                let responseDict = try JSONSerialization.jsonObject(with: data!) as? [String:Any]
-                if let dict = responseDict {
+                
+                let responseDict = try JSONSerialization.jsonObject(with: data!)
+                if responseDict is Array<Any> {
+                    let alert = NSAlert()
+                    alert.messageText = "Aww..."
+                    alert.informativeText = "No EA is up yet... Just be patient"
+                    alert.runModal()
+                    self.failedDownloadCleanup()
+                }
+                if let dict = responseDict as? [String:Any] {
                     response = dict
                 } else {
                     DispatchQueue.main.async {
