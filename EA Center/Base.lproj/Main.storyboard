@@ -2813,14 +2813,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2018 WALTEROMTYA TECHNOLOGY. All Rights Reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="fQp-1r-HVG">
-                                <rect key="frame" x="30" y="700" width="315" height="12"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTb-NW-8xa">
-                                <rect key="frame" x="133.66666666666666" y="662" width="108" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VTb-NW-8xa">
+                                <rect key="frame" x="127" y="556" width="108" height="30"/>
                                 <state key="normal" title="Use of Libraries"/>
                                 <connections>
                                     <segue destination="tT5-ta-f29" kind="presentation" identifier="ShowLibraries" id="oFl-d2-bU1"/>
@@ -2830,6 +2824,19 @@
                                 <rect key="frame" x="30" y="379" width="315" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Made by Tom Shen, Hower Chen, Wallington Lin" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="b3i-He-i6J">
+                                <rect key="frame" x="31" y="682" width="315" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Copyright © 2018 WALTEROMTYA TECHNOLOGY. All Rights Reserved." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="fQp-1r-HVG">
+                                <rect key="frame" x="30" y="627" width="315" height="12"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -2949,7 +2956,7 @@
         <image name="Cog" width="26.333333969116211" height="26.333333969116211"/>
         <image name="EASLINK LOGO.001 2.jpeg" width="1024" height="1024"/>
         <image name="Open Heart" width="138" height="122.33333587646484"/>
-        <image name="Pencil Paper" width="206.33332824707031" height="206.66667175292969"/>
+        <image name="Pencil Paper" width="248" height="248.33332824707031"/>
         <image name="User" width="27.333333969116211" height="29"/>
         <image name="UserIcon" width="1120" height="1120"/>
         <image name="Wallet" width="31.333333969116211" height="22.666666030883789"/>
