@@ -32,6 +32,9 @@
                                         <menuItem isSeparatorItem="YES" id="Ud7-KI-Jmh"/>
                                         <menuItem title="Check for Updates..." id="0Hl-3R-WzM">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="hi3-Hx-iSJ" id="4AW-gn-CiG"/>
+                                            </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
@@ -734,7 +737,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="dYj-My-Hms"/>
-                                        <menuItem title="EA Center Mac Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="EASLINK Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
                                             </connections>
@@ -757,6 +760,7 @@
                     </connections>
                 </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
+                <customObject id="hi3-Hx-iSJ" customClass="SPUStandardUpdaterController"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="933" y="-154"/>
@@ -1027,7 +1031,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <segue destination="iQJ-ds-7ez" kind="sheet" id="nwQ-Ph-Rd1"/>
+                                    <segue destination="iQJ-ds-7ez" kind="sheet" identifier="SendApproval" id="nwQ-Ph-Rd1"/>
                                 </connections>
                             </button>
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="d5Y-CD-lgf">
@@ -1930,6 +1934,6 @@
         </namedColor>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ECX-Ub-OfK"/>
+        <segue reference="idv-eR-c9Y"/>
     </inferredMetricsTieBreakers>
 </document>

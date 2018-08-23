@@ -192,6 +192,9 @@ class EAManagerViewController: NSViewController {
         } else if segue.identifier == "DeleteEA" {
             let dest = segue.destinationController as! DeleteEAViewController
             dest.deleteEA = myEA[tableView.clickedRow]
+        } else if segue.identifier == "SendApproval" {
+            let dest = segue.destinationController as! SendApprovalViewController
+            dest.currentEA = myEA[tableView.selectedRow]
         }
     }
     

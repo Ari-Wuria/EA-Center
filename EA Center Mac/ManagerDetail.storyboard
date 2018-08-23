@@ -103,14 +103,14 @@
             <objects>
                 <viewController storyboardIdentifier="SendApprovalViewController" id="8f0-7E-ZlG" customClass="SendApprovalViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Dco-YZ-75Y">
-                        <rect key="frame" x="0.0" y="0.0" width="368" height="272"/>
+                        <rect key="frame" x="0.0" y="0.0" width="427" height="272"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="CMz-SQ-ewo">
-                                <rect key="frame" x="0.0" y="0.0" width="368" height="272"/>
+                                <rect key="frame" x="0.0" y="0.0" width="427" height="272"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" ambiguous="YES" id="hIC-1t-KMk">
-                                    <rect key="frame" x="1" y="1" width="366" height="270"/>
+                                    <rect key="frame" x="1" y="1" width="425" height="270"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="l0P-Oa-J6a">
@@ -123,7 +123,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7Ln-Tt-lQG">
-                                            <rect key="frame" x="20" y="46" width="139" height="148"/>
+                                            <rect key="frame" x="49" y="43" width="139" height="148"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="clockAndCalendar" id="Omy-Ei-K5R">
                                                 <font key="font" metaFont="system"/>
@@ -133,9 +133,12 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             </datePickerCell>
+                                            <connections>
+                                                <action selector="startPickerChanged:" target="8f0-7E-ZlG" id="oav-fz-Mcg"/>
+                                            </connections>
                                         </datePicker>
                                         <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="v0E-I1-0IK">
-                                            <rect key="frame" x="20" y="199" width="142" height="27"/>
+                                            <rect key="frame" x="49" y="196" width="142" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="6Db-UX-DUo">
                                                 <font key="font" metaFont="system"/>
@@ -145,9 +148,12 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             </datePickerCell>
+                                            <connections>
+                                                <action selector="startPickerChanged:" target="8f0-7E-ZlG" id="g5W-jC-8ho"/>
+                                            </connections>
                                         </datePicker>
                                         <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hl6-0i-zxx">
-                                            <rect key="frame" x="207" y="46" width="139" height="148"/>
+                                            <rect key="frame" x="236" y="43" width="139" height="148"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <datePickerCell key="cell" borderStyle="bezel" alignment="left" datePickerStyle="clockAndCalendar" id="Jlk-3v-R2f">
                                                 <font key="font" metaFont="system"/>
@@ -157,9 +163,12 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             </datePickerCell>
+                                            <connections>
+                                                <action selector="endPickerChanged:" target="8f0-7E-ZlG" id="jbt-NC-y2q"/>
+                                            </connections>
                                         </datePicker>
                                         <datePicker verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3zS-la-yik">
-                                            <rect key="frame" x="207" y="199" width="142" height="27"/>
+                                            <rect key="frame" x="236" y="196" width="142" height="27"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <datePickerCell key="cell" borderStyle="bezel" alignment="left" id="A6O-w2-L4Y">
                                                 <font key="font" metaFont="system"/>
@@ -169,26 +178,21 @@
                                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             </datePickerCell>
+                                            <connections>
+                                                <action selector="endPickerChanged:" target="8f0-7E-ZlG" id="xZs-hT-xbf"/>
+                                            </connections>
                                         </datePicker>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nlr-tG-gp6">
-                                            <rect key="frame" x="142" y="6" width="83" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="m6N-6H-oGb">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                        </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eYZ-jE-rZv">
-                                            <rect key="frame" x="102" y="245" width="163" height="18"/>
+                                            <rect key="frame" x="22" y="245" width="380" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="When will you run this EA?" id="rz0-9f-D11">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="When will you run this EA? This is your only chance to set this." id="rz0-9f-D11">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ggX-5O-hY0">
-                                            <rect key="frame" x="64" y="225" width="34" height="18"/>
+                                            <rect key="frame" x="93" y="222" width="34" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Start" id="lkw-d2-Ib7">
                                                 <font key="font" metaFont="system"/>
@@ -197,7 +201,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nbF-3t-gat">
-                                            <rect key="frame" x="262" y="225" width="28" height="18"/>
+                                            <rect key="frame" x="291" y="222" width="28" height="18"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="End" id="qPq-TO-c8k">
                                                 <font key="font" metaFont="system"/>
@@ -205,10 +209,21 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hPf-xk-HKQ">
-                                            <rect key="frame" x="330" y="13" width="16" height="16"/>
+                                        <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="hPf-xk-HKQ">
+                                            <rect key="frame" x="389" y="13" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </progressIndicator>
+                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Nlr-tG-gp6">
+                                            <rect key="frame" x="171" y="6" width="83" height="32"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="push" title="Submit" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="m6N-6H-oGb">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="submitApproval:" target="8f0-7E-ZlG" id="gRY-Wj-Ngt"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                                 <color key="borderColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -216,10 +231,17 @@
                             </box>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="endPicker1" destination="3zS-la-yik" id="XAT-np-dkV"/>
+                        <outlet property="endPicker2" destination="Hl6-0i-zxx" id="jZD-N9-NjP"/>
+                        <outlet property="spinner" destination="hPf-xk-HKQ" id="fpe-Op-RZi"/>
+                        <outlet property="startPicker1" destination="v0E-I1-0IK" id="5NQ-sz-ALf"/>
+                        <outlet property="startPicker2" destination="7Ln-Tt-lQG" id="bPV-JV-Uck"/>
+                    </connections>
                 </viewController>
                 <customObject id="tGZ-Z1-BPW" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1788" y="1551"/>
+            <point key="canvasLocation" x="-1797.5" y="1551"/>
         </scene>
         <!--DeleteEA View Controller-->
         <scene sceneID="8Eh-Ya-XF0">

@@ -12,25 +12,58 @@ import Foundation
 #if os(OSX)
 import CoreWLAN
 #elseif os(iOS)
-//import SystemConfiguration.CaptiveNetwork
+import SystemConfiguration.CaptiveNetwork
 #endif
 
 fileprivate let HomeServerAddress = "http://192.168.50.100/eacenter"
 fileprivate let DynamicServerAddress1 = "http://jerryshenming.6655.la:81/eacenter"
 fileprivate let DynamicServerAddress2 = "http://jerrytomlouise.asuscomm.com:81/eacenter"
+fileprivate let SchoolServerAddress = "https://easlink.bcis.cn/eacenter"
 
 #if os(OSX)
 fileprivate var ssidName: String {
     return CWWiFiClient.shared().interface(withName: nil)?.ssid() ?? ""
 }
+/*
+var MainServerAddress: String {
+    return (ssidName == "Jerry5G" || ssidName == "Jerry2.4G" || ssidName == "Tom5G") ? HomeServerAddress : DynamicServerAddress1
+}
+ */
+let MainServerAddress = SchoolServerAddress
+#elseif os(iOS)
+/*
+// FIXME: Do something to make this work
+func getCurrentWifiSSID() -> String {
+    if let interface = CNCopySupportedInterfaces() {
+        for i in 0..<CFArrayGetCount(interface) {
+            let interfaceName: UnsafeRawPointer = CFArrayGetValueAtIndex(interface, i)
+            let rec = unsafeBitCast(interfaceName, to: AnyObject.self)
+            if let unsafeInterfaceData = CNCopyCurrentNetworkInfo("\(rec)" as CFString), let interfaceData = unsafeInterfaceData as? [String : AnyObject] {
+                // connected wifi
+                //print("BSSID: \(interfaceData["BSSID"]), SSID: \(interfaceData["SSID"]), SSIDDATA: \(interfaceData["SSIDDATA"])")
+                return interfaceData["SSID"] as! String
+            } else {
+                // not connected wifi
+                return "No Wifi"
+            }
+        }
+    }
+    return "No Interface"
+}
+
+fileprivate var connectedSSID: String {
+    let ssid = getCurrentWifiSSID()
+    return ssid
+}
 
 var MainServerAddress: String {
-    return (ssidName == "Jerry5G" || ssidName == "Jerry2.4G" || ssidName == "Tom5G") ? HomeServerAddress : DynamicServerAddress2
+    //print(connectedSSID)
+    return (connectedSSID == "Tom5G" || connectedSSID == "Jerry5G" || connectedSSID == "Jerry2.4G") ? HomeServerAddress : DynamicServerAddress1
 }
-#elseif os(iOS)
+*/
 // TODO: Dynamic check SSID too
-let MainServerAddress = HomeServerAddress
-//let MainServerAddress = DynamicServerAddress2
+//let MainServerAddress = HomeServerAddress
+let MainServerAddress = DynamicServerAddress2
 #endif
 
 // AES keys and iv

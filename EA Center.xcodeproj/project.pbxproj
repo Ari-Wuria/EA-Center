@@ -51,6 +51,7 @@
 		D021135B211881C4000E25CB /* CampusMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021135A211881C4000E25CB /* CampusMapViewController.swift */; };
 		D021135D211881D2000E25CB /* MapImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021135C211881D2000E25CB /* MapImageViewController.swift */; };
 		D021135F211896D3000E25CB /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021135E211896D3000E25CB /* AttendanceViewController.swift */; };
+		D023E7F8212EFFB200155503 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = D023E7F7212EFFB200155503 /* dsa_pub.pem */; };
 		D025730420D8A1E30078AE89 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D025730320D8A1E30078AE89 /* AppDelegate.swift */; };
 		D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D025730A20D8A1E40078AE89 /* Assets.xcassets */; };
 		D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */; };
@@ -80,6 +81,9 @@
 		D083A74D20EB7CE9006E56B3 /* ManagerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */; };
 		D085146D20EA6DEE00A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
 		D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */; };
+		D086475D212AEFE000D95632 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D086475C212AEFE000D95632 /* Info.plist */; };
+		D0864762212AF14500D95632 /* EASLINK.html in Resources */ = {isa = PBXBuildFile; fileRef = D0864760212AF14500D95632 /* EASLINK.html */; };
+		D0864765212AF2C800D95632 /* EASLINK.helpindex in Resources */ = {isa = PBXBuildFile; fileRef = D0864763212AF2C800D95632 /* EASLINK.helpindex */; };
 		D08B351A2119B05600497041 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B35192119B05600497041 /* CategoryPickerViewController.swift */; };
 		D08B351C2119F39900497041 /* AttendenceCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08B351B2119F39900497041 /* AttendenceCellView.swift */; };
 		D0902F75211AED9100DE71A6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = D0902F73211AED9100DE71A6 /* Reachability.m */; };
@@ -224,6 +228,7 @@
 		D021135A211881C4000E25CB /* CampusMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CampusMapViewController.swift; sourceTree = "<group>"; };
 		D021135C211881D2000E25CB /* MapImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapImageViewController.swift; sourceTree = "<group>"; };
 		D021135E211896D3000E25CB /* AttendanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
+		D023E7F7212EFFB200155503 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = dsa_pub.pem; sourceTree = "<group>"; };
 		D025730020D8A1E30078AE89 /* EA Center.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "EA Center.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D025730320D8A1E30078AE89 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		D025730A20D8A1E40078AE89 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -255,6 +260,9 @@
 		D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "EASLINK LOGO.001 2.jpeg"; sourceTree = "<group>"; };
 		D083A74C20EB7CE9006E56B3 /* ManagerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerCellView.swift; sourceTree = "<group>"; };
 		D085146C20EA6DEE00A331C5 /* KeychainHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainHelper.swift; sourceTree = "<group>"; };
+		D086475C212AEFE000D95632 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D0864761212AF14500D95632 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = English; path = EASLINK.html; sourceTree = "<group>"; };
+		D0864764212AF2C800D95632 /* English */ = {isa = PBXFileReference; lastKnownFileType = text; name = English; path = EASLINK.helpindex; sourceTree = "<group>"; };
 		D08B35192119B05600497041 /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 		D08B351B2119F39900497041 /* AttendenceCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendenceCellView.swift; sourceTree = "<group>"; };
 		D0902F73211AED9100DE71A6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
@@ -497,9 +505,45 @@
 		D07DE9532111F0E300423D01 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D086475A212AEFAD00D95632 /* EASLINK.help */,
 				D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */,
+				D023E7F7212EFFB200155503 /* dsa_pub.pem */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		D086475A212AEFAD00D95632 /* EASLINK.help */ = {
+			isa = PBXGroup;
+			children = (
+				D086475B212AEFAD00D95632 /* Contents */,
+			);
+			path = EASLINK.help;
+			sourceTree = "<group>";
+		};
+		D086475B212AEFAD00D95632 /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				D086475C212AEFE000D95632 /* Info.plist */,
+				D086475E212AF12600D95632 /* Resources */,
+			);
+			path = Contents;
+			sourceTree = "<group>";
+		};
+		D086475E212AF12600D95632 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D086475F212AF12D00D95632 /* English.lproj */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D086475F212AF12D00D95632 /* English.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				D0864760212AF14500D95632 /* EASLINK.html */,
+				D0864763212AF2C800D95632 /* EASLINK.helpindex */,
+			);
+			path = English.lproj;
 			sourceTree = "<group>";
 		};
 		D08B35182119B03000497041 /* EA Manager */ = {
@@ -843,6 +887,7 @@
 			knownRegions = (
 				en,
 				Base,
+				English,
 			);
 			mainGroup = D02572F720D8A1E30078AE89;
 			productRefGroup = D025730120D8A1E30078AE89 /* Products */;
@@ -894,12 +939,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0DFCEDC20D8A41300DBB70E /* Assets.xcassets in Resources */,
+				D023E7F8212EFFB200155503 /* dsa_pub.pem in Resources */,
 				D07DE9522111F09E00423D01 /* AboutScreen.storyboard in Resources */,
+				D086475D212AEFE000D95632 /* Info.plist in Resources */,
 				D0E3A09121130EEE004F2052 /* ManagerDetail.storyboard in Resources */,
 				D07DE9552111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg in Resources */,
+				D0864762212AF14500D95632 /* EASLINK.html in Resources */,
 				D09D0508210B0FBF000577B7 /* DebugMenu.storyboard in Resources */,
 				D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */,
 				0541489820FF62CA00EFC7C1 /* CoordinatorSettings.storyboard in Resources */,
+				D0864765212AF2C800D95632 /* EASLINK.helpindex in Resources */,
 				D0ABBF4D21135DB600BE81F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1092,6 +1141,22 @@
 				D025730D20D8A1E40078AE89 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		D0864760212AF14500D95632 /* EASLINK.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0864761212AF14500D95632 /* English */,
+			);
+			name = EASLINK.html;
+			sourceTree = "<group>";
+		};
+		D0864763212AF2C800D95632 /* EASLINK.helpindex */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D0864764212AF2C800D95632 /* English */,
+			);
+			name = EASLINK.helpindex;
 			sourceTree = "<group>";
 		};
 		D0C2C0212111FD970002E508 /* Main.storyboard */ = {
@@ -1374,6 +1439,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";
@@ -1402,6 +1468,7 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.13;
 				PRODUCT_BUNDLE_IDENTIFIER = "tomandjerry.EA-Center-Mac";

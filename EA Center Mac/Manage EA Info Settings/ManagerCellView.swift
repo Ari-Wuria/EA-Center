@@ -29,7 +29,7 @@ class ManagerCellView: NSTableCellView {
             // EA ended will use this as well
             statusImageView.image = NSImage(named: "NSStatusNone")
         case 1,5:
-            statusImageView.image = NSImage(named: "NSStatusPartialAvailable")
+            statusImageView.image = NSImage(named: "NSStatusPartiallyAvailable")
         case 2,3:
             statusImageView.image = NSImage(named: "NSStatusAvailable")
         case 4:

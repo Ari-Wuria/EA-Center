@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en_US</string>
+	<key>CFBundleIdentifier</key>
+	<string>tomandjerry.EA-Center-Mac.help</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>EASLINK</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
+	<key>CFBundleSignature</key>
+	<string>hbwr</string>
+	<key>CFBundleVersion</key>
+	<string>1.0</string>
+	<key>HPDBookAccessPath</key>
+	<string>EASLINK.html</string>
+	<key>HPDBookIconPath</key>
+	<string></string>
+	<key>HPDBookIndexPath</key>
+	<string>EASLINK.helpindex</string>
+	<key>HPDBookKBProduct</key>
+	<string>easlink1</string>
+	<key>--HPDBookRemoteURL</key>
+	<string></string>
+	<key>HPDBookTitle</key>
+	<string>EASLINK Help</string>
+	<key>HPDBookType</key>
+	<integer>3</integer>
+</dict>
+</plist>

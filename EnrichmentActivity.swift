@@ -136,10 +136,11 @@ class EnrichmentActivity: NSObject {
         approved = dictionary["approved"] as? Int ?? 0
         categoryID = dictionary["category"] as? Int ?? 0
         
-        // Start date and end date is optional
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy"
         dateFormatter.locale = Locale(identifier: "en_US")
+        
+        // Start date and end date is optional
         startDate = dateFormatter.date(from: dictionary["startdate"] as? String ?? "")
         endDate = dateFormatter.date(from: dictionary["enddate"] as? String ?? "")
         
@@ -148,8 +149,6 @@ class EnrichmentActivity: NSObject {
         
         let joinString = dictionary["joineduserid"] as? String ?? ""
         joinedUserID = joinString.split(separator: ",").map{Int($0)!}
-        
-        self.dateFormatter = dateFormatter
         
         if let attendance = dictionary["attendance"] as? String {
             todayAttendenceList = []
@@ -165,6 +164,8 @@ class EnrichmentActivity: NSObject {
         }
         
         maxStudents = dictionary["maxstudents"] as? Int ?? 0
+        
+        self.dateFormatter = dateFormatter
         
         super.init()
     }
@@ -587,6 +588,62 @@ class EnrichmentActivity: NSObject {
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         let postString = "id=\(id)&approval=\(newState)"
+        request.httpBody = postString.data(using: .utf8)
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { (data, response, error) in
+            guard error == nil else {
+                //print("Error: \(error!.localizedDescription)")
+                DispatchQueue.main.async {
+                    completion(false, error!.localizedDescription)
+                }
+                return
+            }
+            
+            let httpResponse = response as! HTTPURLResponse
+            guard httpResponse.statusCode == 200 else {
+                //print("Wrong Status Code")
+                DispatchQueue.main.async {
+                    completion(false, "Wrong Status Code: \(httpResponse.statusCode)")
+                }
+                return
+            }
+            
+            let jsonData = try? JSONSerialization.jsonObject(with: data!) as! [String: AnyObject]
+            guard let responseDict = jsonData else {
+                //print("No JSON data")
+                DispatchQueue.main.async {
+                    completion(false, "No JSON Data")
+                }
+                return
+            }
+            
+            let success = responseDict["success"] as! Bool
+            DispatchQueue.main.async {
+                if success {
+                    self.approved = newState
+                    
+                    completion(true, nil)
+                } else {
+                    let errString = responseDict["error"] as! String
+                    completion(false, errString)
+                }
+            }
+        }
+        dataTask.resume()
+    }
+    
+    func requestApproval(_ newState: Int, _ startDate: Date, _ endDate: Date, _ completion: @escaping (_ success: Bool, _ errString: String?) -> ()) {
+        let urlString = MainServerAddress + "/manageea/requestapproval.php"
+        let url = URL(string: urlString)!
+        
+        let startDateStr = dateFormatter.string(from: startDate)
+        let endDateStr = dateFormatter.string(from: endDate)
+        
+        var request = URLRequest(url: url)
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        let postString = "id=\(id)&approval=\(newState)&startdate=\(startDateStr)&enddate=\(endDateStr)"
         request.httpBody = postString.data(using: .utf8)
         
         let session = URLSession.shared
