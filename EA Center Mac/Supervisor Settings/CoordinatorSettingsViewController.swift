@@ -189,15 +189,19 @@ extension CoordinatorSettingsViewController: NSTableViewDataSource, NSTableViewD
             }
         }
         
-        AccountProcessor.name(from: firstSupervisor!) { (name) in
-            if name == nil {
-                view.supervisorLabel.stringValue = "Error retriving supervisor"
+        if let firstSupervisor = firstSupervisor {
+            AccountProcessor.name(from: firstSupervisor) { (name) in
+                if name == nil {
+                    view.supervisorLabel.stringValue = "Error retriving supervisor"
+                }
+                if ea.supervisorEmails.count == 1 {
+                    view.supervisorLabel.stringValue = name!
+                } else {
+                    view.supervisorLabel.stringValue = "\(name!) and \(ea.supervisorEmails.count - 1) more"
+                }
             }
-            if ea.supervisorEmails.count == 1 {
-                view.supervisorLabel.stringValue = name!
-            } else {
-                view.supervisorLabel.stringValue = "\(name!) and \(ea.supervisorEmails.count - 1) more"
-            }
+        } else {
+            view.supervisorLabel.stringValue = "No Supervisor"
         }
         
         return view

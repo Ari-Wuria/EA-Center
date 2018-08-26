@@ -99,6 +99,9 @@ let ApplicationIsOutdatedNotification = Notification.Name("eacenter.appoutdated"
 
 // iOS App Version number
 #if os(iOS)
+// 1: 0.9
+// 2: 1.0
+// No more 
 let currentiOSVersion = 1
 #endif
 
