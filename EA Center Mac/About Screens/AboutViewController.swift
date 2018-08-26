@@ -13,6 +13,8 @@ class AboutViewController: NSViewController {
 
     @IBOutlet var mainTouchBar: NSTouchBar!
     
+    @IBOutlet weak var versionLabel: NSTextField!
+    
     var escEvent: Any?
     
     override func viewDidLoad() {
@@ -20,6 +22,12 @@ class AboutViewController: NSViewController {
         // Do view setup here.
         
         title = "About EASLINK"
+        
+        let infoDict = Bundle.main.infoDictionary!
+        let versionString = infoDict["CFBundleShortVersionString"]!
+        let buildString = infoDict["CFBundleVersion"]!
+        
+        versionLabel.stringValue = "version \(versionString) (\(buildString))"
         
         imageView.wantsLayer = true
         imageView.canDrawSubviewsIntoLayer = true
@@ -41,6 +49,8 @@ class AboutViewController: NSViewController {
     
     @IBAction func showUseOfLibraries(_ sender: Any) {
         // TODO: Add use of library
+        let pathToFile = Bundle.main.path(forResource: "Acknowledgement", ofType: "pdf")
+        NSWorkspace.shared.openFile(pathToFile!)
     }
     
     override func makeTouchBar() -> NSTouchBar? {

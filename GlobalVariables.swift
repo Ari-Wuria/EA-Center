@@ -63,7 +63,9 @@ var MainServerAddress: String {
 */
 // TODO: Dynamic check SSID too
 //let MainServerAddress = HomeServerAddress
-let MainServerAddress = DynamicServerAddress2
+//let MainServerAddress = DynamicServerAddress2
+
+let MainServerAddress = SchoolServerAddress
 #endif
 
 // AES keys and iv
@@ -94,6 +96,11 @@ let EAReceivedNewAttendeeNotification = Notification.Name("eacenter.newattendee"
 
 // Other auxiliary notification keys
 let ApplicationIsOutdatedNotification = Notification.Name("eacenter.appoutdated")
+
+// iOS App Version number
+#if os(iOS)
+let currentiOSVersion = 1
+#endif
 
 #if swift(>=4.2) && os(iOS)
 import UIKit.UIGeometry

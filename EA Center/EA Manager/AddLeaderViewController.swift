@@ -116,7 +116,7 @@ class AddLeaderViewController: UITableViewController {
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "getuser"
+        let postString = "getuser=1"
         request.httpBody = postString.data(using: .utf8)
         
         let session = URLSession.shared

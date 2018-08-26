@@ -88,7 +88,7 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
         noWeekSession = false
         
         if isViewLoaded {
-            if !(ea.approved == 2 || ea.approved == 3) || ea.endDate! < Date() {
+            if !(ea.approved == 2 || ea.approved == 3) || ea.endDate! < Date() || ea.endDate! < nextSessionDate! {
                 nextSessionDateLabel.stringValue = "EA not approved or is already over :("
                 attendenceEnabled = false
                 return
@@ -103,14 +103,23 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
         }
         
         if weekSessionDates.count == 0 {
+            noWeekSession = true
             return
         }
+        
+        noWeekSession = false
         
         let earliest = weekSessionDates[0]
         
         nextSessionDate = earliest
         
         if isViewLoaded {
+            if ea.startDate! > date {
+                nextSessionDateLabel.stringValue = "EA not started yet."
+                attendenceEnabled = false
+                return
+            }
+            
             let nextSessionStr = dateFormatter.string(from: nextSessionDate)
             let currentStr = dateFormatter.string(from: Date.today())
             let prefix: String
@@ -145,14 +154,20 @@ class AttendenceViewController: NSViewController, NSTableViewDataSource, NSTable
             return
         }
         
-        if !(currentEA!.approved == 2 || currentEA!.approved == 3) || currentEA!.endDate! < Date() {
+        if !(currentEA!.approved == 2 || currentEA!.approved == 3) || currentEA!.endDate! < Date() || currentEA!.endDate! < nextSessionDate! {
             nextSessionDateLabel.stringValue = "EA not approved or is already over :("
             attendenceEnabled = false
             return
         }
         
-        if !noWeekSession {
+        if noWeekSession {
             nextSessionDateLabel.stringValue = "Please select running days"
+            attendenceEnabled = false
+            return
+        }
+        
+        if currentEA!.startDate! > Date() {
+            nextSessionDateLabel.stringValue = "EA not started yet."
             attendenceEnabled = false
             return
         }

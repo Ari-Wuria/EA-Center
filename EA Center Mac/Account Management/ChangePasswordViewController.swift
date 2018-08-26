@@ -22,6 +22,7 @@ class ChangePasswordViewController: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
         statusLabel.isHidden = true
+        spinner.isHidden = true
     }
     
     @IBAction func update(_ sender: Any) {
@@ -56,6 +57,7 @@ class ChangePasswordViewController: NSViewController {
         let oldPassEnc = AccountProcessor.encrypt(oldPass)!
         let newPassEnc = AccountProcessor.encrypt(newPass)!
         
+        spinner.isHidden = false
         spinner.startAnimation(sender)
         
         currentAccount!.updatePassword(oldPassEnc, newPassEnc) { (success, errStr) in
@@ -82,7 +84,30 @@ class ChangePasswordViewController: NSViewController {
                 self.statusLabel.stringValue = errStr!
             }
             
+            self.spinner.isHidden = true
             self.spinner.stopAnimation(nil)
         }
+    }
+}
+
+// Custom view for popover
+class PopoverRootView: NSView {
+    override func viewDidMoveToWindow() {
+        
+        guard let frameView = window?.contentView?.superview else {
+            return
+        }
+        
+        let backgroundView = PopoverBackgroundView(frame: frameView.bounds)
+        backgroundView.autoresizingMask = [.width, .height]
+        
+        frameView.addSubview(backgroundView, positioned: .below, relativeTo: frameView)
+    }
+}
+
+class PopoverBackgroundView:NSView {
+    override func draw(_ dirtyRect: NSRect) {
+        NSColor(named: "Manage Background")!.set()
+        bounds.fill()
     }
 }

@@ -224,6 +224,15 @@
                                                 <action selector="submitApproval:" target="8f0-7E-ZlG" id="gRY-Wj-Ngt"/>
                                             </connections>
                                         </button>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVf-Wt-mdf">
+                                            <rect key="frame" x="256" y="18" width="121" height="11"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="*Date can be approximate." id="Dda-1f-yuQ">
+                                                <font key="font" metaFont="system" size="9"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                                 <color key="borderColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -679,13 +688,23 @@
                                                 <autoresizingMask key="autoresizingMask"/>
                                             </tableHeaderView>
                                         </scrollView>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Owa-Qn-09g">
+                                            <rect key="frame" x="271" y="2" width="179" height="11"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Leave attendance blank to skip session." id="iB8-gT-gQM">
+                                                <font key="font" metaFont="system" size="9"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="ETi-oX-1Hs" secondAttribute="trailing" constant="19" id="95w-NL-kn2"/>
                                         <constraint firstItem="ETi-oX-1Hs" firstAttribute="leading" secondItem="GSS-Hv-dvK" secondAttribute="leading" constant="19" id="NkA-Qy-570"/>
+                                        <constraint firstAttribute="trailing" secondItem="Owa-Qn-09g" secondAttribute="trailing" constant="20" id="PZF-ki-ofH"/>
                                         <constraint firstItem="ETi-oX-1Hs" firstAttribute="trailing" secondItem="sfG-LC-iDF" secondAttribute="trailing" id="YT3-WI-wDb"/>
                                         <constraint firstItem="ETi-oX-1Hs" firstAttribute="top" secondItem="sfG-LC-iDF" secondAttribute="bottom" constant="8" id="cEr-nc-3Yr"/>
                                         <constraint firstAttribute="bottom" secondItem="ETi-oX-1Hs" secondAttribute="bottom" constant="18" id="dd4-fJ-IdB"/>
+                                        <constraint firstAttribute="bottom" secondItem="Owa-Qn-09g" secondAttribute="bottom" constant="2" id="saY-89-57J"/>
                                         <constraint firstItem="ETi-oX-1Hs" firstAttribute="leading" secondItem="sfG-LC-iDF" secondAttribute="leading" id="xAU-vm-3Kj"/>
                                     </constraints>
                                 </view>
@@ -725,7 +744,7 @@
                         <touchBarItem id="Auf-cJ-7Uj">
                             <viewController key="viewController" id="yTr-pR-FzU">
                                 <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7bD-K1-PAx">
-                                    <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="102" height="41"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="wa4-Jk-YbH"/>
                                     </constraints>
@@ -740,7 +759,7 @@
                         <touchBarItem id="Lg0-0Z-I0v">
                             <viewController key="viewController" id="QmW-hW-fKI">
                                 <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mBX-OO-KMp">
-                                    <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="102" height="41"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="hsc-ny-N9x"/>
                                     </constraints>
@@ -754,7 +773,7 @@
                         <touchBarItem id="ReR-Jm-FQr">
                             <viewController key="viewController" id="Gas-rg-FCG">
                                 <button key="view" hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XMQ-Qa-oRY">
-                                    <rect key="frame" x="0.0" y="0.0" width="90" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="102" height="41"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="90" id="Lm7-O7-wiK"/>
                                     </constraints>

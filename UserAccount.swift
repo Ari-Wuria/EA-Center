@@ -116,7 +116,7 @@ class UserAccount: NSObject, Codable {
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "changepass&email=\(userEmail)&password=\(oldPassword)&newpass=\(newPassword)"
+        let postString = "changepass=1&email=\(userEmail)&password=\(oldPassword)&newpass=\(newPassword)"
         request.httpBody = postString.data(using: .utf8)
         
         let session = URLSession.shared

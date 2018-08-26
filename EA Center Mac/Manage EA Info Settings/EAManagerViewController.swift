@@ -354,10 +354,6 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
     }
     
     func tableViewSelectionDidChange(_ notification: Notification) {
-        if wantReloadOnSelection == false {
-            return
-        }
-        
         if tableView.selectedRow == -1 {
             containerView.isHidden = true
             titleNameLabel.stringValue = "Manage EA"
@@ -370,7 +366,6 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         computer.isHidden = true
         
         let ea = myEA[tableView.selectedRow]
-        NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: ["currentLogin":loggedInEmail])
         
         selectedEA = ea
         
@@ -400,7 +395,15 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         
         if ea.endDate != nil {
             let currentDate = Date()
-            if ea.endDate! < currentDate {
+            let days = ea.days
+            var weekSessionDates = [Date]()
+            for day in days {
+                weekSessionDates.append(currentDate.next(currentDate.weekdayFromInt(day)!, considerToday: true))
+            }
+            weekSessionDates.sort { (date1, date2) -> Bool in
+                return date1 < date2
+            }
+            if ea.endDate! < currentDate || ea.endDate! < weekSessionDates.first ?? currentDate {
                 approvalButton.isHidden = false
                 approvalButton.isEnabled = true
                 approvalButton.title = "Resubmit approval to run again."
@@ -409,6 +412,12 @@ extension EAManagerViewController: NSTableViewDelegate, NSTableViewDataSource {
         }
         
         touchBar = nil
+        
+        if wantReloadOnSelection == false {
+            return
+        }
+        
+        NotificationCenter.default.post(name: ManagerSelectionChangedNotification, object: ea, userInfo: ["currentLogin":loggedInEmail])
     }
 }
 

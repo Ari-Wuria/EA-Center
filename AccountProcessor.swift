@@ -87,7 +87,15 @@ class AccountProcessor {
                 DispatchQueue.main.async {
                     // We will use the errorCode variable to pass the user id
                     let userID = responseDict["userid"] as! Int
-                    completion(true, userID, nil)
+                    if let token = responseDict["token"] {
+                        if let token = token as? String {
+                            if token.count > 0 {
+                                completion(true, userID, token)
+                            }
+                        }
+                    } else {
+                        completion(true, userID, nil)
+                    }
                 }
             }
         }
@@ -389,7 +397,7 @@ class AccountProcessor {
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "forgot&password=\(encryptedPassword)&email=\(email)"
+        let postString = "forgot=1&password=\(encryptedPassword)&email=\(email)"
         //let postStringEscaped = postString.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed)
         //request.httpBody = postStringEscaped?.data(using: .utf8)
         request.httpBody = postString.data(using: .utf8)

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.3.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="UGf-So-gQ6">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="UGf-So-gQ6">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14215"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.3.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaDFRPlugin" version="14215.3"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.13.2"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="the Touch Bar" minToolsVersion="8.1" minSystemVersion="10.12.2" requiredIntegratedClassName="NSTouchBar"/>
@@ -12,7 +12,7 @@
         <!--Window Controller-->
         <scene sceneID="0cS-We-q1z">
             <objects>
-                <windowController storyboardIdentifier="Login" id="UGf-So-gQ6" customClass="LoginWindowController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="Login" id="UGf-So-gQ6" customClass="LoginWindowController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Login" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="KxH-Lr-hdu">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -33,7 +33,7 @@
         <!--Login View Controller-->
         <scene sceneID="buR-tc-MA3">
             <objects>
-                <viewController id="Eai-4h-4g4" customClass="LoginViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Eai-4h-4g4" customClass="LoginViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Scl-X3-xCm">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -205,7 +205,7 @@
         <!--Window Controller-->
         <scene sceneID="es3-W1-nD9">
             <objects>
-                <windowController storyboardIdentifier="AccountSettings" id="k3t-lP-dOB" customClass="UserSettingsWindowController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="AccountSettings" id="k3t-lP-dOB" customClass="UserSettingsWindowController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="User Settings" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" id="gcp-0F-w36">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -226,7 +226,7 @@
         <!--Account Settings View Controller-->
         <scene sceneID="Dmc-eF-tgV">
             <objects>
-                <viewController id="DJ5-23-IQM" customClass="AccountSettingsViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DJ5-23-IQM" customClass="AccountSettingsViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="G4Z-Dv-cuT">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -361,91 +361,79 @@
         <!--Change Password View Controller-->
         <scene sceneID="OXh-ji-NHr">
             <objects>
-                <viewController id="1V5-mn-RpZ" customClass="ChangePasswordViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="DAi-7n-3Dd">
+                <viewController id="1V5-mn-RpZ" customClass="ChangePasswordViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="DAi-7n-3Dd" customClass="PopoverRootView" customModule="EASLINK" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="195"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="RG7-pB-Bie">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="195"/>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3hp-rZ-i9g">
+                                <rect key="frame" x="16" y="86" width="219" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" ambiguous="YES" id="JJ0-Bb-c96">
-                                    <rect key="frame" x="1" y="1" width="248" height="193"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VIt-b3-nqg">
-                                            <rect key="frame" x="15" y="88" width="219" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="New Password" drawsBackground="YES" usesSingleLineMode="YES" id="d45-Qp-fG3">
-                                                <font key="font" metaFont="system" size="19"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <allowedInputSourceLocales>
-                                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                                </allowedInputSourceLocales>
-                                            </secureTextFieldCell>
-                                        </secureTextField>
-                                        <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g0T-uu-dIO">
-                                            <rect key="frame" x="15" y="47" width="219" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Confirm New Password" drawsBackground="YES" usesSingleLineMode="YES" id="6yR-5O-Acb">
-                                                <font key="font" metaFont="system" size="19"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <allowedInputSourceLocales>
-                                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                                </allowedInputSourceLocales>
-                                            </secureTextFieldCell>
-                                        </secureTextField>
-                                        <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wVF-ju-2WV">
-                                            <rect key="frame" x="15" y="131" width="219" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Current Password" drawsBackground="YES" usesSingleLineMode="YES" id="kmG-LD-C4g">
-                                                <font key="font" metaFont="system" size="19"/>
-                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                <allowedInputSourceLocales>
-                                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
-                                                </allowedInputSourceLocales>
-                                            </secureTextFieldCell>
-                                        </secureTextField>
-                                        <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5uR-ez-SRU">
-                                            <rect key="frame" x="82" y="5" width="85" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="push" title="Update" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WCJ-JP-Yx9">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="update:" target="1V5-mn-RpZ" id="65D-Sf-o3J"/>
-                                            </connections>
-                                        </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HIR-zj-HWR">
-                                            <rect key="frame" x="18" y="169" width="212" height="18"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Status" id="Q5m-La-ghp">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                        <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="CE0-8d-VW7">
-                                            <rect key="frame" x="218" y="12" width="16" height="16"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        </progressIndicator>
-                                    </subviews>
-                                </view>
-                                <color key="borderColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="fillColor" name="Manage Background"/>
-                            </box>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="New Password" drawsBackground="YES" usesSingleLineMode="YES" id="AMe-88-QDj">
+                                    <font key="font" metaFont="system" size="19"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2s5-6g-zPO">
+                                <rect key="frame" x="16" y="45" width="219" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Confirm New Password" drawsBackground="YES" usesSingleLineMode="YES" id="2NQ-Vu-PQs">
+                                    <font key="font" metaFont="system" size="19"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <secureTextField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ydQ-r3-SUu">
+                                <rect key="frame" x="16" y="129" width="219" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <secureTextFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" placeholderString="Current Password" drawsBackground="YES" usesSingleLineMode="YES" id="r1F-Kq-TBQ">
+                                    <font key="font" metaFont="system" size="19"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <allowedInputSourceLocales>
+                                        <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                    </allowedInputSourceLocales>
+                                </secureTextFieldCell>
+                            </secureTextField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IlN-MJ-UXT">
+                                <rect key="frame" x="83" y="3" width="85" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="push" title="Update" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="pnr-xw-9pc">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="update:" target="1V5-mn-RpZ" id="f5U-gG-XHV"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Erg-hI-Ng7">
+                                <rect key="frame" x="19" y="167" width="212" height="18"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Status" id="JAe-hy-wgv">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="mMT-RG-VXf">
+                                <rect key="frame" x="219" y="10" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                         </subviews>
                     </view>
                     <connections>
-                        <outlet property="confirmTextField" destination="g0T-uu-dIO" id="U1p-RD-kaI"/>
-                        <outlet property="currentPassTextField" destination="wVF-ju-2WV" id="NNa-wl-rVo"/>
-                        <outlet property="newPassTextField" destination="VIt-b3-nqg" id="IWI-4R-Bp7"/>
-                        <outlet property="spinner" destination="CE0-8d-VW7" id="Xd2-2L-Fcb"/>
-                        <outlet property="statusLabel" destination="HIR-zj-HWR" id="Q74-Ed-MOb"/>
+                        <outlet property="confirmTextField" destination="2s5-6g-zPO" id="aLh-WW-Sdm"/>
+                        <outlet property="currentPassTextField" destination="ydQ-r3-SUu" id="ZS2-OQ-P2n"/>
+                        <outlet property="newPassTextField" destination="3hp-rZ-i9g" id="6Tv-RN-sKh"/>
+                        <outlet property="spinner" destination="mMT-RG-VXf" id="WKM-sU-WZS"/>
+                        <outlet property="statusLabel" destination="Erg-hI-Ng7" id="Es1-VS-gsR"/>
                     </connections>
                 </viewController>
                 <customObject id="gwL-Hz-FDG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -455,7 +443,7 @@
         <!--Register View Controller-->
         <scene sceneID="Z47-Jy-fL5">
             <objects>
-                <viewController storyboardIdentifier="RegisterView" id="bus-gL-6tJ" customClass="RegisterViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RegisterView" id="bus-gL-6tJ" customClass="RegisterViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="UAL-C1-pAS">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -576,7 +564,7 @@
                         <touchBarItem id="3T2-Ff-rxf">
                             <viewController key="viewController" id="8IK-ac-LqG">
                                 <button key="view" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fAl-Xr-TWD">
-                                    <rect key="frame" x="0.0" y="0.0" width="84" height="30"/>
+                                    <rect key="frame" x="0.0" y="-11" width="84" height="41"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uEo-cQ-QL3">
                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -617,7 +605,7 @@ Gw
         <!--Forgot Password View Controller-->
         <scene sceneID="wjD-af-AMX">
             <objects>
-                <viewController storyboardIdentifier="ForgotView" id="5LE-d2-wFc" customClass="ForgotPasswordViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgotView" id="5LE-d2-wFc" customClass="ForgotPasswordViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="SU0-gW-azG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="280"/>
                         <autoresizingMask key="autoresizingMask"/>

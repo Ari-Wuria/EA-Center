@@ -70,6 +70,7 @@
 		D0656E36210CA606008A2E3B /* SendApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */; };
 		D0656E39210DE998008A2E3B /* EALeadersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E38210DE998008A2E3B /* EALeadersViewController.swift */; };
 		D0656E3B210DFBAB008A2E3B /* AddLeaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */; };
+		D06B9AE32131C59900570CBD /* Acknowledgement.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D06B9AE22131C59900570CBD /* Acknowledgement.pdf */; };
 		D0706E3C2121A22C0042DAF3 /* CheckboxBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0706E3B2121A22C0042DAF3 /* CheckboxBGView.swift */; };
 		D0706E3E2121A2E10042DAF3 /* BugReportWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0706E3D2121A2E10042DAF3 /* BugReportWindowController.swift */; };
 		D07A6688211DAB9100C7F0EC /* InitialLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D07A6687211DAB9100C7F0EC /* InitialLaunchScreen.storyboard */; };
@@ -137,6 +138,8 @@
 		D0B7C47C20EF94BF004DE8F3 /* ManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47B20EF94BF004DE8F3 /* ManagerViewController.swift */; };
 		D0B7C47E20EF94D8004DE8F3 /* EAManageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B7C47D20EF94D8004DE8F3 /* EAManageCell.swift */; };
 		D0B9A3AB2111F85100AB7AF1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9A3A92111F85100AB7AF1 /* AboutViewController.swift */; };
+		D0C53A192132732C00666CE7 /* RequestApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C53A182132732C00666CE7 /* RequestApprovalViewController.swift */; };
+		D0C53A1B2132990900666CE7 /* RequestApprovalHudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C53A1A2132990900666CE7 /* RequestApprovalHudView.swift */; };
 		D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */; };
 		D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */; };
 		D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37620E529840009AC07 /* AESCrypto.swift */; };
@@ -209,7 +212,7 @@
 		};
 		D0DF9D02212303BA004D85FC /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
@@ -266,6 +269,7 @@
 		D0656E34210CA606008A2E3B /* SendApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendApprovalViewController.swift; sourceTree = "<group>"; };
 		D0656E38210DE998008A2E3B /* EALeadersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EALeadersViewController.swift; sourceTree = "<group>"; };
 		D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLeaderViewController.swift; sourceTree = "<group>"; };
+		D06B9AE22131C59900570CBD /* Acknowledgement.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = Acknowledgement.pdf; sourceTree = "<group>"; };
 		D0706E3B2121A22C0042DAF3 /* CheckboxBGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxBGView.swift; sourceTree = "<group>"; };
 		D0706E3D2121A2E10042DAF3 /* BugReportWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportWindowController.swift; sourceTree = "<group>"; };
 		D07639EE2116E1DB00DEF287 /* EA Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center.entitlements"; sourceTree = "<group>"; };
@@ -322,6 +326,8 @@
 		D0B7C47D20EF94D8004DE8F3 /* EAManageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAManageCell.swift; sourceTree = "<group>"; };
 		D0B9A3A92111F85100AB7AF1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		D0C2C0222111FD970002E508 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D0C53A182132732C00666CE7 /* RequestApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApprovalViewController.swift; sourceTree = "<group>"; };
+		D0C53A1A2132990900666CE7 /* RequestApprovalHudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApprovalHudView.swift; sourceTree = "<group>"; };
 		D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D0CCB37620E529840009AC07 /* AESCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESCrypto.swift; sourceTree = "<group>"; };
@@ -329,7 +335,7 @@
 		D0DB6AE420DA26DE00BBE8F0 /* BulletinWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BulletinWindowController.swift; sourceTree = "<group>"; };
 		D0DB6AE920DA53F900BBE8F0 /* EA Center Mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center Mac.entitlements"; sourceTree = "<group>"; };
 		D0DFCED520D8A41200DBB70E /* EASLINK.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EASLINK.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D0DFCED720D8A41200DBB70E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D0DFCED720D8A41200DBB70E /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D0DFCED920D8A41200DBB70E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; wrapsLines = 0; };
 		D0DFCEDB20D8A41300DBB70E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D0DFCEDE20D8A41300DBB70E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -485,9 +491,10 @@
 				D017800F20E77FA9003757A7 /* MeViewController.swift */,
 				0558B2AA20F5E3A4009B62E4 /* SettingsViewController.swift */,
 				0558B2AC20F602AA009B62E4 /* StudentBulletinViewController.swift */,
-				053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */,
 				D0211359211881A3000E25CB /* About Screens */,
 				D09D05022109FD55000577B7 /* Profile Editor */,
+				053A8CFF20F9C71A003FE84F /* GenericTableCell.swift */,
+				D0C53A1A2132990900666CE7 /* RequestApprovalHudView.swift */,
 				D025730A20D8A1E40078AE89 /* Assets.xcassets */,
 				D0C2C0212111FD970002E508 /* Main.storyboard */,
 				D025730C20D8A1E40078AE89 /* LaunchScreen.storyboard */,
@@ -537,6 +544,7 @@
 		D07DE9532111F0E300423D01 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D06B9AE22131C59900570CBD /* Acknowledgement.pdf */,
 				D086475A212AEFAD00D95632 /* EASLINK.help */,
 				D07DE9542111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg */,
 				D023E7F7212EFFB200155503 /* dsa_pub.pem */,
@@ -592,6 +600,7 @@
 				D0656E38210DE998008A2E3B /* EALeadersViewController.swift */,
 				D0656E3A210DFBAB008A2E3B /* AddLeaderViewController.swift */,
 				D08B35192119B05600497041 /* CategoryPickerViewController.swift */,
+				D0C53A182132732C00666CE7 /* RequestApprovalViewController.swift */,
 			);
 			path = "EA Manager";
 			sourceTree = "<group>";
@@ -981,6 +990,7 @@
 				D0864762212AF14500D95632 /* EASLINK.html in Resources */,
 				D09D0508210B0FBF000577B7 /* DebugMenu.storyboard in Resources */,
 				D042C18C20DB9FC00017DE4F /* UserSettings.storyboard in Resources */,
+				D06B9AE32131C59900570CBD /* Acknowledgement.pdf in Resources */,
 				0541489820FF62CA00EFC7C1 /* CoordinatorSettings.storyboard in Resources */,
 				D0864765212AF2C800D95632 /* EASLINK.helpindex in Resources */,
 				D0ABBF4D21135DB600BE81F4 /* Main.storyboard in Resources */,
@@ -1048,7 +1058,9 @@
 				D0B7C47A20ECFC2A004DE8F3 /* ProfileEditorViewController.swift in Sources */,
 				D07A668C211DB50500C7F0EC /* BiometricAuth.swift in Sources */,
 				D0177FF420E67B59003757A7 /* EAListCell.swift in Sources */,
+				D0C53A192132732C00666CE7 /* RequestApprovalViewController.swift in Sources */,
 				D0B4D984211AE5F200B497D4 /* LaunchAnimator.swift in Sources */,
+				D0C53A1B2132990900666CE7 /* RequestApprovalHudView.swift in Sources */,
 				053A8D0020F9C71A003FE84F /* GenericTableCell.swift in Sources */,
 				D08B351A2119B05600497041 /* CategoryPickerViewController.swift in Sources */,
 				D0177FF720E6869D003757A7 /* EADescriptionViewController.swift in Sources */,

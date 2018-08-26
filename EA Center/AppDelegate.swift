@@ -68,6 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let defaults: [String:Any] = ["rememberlogin":true, "loginemail":"", "biometriclock":false, "launched": false, "passwordchanged":false, "firstdisplayed":false, "biometricasked":false, "pushtoken":""]
         UserDefaults.standard.register(defaults: defaults)
         
+        // Test Code to always show launch screen
+        //UserDefaults.standard.set(false, forKey: "firstdisplayed")
+        
         let firstLaunched = UserDefaults.standard.bool(forKey: "launched")
         if firstLaunched == false {
             // First launch processing

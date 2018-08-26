@@ -27,14 +27,6 @@ struct Attendance {
     var attendanceStatus: Int
     var attendanceDate: String
     
-    init(from initializer: String) {
-        let array = initializer.split(separator: "|").map{String($0)}
-        studentID = Int(array.first!)!
-        attendanceDate = array[1]
-        let attendanceCode = array.last!
-        attendanceStatus = Attendance.attendanceIndex(from: attendanceCode)
-    }
-    
     static func attendanceIndex(from code: String) -> Int {
         switch code {
         case "A":
@@ -152,13 +144,22 @@ class EnrichmentActivity: NSObject {
         
         if let attendance = dictionary["attendance"] as? String {
             todayAttendenceList = []
-            let attendanceList = attendance.split(separator: ",").map{String($0)}
+            let attendanceList = attendance.split(separator: "~").map{String($0)}
             // TODO: Filter attendance list
             for attendanceStr in attendanceList {
-                let attendance = Attendance(from: attendanceStr)
-                let today = dateFormatter.string(from: Date.today())
-                if today == attendance.attendanceDate {
-                    todayAttendenceList?.append(attendance)
+                let attendanceSplit = attendanceStr.split(separator: "!").map { return String($0) }
+                let studentID = Int(attendanceSplit.first!)!
+                let attendancesForStudent = attendanceSplit.last!
+                let formattedAttendancesStr = attendancesForStudent[1..<attendancesForStudent.count - 1]
+                for attendanceDetail in formattedAttendancesStr.split(separator: ",").map({ String($0) }) {
+                    let attendanceArray = attendanceDetail.split(separator: "|").map { String($0) }
+                    let date = attendanceArray.first!
+                    let attendanceCode = attendanceArray.last!
+                    let attendance = Attendance(date: date, studentID: studentID, attendanceStatus: Attendance.attendanceIndex(from: attendanceCode))
+                    let today = dateFormatter.string(from: Date.today())
+                    if today == attendance.attendanceDate {
+                        todayAttendenceList?.append(attendance)
+                    }
                 }
             }
         }
@@ -191,18 +192,18 @@ class EnrichmentActivity: NSObject {
     /// @param name: Name of EA
     class func create(withName name: String, email leaderEmail: String, completion: @escaping (_ success: Bool, _ ea: EnrichmentActivity?, _ errStr: String?) -> ()) {
         // Experimenting with hash API protection
-        let hashiv = randomAlphanumericString(length: 16)
-        let hashEncrypted = aesEncrypt(GlobalAPIHash, GlobalAPIEncryptKey, hashiv)!
+        //let hashiv = randomAlphanumericString(length: 16)
+        //let hashEncrypted = aesEncrypt(GlobalAPIHash, GlobalAPIEncryptKey, hashiv)!
         
         //print("Hash: \(hashEncrypted), iv: \(hashiv)")
         
-        let urlString = MainServerAddress + "/manageea/createea"
+        let urlString = MainServerAddress + "/manageea/createea.php"
         let url = URL(string: urlString)!
         
         var request = URLRequest(url: url)
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
-        let postString = "name=\(name)&email=\(leaderEmail)&hash=\(hashEncrypted)&hashkey=\(hashiv)"
+        let postString = "name=\(name)&email=\(leaderEmail)"
         request.httpBody = postString.data(using: .utf8)
         
         // Temporary
@@ -754,7 +755,7 @@ class EnrichmentActivity: NSObject {
         request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
 
-        let postString = "id=\(id)&deleteea"
+        let postString = "id=\(id)&deleteea=1"
         request.httpBody = postString.data(using: .utf8)
         
         let session = URLSession.shared

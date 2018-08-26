@@ -127,6 +127,11 @@ class MeViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        defer {
+            if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
+                tableView.deselectRow(at: indexPath, animated: true)
+            }
+        }
         if indexPath.section == 0 && indexPath.row == 1 {
             if processing == true {
                 return
@@ -181,23 +186,90 @@ class MeViewController: UITableViewController {
         } else if indexPath.section == 0 && indexPath.row == 2 {
             // Register
             if autoLoginState == 1 {
-                tableView.deselectRow(at: indexPath, animated: true)
                 return
             }
+            if processing == true {
+                return
+            }
+            processing = true
+            /*
+            // No more joke alert
             let alert = UIAlertController(title: "Error Registering Account", message: "Reason: This feature haven't been implemented by the developer yet.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
                 self.presentAlert("Hahahaha", "Did I tried to make that error really serious? Lol")
             }))
             present(alert, animated: true, completion: nil)
-            
+            */
             let email = emailTextField.text!
             guard AccountProcessor.validateEmail(email) else {
                 presentAlert("Invalid Email", "Please use valid BCIS Email")
+                processing = false
                 return
             }
             
             // TODO: Complete register
-            //let password = passwordTextField.text!
+            let password = passwordTextField.text!
+            
+            guard password.count >= 8 else {
+                presentAlert("Password does not match requirement", "Password must have length >8.")
+                processing = false
+                return
+            }
+            
+            guard AccountProcessor.isAlphanumeral(password) else {
+                presentAlert("Password does not match requirement", "Password must be alphanumeral.")
+                processing = false
+                return
+            }
+            
+            let confirmAlert = UIAlertController(title: "Confirm your password", message: "To prevent you from forgetting your password later, please confirm your password here.", preferredStyle: .alert)
+            confirmAlert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
+                // Continue registering here
+                // Confirm password
+                let confirm = confirmAlert.textFields![0].text
+                guard confirm == password else {
+                    self.presentAlert("Password does not match!", "Please try again")
+                    self.processing = false
+                    return
+                }
+                
+                // Get account type
+                let accountType = self.getAccountType(from: email)
+                
+                guard accountType != -1 else {
+                    self.presentAlert("Error", "Can not confirm account type. Report bug.")
+                    self.processing = false
+                    return
+                }
+                
+                // Encrypt password
+                guard let passwordEncrypted = AccountProcessor.encrypt(password) else {
+                    self.presentAlert("Error", "Can not prepare registration data. Report bug.")
+                    self.processing = false
+                    return
+                }
+                
+                self.sendRegistrationData(with: email, passwordEncrypted, accountType, { (success, errStr) in
+                    self.presentedViewController?.dismiss(animated: true) {
+                        let title: String
+                        if success {
+                            title = "Success"
+                        } else {
+                            title = "Error"
+                        }
+                        
+                        self.presentAlert(title, errStr)
+                    }
+                    
+                    self.processing = false
+                })
+            }))
+            confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            confirmAlert.addTextField { (textField) in
+                textField.placeholder = "Confirm password here"
+                textField.isSecureTextEntry = true
+            }
+            present(confirmAlert, animated: true, completion: nil)
         } else if indexPath.section == 1 && indexPath.row == 0 {
             // Profile
             if view.window!.rootViewController!.traitCollection.horizontalSizeClass == .compact {
@@ -289,6 +361,7 @@ class MeViewController: UITableViewController {
     func login(withEmail email: String, password: String, automatic: Bool = false) {
         guard AccountProcessor.validateEmail(email) else {
             presentAlert("Invalid Email", "Please use valid BCIS Email")
+            processing = false
             return
         }
         
@@ -480,6 +553,34 @@ class MeViewController: UITableViewController {
         }, completion: { _ in
             self.splitViewController!.preferredDisplayMode = .automatic
         })
+    }
+    
+    // Registration Helper
+    
+    func getAccountType(from email: String) -> Int {
+        // Only student and teachers can be registered
+        // Other types of accounts must be created directly from database
+        let emailPrefix = String(email.prefix(10))
+        if emailPrefix.isNumber {
+            return 4
+        } else {
+            return 3
+        }
+        //return -1
+    }
+    
+    @discardableResult func sendRegistrationData(with email: String, _ encryptedPassword: String, _ accountType: Int, _ completion: @escaping (Bool, String) -> ()) -> UIAlertController {
+        let alert = UIAlertController(title: "Registering...", message: nil, preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
+        
+        AccountProcessor.sendRegistrationData(email, encryptedPassword, accountType) { (success, errStr) in
+            if success == true {
+                completion(true, "A verification email has been sent to \(email).\n\nAfter comfirming, please set your name under Me->Profile which will show up after you login.")
+            } else {
+                completion(false, errStr)
+            }
+        }
+        return alert
     }
 
 }

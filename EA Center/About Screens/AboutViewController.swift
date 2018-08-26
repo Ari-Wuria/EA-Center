@@ -19,7 +19,8 @@ class AboutViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
-        versionLabel.text = "Version: \(version!)"
+        let build = Bundle.main.infoDictionary!["CFBundleVersion"]
+        versionLabel.text = "Version: \(version!) (\(build))"
     }
 
     /*

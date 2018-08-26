@@ -30,8 +30,26 @@ class CoordinatorDetailViewController: NSViewController {
     func updateInfo(with ea: EnrichmentActivity) {
         currentEA = ea
         
+        let daysString = ea.days.map { (day) -> String in
+            switch day {
+            case 1:
+                return "Mon"
+            case 2:
+                return "Tues"
+            case 3:
+                return "Weds"
+            case 4:
+                return "Thurs"
+            case 5:
+                return "Fri"
+            default:
+                return "Err"
+            }
+        }
+        
         weekLabel.stringValue = ea.weekModeForDisplay()
-        daysLabel.stringValue = "I'll find a way to display this..."
+        //daysLabel.stringValue = "I'll find a way to display this..."
+        daysLabel.stringValue = daysString.count > 0 ? daysString.joined(separator: ",") : "No day selected"
         timeLabel.stringValue = ea.timeModeForDisplay()
         locationLabel.stringValue = (ea.location.count > 0) ? ea.location : "Location Unspecified"
         gradeLabel.stringValue = "Grade \(ea.minGrade) - \(ea.maxGrade)"

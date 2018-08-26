@@ -265,76 +265,68 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
     @IBAction func login(_ sender: Any) {
         // Dismiss any text fields
         endEditing()
-        if authenticationFailed {
-            // Login from biometric
-            let email = usernameTextField.text!
-            if passwordTextField.text == String(data: KeychainHelper.loadKeychain(account: email)!, encoding: .utf8) {
-                // Success
-                usernameTextField.resignFirstResponder()
-                passwordTextField.resignFirstResponder()
-                UIView.animate(withDuration: 0.2, animations: {
-                    self.loginContainer.alpha = 0
-                }) { _ in
-                    self.loginContainer.removeFromSuperview()
-                    self.moveLogoBackAndShowMainScreen()
-                }
-            } else {
-                showAlert(withTitle: "Can not login", message: "Wrong password!")
-            }
-        } else {
-            // Newcomer login
-            if loginPending == true {
-                return
-            }
-            
-            loginPending = true
-            
-            let email = usernameTextField.text!
-            let password = passwordTextField.text!
-            
-            guard AccountProcessor.validateEmail(email) else {
-                showAlert(withTitle: "Invalid Email", message: "Please use a BCIS email")
-                loginPending = false
-                return
-            }
-            
-            loginSpinner.startAnimating()
-            
-            let encryptedPass = AccountProcessor.encrypt(password)!
-            
-            AccountProcessor.sendLoginRequest(email, encryptedPass, deviceToken) { (success, errCode, errStr) in
-                if success {
-                    let saveSuccess = KeychainHelper.saveKeychain(account: email, password: password.data(using: .utf8)!)
-                    if saveSuccess {
-                        UserDefaults.standard.set(true, forKey: "rememberlogin")
-                        UserDefaults.standard.set(email, forKey: "loginemail")
-                        let authAsked = UserDefaults.standard.bool(forKey: "biometricasked")
-                        if !authAsked {
-                            self.askForEnableBiometric { (enable) in
-                                if enable {
-                                    UserDefaults.standard.set(true, forKey: "biometriclock")
-                                }
-                                UserDefaults.standard.set(true, forKey: "biometricasked")
-                                UserDefaults.standard.set(true, forKey: "firstdisplayed")
-                                UserDefaults.standard.synchronize()
-                                UIView.animate(withDuration: 0.2, animations: {
-                                    self.loginContainer.alpha = 0
-                                }, completion: { _ in
-                                    self.loginContainer.removeFromSuperview()
-                                    self.moveLogoBackAndShowMainScreen()
-                                })
+        if loginPending == true {
+            return
+        }
+        
+        loginPending = true
+        
+        let email = usernameTextField.text!
+        let password = passwordTextField.text!
+        
+        guard AccountProcessor.validateEmail(email) else {
+            showAlert(withTitle: "Invalid Email", message: "Please use a BCIS email")
+            loginPending = false
+            return
+        }
+        
+        loginSpinner.startAnimating()
+        
+        let encryptedPass = AccountProcessor.encrypt(password)!
+        
+        AccountProcessor.sendLoginRequest(email, encryptedPass, deviceToken) { (success, errCode, errStr) in
+            if success || self.authenticationFailed == false {
+                let saveSuccess = KeychainHelper.saveKeychain(account: email, password: password.data(using: .utf8)!)
+                if saveSuccess {
+                    UserDefaults.standard.set(true, forKey: "rememberlogin")
+                    UserDefaults.standard.set(email, forKey: "loginemail")
+                    let authAsked = UserDefaults.standard.bool(forKey: "biometricasked")
+                    if !authAsked {
+                        self.askForEnableBiometric { (enable) in
+                            if enable {
+                                UserDefaults.standard.set(true, forKey: "biometriclock")
                             }
+                            UserDefaults.standard.set(true, forKey: "biometricasked")
+                            UserDefaults.standard.set(true, forKey: "firstdisplayed")
+                            UserDefaults.standard.synchronize()
+                            UIView.animate(withDuration: 0.2, animations: {
+                                self.loginContainer.alpha = 0
+                            }, completion: { _ in
+                                self.loginContainer.removeFromSuperview()
+                                self.moveLogoBackAndShowMainScreen()
+                            })
                         }
                     } else {
-                        self.loginSpinner.stopAnimating()
-                        self.loginPending = false
-                        self.showAlert(withTitle: "Login Failed", message: "System error when processing login. Please reinstall the app.")
+                        UserDefaults.standard.set(true, forKey: "firstdisplayed")
+                        UIView.animate(withDuration: 0.2, animations: {
+                            self.loginContainer.alpha = 0
+                        }, completion: { _ in
+                            self.loginContainer.removeFromSuperview()
+                            self.moveLogoBackAndShowMainScreen()
+                        })
                     }
                 } else {
                     self.loginSpinner.stopAnimating()
                     self.loginPending = false
-                    self.showAlert(withTitle: "Login Failed", message: errStr! + " " + "(\(errCode!))")
+                    self.showAlert(withTitle: "Login Failed", message: "System error when processing login. Please reinstall the app.")
                 }
+            } else if success || self.authenticationFailed == true {
+                self.loginContainer.removeFromSuperview()
+                self.moveLogoBackAndShowMainScreen()
+            } else {
+                self.loginSpinner.stopAnimating()
+                self.loginPending = false
+                self.showAlert(withTitle: "Login Failed", message: errStr! + " " + "(\(errCode!))")
             }
         }
     }
@@ -356,7 +348,70 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
     }
     
     @IBAction func register(_ sender: Any) {
-        showAlert(withTitle: "Not implemented yet", message: nil)
+        //showAlert(withTitle: "Not implemented yet", message: nil)
+        endEditing()
+        // Same as MeViewController
+        let email = usernameTextField.text!
+        guard AccountProcessor.validateEmail(email) else {
+            showAlert(withTitle: "Invalid Email", message: "Please use valid BCIS Email")
+            return
+        }
+        
+        let password = passwordTextField.text!
+        
+        guard password.count >= 8 else {
+            showAlert(withTitle: "Password does not match requirement", message: "Password must have length >8.")
+            return
+        }
+        
+        guard AccountProcessor.isAlphanumeral(password) else {
+            showAlert(withTitle: "Password does not match requirement", message: "Password must be alphanumeral.")
+            return
+        }
+        
+        let confirmAlert = UIAlertController(title: "Confirm your password", message: "To prevent you from forgetting your password later, please confirm your password here.", preferredStyle: .alert)
+        confirmAlert.addAction(UIAlertAction(title: "Confirm", style: .default, handler: { action in
+            // Continue registering here
+            // Confirm password
+            let confirm = confirmAlert.textFields![0].text
+            guard confirm == password else {
+                self.showAlert(withTitle: "Password does not match!", message: "Please try again")
+                return
+            }
+            
+            // Get account type
+            let accountType = self.getAccountType(from: email)
+            
+            guard accountType != -1 else {
+                self.showAlert(withTitle: "Error", message: "Can not confirm account type. Report bug.")
+                return
+            }
+            
+            // Encrypt password
+            guard let passwordEncrypted = AccountProcessor.encrypt(password) else {
+                self.showAlert(withTitle: "Error", message: "Can not prepare registration data. Report bug.")
+                return
+            }
+            
+            self.sendRegistrationData(with: email, passwordEncrypted, accountType, { (success, errStr) in
+                self.presentedViewController?.dismiss(animated: true) {
+                    let title: String
+                    if success {
+                        title = "Success"
+                    } else {
+                        title = "Error"
+                    }
+                    
+                    self.showAlert(withTitle: title, message: errStr)
+                }
+            })
+        }))
+        confirmAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        confirmAlert.addTextField { (textField) in
+            textField.placeholder = "Confirm password here"
+            textField.isSecureTextEntry = true
+        }
+        present(confirmAlert, animated: true, completion: nil)
     }
     
     func showAlert(withTitle title: String, message: String?) {
@@ -507,5 +562,34 @@ extension LaunchViewController: UITextFieldDelegate {
 extension LaunchViewController: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, animationControllerFor operation: UINavigationController.Operation, from fromVC: UIViewController, to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         return LaunchAnimator()
+    }
+}
+
+// Extension for account registering, same as MeViewController
+extension LaunchViewController {
+    func getAccountType(from email: String) -> Int {
+        // Only student and teachers can be registered
+        // Other types of accounts must be created directly from database
+        let emailPrefix = String(email.prefix(10))
+        if emailPrefix.isNumber {
+            return 4
+        } else {
+            return 3
+        }
+        //return -1
+    }
+    
+    @discardableResult func sendRegistrationData(with email: String, _ encryptedPassword: String, _ accountType: Int, _ completion: @escaping (Bool, String) -> ()) -> UIAlertController {
+        let alert = UIAlertController(title: "Registering...", message: nil, preferredStyle: .alert)
+        present(alert, animated: true, completion: nil)
+        
+        AccountProcessor.sendRegistrationData(email, encryptedPassword, accountType) { (success, errStr) in
+            if success == true {
+                completion(true, "A verification email has been sent to \(email).\n\nAfter comfirming, please set your name under Me->Profile which will show up after you login.")
+            } else {
+                completion(false, errStr)
+            }
+        }
+        return alert
     }
 }

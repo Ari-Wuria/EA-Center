@@ -19,6 +19,8 @@ class KeychainHelper {
         
         SecItemDelete(query as CFDictionary)
         
+        deleteKeychain(account: account)
+        
         let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
         if status != noErr {
             return false

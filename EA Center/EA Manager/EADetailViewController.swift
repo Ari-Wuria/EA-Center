@@ -28,6 +28,8 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     var selectedCategoryID: Int?
     @IBOutlet var categoryLabel: UILabel!
     
+    @IBOutlet weak var sendApprovalLabel: UILabel!
+    
     var working = false
     
     var currentEA: EnrichmentActivity? {
@@ -93,6 +95,41 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
             viewUpdated = true
             
             maxStudentSelector.selectedSegmentIndex = currentEA!.maxStudents
+            
+            if currentEA!.approved == 2 || currentEA!.approved == 3 {
+                // Approved (black)
+                sendApprovalLabel.text = "EA is running"
+                sendApprovalLabel.textColor = #colorLiteral(red: 0.4666666687, green: 0.7647058964, blue: 0.2666666806, alpha: 1)
+            } else if currentEA!.approved == 1 {
+                // Waiting for approval... (black)
+                sendApprovalLabel.text = "Waiting for approval..."
+                sendApprovalLabel.textColor = UIColor.darkText
+            } else if currentEA!.approved == 0 {
+                // Submit this EA for approval (blue)
+                sendApprovalLabel.text = "Submit this EA for approval"
+                sendApprovalLabel.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+            } else if currentEA!.approved == 4 {
+                // Rejected. Resubmit approval. (red)
+                sendApprovalLabel.text = "Rejected. Resubmit approval"
+                sendApprovalLabel.textColor = UIColor.red
+            }
+            
+            if currentEA!.endDate != nil {
+                let date = Date()
+                let days = currentEA!.days
+                var weekSessionDates = [Date]()
+                for day in days {
+                    weekSessionDates.append(date.next(date.weekdayFromInt(day)!, considerToday: true))
+                }
+                weekSessionDates.sort { (date1, date2) -> Bool in
+                    return date1 < date2
+                }
+                if currentEA!.endDate! < date || currentEA!.endDate! < weekSessionDates.first ?? date {
+                    // Ended. Resubmit approval to run again. (blue)
+                    sendApprovalLabel.text = "Rejected. Resubmit approval."
+                    sendApprovalLabel.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+                }
+            }
         }
     }
     
@@ -161,6 +198,14 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         return true
     }
     
+    @IBAction func backFromSendApproval(_ sender: UIStoryboardSegue) {}
+    
+    @IBAction func sendApprovalDone(_ sender: UIStoryboardSegue) {
+        // TODO: Update label
+        sendApprovalLabel.text = "Waiting for approval..."
+        sendApprovalLabel.textColor = UIColor.darkText
+    }
+    
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
@@ -170,8 +215,18 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         }
  */
         switch (indexPath.section, indexPath.row) {
-        case (0, 6), (0, 8), (1, _), (2, _), (3, _), (4, _):
+        case (0, 6), (0, 8), (2, _), (3, _), (4, _), (5, _):
             return indexPath
+        case (1, 0):
+            if currentEA!.endDate != nil && currentEA!.endDate! < Date() {
+                return indexPath
+            }
+            switch currentEA?.approved {
+            case 0, 4:
+                return indexPath
+            default:
+                return nil
+            }
         default:
             return nil
         }
@@ -180,6 +235,7 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 && indexPath.row == 8 {
+            // Save pressed
             // Dismiss the location text field
             self.locationTextField.resignFirstResponder()
             
@@ -191,7 +247,29 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
             
             // Save
             saveData()
+        } else if indexPath.section == 1 && indexPath.row == 0 {
+            performSegue(withIdentifier: "SendApproval", sender: tableView.cellForRow(at: indexPath))
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.section == 1 {
+            let cell = super.tableView(tableView, cellForRowAt: indexPath) as! GenericTableCell
+            
+            if currentEA!.endDate != nil && currentEA!.endDate! < Date() {
+                cell.selectable = true
+            }
+            switch currentEA?.approved {
+            case 0, 4:
+                cell.selectable = true
+            default:
+                cell.selectable = false
+            }
+            
+            return cell
+        }
+        
+        return super.tableView(tableView, cellForRowAt: indexPath)
     }
 
     // MARK: - Navigation
@@ -224,6 +302,10 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         } else if segue.identifier == "TakeAttendance" {
             let controller = segue.destination as! AttendanceViewController
             controller.currentEA = currentEA!
+        } else if segue.identifier == "SendApproval" {
+            let nav = segue.destination as! UINavigationController
+            let controller = nav.topViewController as! RequestApprovalViewController
+            controller.currentEA = currentEA
         }
     }
 

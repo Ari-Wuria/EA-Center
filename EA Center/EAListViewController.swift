@@ -361,6 +361,38 @@ class EAListViewController: UITableViewController {
             }
             self.updateJoinableEA()
             // Defer...
+            
+            // Auto update check
+            let currentAppVersion = response["iosversion"] as! Int
+            if currentAppVersion > currentiOSVersion {
+                let isCritical = response["ioscritical"] as! Int
+                let updateReadable = response["iosreadable"] as! String
+                
+                let title: String
+                let message: String
+                if isCritical != 1 {
+                    title = "Version \(updateReadable) Available"
+                    message = "Would you want to update now?"
+                } else {
+                    title = "Critical Update Available"
+                    message = "Update now to proceed."
+                }
+                
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Update Now", style: .default, handler: { action in
+                        print("Update!")
+                        let updateLink = responseDict!["ioslink"] as! String
+                        if let url = URL(string: updateLink) {
+                            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                        }
+                    }))
+                    if isCritical != 1 {
+                        alert.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                    }
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
         }
         dataTask.resume()
     }

@@ -9,11 +9,20 @@
 import UIKit
 
 class GenericTableCell: UITableViewCell {
+    
+    var selectable: Bool = true {
+        didSet {
+            if selectable == false {
+                selectionStyle = .none
+            } else {
+                selectionStyle = .default
+            }
+        }
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        
         let view = UIView()
         view.backgroundColor = UIColor(named: "Table Selection Color")
         selectedBackgroundView = view
