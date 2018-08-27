@@ -22,6 +22,13 @@ class CoordinatorDetailViewController: NSViewController {
     @IBOutlet weak var approveButton: NSButton!
     @IBOutlet weak var rejectButton: NSButton!
     
+    lazy var dateFormatter = { () -> DateFormatter in
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        return formatter
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -55,6 +62,10 @@ class CoordinatorDetailViewController: NSViewController {
         gradeLabel.stringValue = "Grade \(ea.minGrade) - \(ea.maxGrade)"
         datesLabel.stringValue = "Formatted date"
         shortDescLabel.stringValue = ea.shortDescription
+        
+        let startDate = dateFormatter.string(from: ea.startDate!)
+        let endDate = dateFormatter.string(from: ea.endDate!)
+        datesLabel.stringValue = "\(startDate) - \(endDate)"
         
         approveButton.isEnabled = true
         rejectButton.isEnabled = true

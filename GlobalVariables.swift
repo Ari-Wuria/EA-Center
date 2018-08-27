@@ -19,6 +19,7 @@ fileprivate let HomeServerAddress = "http://192.168.50.100/eacenter"
 fileprivate let DynamicServerAddress1 = "http://jerryshenming.6655.la:81/eacenter"
 fileprivate let DynamicServerAddress2 = "http://jerrytomlouise.asuscomm.com:81/eacenter"
 fileprivate let SchoolServerAddress = "https://easlink.bcis.cn/eacenter"
+fileprivate let SchoolDebugAddress = "https://easlink.bcis.cn/eacenter-debug"
 
 #if os(OSX)
 fileprivate var ssidName: String {
@@ -29,7 +30,37 @@ var MainServerAddress: String {
     return (ssidName == "Jerry5G" || ssidName == "Jerry2.4G" || ssidName == "Tom5G") ? HomeServerAddress : DynamicServerAddress1
 }
  */
-let MainServerAddress = SchoolServerAddress
+
+// UserDefaults: "Debug":false, "ServerID":0
+// Server ID:
+// 0: Production
+// 1: School Debug
+// 2: Home (6655)
+// 3: Home (Asus)
+// 4: Home (Local)
+var MainServerAddress: String {
+    let useDebug = UserDefaults.standard.bool(forKey: "Debug")
+    if useDebug {
+        let serverID = UserDefaults.standard.integer(forKey: "ServerID")
+        switch serverID {
+        case 0:
+            return SchoolServerAddress
+        case 1:
+            return SchoolDebugAddress
+        case 2:
+            return DynamicServerAddress1
+        case 3:
+            return DynamicServerAddress2
+        case 4:
+            return HomeServerAddress
+        default:
+            fatalError("Wrong Server ID!")
+        }
+    } else {
+        // Use school for everybody
+        return SchoolServerAddress
+    }
+}
 #elseif os(iOS)
 /*
 // FIXME: Do something to make this work

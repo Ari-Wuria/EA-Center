@@ -41,7 +41,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         NSUserNotificationCenter.default.delegate = self
         
-        let defaults = ["RememberLogin":false, "LoginEmail":""] as [String : Any]
+        let defaults = ["RememberLogin":false, "LoginEmail":"", "Debug":false, "ServerID":0] as [String : Any]
         UserDefaults.standard.register(defaults: defaults)
         
         if UserDefaults.standard.bool(forKey: "RememberLogin") {

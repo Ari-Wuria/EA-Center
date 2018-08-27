@@ -91,6 +91,8 @@ class AccountProcessor {
                         if let token = token as? String {
                             if token.count > 0 {
                                 completion(true, userID, token)
+                            } else {
+                                completion(true, userID, nil)
                             }
                         }
                     } else {

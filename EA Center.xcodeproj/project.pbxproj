@@ -154,6 +154,7 @@
 		D0E2FA672121B03E00767AA6 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E2FA662121B03E00767AA6 /* UserNotifications.framework */; };
 		D0E3486A212302FF0091D4C8 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0E34869212302FF0091D4C8 /* Sparkle.framework */; };
 		D0E3A09121130EEE004F2052 /* ManagerDetail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D0E3A09021130EEE004F2052 /* ManagerDetail.storyboard */; };
+		D0F232F1213421B2008AC460 /* DebugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F232F0213421B2008AC460 /* DebugViewController.swift */; };
 		D0FEB70520E0ECDD009CB82E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */; };
 		D0FEB70620E0ED0C009CB82E /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */; };
 		D0FEB70920E0F6AD009CB82E /* MainInfoEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */; };
@@ -344,6 +345,7 @@
 		D0E2FA662121B03E00767AA6 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		D0E34869212302FF0091D4C8 /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		D0E3A09021130EEE004F2052 /* ManagerDetail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManagerDetail.storyboard; sourceTree = "<group>"; };
+		D0F232F0213421B2008AC460 /* DebugViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewController.swift; sourceTree = "<group>"; };
 		D0FEB70420E0ECDD009CB82E /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		D0FEB70720E0F6AD009CB82E /* MainInfoEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInfoEditorViewController.swift; sourceTree = "<group>"; };
 		D0FEB70B20E1280C009CB82E /* EAListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EAListCellView.swift; sourceTree = "<group>"; };
@@ -734,6 +736,7 @@
 				D07DE9512111F09E00423D01 /* AboutScreen.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */,
+				D0F232F0213421B2008AC460 /* DebugViewController.swift */,
 			);
 			path = "EA Center Mac";
 			sourceTree = "<group>";
@@ -1137,6 +1140,7 @@
 				D05E85DC21061E5300EA4577 /* ViewDescriptionViewController.swift in Sources */,
 				D0FEB70E20E128CC009CB82E /* EnrichmentActivity.swift in Sources */,
 				D05E85D42104BDA900EA4577 /* UserSettingsWindowController.swift in Sources */,
+				D0F232F1213421B2008AC460 /* DebugViewController.swift in Sources */,
 				D0A13C312125BF570026A3E9 /* DateHelper.swift in Sources */,
 				D0FEB74020E147AF009CB82E /* ioapi_buf.c in Sources */,
 				D08B351C2119F39900497041 /* AttendenceCellView.swift in Sources */,

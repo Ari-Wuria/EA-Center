@@ -339,9 +339,17 @@ class MeViewController: UITableViewController {
     }
     
     func presentAlert(_ title: String, _ message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        present(alert, animated: true, completion: nil)
+        if let presented = self.presentedViewController, presented is UIAlertController {
+            presented.dismiss(animated: true) {
+                let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+            }
+        } else {
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -372,6 +380,11 @@ class MeViewController: UITableViewController {
         
         // Only send device token when remembering login
         let rememberLogin = UserDefaults.standard.bool(forKey: "rememberlogin")
+        
+        if automatic == false {
+            let alert = UIAlertController(title: "Logging in...", message: nil, preferredStyle: .alert)
+            self.present(alert, animated: true, completion: nil)
+        }
         
         AccountProcessor.sendLoginRequest(email, encryptedPass, rememberLogin == true ? tokenToSend : nil) { (success, errCode, errStr) in
             if success == true {
@@ -420,6 +433,10 @@ class MeViewController: UITableViewController {
                             settingsWindow.updateUI()
                         }
                         self.autoLoginState = 2
+                        
+                        if let presented = self.presentedViewController, presented is UIAlertController {
+                            presented.dismiss(animated: true, completion: nil)
+                        }
                     } else {
                         switch errCode {
                         case -1:

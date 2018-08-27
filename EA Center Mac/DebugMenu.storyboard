@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14306.4" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="3z7-aO-VPy">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14313.13.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="3z7-aO-VPy">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14306.4"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14313.13.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -10,8 +10,8 @@
         <scene sceneID="iiM-rD-6a0">
             <objects>
                 <windowController id="3z7-aO-VPy" sceneMemberID="viewController">
-                    <window key="window" title="Debug" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gqp-nI-RvB">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                    <window key="window" title="EASLINK Debug" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="gqp-nI-RvB">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="245" y="301" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -27,28 +27,121 @@
             </objects>
             <point key="canvasLocation" x="85" y="142"/>
         </scene>
-        <!--View Controller-->
+        <!--Debug View Controller-->
         <scene sceneID="bnb-y5-kVr">
             <objects>
-                <viewController id="7m5-1D-lLc" sceneMemberID="viewController">
+                <viewController id="7m5-1D-lLc" customClass="DebugViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="fTL-wZ-ej8">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="k4K-tB-tz2">
-                                <rect key="frame" x="161" y="126" width="158" height="18"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="This is the debug window" id="k2U-WR-22n">
-                                    <font key="font" usesAppearanceFont="YES"/>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NCF-29-qgT">
+                                <rect key="frame" x="190" y="219" width="100" height="18"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Debug Mode" bezelStyle="regularSquare" imagePosition="left" inset="2" id="Avc-ea-0yQ">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="toggleDebug:" target="7m5-1D-lLc" id="Dng-YU-ZxP"/>
+                                </connections>
+                            </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1L8-Qe-02B">
+                                <rect key="frame" x="59" y="34" width="362" height="34"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" alignment="center" title="Please use these at your own risk. Be mindful, and don't ruin the server for everyone else." id="sap-YG-EXs">
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ISp-L1-sy0">
+                                <rect key="frame" x="101" y="76" width="278" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="If you want something else here, WeChat me." id="2ip-hK-cbT">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M71-QM-6Iv">
+                                <rect key="frame" x="116" y="165" width="211" height="11"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="*May need to restart app to fully take changes." id="a5Z-Iu-f4I">
+                                    <font key="font" metaFont="miniSystem"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sjn-Ky-sRv">
+                                <rect key="frame" x="60" y="123" width="361" height="34"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" alignment="center" title="*WARNING: Do not use Tom Local unless you're really in my house. It will brick your app otherwise." id="FJr-Od-wSo">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aNZ-CK-dHK">
+                                <rect key="frame" x="109" y="186" width="91" height="17"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Debug Server:" id="f2t-EM-5uV">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <popUpButton verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mPY-k3-peg">
+                                <rect key="frame" x="204" y="181" width="169" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Production (default)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="mq2-Yv-ZpZ" id="4oV-Yi-vbO">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="e5y-mZ-vYc">
+                                        <items>
+                                            <menuItem title="Production (default)" state="on" id="mq2-Yv-ZpZ">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="Production (default)">
+                                                        <attributes>
+                                                            <color key="NSColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="13" name="SFProText-Regular"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                            </menuItem>
+                                            <menuItem title="School Debug" id="CY9-6z-KWA">
+                                                <attributedString key="attributedTitle"/>
+                                            </menuItem>
+                                            <menuItem title="Home (6655)" id="KEM-tD-oTg"/>
+                                            <menuItem title="Home (Asus)" id="23B-T1-F4c">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                            <menuItem title="Home (Tom Local)" id="VMo-QO-vb0">
+                                                <attributedString key="attributedTitle">
+                                                    <fragment content="Home (Tom Local)">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="13" name="HelveticaNeue"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="serverChanged:" target="7m5-1D-lLc" id="ckb-h1-s8j"/>
+                                </connections>
+                            </popUpButton>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="k4K-tB-tz2" firstAttribute="centerX" secondItem="fTL-wZ-ej8" secondAttribute="centerX" id="ABj-Ec-4N4"/>
-                            <constraint firstItem="k4K-tB-tz2" firstAttribute="centerY" secondItem="fTL-wZ-ej8" secondAttribute="centerY" id="Ajf-fq-s9F"/>
-                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="debugCheckbox" destination="NCF-29-qgT" id="57E-Y4-ZUD"/>
+                        <outlet property="serverPopup" destination="mPY-k3-peg" id="ubd-LC-tGm"/>
+                    </connections>
                 </viewController>
                 <customObject id="yIn-4V-qTq" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
