@@ -201,10 +201,9 @@ extension AppDelegate: EAListSplitViewControlling, ManagerSplitViewControlling, 
 
 extension AppDelegate: LaunchViewControllerDelegate {
     func launchScreenPresented(_ controller: LaunchViewController, targetController: UISplitViewController) {
+        splitViewController = targetController
         // Process iPad split view stuff after launch screen is presented
         if !(window!.rootViewController!.traitCollection.horizontalSizeClass == .compact) {
-            splitViewController = targetController
-            
             detailViewController.navigationItem.leftBarButtonItem = splitViewController.displayModeButtonItem
             
             masterTabBarController.title = "All EAs"
@@ -213,8 +212,6 @@ extension AppDelegate: LaunchViewControllerDelegate {
             listViewController.splitViewControllingDelegate = self
             managerController.splitViewControllingDelegate = self
             meController.splitViewControllingDelegate = self
-            
-            meController.pushNotificationToken = deviceToken
             
             let orientation = UIDevice.current.orientation
             if orientation == .portrait || orientation == .portraitUpsideDown {
@@ -228,6 +225,8 @@ extension AppDelegate: LaunchViewControllerDelegate {
                 }
             }
         }
+        // Pass on push notification token
+        meController.pushNotificationToken = deviceToken
     }
 }
 

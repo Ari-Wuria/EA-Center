@@ -133,6 +133,19 @@ class EADetailViewController: UITableViewController, UITextFieldDelegate {
         }
     }
     
+    func keyboardSave() {
+        self.locationTextField.resignFirstResponder()
+        
+        if working == true {
+            return
+        }
+        
+        working = true
+        
+        // Save
+        saveData()
+    }
+    
     func saveData() {
         let weekMode = weekSelector.selectedSegmentIndex + 1
         let timeMode = timeSelector.selectedSegmentIndex + 1

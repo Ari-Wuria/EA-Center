@@ -20,7 +20,7 @@ class AboutViewController: UIViewController {
         
         let version = Bundle.main.infoDictionary!["CFBundleShortVersionString"]
         let build = Bundle.main.infoDictionary!["CFBundleVersion"]
-        versionLabel.text = "Version: \(version!) (\(build))"
+        versionLabel.text = "Version: \(version!) (\(build!))"
     }
 
     /*

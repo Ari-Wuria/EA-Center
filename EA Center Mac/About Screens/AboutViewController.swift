@@ -25,8 +25,9 @@ class AboutViewController: NSViewController {
         
         let infoDict = Bundle.main.infoDictionary!
         let versionString = infoDict["CFBundleShortVersionString"]!
+        let buildString = infoDict["CFBundleVersion"]!
         
-        versionLabel.stringValue = "version \(versionString)"
+        versionLabel.stringValue = "version \(versionString) (\(buildString))"
         
         imageView.wantsLayer = true
         imageView.canDrawSubviewsIntoLayer = true

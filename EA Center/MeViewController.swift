@@ -381,12 +381,14 @@ class MeViewController: UITableViewController {
         // Only send device token when remembering login
         let rememberLogin = UserDefaults.standard.bool(forKey: "rememberlogin")
         
+        let deviceIdentifier = UIDevice.current.identifierForVendor?.uuidString
+        let deviceName = UIDevice.current.name
         if automatic == false {
             let alert = UIAlertController(title: "Logging in...", message: nil, preferredStyle: .alert)
             self.present(alert, animated: true, completion: nil)
         }
         
-        AccountProcessor.sendLoginRequest(email, encryptedPass, rememberLogin == true ? tokenToSend : nil) { (success, errCode, errStr) in
+        AccountProcessor.sendLoginRequest(email, encryptedPass, rememberLogin == true ? tokenToSend : nil, !automatic ? deviceIdentifier : nil, !automatic ? deviceName : nil) { (success, errCode, errStr) in
             if success == true {
                 //self.presentAlert("You're now logged in", "Nothing else for now :)")
                 let userID = errCode
@@ -402,41 +404,53 @@ class MeViewController: UITableViewController {
                         
                         UserDefaults.standard.set(false, forKey: "passwordchanged")
                         
-                        NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":resultAccount])
-                        
-                        if rememberLogin {
-                            let success = KeychainHelper.saveKeychain(account: email, password: password.data(using: .utf8)!)
-                            if success {
-                                UserDefaults.standard.set(true, forKey: "rememberlogin")
-                                UserDefaults.standard.set(email, forKey: "loginemail")
-                            }
-                        }
-                        
-                        let authAsked = UserDefaults.standard.bool(forKey: "biometricasked")
-                        if !authAsked {
-                            self.askForEnableBiometric { (enable) in
-                                if enable {
-                                    UserDefaults.standard.set(true, forKey: "biometriclock")
-                                    if let settingsWindow = self.splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
-                                        settingsWindow.updateUI()
-                                    }
+                        if automatic {
+                            if let errStr = errStr, errStr.count > 0 && errStr.starts(with: "device_id_received") {
+                                let tokenSplit = errStr.split(separator: ":").map { String($0) }
+                                let deviceToken = tokenSplit[1]
+                                if deviceIdentifier != deviceToken {
+                                    let deviceName = tokenSplit[2]
+                                    let alert = UIAlertController(title: "Another device had logged in to your account!", message: "If you do not own \"\(deviceName)\" then your account might be hacked!\n\nIf this is your device, you can ignore this notification and log back in.", preferredStyle: .alert)
+                                    alert.addAction(UIAlertAction(title: "Dismiss", style: .default, handler: { (action) in
+                                        // TODO: Require a manual login
+                                        //self.finishUpLogin(with: email, password, rememberLogin: rememberLogin, resultAccount: resultAccount)
+                                        
+                                        // Reset login screen and data
+                                        let loginCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 1, section: 0))
+                                        loginCell.textLabel?.text = "Login"
+                                        let registerCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 2, section: 0))
+                                        registerCell.isHidden = false
+                                        let profileCell = self.tableView(self.tableView, cellForRowAt: IndexPath(row: 0, section: 1))
+                                        profileCell.isHidden = true
+                                        self.updateTableView()
+                                        
+                                        self.usernameLabel.isHidden = true
+                                        self.classLabel.isHidden = true
+                                        self.emailTextField.isHidden = false
+                                        self.passwordTextField.isHidden = false
+                                        self.emailTextField.text = ""
+                                        self.passwordTextField.text = ""
+                                        
+                                        self.emailTextField.text = email
+                                        
+                                        UserDefaults.standard.set("", forKey: "loginemail")
+                                        UserDefaults.standard.synchronize()
+                                        KeychainHelper.deleteKeychain(account: self.currentUserAccount!.userEmail)
+                                        
+                                        self.autoLoginState = -1
+                                        
+                                        loginCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+                                        registerCell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.4784313725, blue: 1, alpha: 1)
+                                    }))
+                                    self.present(alert, animated: true, completion: nil)
+                                    self.processing = false
+                                    
+                                    return
                                 }
-                                UserDefaults.standard.set(true, forKey: "biometricasked")
                             }
                         }
                         
-                        UserDefaults.standard.synchronize()
-                        
-                        if let settingsWindow = self.splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
-                            settingsWindow.loggedIn = true
-                            settingsWindow.userAccount = self.currentUserAccount
-                            settingsWindow.updateUI()
-                        }
-                        self.autoLoginState = 2
-                        
-                        if let presented = self.presentedViewController, presented is UIAlertController {
-                            presented.dismiss(animated: true, completion: nil)
-                        }
+                        self.finishUpLogin(with: email, password, rememberLogin: rememberLogin, resultAccount: resultAccount)
                     } else {
                         switch errCode {
                         case -1:
@@ -497,6 +511,50 @@ class MeViewController: UITableViewController {
                 self.processing = false
             }
         }
+    }
+    
+    func finishUpLogin(with email: String, _ password: String, rememberLogin: Bool, resultAccount: UserAccount) {
+        if rememberLogin {
+            let success = KeychainHelper.saveKeychain(account: email, password: password.data(using: .utf8)!)
+            if success {
+                UserDefaults.standard.set(true, forKey: "rememberlogin")
+                UserDefaults.standard.set(email, forKey: "loginemail")
+            }
+        }
+        
+        NotificationCenter.default.post(name: LoginSuccessNotification, object: ["account":resultAccount])
+        
+        if let presented = self.presentedViewController, presented is UIAlertController {
+            presented.dismiss(animated: true, completion: {
+                self.completeByAskingAuth()
+            })
+        } else {
+            self.completeByAskingAuth()
+        }
+    }
+    
+    func completeByAskingAuth() {
+        let authAsked = UserDefaults.standard.bool(forKey: "biometricasked")
+        if !authAsked {
+            self.askForEnableBiometric { (enable) in
+                if enable {
+                    UserDefaults.standard.set(true, forKey: "biometriclock")
+                    if let settingsWindow = self.splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
+                        settingsWindow.updateUI()
+                    }
+                }
+                UserDefaults.standard.set(true, forKey: "biometricasked")
+            }
+        }
+        
+        UserDefaults.standard.synchronize()
+        
+        if let settingsWindow = self.splitViewControllingDelegate?.currentSplitViewDetail(self) as? SettingsViewController {
+            settingsWindow.loggedIn = true
+            settingsWindow.userAccount = self.currentUserAccount
+            settingsWindow.updateUI()
+        }
+        self.autoLoginState = 2
     }
     
     func askForEnableBiometric(_ completion: @escaping (Bool) -> Void) {

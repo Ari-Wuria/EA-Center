@@ -255,7 +255,7 @@ extension AddLeaderViewController: NSTableViewDelegate, NSTableViewDataSource, N
             } else {
                 account = accountList[row]
             }
-            view.textField?.stringValue = account.username
+            view.textField?.stringValue = account.username.count > 0 ? account.username : "(no name)"
             return view
         } else if (tableColumn?.identifier)!.rawValue == "Email" {
             let view = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "Email"), owner: nil) as! NSTableCellView

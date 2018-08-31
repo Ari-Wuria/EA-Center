@@ -19,6 +19,7 @@ class ViewController: NSViewController {
     
     @IBOutlet var longDescTextView: NSTextView!
     @IBOutlet weak var longDescLoadingLabel: NSTextField!
+    @IBOutlet weak var longDescProgressIndicator: NSProgressIndicator!
     
     @IBOutlet var statusVisualEffectView: NSVisualEffectView!
     @IBOutlet weak var eaStatusLabel: NSTextField!
@@ -81,6 +82,7 @@ class ViewController: NSViewController {
         //longDescTextView.layer?.masksToBounds = false
         
         longDescLoadingLabel.isHidden = true
+        longDescProgressIndicator.stopAnimation(nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(loggedIn(_:)), name: LoginSuccessNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(loggedOut(_:)), name: LogoutNotification, object: nil)
@@ -334,6 +336,7 @@ class ViewController: NSViewController {
             longDescTextView.string = ""
             statusVisualEffectView.isHidden = true
             longDescLoadingLabel.isHidden = true
+            longDescProgressIndicator.stopAnimation(nil)
             return
         }
         
@@ -421,6 +424,7 @@ class ViewController: NSViewController {
                 try? FileManager.default.removeItem(at: URL(fileURLWithPath: unzipLocation))
                 
                 self.longDescLoadingLabel.isHidden = true
+                self.longDescProgressIndicator.stopAnimation(nil)
             }
         }
         downloadTask!.resume()
@@ -703,6 +707,7 @@ extension ViewController: NSTableViewDataSource, NSTableViewDelegate {
         
         if descriptionNeedsUpdate {
             longDescLoadingLabel.isHidden = false
+            longDescProgressIndicator.startAnimation(nil)
             longDescTextView.string = ""
             updateEADescription(row)
         }

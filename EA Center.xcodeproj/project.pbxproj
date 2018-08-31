@@ -73,6 +73,7 @@
 		D06B9AE32131C59900570CBD /* Acknowledgement.pdf in Resources */ = {isa = PBXBuildFile; fileRef = D06B9AE22131C59900570CBD /* Acknowledgement.pdf */; };
 		D0706E3C2121A22C0042DAF3 /* CheckboxBGView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0706E3B2121A22C0042DAF3 /* CheckboxBGView.swift */; };
 		D0706E3E2121A2E10042DAF3 /* BugReportWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0706E3D2121A2E10042DAF3 /* BugReportWindowController.swift */; };
+		D079047D2139672E00F21A18 /* DebugViewBugsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D079047B2139672E00F21A18 /* DebugViewBugsViewController.swift */; };
 		D07A6688211DAB9100C7F0EC /* InitialLaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D07A6687211DAB9100C7F0EC /* InitialLaunchScreen.storyboard */; };
 		D07A668A211DABD600C7F0EC /* iPhone Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = D07A6689211DABD600C7F0EC /* iPhone Logo.png */; };
 		D07A668C211DB50500C7F0EC /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = D07A668B211DB50500C7F0EC /* BiometricAuth.swift */; };
@@ -274,6 +275,7 @@
 		D0706E3B2121A22C0042DAF3 /* CheckboxBGView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckboxBGView.swift; sourceTree = "<group>"; };
 		D0706E3D2121A2E10042DAF3 /* BugReportWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BugReportWindowController.swift; sourceTree = "<group>"; };
 		D07639EE2116E1DB00DEF287 /* EA Center.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "EA Center.entitlements"; sourceTree = "<group>"; };
+		D079047B2139672E00F21A18 /* DebugViewBugsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugViewBugsViewController.swift; sourceTree = "<group>"; };
 		D07A6687211DAB9100C7F0EC /* InitialLaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InitialLaunchScreen.storyboard; sourceTree = "<group>"; };
 		D07A6689211DABD600C7F0EC /* iPhone Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone Logo.png"; sourceTree = "<group>"; };
 		D07A668B211DB50500C7F0EC /* BiometricAuth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
@@ -732,11 +734,12 @@
 				D0E3A09021130EEE004F2052 /* ManagerDetail.storyboard */,
 				D042C18B20DB9FC00017DE4F /* UserSettings.storyboard */,
 				0541489720FF62CA00EFC7C1 /* CoordinatorSettings.storyboard */,
-				D09D0507210B0FBF000577B7 /* DebugMenu.storyboard */,
 				D07DE9512111F09E00423D01 /* AboutScreen.storyboard */,
+				D09D0507210B0FBF000577B7 /* DebugMenu.storyboard */,
 				D0DFCEE020D8A41300DBB70E /* Info.plist */,
 				D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */,
 				D0F232F0213421B2008AC460 /* DebugViewController.swift */,
+				D079047B2139672E00F21A18 /* DebugViewBugsViewController.swift */,
 			);
 			path = "EA Center Mac";
 			sourceTree = "<group>";
@@ -1111,6 +1114,7 @@
 				D0FEB74320E147AF009CB82E /* aeskey.c in Sources */,
 				05ADD16720FB59C1008754A0 /* CreateNewEAViewController.swift in Sources */,
 				D01B77A2211595FF00B93427 /* AboutWindowController.swift in Sources */,
+				D079047D2139672E00F21A18 /* DebugViewBugsViewController.swift in Sources */,
 				D05E85DA210614DC00EA4577 /* CoordinatorSettingsCellView.swift in Sources */,
 				D0B7C47820EC9620004DE8F3 /* AccountSettingsViewController.swift in Sources */,
 				D0DFCEDA20D8A41200DBB70E /* ViewController.swift in Sources */,

@@ -19,6 +19,7 @@ class DescriptionViewController: NSViewController {
     var downloadTask: URLSessionDownloadTask?
     
     @IBOutlet var editButton: NSButton!
+    @IBOutlet weak var touchEditButton: NSButton!
     
     @IBOutlet var mainTouchBar: NSTouchBar!
     
@@ -36,6 +37,7 @@ class DescriptionViewController: NSViewController {
         //textView.toggleRuler(nil)
         
         editButton.isEnabled = false
+        touchEditButton.isEnabled = false
         
         if currentEA != nil {
             downloadDescription()
@@ -49,6 +51,7 @@ class DescriptionViewController: NSViewController {
         
         if isViewLoaded {
             editButton.isEnabled = false
+            touchEditButton.isEnabled = false
             downloadDescription()
         }
     }
@@ -109,7 +112,7 @@ class DescriptionViewController: NSViewController {
             guard error == nil else {
                 // Can't download with an error
                 //print("Error: \(error!.localizedDescription)")
-                if (error as! URLError).code == URLError.cancelled {
+                if (error as! URLError).code != URLError.cancelled {
                     DispatchQueue.main.async {
                         self.showErrorAlert(nil, nil, error)
                     }
@@ -163,6 +166,8 @@ class DescriptionViewController: NSViewController {
                 try? FileManager.default.removeItem(at: URL(fileURLWithPath: unzipLocation))
                 
                 self.editButton.isEnabled = true
+                self.touchEditButton.isEnabled = true
+                
             }
         }
         

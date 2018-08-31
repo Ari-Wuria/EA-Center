@@ -751,7 +751,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="EA_Center_Mac" customModuleProvider="target">
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="EASLINK" customModuleProvider="target">
                     <connections>
                         <outlet property="coordinatorSecrets" destination="Efk-rv-yjh" id="qnu-2q-o93"/>
                         <outlet property="loginMenu" destination="1XO-op-GRC" id="v4D-Qm-hNC"/>
@@ -798,7 +798,7 @@
         <!--Manager View Controller-->
         <scene sceneID="ELt-nS-czq">
             <objects>
-                <viewController id="dFO-K9-tAl" customClass="EAManagerViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="dFO-K9-tAl" customClass="EAManagerViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="VTI-Xj-hhI">
                         <rect key="frame" x="0.0" y="0.0" width="806" height="582"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -840,7 +840,7 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="ManageCell" misplaced="YES" id="AxQ-1b-san" customClass="ManagerCellView" customModule="EA_Center_Mac" customModuleProvider="target">
+                                                        <tableCellView identifier="ManageCell" misplaced="YES" id="AxQ-1b-san" customClass="ManagerCellView" customModule="EASLINK" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="304" height="156"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
@@ -1153,7 +1153,7 @@
         <!--Add Leader View Controller-->
         <scene sceneID="YcX-7C-ffJ">
             <objects>
-                <viewController id="xQx-pJ-h1O" customClass="AddLeaderViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="xQx-pJ-h1O" customClass="AddLeaderViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="ueW-XR-QLi">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1318,7 +1318,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" customClass="MainWindowController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="EASLINK" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" texturedBackground="YES" fullSizeContentView="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1378,7 +1378,7 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="950" height="669"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1390,14 +1390,14 @@
                                     <rect key="frame" x="1" y="1" width="948" height="667"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XI7-P4-VON" customClass="MyScrollView" customModule="EA_Center_Mac" customModuleProvider="target">
+                                        <scrollView fixedFrame="YES" borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XI7-P4-VON" customClass="MyScrollView" customModule="EASLINK" customModuleProvider="target">
                                             <rect key="frame" x="306" y="-1" width="642" height="594"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="7Tr-QY-IUq">
                                                 <rect key="frame" x="0.0" y="0.0" width="642" height="594"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textView ambiguous="YES" editable="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="E9q-C5-aa7" customClass="MyTextView" customModule="EA_Center_Mac" customModuleProvider="target">
+                                                    <textView ambiguous="YES" editable="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="E9q-C5-aa7" customClass="MyTextView" customModule="EASLINK" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="642" height="594"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1445,22 +1445,22 @@
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView identifier="CellIdentifier" id="skk-E4-8ww" customClass="EAListCellView" customModule="EA_Center_Mac" customModuleProvider="target">
+                                                        <tableCellView identifier="CellIdentifier" id="skk-E4-8ww" customClass="EAListCellView" customModule="EASLINK" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="304" height="103"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <stackView distribution="fill" orientation="vertical" alignment="leading" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="eb3-df-Q3h">
                                                                     <rect key="frame" x="12" y="12" width="280" height="79"/>
                                                                     <subviews>
-                                                                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" translatesAutoresizingMaskIntoConstraints="NO" id="iE8-x7-OlV">
+                                                                        <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iE8-x7-OlV">
                                                                             <rect key="frame" x="0.0" y="50" width="280" height="29"/>
                                                                             <subviews>
                                                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zzc-uH-Y1J">
                                                                                     <rect key="frame" x="-2" y="1" width="223" height="27"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="219" id="sVl-8f-7Lf"/>
+                                                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="219" id="sVl-8f-7Lf"/>
                                                                                     </constraints>
-                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingMiddle" alignment="left" title="EA Name" usesSingleLineMode="YES" id="3z3-MO-41X">
+                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" alignment="left" title="EA Name" usesSingleLineMode="YES" id="3z3-MO-41X">
                                                                                         <font key="font" metaFont="systemBold" size="22"/>
                                                                                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1630,12 +1630,16 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="FXN-AP-Htr">
+                                <rect key="frame" x="621" y="273" width="16" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </progressIndicator>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LNv-o0-SFZ">
                                 <rect key="frame" x="509" y="179" width="241" height="241"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="Pencil Paper" id="Eb5-OG-uaF"/>
                             </imageView>
-                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VWU-6K-cLT" customClass="TitleBarView" customModule="EA_Center_Mac" customModuleProvider="target">
+                            <customView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VWU-6K-cLT" customClass="TitleBarView" customModule="EASLINK" customModuleProvider="target">
                                 <rect key="frame" x="-4" y="592" width="959" height="83"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <subviews>
@@ -1736,6 +1740,7 @@
                         <outlet property="loadingIndicatorView" destination="JBF-PP-14M" id="chD-2k-95Z"/>
                         <outlet property="loadingSpinner" destination="2iM-DL-aiY" id="GDB-jG-84x"/>
                         <outlet property="longDescLoadingLabel" destination="64J-BS-qSC" id="zMx-B1-VXb"/>
+                        <outlet property="longDescProgressIndicator" destination="FXN-AP-Htr" id="Ten-5Q-zgV"/>
                         <outlet property="longDescTextView" destination="E9q-C5-aa7" id="jCh-5I-Bia"/>
                         <outlet property="pencilPaper" destination="LNv-o0-SFZ" id="Qfi-mO-m6x"/>
                         <outlet property="searchField" destination="wyx-1S-lfP" id="TZD-Iz-xzi"/>
@@ -1855,7 +1860,7 @@
         <!--Window Controller-->
         <scene sceneID="gJt-th-cbS">
             <objects>
-                <windowController storyboardIdentifier="StudentBulletin" showSeguePresentationStyle="single" id="ed2-jU-5zM" customClass="BulletinWindowController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <windowController storyboardIdentifier="StudentBulletin" showSeguePresentationStyle="single" id="ed2-jU-5zM" customClass="BulletinWindowController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Student Bulletin" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="4Hg-K9-849">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -1876,7 +1881,7 @@
         <!--Bulletin View Controller-->
         <scene sceneID="dXf-gP-Zd5">
             <objects>
-                <viewController id="tqs-aN-Wki" customClass="BulletinViewController" customModule="EA_Center_Mac" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="tqs-aN-Wki" customClass="BulletinViewController" customModule="EASLINK" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="8HX-vG-n5O">
                         <rect key="frame" x="0.0" y="0.0" width="730" height="504"/>
                         <autoresizingMask key="autoresizingMask"/>

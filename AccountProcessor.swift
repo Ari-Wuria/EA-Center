@@ -9,7 +9,7 @@
 import Foundation
 
 class AccountProcessor {
-    class func sendLoginRequest(_ email: String, _ passEnc: String, _ pushToken: String? = nil, _ completion: @escaping (_ success: Bool, _ errorCode: Int?, _ errorMsg: String?) -> ()) {
+    class func sendLoginRequest(_ email: String, _ passEnc: String, _  pushToken: String? = nil, _ deviceIdentifier: String? = nil, _ deviceName: String? = nil, _ completion: @escaping (_ success: Bool, _ errorCode: Int?, _ errorMsg: String?) -> ()) {
         let urlString = MainServerAddress + "/login/login.php"
         let url = URL(string: urlString)!
         
@@ -20,9 +20,15 @@ class AccountProcessor {
         // Split iOS and macOS code to support push notification (disable for simulator)
         #if os(iOS)
         #if !targetEnvironment(simulator)
-        var postString = "login=1&email=\(email)&password=\(passEnc)"
+        var postString = "login=1&email=\(email)&password=\(passEnc)&mobile=1"
         if let token = pushToken {
             postString.append(contentsOf: "&pushtoken=\(token)")
+        }
+        if let identifier = deviceIdentifier {
+            postString.append(contentsOf: "&mobileidentifier=\(identifier)")
+        }
+        if let deviceName = deviceName {
+            postString.append(contentsOf: "&mobilename=\(deviceName)")
         }
         #else
         let postString = "login=1&email=\(email)&password=\(passEnc)"
@@ -87,10 +93,12 @@ class AccountProcessor {
                 DispatchQueue.main.async {
                     // We will use the errorCode variable to pass the user id
                     let userID = responseDict["userid"] as! Int
-                    if let token = responseDict["token"] {
-                        if let token = token as? String {
-                            if token.count > 0 {
-                                completion(true, userID, token)
+                    if let deviceID = responseDict["identifier"] {
+                        if let deviceID = deviceID as? String {
+                            if deviceID.count > 0 {
+                                print("Received identifier: \(deviceID)")
+                                let nameOfDevice = responseDict["devicename"] as! String
+                                completion(true, userID, "device_id_received:\(deviceID):\(nameOfDevice)")
                             } else {
                                 completion(true, userID, nil)
                             }

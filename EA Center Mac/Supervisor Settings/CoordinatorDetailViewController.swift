@@ -60,7 +60,7 @@ class CoordinatorDetailViewController: NSViewController {
         timeLabel.stringValue = ea.timeModeForDisplay()
         locationLabel.stringValue = (ea.location.count > 0) ? ea.location : "Location Unspecified"
         gradeLabel.stringValue = "Grade \(ea.minGrade) - \(ea.maxGrade)"
-        datesLabel.stringValue = "Formatted date"
+        //datesLabel.stringValue = "Formatted date"
         shortDescLabel.stringValue = ea.shortDescription
         
         let startDate = dateFormatter.string(from: ea.startDate!)

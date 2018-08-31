@@ -54,6 +54,8 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
     
     var deviceToken: String?
     
+    var hasKeyboard = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -89,6 +91,8 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
         
         usernameTextField.delegate = self
         passwordTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -284,7 +288,9 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
         
         let encryptedPass = AccountProcessor.encrypt(password)!
         
-        AccountProcessor.sendLoginRequest(email, encryptedPass, deviceToken) { (success, errCode, errStr) in
+        let deviceIdentifier = UIDevice.current.identifierForVendor?.uuidString
+        let deviceName = UIDevice.current.name
+        AccountProcessor.sendLoginRequest(email, encryptedPass, deviceToken, deviceIdentifier, deviceName) { (success, errCode, errStr) in
             if success || self.authenticationFailed == false {
                 let saveSuccess = KeychainHelper.saveKeychain(account: email, password: password.data(using: .utf8)!)
                 if saveSuccess {
@@ -481,6 +487,7 @@ class LaunchViewController: UIViewController, UIViewControllerTransitioningDeleg
     }
     
     override var shouldAutorotate: Bool {
+        // FIXME: Fix the rotation bug and set this to true
         return false
     }
 }
@@ -495,6 +502,9 @@ extension LaunchViewController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+//        guard hasKeyboard else {
+//            return
+//        }
         if view.traitCollection.horizontalSizeClass == .regular && view.traitCollection.verticalSizeClass == .regular {
             // iPad
             if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
@@ -523,6 +533,9 @@ extension LaunchViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if !usernameTextField.isFirstResponder && !passwordTextField.isFirstResponder {
+//            guard hasKeyboard else {
+//                return
+//            }
             // iPad
             if UIDevice.current.orientation == .landscapeLeft || UIDevice.current.orientation == .landscapeRight {
                 // Landscape
@@ -556,6 +569,18 @@ extension LaunchViewController: UITextFieldDelegate {
             login(textField)
         }
         return true
+    }
+    
+    @objc func keyboardWillShow(_ notification: Notification?) {
+        let userInfo = notification?.userInfo
+        let keyboardFrame: CGRect? = (userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as AnyObject).cgRectValue
+        let keyboard = view.convert(keyboardFrame ?? CGRect.zero, from: view.window)
+        let height = view.frame.size.height
+        if (keyboard.origin.y + keyboard.size.height) > height {
+            hasKeyboard = true
+        } else {
+            hasKeyboard = false
+        }
     }
 }
 
