@@ -207,6 +207,7 @@ class EAManagerViewController: NSViewController {
         retriveMyEA()
     }
 
+    @available(OSX 10.12.2, *)
     override func makeTouchBar() -> NSTouchBar? {
         if containerView.isHidden == false {
             let selectedItem = containingTabViewController!.tabView.selectedTabViewItem

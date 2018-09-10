@@ -53,6 +53,7 @@ class AboutViewController: NSViewController {
         NSWorkspace.shared.openFile(pathToFile!)
     }
     
+    @available(OSX 10.12.2, *)
     override func makeTouchBar() -> NSTouchBar? {
         return mainTouchBar
     }

@@ -148,6 +148,7 @@ class RegisterViewController: NSViewController {
         }
     }
     
+    @available(OSX 10.12.2, *)
     override func makeTouchBar() -> NSTouchBar? {
         return mainTouchBar
     }

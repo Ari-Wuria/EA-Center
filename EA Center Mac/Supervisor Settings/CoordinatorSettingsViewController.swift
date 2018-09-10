@@ -183,9 +183,10 @@ extension CoordinatorSettingsViewController: NSTableViewDataSource, NSTableViewD
                 view.leaderLabel.stringValue = "Error retriving leader"
             }
             if ea.leaderEmails.count == 1 {
-                view.leaderLabel.stringValue = name!
+                view.leaderLabel.stringValue = name!.count > 0 ? name! : "(no name)"
             } else {
-                view.leaderLabel.stringValue = "\(name!) and \(ea.leaderEmails.count - 1) more"
+                let nameToUse = name!.count > 0 ? name! : "(no name)"
+                view.leaderLabel.stringValue = "\(nameToUse) and \(ea.leaderEmails.count - 1) more"
             }
         }
         
@@ -195,9 +196,10 @@ extension CoordinatorSettingsViewController: NSTableViewDataSource, NSTableViewD
                     view.supervisorLabel.stringValue = "Error retriving supervisor"
                 }
                 if ea.supervisorEmails.count == 1 {
-                    view.supervisorLabel.stringValue = name!
+                    view.supervisorLabel.stringValue = name!.count > 0 ? name! : "(no name)"
                 } else {
-                    view.supervisorLabel.stringValue = "\(name!) and \(ea.supervisorEmails.count - 1) more"
+                    let nameToUse = name!.count > 0 ? name! : "(no name)"
+                    view.supervisorLabel.stringValue = "\(nameToUse) and \(ea.supervisorEmails.count - 1) more"
                 }
             }
         } else {

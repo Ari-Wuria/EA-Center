@@ -141,6 +141,7 @@
 		D0B9A3AB2111F85100AB7AF1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B9A3A92111F85100AB7AF1 /* AboutViewController.swift */; };
 		D0C53A192132732C00666CE7 /* RequestApprovalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C53A182132732C00666CE7 /* RequestApprovalViewController.swift */; };
 		D0C53A1B2132990900666CE7 /* RequestApprovalHudView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C53A1A2132990900666CE7 /* RequestApprovalHudView.swift */; };
+		D0CB33012139738A00CB902D /* DebugWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CB33002139738A00CB902D /* DebugWindowController.swift */; };
 		D0CCB37220E4FFA50009AC07 /* LoginWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */; };
 		D0CCB37420E4FFDC0009AC07 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */; };
 		D0CCB37720E529840009AC07 /* AESCrypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0CCB37620E529840009AC07 /* AESCrypto.swift */; };
@@ -331,6 +332,7 @@
 		D0C2C0222111FD970002E508 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D0C53A182132732C00666CE7 /* RequestApprovalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApprovalViewController.swift; sourceTree = "<group>"; };
 		D0C53A1A2132990900666CE7 /* RequestApprovalHudView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestApprovalHudView.swift; sourceTree = "<group>"; };
+		D0CB33002139738A00CB902D /* DebugWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugWindowController.swift; sourceTree = "<group>"; };
 		D0CCB37120E4FFA50009AC07 /* LoginWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginWindowController.swift; sourceTree = "<group>"; };
 		D0CCB37320E4FFDC0009AC07 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		D0CCB37620E529840009AC07 /* AESCrypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AESCrypto.swift; sourceTree = "<group>"; };
@@ -740,6 +742,7 @@
 				D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */,
 				D0F232F0213421B2008AC460 /* DebugViewController.swift */,
 				D079047B2139672E00F21A18 /* DebugViewBugsViewController.swift */,
+				D0CB33002139738A00CB902D /* DebugWindowController.swift */,
 			);
 			path = "EA Center Mac";
 			sourceTree = "<group>";
@@ -1164,6 +1167,7 @@
 				D085146E20EA6DF300A331C5 /* KeychainHelper.swift in Sources */,
 				05ECDEE420F9E7CE0075DBB3 /* AddLeaderViewController.swift in Sources */,
 				D0FEB74120E147AF009CB82E /* ioapi_mem.c in Sources */,
+				D0CB33012139738A00CB902D /* DebugWindowController.swift in Sources */,
 				D05E85D62104D5D200EA4577 /* ChangePasswordViewController.swift in Sources */,
 				D09D0505210B0A13000577B7 /* DeleteEAViewController.swift in Sources */,
 				D0B9A3AB2111F85100AB7AF1 /* AboutViewController.swift in Sources */,

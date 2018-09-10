@@ -6,10 +6,12 @@
 //  Copyright © 2018 Tom Shen. All rights reserved.
 //
 
-#if os(OSX)
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(Cocoa)
 import Cocoa
 #else
-import UIKit
+#error("Unsupported platform")
 #endif
 
 /// Sort by EA name ascending

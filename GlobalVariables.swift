@@ -9,10 +9,12 @@
 // Used to define global variables
 
 import Foundation
-#if os(OSX)
+#if canImport(CoreWLAN)
 import CoreWLAN
-#elseif os(iOS)
+#elseif canImport(SystemConfiguration)
 import SystemConfiguration.CaptiveNetwork
+#else
+#error("Unsupported platform")
 #endif
 
 fileprivate let HomeServerAddress = "http://192.168.50.100/eacenter"

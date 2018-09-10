@@ -206,6 +206,7 @@ class EditDescriptionViewController: NSViewController {
         //textView.string = ""
     }
     
+    @available(OSX 10.12.2, *)
     override func makeTouchBar() -> NSTouchBar? {
         let saveButtonIdentifier = NSTouchBarItem.Identifier("Save")
         mainTouchBar.defaultItemIdentifiers = [saveButtonIdentifier, .fixedSpaceSmall, .otherItemsProxy]
@@ -220,6 +221,7 @@ class EditDescriptionViewController: NSViewController {
     }
 }
 
+@available(OSX 10.12.2, *)
 extension EditDescriptionViewController: NSTouchBarDelegate {
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         if identifier.rawValue == "Save" {

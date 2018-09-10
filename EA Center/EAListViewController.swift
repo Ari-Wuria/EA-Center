@@ -65,6 +65,8 @@ class EAListViewController: UITableViewController {
         splitViewControllingDelegate?.eaListRequestSplitViewDetail(self)
         
         //NotificationCenter.default.addObserver(self, selector: #selector(eaUpdated(_:)), name: UIAccessibility.invertColorsStatusDidChangeNotification, object: nil)
+        
+        //tableView.prefetchDataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {

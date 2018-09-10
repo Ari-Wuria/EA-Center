@@ -41,7 +41,12 @@ class AddLeaderViewController: NSViewController {
 
         selectorTableView.delegate = self
         selectorTableView.dataSource = self
-        searchBar.delegate = self
+        if #available(OSX 10.11, *) {
+            searchBar.delegate = self
+        } else {
+            // Fallback on earlier versions
+            
+        }
         
         selectorTableView.target = self
         selectorTableView.doubleAction = #selector(selectRow)

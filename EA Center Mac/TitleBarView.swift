@@ -26,7 +26,11 @@ class TitleBarView: NSView {
         
         wantsLayer = true
         
-        layer?.backgroundColor = NSColor(named: "Titlebar Unfocused")?.cgColor
+        if #available(OSX 10.13, *) {
+            layer?.backgroundColor = NSColor(named: "Titlebar Unfocused")?.cgColor
+        } else {
+            // Fallback on earlier versions
+        }
         
         if gradientLayer == nil {
             gradientLayer = CAGradientLayer()
@@ -36,9 +40,19 @@ class TitleBarView: NSView {
         
         gradientLayer.frame = CGRect(x: 0, y: 0, width: self.frame.width, height: self.frame.height)
         
-        let color1 = NSColor(named: "Titlebar Gradient 1")!
-        let color2 = NSColor(named: "Titlebar Gradient 2")!
-        let color3 = NSColor(named: "Titlebar Gradient 3")!
+        let color1: NSColor
+        let color2: NSColor
+        let color3: NSColor
+        if #available(OSX 10.13, *) {
+            color1 = NSColor(named: "Titlebar Gradient 1")!
+            color2 = NSColor(named: "Titlebar Gradient 2")!
+            color3 = NSColor(named: "Titlebar Gradient 3")!
+        } else {
+            // Fallback on earlier versions
+            color1 = color(name: "Titlebar Gradient 1")
+            color2 = color(name: "Titlebar Gradient 2")
+            color3 = color(name: "Titlebar Gradient 3")
+        }
         
         let colors = [color3.cgColor, color2.cgColor, color1.cgColor]
         gradientLayer.colors = colors

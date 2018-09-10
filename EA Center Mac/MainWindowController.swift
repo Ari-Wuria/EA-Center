@@ -33,6 +33,7 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
         window?.delegate = self
     }
     
+    @available(OSX 10.12.2, *)
     override func makeTouchBar() -> NSTouchBar? {
         return (contentViewController as! ViewController).makeTouchBar()
     }
@@ -89,7 +90,13 @@ class MainWindowController: NSWindowController, NSWindowDelegate {
                 
                 window.showWindow(sender)
             } else {
-                let storyboard = NSStoryboard.main!
+                let storyboard: NSStoryboard
+                if #available(OSX 10.13, *) {
+                    storyboard = NSStoryboard.main!
+                } else {
+                    // Fallback on earlier versions
+                    storyboard = NSStoryboard(name: "Main", bundle: .main)
+                }
                 let manageWindow = storyboard.instantiateController(withIdentifier: "Manage") as! NSWindowController
                 
                 let manageViewController = manageWindow.contentViewController as! EAManagerViewController

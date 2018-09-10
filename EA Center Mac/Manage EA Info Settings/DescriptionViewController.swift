@@ -72,6 +72,8 @@ class DescriptionViewController: NSViewController {
         }
         self.textView.textStorage?.setAttributedString(content)
         
+        self.currentAttributedString = content
+        
         delay(0.5) {
             // Delete original RTFD and zip
             do {
@@ -197,6 +199,7 @@ class DescriptionViewController: NSViewController {
         alert.runModal()
     }
     
+    @available(OSX 10.12.2, *)
     override func makeTouchBar() -> NSTouchBar? {
         return mainTouchBar
     }

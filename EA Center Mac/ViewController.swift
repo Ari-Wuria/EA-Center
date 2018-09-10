@@ -107,7 +107,12 @@ class ViewController: NSViewController {
     override func viewDidLayout() {
         super.viewDidLayout()
         
-        listTableView.backgroundColor = NSColor(named: "Table Color")!
+        if #available(OSX 10.13, *) {
+            listTableView.backgroundColor = NSColor(named: "Table Color")!
+        } else {
+            // Fallback on earlier versions
+            listTableView.backgroundColor = color(name: "Table Color")
+        }
         
         //titlebarView.setNeedsDisplay(titlebarView.bounds)
     }
@@ -203,6 +208,7 @@ class ViewController: NSViewController {
         listTableView.reloadData()
     }
 
+    @available(OSX 10.12.2, *)
     override func makeTouchBar() -> NSTouchBar? {
         return customTouchBar
     }
@@ -263,7 +269,7 @@ class ViewController: NSViewController {
                 DispatchQueue.main.async {
                     let alert = NSAlert()
                     alert.messageText = "Error"
-                    alert.informativeText = "The server returned an invalid response. (not 200)"
+                    alert.informativeText = "The server returned an invalid response. (\(httpResponse!.statusCode))"
                     alert.runModal()
                     self.failedDownloadCleanup()
                 }
@@ -884,10 +890,20 @@ class ListRowView: NSTableRowView {
     
     override func draw(_ dirtyRect: NSRect) {
         if isSelected {
-            NSColor(named: "Table Selection Color")!.setFill()
+            if #available(OSX 10.13, *) {
+                NSColor(named: "Table Selection Color")!.setFill()
+            } else {
+                // Fallback on earlier versions
+                color(name: "Table Selection Color").setFill()
+            }
             bounds.fill()
         } else {
-            NSColor(named: backgroundColorName!)!.setFill()
+            if #available(OSX 10.13, *) {
+                NSColor(named: backgroundColorName!)!.setFill()
+            } else {
+                // Fallback on earlier versions
+                color(name: backgroundColorName!).setFill()
+            }
             bounds.fill()
         }
     }

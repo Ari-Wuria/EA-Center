@@ -17,7 +17,7 @@ class CoordinatorDetailViewController: NSViewController {
     @IBOutlet weak var locationLabel: NSTextField!
     @IBOutlet weak var gradeLabel: NSTextField!
     @IBOutlet weak var datesLabel: NSTextField!
-    @IBOutlet weak var shortDescLabel: NSTextField!
+    @IBOutlet weak var shortDescLabel: NSTextView!
     
     @IBOutlet weak var approveButton: NSButton!
     @IBOutlet weak var rejectButton: NSButton!
@@ -32,6 +32,8 @@ class CoordinatorDetailViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        shortDescLabel.font = NSFont.systemFont(ofSize: 20)
     }
     
     func updateInfo(with ea: EnrichmentActivity) {
@@ -40,17 +42,17 @@ class CoordinatorDetailViewController: NSViewController {
         let daysString = ea.days.map { (day) -> String in
             switch day {
             case 1:
-                return "Mon"
+                return "Monday"
             case 2:
-                return "Tues"
+                return "Tuesday"
             case 3:
-                return "Weds"
+                return "Wednesday"
             case 4:
-                return "Thurs"
+                return "Thursday"
             case 5:
-                return "Fri"
+                return "Friday"
             default:
-                return "Err"
+                return "Error"
             }
         }
         
@@ -61,7 +63,7 @@ class CoordinatorDetailViewController: NSViewController {
         locationLabel.stringValue = (ea.location.count > 0) ? ea.location : "Location Unspecified"
         gradeLabel.stringValue = "Grade \(ea.minGrade) - \(ea.maxGrade)"
         //datesLabel.stringValue = "Formatted date"
-        shortDescLabel.stringValue = ea.shortDescription
+        shortDescLabel.string = ea.shortDescription
         
         let startDate = dateFormatter.string(from: ea.startDate!)
         let endDate = dateFormatter.string(from: ea.endDate!)

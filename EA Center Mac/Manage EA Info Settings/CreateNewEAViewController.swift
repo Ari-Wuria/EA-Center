@@ -103,6 +103,7 @@ class CreateNewEAViewController: NSViewController {
         escEvent = nil
     }
     
+    @available(OSX 10.12.2, *)
     override func makeTouchBar() -> NSTouchBar? {
         /*
         // Hide the cancelLabel when making touch bar
@@ -119,6 +120,7 @@ class CreateNewEAViewController: NSViewController {
     }
 }
 
+@available(OSX 10.12.2, *)
 extension CreateNewEAViewController: NSTouchBarDelegate {
     func touchBar(_ touchBar: NSTouchBar, makeItemForIdentifier identifier: NSTouchBarItem.Identifier) -> NSTouchBarItem? {
         if identifier.rawValue == "Cancel" {

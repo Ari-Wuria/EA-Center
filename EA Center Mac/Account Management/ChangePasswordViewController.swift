@@ -107,7 +107,12 @@ class PopoverRootView: NSView {
 
 class PopoverBackgroundView:NSView {
     override func draw(_ dirtyRect: NSRect) {
-        NSColor(named: "Manage Background")!.set()
+        if #available(OSX 10.13, *) {
+            NSColor(named: "Manage Background")!.set()
+        } else {
+            // Fallback on earlier versions
+            color(name: "Manage Background").set()
+        }
         bounds.fill()
     }
 }

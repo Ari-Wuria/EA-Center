@@ -7,10 +7,12 @@
 //
 
 import Foundation
-#if os(iOS)
+#if canImport(UIKit)
 import UIKit
-#elseif os(OSX)
+#elseif canImport(Cocoa)
 import Cocoa
+#else
+#error("Unsupported platform")
 #endif
 
 import SystemConfiguration
@@ -22,12 +24,14 @@ func delay(_ time: Double, _ block: @escaping () -> ()) {
 func randomAlphanumericString(length: Int) -> String {
     
     let letters : NSString = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-    let len = UInt32(letters.length)
+    //let len = UInt32(letters.length)
+    let len = letters.length
     
     var randomString = ""
     
     for _ in 0 ..< length {
-        let rand = arc4random_uniform(len)
+        //let rand = arc4random_uniform(len)
+        let rand = Int.random(in: 0..<len)
         var nextChar = letters.character(at: Int(rand))
         randomString += NSString(characters: &nextChar, length: 1) as String
     }
@@ -100,5 +104,46 @@ extension NSWindow {
         let contentHeight = contentRect(forFrameRect: frame).height
         return frame.height - contentHeight
     }
+}
+#endif
+
+// Old system wrapper for catalog
+#if os(OSX)
+// NSColor(red: <#T##CGFloat#>, green: <#T##CGFloat#>, blue: <#T##CGFloat#>, alpha: <#T##CGFloat#>)
+func color(name: String) -> NSColor {
+    switch name {
+    case "Titlebar Gradient 1":
+        return rgbaColor(144, 207, 255, 1)
+    case "Titlebar Gradient 2":
+        return rgbaColor(144, 195, 255, 1)
+    case "Titlebar Gradient 3":
+        return rgbaColor(133, 180, 255, 1)
+    case "Table Cell Color 0":
+        return NSColor.white
+    case "Table Cell Color 1":
+        return rgbaColor(216, 240, 255, 1)
+    case "Table Cell Color 2":
+        return rgbaColor(205, 220, 255, 1)
+    case "Table Cell Color 3":
+        return rgbaColor(180, 195, 240, 1)
+    case "Table Cell Color 4":
+        return rgbaColor(255, 255, 204, 1)
+    case "Table Cell Color 5":
+        return rgbaColor(255, 204, 204, 1)
+    case "Table Cell Color 6":
+        return rgbaColor(255, 204, 153, 1)
+    case "Titlebar Unfocused":
+        return rgbaColor(176, 224, 255, 1)
+    case "Table Selection Color":
+        return rgbaColor(46, 152, 226, 1)
+    case "Table Color":
+        return rgbaColor(170, 218, 255, 1)
+    default:
+        return NSColor.black
+    }
+}
+
+fileprivate func rgbaColor(_ red: CGFloat, _ blue: CGFloat, _ green: CGFloat, _ alpha: CGFloat) -> NSColor {
+    return NSColor(red: red/255, green: green/255, blue: blue/255, alpha: alpha)
 }
 #endif
