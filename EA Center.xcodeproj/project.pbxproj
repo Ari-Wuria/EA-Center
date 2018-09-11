@@ -180,6 +180,14 @@
 		D0FEB74B20E147B0009CB82E /* aestab.c in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73520E147AF009CB82E /* aestab.c */; };
 		D0FEB74C20E147B0009CB82E /* SSZipArchive.m in Sources */ = {isa = PBXBuildFile; fileRef = D0FEB73A20E147AF009CB82E /* SSZipArchive.m */; };
 		D0FEB75820E14864009CB82E /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D0FEB75720E14864009CB82E /* libz.tbd */; };
+		F7ED5CF32147F50B00D402E5 /* Crypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ED5CEF2147F50B00D402E5 /* Crypto.framework */; };
+		F7ED5CF42147F50B00D402E5 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ED5CF02147F50B00D402E5 /* CommonCrypto.framework */; };
+		F7ED5CF52147F50B00D402E5 /* CommonCrypto.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F7ED5CF12147F50B00D402E5 /* CommonCrypto.framework.dSYM */; };
+		F7ED5CF62147F50B00D402E5 /* Crypto.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F7ED5CF22147F50B00D402E5 /* Crypto.framework.dSYM */; };
+		F7ED5CFB2147F55C00D402E5 /* CommonCrypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ED5CF72147F55C00D402E5 /* CommonCrypto.framework */; };
+		F7ED5CFC2147F55C00D402E5 /* Crypto.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F7ED5CF82147F55C00D402E5 /* Crypto.framework.dSYM */; };
+		F7ED5CFD2147F55C00D402E5 /* CommonCrypto.framework.dSYM in Resources */ = {isa = PBXBuildFile; fileRef = F7ED5CF92147F55C00D402E5 /* CommonCrypto.framework.dSYM */; };
+		F7ED5CFE2147F55C00D402E5 /* Crypto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7ED5CFA2147F55C00D402E5 /* Crypto.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -395,6 +403,14 @@
 		D0FEB73B20E147AF009CB82E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0FEB75620E14807009CB82E /* EA-Center-Mac-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EA-Center-Mac-Bridging-Header.h"; sourceTree = "<group>"; };
 		D0FEB75720E14864009CB82E /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/lib/libz.tbd; sourceTree = DEVELOPER_DIR; };
+		F7ED5CEF2147F50B00D402E5 /* Crypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crypto.framework; path = Carthage/Build/Mac/Crypto.framework; sourceTree = "<group>"; };
+		F7ED5CF02147F50B00D402E5 /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommonCrypto.framework; path = Carthage/Build/Mac/CommonCrypto.framework; sourceTree = "<group>"; };
+		F7ED5CF12147F50B00D402E5 /* CommonCrypto.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CommonCrypto.framework.dSYM; path = Carthage/Build/Mac/CommonCrypto.framework.dSYM; sourceTree = "<group>"; };
+		F7ED5CF22147F50B00D402E5 /* Crypto.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Crypto.framework.dSYM; path = Carthage/Build/Mac/Crypto.framework.dSYM; sourceTree = "<group>"; };
+		F7ED5CF72147F55C00D402E5 /* CommonCrypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CommonCrypto.framework; path = Carthage/Build/iOS/CommonCrypto.framework; sourceTree = "<group>"; };
+		F7ED5CF82147F55C00D402E5 /* Crypto.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Crypto.framework.dSYM; path = Carthage/Build/iOS/Crypto.framework.dSYM; sourceTree = "<group>"; };
+		F7ED5CF92147F55C00D402E5 /* CommonCrypto.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CommonCrypto.framework.dSYM; path = Carthage/Build/iOS/CommonCrypto.framework.dSYM; sourceTree = "<group>"; };
+		F7ED5CFA2147F55C00D402E5 /* Crypto.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crypto.framework; path = Carthage/Build/iOS/Crypto.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -403,6 +419,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0E2FA672121B03E00767AA6 /* UserNotifications.framework in Frameworks */,
+				F7ED5CFE2147F55C00D402E5 /* Crypto.framework in Frameworks */,
+				F7ED5CFB2147F55C00D402E5 /* CommonCrypto.framework in Frameworks */,
 				D0177FFB20E77AB0003757A7 /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,7 +444,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0E3486A212302FF0091D4C8 /* Sparkle.framework in Frameworks */,
+				F7ED5CF32147F50B00D402E5 /* Crypto.framework in Frameworks */,
 				D0E2FA652121B03900767AA6 /* UserNotifications.framework in Frameworks */,
+				F7ED5CF42147F50B00D402E5 /* CommonCrypto.framework in Frameworks */,
 				D0FEB75820E14864009CB82E /* libz.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -702,6 +722,14 @@
 		D0DB6AEA20DA682000BBE8F0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F7ED5CF02147F50B00D402E5 /* CommonCrypto.framework */,
+				F7ED5CF12147F50B00D402E5 /* CommonCrypto.framework.dSYM */,
+				F7ED5CEF2147F50B00D402E5 /* Crypto.framework */,
+				F7ED5CF92147F55C00D402E5 /* CommonCrypto.framework.dSYM */,
+				F7ED5CFA2147F55C00D402E5 /* Crypto.framework */,
+				F7ED5CF22147F50B00D402E5 /* Crypto.framework.dSYM */,
+				F7ED5CF72147F55C00D402E5 /* CommonCrypto.framework */,
+				F7ED5CF82147F55C00D402E5 /* Crypto.framework.dSYM */,
 				D0E34869212302FF0091D4C8 /* Sparkle.framework */,
 				D0E2FA642121B03900767AA6 /* UserNotifications.framework */,
 				D0E2FA662121B03E00767AA6 /* UserNotifications.framework */,
@@ -959,7 +987,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7ED5CFD2147F55C00D402E5 /* CommonCrypto.framework.dSYM in Resources */,
 				D05992EB2111EAA3006DD283 /* EASLINK LOGO.001 2.jpeg in Resources */,
+				F7ED5CFC2147F55C00D402E5 /* Crypto.framework.dSYM in Resources */,
 				D025730E20D8A1E40078AE89 /* LaunchScreen.storyboard in Resources */,
 				D025730B20D8A1E40078AE89 /* Assets.xcassets in Resources */,
 				D07A6688211DAB9100C7F0EC /* InitialLaunchScreen.storyboard in Resources */,
@@ -994,6 +1024,7 @@
 				D023E7F8212EFFB200155503 /* dsa_pub.pem in Resources */,
 				D07DE9522111F09E00423D01 /* AboutScreen.storyboard in Resources */,
 				D086475D212AEFE000D95632 /* Info.plist in Resources */,
+				F7ED5CF52147F50B00D402E5 /* CommonCrypto.framework.dSYM in Resources */,
 				D0E3A09121130EEE004F2052 /* ManagerDetail.storyboard in Resources */,
 				D07DE9552111F0ED00423D01 /* EASLINK LOGO.001 2.jpeg in Resources */,
 				D0864762212AF14500D95632 /* EASLINK.html in Resources */,
@@ -1002,6 +1033,7 @@
 				D06B9AE32131C59900570CBD /* Acknowledgement.pdf in Resources */,
 				0541489820FF62CA00EFC7C1 /* CoordinatorSettings.storyboard in Resources */,
 				D0864765212AF2C800D95632 /* EASLINK.helpindex in Resources */,
+				F7ED5CF62147F50B00D402E5 /* Crypto.framework.dSYM in Resources */,
 				D0ABBF4D21135DB600BE81F4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1359,6 +1391,10 @@
 				CODE_SIGN_ENTITLEMENTS = "EA Center/EA Center.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "EA Center/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1380,6 +1416,10 @@
 				CODE_SIGN_ENTITLEMENTS = "EA Center/EA Center.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = EUX5R9PE3W;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "EA Center/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1493,6 +1533,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "EA Center Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1523,6 +1564,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "EA Center Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

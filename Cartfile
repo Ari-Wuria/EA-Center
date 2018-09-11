@@ -1,0 +1,3 @@
+# Used for inporting CommonCrypto using Carthage
+github "soffes/CommonCrypto"
+github "soffes/Crypto"
